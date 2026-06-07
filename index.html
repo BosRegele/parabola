@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parabola — Funcția de Gradul II</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#FAF6EE;--bg2:#F2E9D8;--card:#FFFFFF;--card2:#FFFBF4;
+      --gold:#B8860B;--gold-light:#D4A017;--gold-pale:#FEF3C7;
+      --brown-dark:#2C1A0E;--brown:#5C3D2E;--brown-mid:#8B6E5A;--brown-light:#C4A882;
+      --border:#E5D5B0;--shadow:0 2px 20px rgba(92,61,46,.08);--shadow-h:0 8px 40px rgba(92,61,46,.16);
+      --green:#2E7D32;--red:#B71C1C;--blue:#1565C0;--radius:16px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--brown-dark);line-height:1.75;font-size:16px}
+    h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
+    h1{font-size:clamp(2.4rem,6vw,5rem);font-weight:700;line-height:1.1}
+    h2{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:600;color:var(--brown)}
+    h3{font-size:1.15rem;font-weight:600;color:var(--brown)}
+    .container{max-width:1100px;margin:0 auto;padding:0 24px}
+    section{padding:80px 0}
+    section:nth-child(even){background:var(--bg2)}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:rgba(250,246,238,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 0}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);text-decoration:none}
+    .nav-links{display:flex;gap:4px;flex-wrap:wrap}
+    .nav-links a{text-decoration:none;font-size:.78rem;font-weight:500;color:var(--brown-mid);padding:5px 11px;border-radius:100px;transition:all .2s}
+    .nav-links a:hover{background:var(--gold-pale);color:var(--gold)}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#FAF6EE 0%,#F0E6C8 50%,#E8D8A8 100%)}
+    .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.07;pointer-events:none}
+    .hero-content{position:relative;z-index:1}
+    .hero-chip{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-light);background:var(--gold-pale);padding:5px 14px;border-radius:100px;margin-bottom:20px}
+    .hero-title{color:var(--brown-dark);margin-bottom:14px}
+    .hero-title em{color:var(--gold);font-style:italic}
+    .hero-sub{font-size:1.1rem;color:var(--brown-mid);max-width:540px;margin-bottom:40px}
+    .hero-formula{display:inline-block;background:white;border:2px solid var(--border);border-radius:var(--radius);padding:18px 30px;font-size:1.5rem;font-family:'Playfair Display',serif;color:var(--brown);box-shadow:var(--shadow)}
+    .hero-formula .c{color:var(--gold);font-weight:700}
+    .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.45;animation:bob 2.2s infinite}
+    .scroll-hint span{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-mid)}
+    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+    /* SECTION HEADER */
+    .sh{text-align:center;margin-bottom:56px}
+    .sh-num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--gold);color:white;font-weight:700;font-size:.85rem;margin-bottom:14px}
+    .sh-line{width:56px;height:3px;background:linear-gradient(90deg,var(--gold-light),var(--gold));border-radius:2px;margin:14px auto 0}
+
+    /* CARDS */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);transition:box-shadow .3s}
+    .card:hover{box-shadow:var(--shadow-h)}
+
+    /* FORMULA BOX */
+    .fb{background:var(--card2);border:2px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius);padding:22px 28px;margin:20px 0;text-align:center}
+    .formula{font-size:1.55rem;font-family:'Playfair Display',serif;color:var(--brown);line-height:1.6}
+    .formula .v{color:var(--gold);font-style:italic}
+
+    /* FRACTION */
+    .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;font-size:.82em}
+    .frac .n{border-bottom:1.5px solid currentColor;padding-bottom:2px;white-space:nowrap}
+    .frac .d{padding-top:2px;white-space:nowrap}
+
+    /* GRID */
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    @media(max-width:768px){.g2,.g3{grid-template-columns:1fr}}
+
+    /* LIST */
+    .ml{list-style:none;padding:0}
+    .ml li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+    .ml li:last-child{border-bottom:none}
+    .ml .dot{flex-shrink:0;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-top:9px}
+
+    /* TABLE */
+    .mt{width:100%;border-collapse:collapse;margin:16px 0}
+    .mt th{background:var(--gold-pale);border:1px solid var(--border);padding:10px 14px;font-weight:600;text-align:center;color:var(--brown);font-size:.88rem}
+    .mt td{border:1px solid var(--border);padding:10px 14px;text-align:center;font-size:.88rem}
+    .mt tr:hover td{background:var(--gold-pale)}
+
+    /* DELTA CASES */
+    .dc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+    @media(max-width:600px){.dc{grid-template-columns:1fr}}
+    .dc-card{border-radius:14px;padding:22px;text-align:center}
+    .dc-pos{background:#E8F5E9;border:2px solid #4CAF50}
+    .dc-zero{background:#E3F2FD;border:2px solid #2196F3}
+    .dc-neg{background:#FFEBEE;border:2px solid #F44336}
+    .dc-val{font-size:1.9rem;font-family:'Playfair Display',serif;font-weight:700;margin-bottom:8px}
+    .dc-pos .dc-val{color:#1B5E20}.dc-zero .dc-val{color:#0D47A1}.dc-neg .dc-val{color:#B71C1C}
+    .dc-card p{font-size:.84rem;color:var(--brown)}
+
+    /* TAG */
+    .tag{display:inline-block;padding:3px 10px;border-radius:100px;font-size:.72rem;font-weight:700;margin-bottom:10px}
+    .tg{background:#E8F5E9;color:var(--green)}.tb{background:#E3F2FD;color:var(--blue)}.tr{background:#FFEBEE;color:var(--red)}
+
+    /* 6 CASES GRID */
+    .cg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    @media(max-width:900px){.cg{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.cg{grid-template-columns:1fr}}
+    .cc{background:white;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+    .cc:hover{transform:translateY(-4px);box-shadow:var(--shadow-h)}
+    .cc-head{padding:13px 18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .ap{background:linear-gradient(135deg,#FFF8E1,#FFF0C4);border-bottom:2px solid #F9A825}
+    .an{background:linear-gradient(135deg,#F3E5F5,#EDE7F6);border-bottom:2px solid #7B1FA2}
+    .badge{padding:3px 9px;border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .ba{background:#F9A825;color:white}.ban{background:#7B1FA2;color:white}
+    .bdp{background:#2E7D32;color:white}.bdz{background:#1565C0;color:white}.bdn{background:#B71C1C;color:white}
+    .cn{font-size:.76rem;color:var(--brown-mid);margin-left:auto}
+    .cc-canvas{background:#FAFAF8;display:flex;align-items:center;justify-content:center}
+    .cc-canvas canvas{display:block}
+    .cc-desc{padding:14px 18px;border-top:1px solid var(--border);font-size:.83rem;color:var(--brown-mid)}
+    .cc-desc strong{color:var(--brown)}
+
+    /* VIETA */
+    .vg{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+    @media(max-width:560px){.vg{grid-template-columns:1fr}}
+    .vc{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:26px;text-align:center}
+    .vl{font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--brown-mid);margin-bottom:14px}
+    .vf{font-size:1.35rem;font-family:'Playfair Display',serif;color:var(--brown)}
+
+    /* VERTEX BOXES */
+    .vb{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+    @media(max-width:560px){.vb{grid-template-columns:1fr}}
+    .vb-min{background:#E8F5E9;border:2px solid #4CAF50;border-radius:12px;padding:18px;text-align:center}
+    .vb-max{background:#FCE4EC;border:2px solid #E91E63;border-radius:12px;padding:18px;text-align:center}
+    .vb-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.09em;font-weight:700;margin-bottom:8px}
+    .vb-min .vb-title{color:#1B5E20}.vb-max .vb-title{color:#880E4F}
+    .vb-val{font-size:1.15rem;font-family:'Playfair Display',serif;font-weight:700}
+    .vb-min .vb-val{color:#1B5E20}.vb-max .vb-val{color:#880E4F}
+    .vb-sub{font-size:.8rem;margin-top:6px}
+    .vb-min .vb-sub{color:#2E7D32}.vb-max .vb-sub{color:#C2185B}
+
+    /* CALCULATOR */
+    .calc{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow)}
+    .ci{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:30px}
+    @media(max-width:560px){.ci{grid-template-columns:1fr}}
+    .ig label{display:block;font-size:.8rem;font-weight:600;color:var(--brown-mid);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+    .ig .cn2{font-size:1.3rem;font-family:'Playfair Display',serif;color:var(--gold);font-style:italic;margin-bottom:6px}
+    .ig input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--border);outline:none;cursor:pointer}
+    .ig input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 2px 6px rgba(184,134,11,.3);transition:transform .15s}
+    .ig input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+    .ig .vd{text-align:center;font-size:1.7rem;font-family:'Playfair Display',serif;color:var(--brown);font-weight:600;margin-top:8px}
+    .cl{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    @media(max-width:700px){.cl{grid-template-columns:1fr}}
+    #calcCanvas{width:100%;border-radius:10px;border:1px solid var(--border)}
+    .results{display:flex;flex-direction:column;gap:12px}
+    .ri{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 18px}
+    .ri .rl{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--brown-mid);margin-bottom:3px}
+    .ri .rv{font-size:1.05rem;font-family:'Playfair Display',serif;color:var(--brown-dark);font-weight:600}
+    .dp .rv{color:var(--green)}.dz .rv{color:var(--blue)}.dn .rv{color:var(--red)}
+
+    /* SIGN SECTION */
+    .sc{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media(max-width:640px){.sc{grid-template-columns:1fr}}
+    .sb{padding:16px;background:var(--card2);border-radius:10px;font-family:'Playfair Display',serif;font-size:.92rem;line-height:2.3;color:var(--brown)}
+    .gp{color:var(--green);font-weight:700}.gn{color:var(--red);font-weight:700}.gz{color:var(--blue);font-weight:700}
+
+    /* FOOTER */
+    footer{background:var(--brown-dark);color:rgba(255,255,255,.65);padding:48px 0;text-align:center}
+    footer h3{color:#D4A017;font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:10px}
+    footer .ff{font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,.35);margin-bottom:14px}
+    footer p{font-size:.82rem}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">f(x) = ax² + bx + c</a>
+      <div class="nav-links">
+        <a href="#general">Generală</a>
+        <a href="#canonical">Canonică</a>
+        <a href="#discriminant">Δ</a>
+        <a href="#roots">Rădăcini</a>
+        <a href="#vieta">Viète</a>
+        <a href="#vertex">Vârf</a>
+        <a href="#sign">Semn</a>
+        <a href="#cases">6 Cazuri</a>
+        <a href="#calculator">Calculator</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 900 600" fill="none" preserveAspectRatio="xMidYMid slice">
+    <path d="M-100 600 Q450 -250 1000 600" stroke="#B8860B" stroke-width="4" fill="none"/>
+    <path d="M50 600 Q450 -80 850 600" stroke="#B8860B" stroke-width="2.5" fill="none"/>
+    <path d="M150 600 Q450 20 750 600" stroke="#B8860B" stroke-width="1.5" fill="none"/>
+    <line x1="0" y1="300" x2="900" y2="300" stroke="#8B6E5A" stroke-width="1" stroke-dasharray="5,10"/>
+    <line x1="450" y1="0" x2="450" y2="600" stroke="#8B6E5A" stroke-width="1" stroke-dasharray="5,10"/>
+    <circle cx="210" cy="175" r="5" fill="#B8860B"/><circle cx="450" cy="60" r="5" fill="#B8860B"/><circle cx="690" cy="175" r="5" fill="#B8860B"/>
+  </svg>
+  <div class="container hero-content">
+    <div class="hero-chip">Matematică · Funcții · Algebră</div>
+    <h1 class="hero-title"><em>Parabola</em><br>Funcția de Gradul II</h1>
+    <p class="hero-sub">Explorare completă: forma generală, forma canonică, discriminant, relațiile lui Viète, vârf și toate cele 6 cazuri geometrice.</p>
+    <div class="hero-formula">
+      <span class="c">f</span>(x) = <span class="c">a</span>x² + <span class="c">b</span>x + <span class="c">c</span> &nbsp;,&nbsp; <span class="c">a</span> ≠ 0
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Descoperă</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- 1. FORMA GENERALĂ -->
+<section id="general">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">1</div>
+      <h2>Forma Generală</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Reprezentarea standard a funcției pătratice</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="g2" style="align-items:start">
+      <div>
+        <div class="fb">
+          <div class="formula"><span class="v">f</span>(x) = <span class="v">a</span>x² + <span class="v">b</span>x + <span class="v">c</span></div>
+        </div>
+        <div class="card" style="margin-top:20px">
+          <h3>Condiții obligatorii</h3>
+          <ul class="ml" style="margin-top:14px">
+            <li><span class="dot"></span><span><strong>a, b, c ∈ ℝ</strong> — coeficienți reali</span></li>
+            <li><span class="dot"></span><span><strong>a ≠ 0</strong> — condiție esențială (altfel funcția devine liniară)</span></li>
+            <li><span class="dot"></span><span>Gradul funcției este <strong>2</strong></span></li>
+            <li><span class="dot"></span><span>Domeniu: <strong>D = ℝ</strong></span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Semnificația coeficienților</h3>
+        <table class="mt">
+          <thead><tr><th>Coef.</th><th>Rol</th><th>Efect grafic</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--gold)">a</strong></td><td>Coeficient principal</td><td>Deschidere ramuri (sus/jos)</td></tr>
+            <tr><td><strong style="color:var(--gold)">b</strong></td><td>Coeficient liniar</td><td>Deplasare orizontală vârf</td></tr>
+            <tr><td><strong style="color:var(--gold)">c</strong></td><td>Termen liber</td><td>Intersecție Oy: f(0) = c</td></tr>
+          </tbody>
+        </table>
+        <div style="padding:14px;background:var(--gold-pale);border-radius:10px;margin-top:14px;font-size:.9rem;color:var(--brown)">
+          <strong>Codomeniu:</strong> dacă a &gt; 0 → [n, +∞) &nbsp;|&nbsp; dacă a &lt; 0 → (−∞, n]
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. FORMA CANONICĂ -->
+<section id="canonical">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">2</div>
+      <h2>Forma Canonică</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Forma care evidențiază direct vârful parabolei</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="g2" style="align-items:start">
+      <div>
+        <div class="fb">
+          <div class="formula"><span class="v">f</span>(x) = <span class="v">a</span>(x − <span class="v">m</span>)² + <span class="v">n</span></div>
+          <div style="margin-top:12px;font-size:.9rem;color:var(--brown-mid)">unde <strong style="color:var(--gold)">V(m, n)</strong> este vârful parabolei</div>
+        </div>
+        <div class="fb">
+          <div style="display:flex;gap:40px;justify-content:center;flex-wrap:wrap">
+            <div style="text-align:center">
+              <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--brown-mid);font-weight:600;margin-bottom:10px">Abscisa vârfului</div>
+              <div class="formula" style="font-size:1.25rem">m = −<span class="frac"><span class="n">b</span><span class="d">2a</span></span></div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--brown-mid);font-weight:600;margin-bottom:10px">Ordonata vârfului</div>
+              <div class="formula" style="font-size:1.25rem">n = −<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Completarea pătratului</h3>
+          <div style="margin-top:14px;padding:18px;background:var(--card2);border-radius:10px;font-family:'Playfair Display',serif;font-size:.95rem;line-height:2.4;color:var(--brown)">
+            f(x) = ax² + bx + c<br>
+            = a(x² + <span class="frac"><span class="n">b</span><span class="d">a</span></span>x) + c<br>
+            = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">b²</span><span class="d">4a</span></span> + c<br>
+            = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">Δ</span><span class="d">4a</span></span>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px;border-left:4px solid var(--gold)">
+          <h3>Avantaje</h3>
+          <ul class="ml" style="margin-top:12px">
+            <li><span class="dot"></span><span>Identificare imediată a <strong>vârfului V(m, n)</strong></span></li>
+            <li><span class="dot"></span><span>Determinarea <strong>min / max</strong> al funcției</span></li>
+            <li><span class="dot"></span><span><strong>Axa de simetrie</strong>: x = m</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. DISCRIMINANTUL -->
+<section id="discriminant">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">3</div>
+      <h2>Discriminantul Δ</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Determină natura rădăcinilor ecuației pătratice</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="fb" style="max-width:380px;margin:0 auto 36px">
+      <div class="formula">Δ = b² − 4ac</div>
+    </div>
+    <div class="dc">
+      <div class="dc-card dc-pos">
+        <div class="dc-val">Δ &gt; 0</div>
+        <div class="tag tg">Două rădăcini reale distincte</div>
+        <p>x₁ ≠ x₂, ambele reale<br>Parabola intersectează Ox în <strong>2 puncte</strong></p>
+      </div>
+      <div class="dc-card dc-zero">
+        <div class="dc-val">Δ = 0</div>
+        <div class="tag tb">O rădăcină reală dublă</div>
+        <p>x₁ = x₂ = −b/(2a)<br>Parabola este <strong>tangentă</strong> la Ox</p>
+      </div>
+      <div class="dc-card dc-neg">
+        <div class="dc-val">Δ &lt; 0</div>
+        <div class="tag tr">Nicio rădăcină reală</div>
+        <p>Rădăcini complex conjugate<br>Parabola <strong>nu intersectează</strong> Ox</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. RĂDĂCINILE -->
+<section id="roots">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">4</div>
+      <h2>Rădăcinile Ecuației</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Soluțiile ecuației f(x) = 0, adică ax² + bx + c = 0</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="g2" style="align-items:start">
+      <div>
+        <div class="fb">
+          <div class="formula" style="font-size:1.35rem">
+            x<sub>1,2</sub> = <span class="frac"><span class="n">−b ± √Δ</span><span class="d">2a</span></span>
+          </div>
+          <div style="margin-top:10px;font-size:.84rem;color:var(--brown-mid)">Valabilă pentru Δ ≥ 0</div>
+        </div>
+        <div class="fb" style="margin-top:0">
+          <div style="text-align:left;font-family:'Playfair Display',serif;font-size:.95rem;line-height:2.4;color:var(--brown)">
+            <span class="gp">Δ &gt; 0:</span> &nbsp;x<sub>1</sub> = <span class="frac"><span class="n">−b − √Δ</span><span class="d">2a</span></span> &nbsp;,&nbsp; x<sub>2</sub> = <span class="frac"><span class="n">−b + √Δ</span><span class="d">2a</span></span><br>
+            <span class="gz">Δ = 0:</span> &nbsp;x<sub>1</sub> = x<sub>2</sub> = −<span class="frac"><span class="n">b</span><span class="d">2a</span></span><br>
+            <span class="gn">Δ &lt; 0:</span> &nbsp;<span style="color:var(--red)">∄ soluții reale</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Proprietăți ale rădăcinilor</h3>
+        <table class="mt">
+          <thead><tr><th>Proprietate</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td>Sumă</td><td>x₁ + x₂ = −b/a</td></tr>
+            <tr><td>Produs</td><td>x₁ · x₂ = c/a</td></tr>
+            <tr><td>Diferență</td><td>|x₁ − x₂| = √Δ / |a|</td></tr>
+            <tr><td>Factorizare</td><td>f(x) = a(x − x₁)(x − x₂)</td></tr>
+          </tbody>
+        </table>
+        <div style="padding:14px;background:var(--gold-pale);border-radius:10px;margin-top:14px;font-size:.9rem;color:var(--brown)">
+          <strong>Forma produsului:</strong> &nbsp;f(x) = a(x − x₁)(x − x₂), &nbsp;dacă Δ ≥ 0
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. RELAȚIILE LUI VIÈTE -->
+<section id="vieta">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">5</div>
+      <h2>Relațiile lui Viète</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Legătura directă dintre rădăcini și coeficienți</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="vg">
+      <div class="vc">
+        <div class="vl">Suma rădăcinilor</div>
+        <div class="vf">x₁ + x₂ = −<span class="frac"><span class="n">b</span><span class="d">a</span></span></div>
+      </div>
+      <div class="vc">
+        <div class="vl">Produsul rădăcinilor</div>
+        <div class="vf">x₁ · x₂ = <span class="frac"><span class="n">c</span><span class="d">a</span></span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Aplicații practice</h3>
+      <div class="g2" style="margin-top:18px;align-items:start">
+        <div>
+          <p style="font-size:.93rem;color:var(--brown);margin-bottom:10px"><strong>Reconstituirea ecuației</strong> din rădăcini cunoscute:</p>
+          <div style="padding:14px;background:var(--card2);border-radius:10px;font-family:'Playfair Display',serif;font-size:.92rem;line-height:2.2;color:var(--brown)">
+            x² − (x₁+x₂)x + x₁·x₂ = 0<br>
+            x² + <span class="frac"><span class="n">b</span><span class="d">a</span></span>x + <span class="frac"><span class="n">c</span><span class="d">a</span></span> = 0
+          </div>
+        </div>
+        <div>
+          <p style="font-size:.93rem;color:var(--brown);margin-bottom:10px"><strong>Cazuri speciale:</strong></p>
+          <ul class="ml">
+            <li><span class="dot"></span><span>Dacă <strong>b = 0</strong>: x₁ = −x₂ (simetrice față de O)</span></li>
+            <li><span class="dot"></span><span>Dacă <strong>c = 0</strong>: una din rădăcini este 0</span></li>
+            <li><span class="dot"></span><span>Dacă <strong>a = c</strong>: x₁ · x₂ = 1 (rădăcini inverse)</span></li>
+            <li><span class="dot"></span><span>Dacă <strong>a + b + c = 0</strong>: x₁ = 1 este rădăcină</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. VÂRFUL -->
+<section id="vertex">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">6</div>
+      <h2>Vârful Parabolei</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Punctul de minim sau maxim al funcției</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="g2" style="align-items:start">
+      <div>
+        <div class="fb">
+          <div class="formula" style="font-size:1.3rem">
+            V<span style="font-size:.75em">(</span>−<span class="frac"><span class="n">b</span><span class="d">2a</span></span><span style="font-size:.75em">,</span> −<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span><span style="font-size:.75em">)</span>
+          </div>
+          <div style="margin-top:12px;font-size:.84rem;color:var(--brown-mid)">Axa de simetrie: &nbsp;<strong>x = m = −b/(2a)</strong></div>
+        </div>
+        <div class="vb">
+          <div class="vb-min">
+            <div class="vb-title">a &gt; 0</div>
+            <div class="vb-val">MINIM ↑</div>
+            <div class="vb-sub">Ramuri în sus<br>f<sub>min</sub> = n = −Δ/(4a)</div>
+          </div>
+          <div class="vb-max">
+            <div class="vb-title">a &lt; 0</div>
+            <div class="vb-val">MAXIM ↓</div>
+            <div class="vb-sub">Ramuri în jos<br>f<sub>max</sub> = n = −Δ/(4a)</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Valori importante ale funcției</h3>
+        <table class="mt">
+          <thead><tr><th>Punct</th><th>Valoarea lui x</th><th>f(x)</th></tr></thead>
+          <tbody>
+            <tr><td>Intersecție Oy</td><td>x = 0</td><td><strong>c</strong></td></tr>
+            <tr><td>Rădăcini (dacă Δ≥0)</td><td>x = x₁ sau x₂</td><td><strong>0</strong></td></tr>
+            <tr><td>Vârful V</td><td>x = m = −b/(2a)</td><td><strong>n = −Δ/(4a)</strong></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:16px;padding:14px;background:var(--gold-pale);border-radius:10px;font-size:.9rem;color:var(--brown)">
+          <strong>Monotonie:</strong><br>
+          Dacă a &gt; 0: descrescătoare pe (−∞, m], crescătoare pe [m, +∞)<br>
+          Dacă a &lt; 0: crescătoare pe (−∞, m], descrescătoare pe [m, +∞)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. SEMNUL FUNCȚIEI -->
+<section id="sign">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">7</div>
+      <h2>Semnul Funcției</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Când este f(x) pozitivă, negativă sau zero</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="sc">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+          <span class="badge ba">a &gt; 0</span><h3>Ramuri în sus ↑</h3>
+        </div>
+        <p style="font-size:.88rem;margin-bottom:8px"><strong>Δ &gt; 0</strong> — x₁ &lt; x₂:</p>
+        <div class="sb">
+          <span class="gp">f(x) &gt; 0</span> pentru x ∈ (−∞, x₁) ∪ (x₂, +∞)<br>
+          <span class="gn">f(x) &lt; 0</span> pentru x ∈ (x₁, x₂)<br>
+          <span class="gz">f(x) = 0</span> pentru x = x₁ sau x = x₂
+        </div>
+        <p style="font-size:.88rem;margin:12px 0 8px"><strong>Δ = 0</strong> — x₁ = x₂ = m:</p>
+        <div class="sb">
+          <span class="gp">f(x) ≥ 0</span> pentru orice x ∈ ℝ<br>
+          <span class="gz">f(x) = 0</span> doar pentru x = m
+        </div>
+        <p style="font-size:.88rem;margin:12px 0 8px"><strong>Δ &lt; 0</strong>:</p>
+        <div class="sb"><span class="gp">f(x) &gt; 0</span> pentru orice x ∈ ℝ</div>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+          <span class="badge ban">a &lt; 0</span><h3>Ramuri în jos ↓</h3>
+        </div>
+        <p style="font-size:.88rem;margin-bottom:8px"><strong>Δ &gt; 0</strong> — x₁ &lt; x₂:</p>
+        <div class="sb">
+          <span class="gn">f(x) &lt; 0</span> pentru x ∈ (−∞, x₁) ∪ (x₂, +∞)<br>
+          <span class="gp">f(x) &gt; 0</span> pentru x ∈ (x₁, x₂)<br>
+          <span class="gz">f(x) = 0</span> pentru x = x₁ sau x = x₂
+        </div>
+        <p style="font-size:.88rem;margin:12px 0 8px"><strong>Δ = 0</strong> — x₁ = x₂ = m:</p>
+        <div class="sb">
+          <span class="gn">f(x) ≤ 0</span> pentru orice x ∈ ℝ<br>
+          <span class="gz">f(x) = 0</span> doar pentru x = m
+        </div>
+        <p style="font-size:.88rem;margin:12px 0 8px"><strong>Δ &lt; 0</strong>:</p>
+        <div class="sb"><span class="gn">f(x) &lt; 0</span> pentru orice x ∈ ℝ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CELE 6 CAZURI -->
+<section id="cases">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">8</div>
+      <h2>Cele 6 Cazuri Geometrice</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Aspectul grafic în funcție de semnul lui a și valoarea lui Δ</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="cg">
+      <div class="cc"><div class="cc-head ap"><span class="badge ba">a &gt; 0</span><span class="badge bdp">Δ &gt; 0</span><span class="cn">Cazul 1</span></div><div class="cc-canvas"><canvas id="c1" width="280" height="210"></canvas></div><div class="cc-desc"><strong>2 rădăcini reale distincte</strong> (x₁ &lt; x₂). Parabola taie Ox în două puncte. f(x) &lt; 0 pe (x₁, x₂).</div></div>
+      <div class="cc"><div class="cc-head ap"><span class="badge ba">a &gt; 0</span><span class="badge bdz">Δ = 0</span><span class="cn">Cazul 2</span></div><div class="cc-canvas"><canvas id="c2" width="280" height="210"></canvas></div><div class="cc-desc"><strong>Rădăcină dublă</strong> (x₁ = x₂ = m). Parabola tangentă la Ox. f(x) ≥ 0 ∀ x ∈ ℝ.</div></div>
+      <div class="cc"><div class="cc-head ap"><span class="badge ba">a &gt; 0</span><span class="badge bdn">Δ &lt; 0</span><span class="cn">Cazul 3</span></div><div class="cc-canvas"><canvas id="c3" width="280" height="210"></canvas></div><div class="cc-desc"><strong>Nicio rădăcină reală.</strong> Parabola complet deasupra Ox. f(x) &gt; 0 ∀ x ∈ ℝ.</div></div>
+      <div class="cc"><div class="cc-head an"><span class="badge ban">a &lt; 0</span><span class="badge bdp">Δ &gt; 0</span><span class="cn">Cazul 4</span></div><div class="cc-canvas"><canvas id="c4" width="280" height="210"></canvas></div><div class="cc-desc"><strong>2 rădăcini reale distincte</strong> (x₁ &lt; x₂). Parabola taie Ox în două puncte. f(x) &gt; 0 pe (x₁, x₂).</div></div>
+      <div class="cc"><div class="cc-head an"><span class="badge ban">a &lt; 0</span><span class="badge bdz">Δ = 0</span><span class="cn">Cazul 5</span></div><div class="cc-canvas"><canvas id="c5" width="280" height="210"></canvas></div><div class="cc-desc"><strong>Rădăcină dublă</strong> (x₁ = x₂ = m). Parabola tangentă la Ox. f(x) ≤ 0 ∀ x ∈ ℝ.</div></div>
+      <div class="cc"><div class="cc-head an"><span class="badge ban">a &lt; 0</span><span class="badge bdn">Δ &lt; 0</span><span class="cn">Cazul 6</span></div><div class="cc-canvas"><canvas id="c6" width="280" height="210"></canvas></div><div class="cc-desc"><strong>Nicio rădăcină reală.</strong> Parabola complet sub Ox. f(x) &lt; 0 ∀ x ∈ ℝ.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. CALCULATOR INTERACTIV -->
+<section id="calculator">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-num">9</div>
+      <h2>Calculator Interactiv</h2>
+      <p style="color:var(--brown-mid);margin-top:6px">Modifică coeficienții și observă transformările în timp real</p>
+      <div class="sh-line"></div>
+    </div>
+    <div class="calc">
+      <div class="ci">
+        <div class="ig"><div class="cn2">a</div><label>Coeficient a (≠ 0)</label><input type="range" id="sA" min="-5" max="5" step="0.5" value="1"><div class="vd" id="vA">1</div></div>
+        <div class="ig"><div class="cn2">b</div><label>Coeficient b</label><input type="range" id="sB" min="-10" max="10" step="1" value="0"><div class="vd" id="vB">0</div></div>
+        <div class="ig"><div class="cn2">c</div><label>Coeficient c</label><input type="range" id="sC" min="-10" max="10" step="1" value="-4"><div class="vd" id="vC">−4</div></div>
+      </div>
+      <div class="cl">
+        <canvas id="calcCanvas" width="500" height="400"></canvas>
+        <div class="results" id="res"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <h3>Funcția de Gradul II — Parabola</h3>
+    <div class="ff">f(x) = ax² + bx + c &nbsp;|&nbsp; Δ = b² − 4ac &nbsp;|&nbsp; V(−b/2a, −Δ/4a)</div>
+    <p>Relațiile lui Viète: x₁+x₂ = −b/a &nbsp;·&nbsp; x₁·x₂ = c/a</p>
+  </div>
+</footer>
+
+<script>
+/* ---- DRAW PARABOLA ON CANVAS ---- */
+function drawParabola(id, a, b, c, sc) {
+  const cv = document.getElementById(id);
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const cx = W/2, cy = H/2;
+  sc = sc || 36;
+  const tx = x => cx + x*sc;
+  const ty = y => cy - y*sc;
+
+  ctx.fillStyle = '#FAFAF8'; ctx.fillRect(0,0,W,H);
+
+  // grid
+  ctx.strokeStyle = '#EAD9C0'; ctx.lineWidth = .5;
+  for(let i=-8;i<=8;i++){ctx.beginPath();ctx.moveTo(tx(i),0);ctx.lineTo(tx(i),H);ctx.stroke()}
+  for(let i=-6;i<=6;i++){ctx.beginPath();ctx.moveTo(0,ty(i));ctx.lineTo(W,ty(i));ctx.stroke()}
+
+  // axes
+  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(6,cy);ctx.lineTo(W-6,cy);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx,H-6);ctx.lineTo(cx,6);ctx.stroke();
+  // arrows
+  ctx.beginPath();ctx.moveTo(W-6,cy);ctx.lineTo(W-14,cy-5);ctx.moveTo(W-6,cy);ctx.lineTo(W-14,cy+5);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx,6);ctx.lineTo(cx-5,14);ctx.moveTo(cx,6);ctx.lineTo(cx+5,14);ctx.stroke();
+  // labels
+  ctx.fillStyle='#8B6E5A';ctx.font='11px Inter,sans-serif';
+  ctx.fillText('x',W-14,cy-7);ctx.fillText('y',cx+7,14);ctx.fillText('O',cx+4,cy+13);
+
+  // curve
+  const col = a>0?'#C4820A':'#7B1FA2';
+  ctx.beginPath();let go=false;
+  for(let px=0;px<=W;px++){
+    const xv=(px-cx)/sc, yv=a*xv*xv+b*xv+c;
+    const pyc=cy-yv*sc;
+    if(pyc<-30||pyc>H+30){go=false;continue}
+    go?ctx.lineTo(px,pyc):ctx.moveTo(px,pyc);go=true;
+  }
+  ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.stroke();
+
+  // delta & vertex
+  const D=b*b-4*a*c, m=-b/(2*a), n=-D/(4*a);
+
+  // vertex dot
+  const vtx=tx(m),vty=ty(n);
+  if(vtx>4&&vtx<W-4&&vty>4&&vty<H-4){
+    ctx.fillStyle='#1565C0';ctx.beginPath();ctx.arc(vtx,vty,5,0,2*Math.PI);ctx.fill();
+    ctx.strokeStyle='white';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#0D47A1';ctx.font='bold 9px Inter,sans-serif';
+    ctx.fillText('V',vtx+7,vty-4);
+  }
+
+  // roots
+  if(D>=0){
+    const sq=Math.sqrt(Math.max(0,D));
+    const roots=D===0?[m]:[(-b-sq)/(2*a),(-b+sq)/(2*a)];
+    roots.forEach((r,i)=>{
+      const rx=tx(r),ry=ty(0);
+      if(rx>4&&rx<W-4){
+        ctx.fillStyle='#E53935';ctx.beginPath();ctx.arc(rx,ry,5,0,2*Math.PI);ctx.fill();
+        ctx.strokeStyle='white';ctx.lineWidth=1.5;ctx.stroke();
+        ctx.fillStyle='#B71C1C';ctx.font='bold 9px Inter,sans-serif';ctx.textAlign='center';
+        ctx.fillText(D===0?'x₀':i===0?'x₁':'x₂',rx,ry+18);ctx.textAlign='left';
+      }
+    });
+  }
+}
+
+/* ---- DRAW ALL 6 CASES ---- */
+function drawAll(){
+  drawParabola('c1', 1, 0,-4,36);   // a>0 D>0
+  drawParabola('c2', 1,-2, 1,36);   // a>0 D=0
+  drawParabola('c3', 1, 0, 2,36);   // a>0 D<0
+  drawParabola('c4',-1, 0, 4,36);   // a<0 D>0
+  drawParabola('c5',-1, 2,-1,36);   // a<0 D=0
+  drawParabola('c6',-1, 0,-2,36);   // a<0 D<0
+}
+
+/* ---- INTERACTIVE CALCULATOR ---- */
+function fmt(n){
+  if(!isFinite(n))return '—';
+  const r=parseFloat(n.toFixed(4));
+  return r.toString();
+}
+
+function updateCalc(){
+  let a=parseFloat(document.getElementById('sA').value)||0.5;
+  const b=parseFloat(document.getElementById('sB').value);
+  const c=parseFloat(document.getElementById('sC').value);
+  if(a===0)a=0.5;
+  document.getElementById('vA').textContent=a;
+  document.getElementById('vB').textContent=b;
+  document.getElementById('vC').textContent=c<0?'−'+Math.abs(c):c;
+
+  const D=b*b-4*a*c;
+  const m=-b/(2*a), n=-D/(4*a);
+  const sq=Math.sqrt(Math.max(0,D));
+  let rInfo='';
+  if(D>0){rInfo=`x₁ = ${fmt((-b-sq)/(2*a))}, &nbsp;x₂ = ${fmt((-b+sq)/(2*a))}`}
+  else if(D===0){rInfo=`x₁ = x₂ = ${fmt(m)}`}
+  else{rInfo='<span style="color:var(--red)">Nicio rădăcină reală (Δ &lt; 0)</span>'}
+
+  const dc=D>0?'dp':D===0?'dz':'dn';
+  const dcLabel=D>0?'Δ &gt; 0 — Două rădăcini':D===0?'Δ = 0 — Rădăcină dublă':'Δ &lt; 0 — Nicio rădăcină';
+
+  document.getElementById('res').innerHTML=`
+    <div class="ri" style="background:var(--gold-pale);border-color:var(--gold)">
+      <div class="rl">Ecuația</div>
+      <div class="rv" style="font-size:.95rem">f(x) = ${a}x² ${b>=0?'+':''}${b}x ${c>=0?'+':''}${c}</div>
+    </div>
+    <div class="ri ${dc}">
+      <div class="rl">Discriminant</div>
+      <div class="rv">Δ = ${fmt(D)}</div>
+      <div style="font-size:.78rem;color:var(--brown-mid);margin-top:2px">${dcLabel}</div>
+    </div>
+    <div class="ri">
+      <div class="rl">Forma canonică</div>
+      <div class="rv" style="font-size:.9rem">${a}(x ${m<0?'+'+fmt(-m):m===0?'':('− '+fmt(m))})² ${n>=0?'+ '+fmt(n):'− '+fmt(-n)}</div>
+    </div>
+    <div class="ri">
+      <div class="rl">Vârful V(m, n)</div>
+      <div class="rv">V(${fmt(m)}, ${fmt(n)})</div>
+    </div>
+    <div class="ri">
+      <div class="rl">${a>0?'Minim':'Maxim'} al funcției</div>
+      <div class="rv" style="color:${a>0?'var(--green)':'var(--red)'}">${a>0?'↑ Minim':'↓ Maxim'} = ${fmt(n)}</div>
+    </div>
+    <div class="ri">
+      <div class="rl">Rădăcini</div>
+      <div class="rv" style="font-size:.88rem">${rInfo}</div>
+    </div>
+    <div class="ri">
+      <div class="rl">Relațiile Viète</div>
+      <div class="rv" style="font-size:.85rem">x₁+x₂ = ${fmt(-b/a)} &nbsp;|&nbsp; x₁·x₂ = ${fmt(c/a)}</div>
+    </div>`;
+
+  drawCalcCanvas(a,b,c,D,m,n);
+}
+
+function drawCalcCanvas(a,b,c,D,m,n){
+  const cv=document.getElementById('calcCanvas');
+  const ctx=cv.getContext('2d');
+  const W=cv.width,H=cv.height;
+  const cx=W/2,cy=H/2;
+
+  // auto scale
+  const sq=Math.sqrt(Math.max(0,D));
+  let xr=Math.max(7,Math.abs(m)+4);
+  if(D>=0){xr=Math.max(xr,Math.abs((-b-sq)/(2*a))+3,Math.abs((-b+sq)/(2*a))+3)}
+  const sc=Math.min(55,Math.floor((W/2-20)/xr));
+
+  const tx=x=>cx+x*sc, ty=y=>cy-y*sc;
+
+  ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,W,H);
+
+  // grid
+  ctx.strokeStyle='#F0E4CC';ctx.lineWidth=.5;
+  for(let i=Math.ceil(-cx/sc);i<=Math.floor((W-cx)/sc);i++){ctx.beginPath();ctx.moveTo(tx(i),0);ctx.lineTo(tx(i),H);ctx.stroke()}
+  for(let i=Math.ceil(-cy/sc);i<=Math.floor((H-cy)/sc);i++){ctx.beginPath();ctx.moveTo(0,ty(i));ctx.lineTo(W,ty(i));ctx.stroke()}
+
+  // axes
+  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(8,cy);ctx.lineTo(W-8,cy);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx,H-8);ctx.lineTo(cx,8);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(W-8,cy);ctx.lineTo(W-17,cy-5);ctx.moveTo(W-8,cy);ctx.lineTo(W-17,cy+5);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx,8);ctx.lineTo(cx-5,17);ctx.moveTo(cx,8);ctx.lineTo(cx+5,17);ctx.stroke();
+
+  // axis labels + ticks
+  ctx.fillStyle='#8B6E5A';ctx.font='13px Inter,sans-serif';
+  ctx.fillText('x',W-18,cy-9);ctx.fillText('y',cx+8,16);ctx.fillText('O',cx+4,cy+16);
+  ctx.font='10px Inter,sans-serif';
+  const ts=sc<25?2:1;
+  ctx.textAlign='center';
+  for(let i=Math.ceil(-cx/sc);i<=Math.floor((W-cx)/sc);i++){
+    if(i===0)continue;if(i%ts!==0)continue;
+    ctx.beginPath();ctx.moveTo(tx(i),cy-3);ctx.lineTo(tx(i),cy+3);ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillText(i,tx(i),cy+15);
+  }
+  ctx.textAlign='right';
+  for(let i=Math.ceil(-cy/sc);i<=Math.floor((H-cy)/sc);i++){
+    if(i===0)continue;if(i%ts!==0)continue;
+    ctx.beginPath();ctx.moveTo(cx-3,ty(i));ctx.lineTo(cx+3,ty(i));ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillText(i,cx-6,ty(i)+4);
+  }
+  ctx.textAlign='left';
+
+  // parabola
+  const col=a>0?'#C4820A':'#7B1FA2';
+  ctx.beginPath();let go=false;
+  for(let px=0;px<=W;px+=.5){
+    const xv=(px-cx)/sc,yv=a*xv*xv+b*xv+c;
+    const pyc=cy-yv*sc;
+    if(pyc<-60||pyc>H+60){go=false;continue}
+    go?ctx.lineTo(px,pyc):ctx.moveTo(px,pyc);go=true;
+  }
+  ctx.strokeStyle=col;ctx.lineWidth=2.8;ctx.stroke();
+
+  // dashed axis line to vertex
+  const vtx=tx(m),vtyc=ty(n);
+  if(vtx>5&&vtx<W-5&&vtyc>5&&vtyc<H-5){
+    ctx.setLineDash([3,6]);ctx.strokeStyle='rgba(21,101,192,.35)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(vtx,Math.min(vtyc,cy));ctx.lineTo(vtx,cy);ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // roots
+  if(D>=0){
+    const roots=D===0?[m]:[(-b-sq)/(2*a),(-b+sq)/(2*a)];
+    roots.forEach((r,i)=>{
+      const rx=tx(r);
+      if(rx>6&&rx<W-6){
+        ctx.fillStyle='#E53935';ctx.beginPath();ctx.arc(rx,ty(0),7,0,2*Math.PI);ctx.fill();
+        ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke();
+        ctx.fillStyle='#B71C1C';ctx.font='bold 11px Inter,sans-serif';ctx.textAlign='center';
+        ctx.fillText(D===0?'x₀':i===0?'x₁':'x₂',rx,ty(0)+22);ctx.textAlign='left';
+      }
+    });
+  }
+
+  // vertex
+  if(vtx>6&&vtx<W-6&&vtyc>6&&vtyc<H-6){
+    ctx.fillStyle='#1565C0';ctx.beginPath();ctx.arc(vtx,vtyc,7,0,2*Math.PI);ctx.fill();
+    ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke();
+    const lbl=`V(${fmt(m)}, ${fmt(n)})`;
+    const lx=vtx>W*.65?vtx-ctx.measureText(lbl).width-16:vtx+10;
+    const ly=vtyc>H*.7?vtyc-14:vtyc-10;
+    ctx.fillStyle='rgba(255,255,255,.88)';
+    ctx.fillRect(lx-3,ly-13,ctx.measureText(lbl).width+6,17);
+    ctx.fillStyle='#0D47A1';ctx.font='bold 11px Inter,sans-serif';ctx.fillText(lbl,lx,ly);
+  }
+
+  // y-intercept
+  const yic=ty(c);
+  if(yic>6&&yic<H-6){
+    ctx.fillStyle='#2E7D32';ctx.beginPath();ctx.arc(cx,yic,5,0,2*Math.PI);ctx.fill();
+    ctx.strokeStyle='white';ctx.lineWidth=1.5;ctx.stroke();
+  }
+}
+
+/* ---- INIT ---- */
+window.addEventListener('load',()=>{
+  drawAll();
+  ['sA','sB','sC'].forEach(id=>document.getElementById(id).addEventListener('input',updateCalc));
+  document.getElementById('sA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=.5;updateCalc()}});
+  updateCalc();
+});
+</script>
+</body>
+</html>
