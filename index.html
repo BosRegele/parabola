@@ -38,6 +38,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 /* ── stagger reveal : the glycogen .u system ── */
 .u{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .slide.active .u{opacity:1;transform:none;transition-delay:calc(var(--d,0) * 90ms)}
+/* keep the outgoing slide's content visible while it slides away */
+.slide.was-active .u{opacity:1;transform:none;transition:none}
 @media(prefers-reduced-motion:reduce){.u{opacity:1;transform:none}.slides{transition:none}}
 
 /* ── chrome ── */
@@ -303,7 +305,7 @@ p{margin-bottom:12px;max-width:66ch}
         <div class="dc-c dz u" style="--d:4"><div class="dc-v">Δ = 0</div><div class="pill tb">Rădăcină dublă</div><p>x₁ = x₂ = −b/(2a).<br>Parabola <strong>tangentă</strong> la Ox</p></div>
         <div class="dc-c dn u" style="--d:5"><div class="dc-v">Δ &lt; 0</div><div class="pill tr">Nicio rădăcină reală</div><p>Rădăcini complexe.<br>Parabola <strong>nu taie</strong> Ox</p></div>
       </div>
-      <div class="note u" style="--d:6" style="margin-top:18px">Δ apare peste tot: în formula rădăcinilor <b>x₁,₂ = (−b ± √Δ)/2a</b> și în ordonata vârfului <b>n = −Δ/(4a)</b>. Semnul lui decide totul.</div>
+      <div class="note u" style="--d:6;margin-top:18px"><div>Δ apare peste tot: în formula rădăcinilor <b>x₁,₂ = (−b ± √Δ)/2a</b> și în ordonata vârfului <b>n = −Δ/(4a)</b>. Semnul lui decide totul.</div></div>
     </div>
   </section>
 
@@ -510,7 +512,12 @@ const dotEls=[...dotsEl.children];
 function go(i){
   i=Math.max(0,Math.min(total-1,i));
   if(i===cur && slides[cur].classList.contains('active'))return;
+  const old=cur;
   cur=i;
+  /* the slide we are leaving keeps its content visible while it slides off-screen */
+  slides.forEach(s=>s.classList.remove('was-active'));
+  if(old!==cur) slides[old].classList.add('was-active');
+  setTimeout(()=>slides[old].classList.remove('was-active'),900);
   slidesEl.style.setProperty('--i',cur);
   slides.forEach((s,k)=>s.classList.toggle('active',k===cur));
   dotEls.forEach((d,k)=>d.classList.toggle('active',k===cur));
