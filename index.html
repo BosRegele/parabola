@@ -224,6 +224,64 @@
     .mstat .v{font-size:1.1rem;font-family:'Playfair Display',serif;font-weight:600;color:var(--br)}
     .meq{margin-top:18px;text-align:center;font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--bm);background:var(--gold-p);border:1px solid var(--border);border-radius:12px;padding:16px}
 
+    /* ── PRESENTATION MODE ── */
+    #presToggle{
+      position:fixed;top:16px;left:16px;z-index:170;
+      display:flex;align-items:center;gap:8px;
+      padding:9px 16px;border-radius:100px;cursor:pointer;
+      border:1.5px solid var(--gold-l);background:var(--gold-p);color:var(--gold);
+      font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;
+      box-shadow:var(--sh);transition:all .22s;
+    }
+    #presToggle:hover{background:var(--gold);color:#fff;transform:translateY(-2px);box-shadow:var(--sH)}
+    #presToggle svg{width:16px;height:16px}
+
+    body.present{overflow:hidden}
+    body.present footer,body.present .scroll-cue,body.present #prog{display:none}
+    body.present #hero{min-height:0}
+    /* each direct child of main becomes a full-screen slide */
+    body.present main>*{
+      position:fixed;left:0;top:0;width:100%;height:100vh;margin:0;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      overflow-y:auto;overflow-x:hidden;padding:70px 30px 86px;
+      opacity:0;visibility:hidden;transform:translateY(100%);
+      transition:transform .62s cubic-bezier(.77,0,.18,1),opacity .45s ease,visibility 0s .62s;
+      z-index:1;backdrop-filter:blur(2px);
+    }
+    body.present main>section{background:rgba(250,246,238,.9)}
+    body.present main>.sec-band{background:rgba(244,236,220,.93)}
+    body.present main>*>*{max-width:1140px;width:100%}
+    body.present main>.sec-band>.sec-band-inner{padding:0;margin:0 auto}
+    body.present main>*.s-active{
+      opacity:1;visibility:visible;transform:none;z-index:3;
+      transition:transform .62s cubic-bezier(.77,0,.18,1),opacity .45s ease;
+    }
+    body.present main>*.pre-below{transform:translateY(100%);visibility:visible;opacity:1;transition:none;z-index:2}
+    body.present main>*.pre-above{transform:translateY(-100%);visibility:visible;opacity:1;transition:none;z-index:2}
+    body.present main>*.exit-up{transform:translateY(-100%);opacity:0;visibility:visible;z-index:2;
+      transition:transform .62s cubic-bezier(.77,0,.18,1),opacity .45s ease}
+    body.present main>*.exit-down{transform:translateY(100%);opacity:0;visibility:visible;z-index:2;
+      transition:transform .62s cubic-bezier(.77,0,.18,1),opacity .45s ease}
+    /* replay reveals per active slide in present mode */
+    body.present main>* .rv{opacity:0;transform:translateY(38px)}
+    body.present main>*.s-active .rv.in{opacity:1;transform:none}
+
+    /* present control bar */
+    #presCtl{
+      position:fixed;bottom:0;left:0;right:0;height:62px;z-index:170;
+      display:none;align-items:center;justify-content:center;gap:22px;
+      background:linear-gradient(to top,rgba(250,246,238,.97),rgba(250,246,238,.78));
+      backdrop-filter:blur(12px);border-top:1px solid var(--border);
+    }
+    body.present #presCtl{display:flex}
+    .pbtn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--border);background:#fff;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--bm);
+      box-shadow:var(--sh);transition:all .2s}
+    .pbtn:hover:not(:disabled){background:var(--gold);color:#fff;border-color:var(--gold);transform:scale(1.12)}
+    .pbtn:disabled{opacity:.3;cursor:default}
+    #presLabel{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:var(--bs);min-width:170px;text-align:center}
+    #presCtr{font-size:.78rem;font-weight:600;color:var(--bl);min-width:42px;text-align:right}
+
     /* ── Footer ── */
     footer{position:relative;z-index:1;text-align:center;padding:54px 28px 64px;color:var(--bs);font-size:.92rem;border-top:1px solid var(--border);background:rgba(244,236,220,.6)}
     footer .fz{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;margin-bottom:10px}
@@ -468,7 +526,23 @@
   </div>
 </div>
 
-<footer
+<!-- ══ PRESENTATION CONTROLS ══ -->
+<button id="presToggle" onclick="togglePresent()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="18" x2="12" y2="21"/></svg>
+  <span id="presToggleTxt">Mod prezentare</span>
+</button>
+<div id="presCtl">
+  <button class="pbtn" id="pPrev" onclick="presGo(-1)" title="Anterior (↑)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <div id="presLabel">Început</div>
+  <button class="pbtn" id="pNext" onclick="presGo(1)" title="Următor (↓)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div id="presCtr">1 / 10</div>
+</div>
+
+<footer>
   <div class="fz">f(x) = ax² + bx + c</div>
   Parabola — Funcția de Gradul II · prezentare interactivă completă
 </footer>
@@ -598,6 +672,109 @@ const navIo=new IntersectionObserver((entries)=>{
   });
 },{threshold:0.5});
 SEC.forEach(([id])=>{ const el=document.getElementById(id); if(el) navIo.observe(el); });
+
+/* ═══ PRESENTATION MODE ═══ */
+const slides=[...document.querySelectorAll('main>*')];
+let pres=false, curS=0, animating=false, wheelLock=false;
+
+function replayReveals(slide){
+  const items=slide.querySelectorAll('.rv');
+  items.forEach(el=>el.classList.remove('in'));
+  void slide.offsetWidth;            // force reflow → restart transitions
+  requestAnimationFrame(()=>items.forEach(el=>el.classList.add('in')));
+}
+function nearestSlide(){
+  const y=scrollY+innerHeight/2; let best=0;
+  slides.forEach((s,i)=>{ if(s.offsetTop<=y) best=i; });
+  return best;
+}
+function presUI(){
+  document.getElementById('presLabel').textContent=SEC[curS][1];
+  document.getElementById('presCtr').textContent=(curS+1)+' / '+slides.length;
+  document.getElementById('pPrev').disabled=curS===0;
+  document.getElementById('pNext').disabled=curS===slides.length-1;
+  navLinks.forEach((a,i)=>a.classList.toggle('on',i===curS));
+}
+function togglePresent(){ pres?exitPresent():enterPresent(); }
+function enterPresent(){
+  curS=nearestSlide();
+  io.disconnect(); navIo.disconnect();
+  pres=true; document.body.classList.add('present');
+  slides.forEach((s,i)=>{
+    s.classList.remove('s-active','pre-below','pre-above','exit-up','exit-down');
+    if(i===curS) s.classList.add('s-active');
+  });
+  document.getElementById('presToggleTxt').textContent='Închide';
+  presUI();
+  replayReveals(slides[curS]);
+}
+function exitPresent(){
+  pres=false; document.body.classList.remove('present');
+  slides.forEach(s=>s.classList.remove('s-active','pre-below','pre-above','exit-up','exit-down'));
+  document.getElementById('presToggleTxt').textContent='Mod prezentare';
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  SEC.forEach(([id])=>{const el=document.getElementById(id);if(el)navIo.observe(el)});
+  const target=slides[curS];
+  requestAnimationFrame(()=>scrollTo({top:target.offsetTop,behavior:'auto'}));
+}
+function presGoTo(n){
+  if(!pres||animating||n===curS||n<0||n>=slides.length) return;
+  animating=true;
+  const dir=n>curS?1:-1, out=slides[curS], inc=slides[n];
+  inc.classList.remove('s-active','exit-up','exit-down');
+  inc.classList.add(dir>0?'pre-below':'pre-above');
+  void inc.offsetWidth;                       // commit start position w/o transition
+  out.classList.remove('s-active');
+  out.classList.add(dir>0?'exit-up':'exit-down');
+  inc.classList.remove('pre-below','pre-above');
+  inc.classList.add('s-active');
+  replayReveals(inc);
+  curS=n; presUI();
+  if(n===9) setTimeout(updateCalc,120);
+  setTimeout(()=>{
+    out.classList.remove('exit-up','exit-down');
+    animating=false;
+  },660);
+}
+function presGo(d){ presGoTo(curS+d); }
+
+/* nav dots double as slide jumps when in present mode */
+navLinks.forEach((a,i)=>a.addEventListener('click',e=>{ if(pres){e.preventDefault();presGoTo(i);} }));
+
+/* keyboard */
+addEventListener('keydown',e=>{
+  if(!pres) return;
+  if(e.key==='Escape'){ if(!modal.classList.contains('open')) exitPresent(); return; }
+  if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();presGo(1);}
+  if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();presGo(-1);}
+  if(e.key==='Home'){e.preventDefault();presGoTo(0);}
+  if(e.key==='End'){e.preventDefault();presGoTo(slides.length-1);}
+});
+
+/* wheel: scroll within tall slide, navigate at the edges */
+addEventListener('wheel',e=>{
+  if(!pres) return;
+  const s=slides[curS], canScroll=s.scrollHeight>s.clientHeight+2;
+  if(canScroll){
+    const atTop=s.scrollTop<=0, atBot=s.scrollTop+s.clientHeight>=s.scrollHeight-1;
+    if((e.deltaY>0&&!atBot)||(e.deltaY<0&&!atTop)) return;   // let inner scroll
+  }
+  e.preventDefault();
+  if(wheelLock) return;
+  wheelLock=true;
+  presGo(e.deltaY>0?1:-1);
+  setTimeout(()=>wheelLock=false,720);
+},{passive:false});
+
+/* touch swipe in present mode */
+let pty=null;
+addEventListener('touchstart',e=>{ if(pres) pty=e.touches[0].clientY; },{passive:true});
+addEventListener('touchend',e=>{
+  if(!pres||pty===null) return;
+  const dy=pty-e.changedTouches[0].clientY;
+  if(Math.abs(dy)>46) presGo(dy>0?1:-1);
+  pty=null;
+});
 
 /* ═══ 6 CASES CANVAS ═══ */
 function drawPara(id,a,b,c,sc){
