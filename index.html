@@ -173,7 +173,10 @@ p{margin-bottom:12px;max-width:66ch}
 .ig .vd{text-align:center;font-family:var(--serif);font-size:1.8rem;color:var(--ink);font-weight:600;margin-top:8px}
 .cl{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
 @media(max-width:780px){.cl{grid-template-columns:1fr}}
-#calcCanvas{width:100%;border-radius:14px;border:1px solid var(--line);background:#fff;display:block;box-shadow:var(--sh)}
+#calcCanvas{width:100%;border-radius:14px;border:1px solid var(--line);background:#fff;display:block;box-shadow:var(--sh);cursor:zoom-in;position:relative}
+.cl{position:relative}
+.cl::after{content:"⤢ click pe grafic pentru fereastră mare";position:absolute;left:14px;bottom:14px;background:rgba(184,134,11,.92);color:#fff;font-family:var(--mono);font-size:.62rem;padding:3px 9px;border-radius:100px;opacity:0;transition:opacity .22s;pointer-events:none}
+.cl:hover::after{opacity:1}
 .results{display:flex;flex-direction:column;gap:10px}
 .ri{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 17px;transition:transform .2s}
 .ri:hover{transform:translateX(4px)}
@@ -199,6 +202,15 @@ p{margin-bottom:12px;max-width:66ch}
 .mclose:hover{background:var(--gold);color:#fff;border-color:var(--gold);transform:rotate(90deg)}
 .mbody{padding:24px 26px}
 #modalCanvas{width:100%;border-radius:14px;border:1px solid var(--line);background:#fff;display:block}
+#mControls{margin-top:16px;display:none;grid-template-columns:repeat(3,1fr);gap:14px}
+#mControls.on{display:grid}
+@media(max-width:560px){#mControls.on{grid-template-columns:1fr}}
+.mci{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px}
+.mci .lab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.mci .lab span:first-child{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--gold)}
+.mci .lab span:last-child{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink)}
+.mci input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:3px;background:var(--line);outline:none;cursor:pointer}
+.mci input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 2px 6px rgba(184,134,11,.4)}
 .meq{margin-top:18px;text-align:center;font-family:var(--serif);font-size:1.4rem;color:var(--ink);background:rgba(184,134,11,.1);border:1px solid var(--line);border-radius:12px;padding:15px}
 .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px}
 .mstat{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 16px}
@@ -471,6 +483,11 @@ p{margin-bottom:12px;max-width:66ch}
     </div>
     <div class="mbody">
       <canvas id="modalCanvas" width="860" height="540"></canvas>
+      <div id="mControls">
+        <div class="mci"><div class="lab"><span>a</span><span id="mAv">1</span></div><input type="range" id="mA" min="-5" max="5" step="0.5" value="1"></div>
+        <div class="mci"><div class="lab"><span>b</span><span id="mBv">0</span></div><input type="range" id="mB" min="-10" max="10" step="1" value="0"></div>
+        <div class="mci"><div class="lab"><span>c</span><span id="mCv">−4</span></div><input type="range" id="mC" min="-10" max="10" step="1" value="-4"></div>
+      </div>
       <div class="meq" id="mEq"></div>
       <div class="mgrid" id="mStats"></div>
     </div>
@@ -576,25 +593,59 @@ const CASES={
   c6:{a:-1,b:0,c:-2,t:'a < 0 · Δ < 0',badges:['ban|a < 0','bdn|Δ < 0']}
 };
 const modal=document.getElementById('modal');
+let modalLive=false;
 function eqStr(a,b,c){return `f(x) = ${a===1?'':a===-1?'−':a}x² ${b===0?'':(b>0?'+ '+b:'− '+(-b))+'x'} ${c===0?'':(c>0?'+ '+c:'− '+(-c))}`.replace(/\s+/g,' ').trim()}
-function openModal(id){
-  const k=CASES[id];if(!k)return;
-  document.getElementById('mTitle').textContent=k.t;
-  document.getElementById('mBadges').innerHTML=k.badges.map(b=>{const[cls,txt]=b.split('|');return `<span class="badge ${cls}">${txt}</span>`}).join(' ');
-  document.getElementById('mEq').textContent=eqStr(k.a,k.b,k.c);
-  const D=k.b*k.b-4*k.a*k.c,m=-k.b/(2*k.a),n=-D/(4*k.a),sq=Math.sqrt(Math.max(0,D));
-  const roots=D>0?`${fmt((-k.b-sq)/(2*k.a))}, ${fmt((-k.b+sq)/(2*k.a))}`:D===0?`${fmt(m)} (dublă)`:'∄ reale';
-  document.getElementById('mStats').innerHTML=`
+
+/* richer shared value set, used by both case-modal and live calculator-modal */
+function buildStats(a,b,c){
+  const D=b*b-4*a*c,m=-b/(2*a),n=-D/(4*a),sq=Math.sqrt(Math.max(0,D));
+  const roots=D>0?`${fmt((-b-sq)/(2*a))}, ${fmt((-b+sq)/(2*a))}`:D===0?`${fmt(m)} (dublă)`:'∄ reale';
+  const fact=D>=0?(D===0?`${a===1?'':a}(x − ${fmt(m)})²`:`${a===1?'':a}(x − ${fmt((-b-sq)/(2*a))})(x − ${fmt((-b+sq)/(2*a))})`):'— (Δ<0)';
+  const cod=a>0?`[${fmt(n)}, +∞)`:`(−∞, ${fmt(n)}]`;
+  const mono=a>0?`↓ pe (−∞,${fmt(m)}] · ↑ pe [${fmt(m)},+∞)`:`↑ pe (−∞,${fmt(m)}] · ↓ pe [${fmt(m)},+∞)`;
+  return `
     <div class="mstat"><div class="l">Discriminant</div><div class="v">Δ = ${fmt(D)}</div></div>
     <div class="mstat"><div class="l">Vârful V(m,n)</div><div class="v">(${fmt(m)}, ${fmt(n)})</div></div>
-    <div class="mstat"><div class="l">${k.a>0?'Minim':'Maxim'}</div><div class="v">${k.a>0?'↑':'↓'} ${fmt(n)}</div></div>
+    <div class="mstat"><div class="l">${a>0?'Minim':'Maxim'}</div><div class="v">${a>0?'↑':'↓'} ${fmt(n)}</div></div>
     <div class="mstat"><div class="l">Rădăcini</div><div class="v">${roots}</div></div>
     <div class="mstat"><div class="l">Axă simetrie</div><div class="v">x = ${fmt(m)}</div></div>
-    <div class="mstat"><div class="l">Intersecție Oy</div><div class="v">${fmt(k.c)}</div></div>`;
-  modal.classList.add('open');modalOpen=true;
-  drawGraph(document.getElementById('modalCanvas'),k.a,k.b,k.c);
+    <div class="mstat"><div class="l">Intersecție Oy</div><div class="v">${fmt(c)}</div></div>
+    <div class="mstat"><div class="l">Forma canonică</div><div class="v">${a}(x${m<0?'+'+fmt(-m):m===0?'':'−'+fmt(m)})² ${n>=0?'+'+fmt(n):'−'+fmt(-n)}</div></div>
+    <div class="mstat"><div class="l">Factorizare</div><div class="v">${fact}</div></div>
+    <div class="mstat"><div class="l">Codomeniu</div><div class="v">${cod}</div></div>
+    <div class="mstat"><div class="l">Monotonie</div><div class="v" style="font-size:.92rem">${mono}</div></div>
+    <div class="mstat"><div class="l">Sumă · Produs (Viète)</div><div class="v" style="font-size:.95rem">${fmt(-b/a)} · ${fmt(c/a)}</div></div>
+    <div class="mstat"><div class="l">|x₁ − x₂|</div><div class="v">${D>=0?fmt(sq/Math.abs(a)):'—'}</div></div>`;
 }
-function closeModal(){modal.classList.remove('open');modalOpen=false}
+function renderModal(a,b,c,title,badges){
+  document.getElementById('mTitle').textContent=title;
+  document.getElementById('mBadges').innerHTML=badges.map(b=>{const[cls,txt]=b.split('|');return `<span class="badge ${cls}">${txt}</span>`}).join(' ');
+  document.getElementById('mEq').textContent=eqStr(a,b,c);
+  document.getElementById('mStats').innerHTML=buildStats(a,b,c);
+  drawGraph(document.getElementById('modalCanvas'),a,b,c);
+}
+function openModal(id){
+  const k=CASES[id];if(!k)return;
+  modalLive=false;document.getElementById('mControls').classList.remove('on');
+  renderModal(k.a,k.b,k.c,k.t,k.badges);
+  modal.classList.add('open');modalOpen=true;
+}
+function openCalcModal(){
+  const a=parseFloat(document.getElementById('sA').value)||0.5,b=parseFloat(document.getElementById('sB').value),c=parseFloat(document.getElementById('sC').value);
+  modalLive=true;
+  document.getElementById('mControls').classList.add('on');
+  document.getElementById('mA').value=a;document.getElementById('mB').value=b;document.getElementById('mC').value=c;
+  const D=b*b-4*a*c;
+  renderModal(a,b,c,'Calculator',[`${a>0?'ba':'ban'}|a ${a>0?'>':'<'} 0`,`${D>0?'bdp':D===0?'bdz':'bdn'}|Δ ${D>0?'>':D===0?'=':'<'} 0`]);
+  syncMLabels(a,b,c);
+  modal.classList.add('open');modalOpen=true;
+}
+function syncMLabels(a,b,c){
+  document.getElementById('mAv').textContent=a;
+  document.getElementById('mBv').textContent=b;
+  document.getElementById('mCv').textContent=c<0?'−'+Math.abs(c):c;
+}
+function closeModal(){modal.classList.remove('open');modalOpen=false;modalLive=false;document.getElementById('mControls').classList.remove('on')}
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 
 /* ═══ CALCULATOR ═══ */
@@ -609,6 +660,9 @@ function updateCalc(){
   const D=b*b-4*a*c,m=-b/(2*a),n=-D/(4*a),sq=Math.sqrt(Math.max(0,D));
   const rInfo=D>0?`x₁ = ${fmt((-b-sq)/(2*a))}, &nbsp;x₂ = ${fmt((-b+sq)/(2*a))}`:D===0?`x₁ = x₂ = ${fmt(m)}`:'<span style="color:var(--red)">∄ rădăcini reale</span>';
   const dc=D>0?'rdp':D===0?'rdz':'rdn';
+  const cod=a>0?`[${fmt(n)}, +∞)`:`(−∞, ${fmt(n)}]`;
+  const mono=a>0?`↓ (−∞,${fmt(m)}] · ↑ [${fmt(m)},+∞)`:`↑ (−∞,${fmt(m)}] · ↓ [${fmt(m)},+∞)`;
+  const fact=D>=0?(D===0?`${a===1?'':a}(x − ${fmt(m)})²`:`${a===1?'':a}(x − ${fmt((-b-sq)/(2*a))})(x − ${fmt((-b+sq)/(2*a))})`):'— (Δ<0)';
   document.getElementById('res').innerHTML=`
     <div class="ri" style="background:rgba(184,134,11,.12);border-color:var(--gold)"><div class="rl">Ecuația</div><div class="rv" style="font-size:1rem">f(x) = ${a}x² ${b>=0?'+':''}${b}x ${c>=0?'+':''}${c}</div></div>
     <div class="ri ${dc}"><div class="rl">Discriminant</div><div class="rv">Δ = ${fmt(D)}</div></div>
@@ -616,8 +670,18 @@ function updateCalc(){
     <div class="ri"><div class="rl">Vârful V(m, n)</div><div class="rv">V(${fmt(m)}, ${fmt(n)})</div></div>
     <div class="ri"><div class="rl">${a>0?'Minim':'Maxim'}</div><div class="rv" style="color:${a>0?'var(--green)':'var(--red)'}">${a>0?'↑':'↓'} ${fmt(n)}</div></div>
     <div class="ri"><div class="rl">Rădăcini</div><div class="rv" style="font-size:.95rem">${rInfo}</div></div>
-    <div class="ri"><div class="rl">Viète</div><div class="rv" style="font-size:.92rem">x₁+x₂=${fmt(-b/a)} · x₁x₂=${fmt(c/a)}</div></div>`;
+    <div class="ri"><div class="rl">Intersecție Oy · f(0)</div><div class="rv">${fmt(c)}</div></div>
+    <div class="ri"><div class="rl">Axă de simetrie</div><div class="rv">x = ${fmt(m)}</div></div>
+    <div class="ri"><div class="rl">Factorizare</div><div class="rv" style="font-size:.9rem">${fact}</div></div>
+    <div class="ri"><div class="rl">Codomeniu</div><div class="rv">${cod}</div></div>
+    <div class="ri"><div class="rl">Monotonie</div><div class="rv" style="font-size:.88rem">${mono}</div></div>
+    <div class="ri"><div class="rl">|x₁ − x₂|</div><div class="rv">${D>=0?fmt(sq/Math.abs(a)):'—'}</div></div>
+    <div class="ri"><div class="rl">Viète · sumă · produs</div><div class="rv" style="font-size:.92rem">x₁+x₂=${fmt(-b/a)} · x₁x₂=${fmt(c/a)}</div></div>`;
   drawGraph(document.getElementById('calcCanvas'),a,b,c);
+  if(modalLive){
+    renderModal(a,b,c,'Calculator',[`${a>0?'ba':'ban'}|a ${a>0?'>':'<'} 0`,`${D>0?'bdp':D===0?'bdz':'bdn'}|Δ ${D>0?'>':D===0?'=':'<'} 0`]);
+    syncMLabels(a,b,c);
+  }
 }
 function drawGraph(cv,a,b,c){
   const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
@@ -662,6 +726,15 @@ addEventListener('load',()=>{
   ['c1','c2','c3','c4','c5','c6'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>openModal(id))});
   ['sA','sB','sC'].forEach(id=>document.getElementById(id).addEventListener('input',updateCalc));
   document.getElementById('sA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=0.5;updateCalc()}});
+  /* open the big inspect window from the calculator graph */
+  document.getElementById('calcCanvas').addEventListener('click',openCalcModal);
+  /* modal sliders drive the same state, live */
+  const link={mA:'sA',mB:'sB',mC:'sC'};
+  Object.keys(link).forEach(mid=>document.getElementById(mid).addEventListener('input',function(){
+    document.getElementById(link[mid]).value=this.value;
+    updateCalc();
+  }));
+  document.getElementById('mA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=0.5;document.getElementById('sA').value=0.5;updateCalc()}});
   updateCalc();
   go(0);
 });
