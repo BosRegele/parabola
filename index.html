@@ -198,6 +198,32 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
     @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
 
+    /* ── Clickable case canvas ── */
+    .cc-cv{cursor:zoom-in;position:relative}
+    .cc-cv::after{
+      content:'⤢ click pentru detalii';position:absolute;bottom:8px;right:8px;
+      background:rgba(184,134,11,.92);color:#fff;font-size:.66rem;font-weight:600;
+      padding:3px 9px;border-radius:100px;opacity:0;transition:opacity .22s;pointer-events:none
+    }
+    .cc:hover .cc-cv::after{opacity:1}
+
+    /* ── Inspect modal ── */
+    #modal{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(44,26,14,.62);backdrop-filter:blur(6px);opacity:0;transition:opacity .28s}
+    #modal.open{display:flex;opacity:1}
+    .mbox{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px rgba(44,26,14,.4);max-width:920px;width:100%;max-height:92vh;overflow:auto;transform:scale(.94) translateY(14px);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+    #modal.open .mbox{transform:none}
+    .mhead{display:flex;align-items:center;gap:12px;padding:22px 26px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+    .mhead h3{font-size:1.5rem;color:var(--bm);margin:0}
+    .mclose{margin-left:auto;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--border);background:var(--card2);cursor:pointer;font-size:1.3rem;color:var(--bm);display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+    .mclose:hover{background:var(--gold);color:#fff;border-color:var(--gold);transform:rotate(90deg)}
+    .mbody{padding:24px 26px}
+    #modalCanvas{width:100%;border-radius:14px;border:1px solid var(--border);background:#fff;display:block}
+    .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+    .mstat{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:13px 16px}
+    .mstat .l{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:var(--bs);margin-bottom:3px}
+    .mstat .v{font-size:1.1rem;font-family:'Playfair Display',serif;font-weight:600;color:var(--br)}
+    .meq{margin-top:18px;text-align:center;font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--bm);background:var(--gold-p);border:1px solid var(--border);border-radius:12px;padding:16px}
+
     /* ── Footer ── */
     footer{position:relative;z-index:1;text-align:center;padding:54px 28px 64px;color:var(--bs);font-size:.92rem;border-top:1px solid var(--border);background:rgba(244,236,220,.6)}
     footer .fz{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;margin-bottom:10px}
@@ -426,7 +452,23 @@
 
 </main>
 
-<footer>
+<!-- ══ INSPECT MODAL ══ -->
+<div id="modal">
+  <div class="mbox">
+    <div class="mhead">
+      <h3 id="mTitle">Caz</h3>
+      <span id="mBadges"></span>
+      <button class="mclose" onclick="closeModal()" aria-label="Închide">×</button>
+    </div>
+    <div class="mbody">
+      <canvas id="modalCanvas" width="860" height="540"></canvas>
+      <div class="meq" id="mEq"></div>
+      <div class="mgrid" id="mStats"></div>
+    </div>
+  </div>
+</div>
+
+<footer
   <div class="fz">f(x) = ax² + bx + c</div>
   Parabola — Funcția de Gradul II · prezentare interactivă completă
 </footer>
@@ -438,19 +480,51 @@
   const ctx=cv.getContext('2d');
   function resize(){cv.width=innerWidth;cv.height=innerHeight}
   resize(); addEventListener('resize',resize);
-  const curves=Array.from({length:11},()=>({
+
+  const rand=(a,b)=>a+Math.random()*(b-a);
+
+  // Floating parabola curves
+  const curves=Array.from({length:13},()=>({
     x:Math.random()*innerWidth,
     y:Math.random()*innerHeight*1.6-innerHeight*0.3,
-    hw:80+Math.random()*210,
+    hw:80+Math.random()*220,
     dir:Math.random()<0.5?1:-1,
-    spd:0.15+Math.random()*0.4,
-    a:0.03+Math.random()*0.05
+    spd:rand(0.15,0.55),
+    drift:rand(-0.18,0.18),
+    a:rand(0.03,0.08)
   }));
+
+  // Floating dots (particles)
+  const dots=Array.from({length:34},()=>({
+    x:Math.random()*innerWidth,
+    y:Math.random()*innerHeight,
+    r:rand(1.2,3.6),
+    sx:rand(-0.25,0.25),
+    sy:rand(-0.5,-0.12),
+    a:rand(0.12,0.4)
+  }));
+
+  // Floating math symbols
+  const GLYPHS=['Δ','x²','√','π','f(x)','a','b','c','+','−','∞','≠','y','O'];
+  const syms=Array.from({length:16},()=>({
+    x:Math.random()*innerWidth,
+    y:Math.random()*innerHeight,
+    g:GLYPHS[Math.floor(Math.random()*GLYPHS.length)],
+    size:rand(16,40),
+    sy:rand(-0.45,-0.12),
+    sx:rand(-0.15,0.15),
+    rot:rand(-0.4,0.4),
+    vr:rand(-0.004,0.004),
+    a:rand(0.05,0.12)
+  }));
+
   (function frame(){
     ctx.clearRect(0,0,cv.width,cv.height);
+
+    // curves
     for(const c of curves){
-      c.y-=c.spd;
-      if(c.y+c.hw*0.65<0){c.y=cv.height+c.hw*0.65;c.x=Math.random()*cv.width;c.hw=80+Math.random()*210;c.spd=0.15+Math.random()*0.4;c.a=0.03+Math.random()*0.05}
+      c.y-=c.spd; c.x+=c.drift;
+      if(c.y+c.hw*0.65<0){c.y=cv.height+c.hw*0.65;c.x=Math.random()*cv.width;c.hw=80+Math.random()*220;c.spd=rand(0.15,0.55);c.a=rand(0.03,0.08)}
       ctx.beginPath();
       ctx.strokeStyle='rgba(184,134,11,'+c.a+')';
       ctx.lineWidth=2;
@@ -460,6 +534,33 @@
       }
       ctx.stroke();
     }
+
+    // dots
+    for(const d of dots){
+      d.x+=d.sx; d.y+=d.sy;
+      if(d.y<-6){d.y=cv.height+6;d.x=Math.random()*cv.width}
+      if(d.x<-6)d.x=cv.width+6; if(d.x>cv.width+6)d.x=-6;
+      ctx.beginPath();
+      ctx.fillStyle='rgba(184,134,11,'+d.a+')';
+      ctx.arc(d.x,d.y,d.r,0,2*Math.PI);
+      ctx.fill();
+    }
+
+    // symbols
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    for(const s of syms){
+      s.x+=s.sx; s.y+=s.sy; s.rot+=s.vr;
+      if(s.y<-30){s.y=cv.height+30;s.x=Math.random()*cv.width;s.g=GLYPHS[Math.floor(Math.random()*GLYPHS.length)]}
+      if(s.x<-30)s.x=cv.width+30; if(s.x>cv.width+30)s.x=-30;
+      ctx.save();
+      ctx.translate(s.x,s.y);ctx.rotate(s.rot);
+      ctx.fillStyle='rgba(92,61,46,'+s.a+')';
+      ctx.font="italic "+s.size+"px 'Playfair Display',serif";
+      ctx.fillText(s.g,0,0);
+      ctx.restore();
+    }
+    ctx.textAlign='left';ctx.textBaseline='alphabetic';
+
     requestAnimationFrame(frame);
   })();
 })();
@@ -523,6 +624,39 @@ function drawPara(id,a,b,c,sc){
 }
 function drawAll(){drawPara('c1',1,0,-4,34);drawPara('c2',1,-2,1,34);drawPara('c3',1,0,2,34);drawPara('c4',-1,0,4,34);drawPara('c5',-1,2,-1,34);drawPara('c6',-1,0,-2,34)}
 
+/* ═══ INSPECT MODAL ═══ */
+const CASES={
+  c1:{a:1,b:0,c:-4,t:'a > 0 · Δ > 0',badges:['ba|a > 0','bdp|Δ > 0'],d:'Două rădăcini reale distincte — parabola taie axa Ox în 2 puncte. f(x) < 0 între rădăcini.'},
+  c2:{a:1,b:-2,c:1,t:'a > 0 · Δ = 0',badges:['ba|a > 0','bdz|Δ = 0'],d:'Rădăcină dublă — parabola este tangentă la Ox. f(x) ≥ 0 pe tot ℝ.'},
+  c3:{a:1,b:0,c:2,t:'a > 0 · Δ < 0',badges:['ba|a > 0','bdn|Δ < 0'],d:'Fără rădăcini reale — parabola este complet deasupra axei Ox. f(x) > 0 pe tot ℝ.'},
+  c4:{a:-1,b:0,c:4,t:'a < 0 · Δ > 0',badges:['ban|a < 0','bdp|Δ > 0'],d:'Două rădăcini reale distincte — parabola taie Ox. f(x) > 0 între rădăcini.'},
+  c5:{a:-1,b:2,c:-1,t:'a < 0 · Δ = 0',badges:['ban|a < 0','bdz|Δ = 0'],d:'Rădăcină dublă — parabola este tangentă la Ox. f(x) ≤ 0 pe tot ℝ.'},
+  c6:{a:-1,b:0,c:-2,t:'a < 0 · Δ < 0',badges:['ban|a < 0','bdn|Δ < 0'],d:'Fără rădăcini reale — parabola este complet sub axa Ox. f(x) < 0 pe tot ℝ.'}
+};
+const modal=document.getElementById('modal');
+function eqStr(a,b,c){return `f(x) = ${a===1?'':a===-1?'−':a}x² ${b===0?'':(b>0?'+ '+b:'− '+(-b))+'x'} ${c===0?'':(c>0?'+ '+c:'− '+(-c))}`.replace(/\s+/g,' ').trim()}
+function openModal(id){
+  const k=CASES[id]; if(!k)return;
+  document.getElementById('mTitle').textContent=k.t;
+  document.getElementById('mBadges').innerHTML=k.badges.map(b=>{const[cls,txt]=b.split('|');return `<span class="badge ${cls}">${txt}</span>`}).join(' ');
+  document.getElementById('mEq').textContent=eqStr(k.a,k.b,k.c);
+  const D=k.b*k.b-4*k.a*k.c,m=-k.b/(2*k.a),n=-D/(4*k.a),sq=Math.sqrt(Math.max(0,D));
+  const roots=D>0?`${fmt((-k.b-sq)/(2*k.a))}, ${fmt((-k.b+sq)/(2*k.a))}`:D===0?`${fmt(m)} (dublă)`:'∄ reale';
+  document.getElementById('mStats').innerHTML=`
+    <div class="mstat"><div class="l">Discriminant</div><div class="v">Δ = ${fmt(D)}</div></div>
+    <div class="mstat"><div class="l">Vârful V(m,n)</div><div class="v">(${fmt(m)}, ${fmt(n)})</div></div>
+    <div class="mstat"><div class="l">${k.a>0?'Minim':'Maxim'}</div><div class="v">${k.a>0?'↑':'↓'} ${fmt(n)}</div></div>
+    <div class="mstat"><div class="l">Rădăcini</div><div class="v">${roots}</div></div>
+    <div class="mstat"><div class="l">Axă simetrie</div><div class="v">x = ${fmt(m)}</div></div>
+    <div class="mstat"><div class="l">Intersecție Oy</div><div class="v">${fmt(k.c)}</div></div>`;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+  drawGraph(document.getElementById('modalCanvas'),k.a,k.b,k.c);
+}
+function closeModal(){modal.classList.remove('open');document.body.style.overflow=''}
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
 /* ═══ CALCULATOR ═══ */
 function fmt(n){return isFinite(n)?parseFloat(n.toFixed(4)).toString():'—'}
 function updateCalc(){
@@ -545,8 +679,11 @@ function updateCalc(){
     <div class="ri"><div class="rl">Viète</div><div class="rv" style="font-size:.92rem">x₁+x₂=${fmt(-b/a)} · x₁x₂=${fmt(c/a)}</div></div>`;
   drawCalc(a,b,c,D,m,n);
 }
-function drawCalc(a,b,c,D,m,n){
-  const cv=document.getElementById('calcCanvas'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,sq=Math.sqrt(Math.max(0,D));
+function drawCalc(a,b,c,D,m,n){ drawGraph(document.getElementById('calcCanvas'),a,b,c) }
+
+function drawGraph(cv,a,b,c){
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const D=b*b-4*a*c,m=-b/(2*a),n=-D/(4*a),sq=Math.sqrt(Math.max(0,D));
   let xr=Math.max(7,Math.abs(m)+4);
   if(D>=0)xr=Math.max(xr,Math.abs((-b-sq)/(2*a))+3,Math.abs((-b+sq)/(2*a))+3);
   const sc=Math.min(58,Math.floor((W/2-16)/xr)),cx=W/2,cy=H/2,tx=x=>cx+x*sc,ty=y=>cy-y*sc;
@@ -584,6 +721,10 @@ function drawCalc(a,b,c,D,m,n){
 /* ═══ INIT ═══ */
 addEventListener('load',()=>{
   drawAll();
+  ['c1','c2','c3','c4','c5','c6'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('click',()=>openModal(id));
+  });
   ['sA','sB','sC'].forEach(id=>document.getElementById(id).addEventListener('input',updateCalc));
   document.getElementById('sA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=0.5;updateCalc()}});
   updateCalc();
