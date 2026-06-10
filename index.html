@@ -33,7 +33,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 .slides{height:100%;transition:transform .9s cubic-bezier(.83,0,.17,1);transform:translateY(calc(var(--i,0) * -100vh))}
 .slide{height:100vh;display:flex;align-items:center;overflow:hidden;position:relative}
 .wrap{max-width:1120px;margin:0 auto;padding:0 44px;width:100%}
-@media(max-width:760px){.wrap{padding:0 22px}.slide{align-items:flex-start;overflow-y:auto;padding:70px 0}}
+@media(max-width:820px){.slide{align-items:flex-start;overflow-y:auto;padding:70px 0}}
+@media(max-width:760px){.wrap{padding:0 22px}}
 
 /* ── stagger reveal : the glycogen .u system ── */
 .u{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -191,6 +192,30 @@ p{margin-bottom:12px;max-width:66ch}
 .final .fsrc{font-family:var(--mono);font-size:.8rem;color:var(--sub);max-width:60ch;margin:0 auto}
 .final .fz{font-family:var(--serif);font-size:1.7rem;color:var(--gold);font-style:italic;margin:18px 0}
 
+/* ── research slides (partea a II-a) ── */
+.icv{width:100%;border-radius:14px;border:1px solid var(--line);background:#fff;display:block;box-shadow:var(--sh)}
+.ctr{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.ctr.c3x{grid-template-columns:repeat(3,1fr)}
+@media(max-width:560px){.ctr,.ctr.c3x{grid-template-columns:1fr}}
+.istats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+@media(max-width:560px){.istats{grid-template-columns:repeat(2,1fr)}}
+.ist{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 11px;min-width:0}
+.ist .l{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;font-weight:600;color:var(--sub);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ist .v{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink);overflow-wrap:break-word}
+.fb.sm{padding:15px 20px}
+.fb.sm .formula{font-size:clamp(1.15rem,2.1vw,1.55rem)}
+.fb.sm .subnote{margin-top:8px;font-size:.92rem}
+.prf{padding:13px 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;font-family:var(--serif);font-size:1.02rem;line-height:2.05;color:var(--ink)}
+.prf strong{color:var(--amber)}
+.mat3{display:inline-grid;grid-template-columns:repeat(3,auto);gap:3px 13px;padding:8px 12px;border-left:2.5px solid var(--ink);border-right:2.5px solid var(--ink);border-radius:7px}
+.mat3 span{text-align:center;min-width:30px;font-family:var(--serif);color:var(--ink)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--txt);border:1px solid var(--line);background:var(--panel2);padding:6px 13px;border-radius:100px}
+.envbtn{width:100%;height:100%;min-height:52px;border-radius:12px;border:1px solid var(--line);background:var(--panel);font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--txt);cursor:pointer;transition:.25s;padding:8px}
+.envbtn.on{background:var(--gold);color:#fff;border-color:var(--gold);box-shadow:0 4px 14px rgba(184,134,11,.4)}
+.dragx{cursor:grab;touch-action:none}
+.dragx:active{cursor:grabbing}
+
 /* ── inspect modal ── */
 #modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(44,26,14,.62);backdrop-filter:blur(7px)}
 #modal.open{display:flex;animation:mfade .25s ease}
@@ -223,7 +248,7 @@ p{margin-bottom:12px;max-width:66ch}
 <canvas id="bgCv"></canvas>
 <div id="progress"></div>
 <nav class="dots" id="dots"></nav>
-<div class="counter"><b id="cnum">01</b> / <span id="ctot">11</span></div>
+<div class="counter"><b id="cnum">01</b> / <span id="ctot">21</span></div>
 <div class="hint" id="hint">scroll<i></i></div>
 
 <div class="deck"><div class="slides" id="slides">
@@ -231,7 +256,7 @@ p{margin-bottom:12px;max-width:66ch}
   <!-- 0 · HERO -->
   <section class="slide" data-label="Acasă">
     <div class="wrap hero-inner">
-      <div class="hero-tag u" style="--d:0">Matematică · Funcții · Algebră · Clasa a IX-a</div>
+      <div class="hero-tag u" style="--d:0">Matematică · Algebră · Geometrie · Analiză · Clasele IX–XI</div>
       <h1 class="hero-title u" style="--d:1">Parabola</h1>
       <div class="hero-sub u" style="--d:2">Funcția de gradul II, de la formulă la grafic</div>
       <div class="hero-formula u" style="--d:3"><span class="c">f</span>(x) = <span class="c">a</span>x² + <span class="c">b</span>x + <span class="c">c</span>&thinsp;,&thinsp; <span class="c">a</span> ≠ 0</div>
@@ -239,6 +264,7 @@ p{margin-bottom:12px;max-width:66ch}
         <div>FORMĂ&nbsp; <b>generală & canonică</b></div>
         <div>CHEIE&nbsp; <b>discriminantul Δ</b></div>
         <div>GRAFIC&nbsp; <b>6 cazuri</b></div>
+        <div>CERCETARE&nbsp; <b>șapte identități</b></div>
       </div>
       <div class="u" style="--d:5;margin-top:24px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--sub)">proiect realizat de <b style="color:var(--gold)">Boștină Vlad</b></div>
     </div>
@@ -461,13 +487,246 @@ p{margin-bottom:12px;max-width:66ch}
     </div>
   </section>
 
-  <!-- 10 · FINAL -->
+  <!-- 10 · DIVIDER · PARTEA A II-A -->
+  <section class="slide" data-label="Partea a II-a">
+    <div class="wrap final">
+      <span class="fpill u">Partea a II-a · Cercetare</span>
+      <div class="fbig u" style="--d:1">Aceeași curbă, șapte identități.</div>
+      <p class="fsrc u" style="--d:2">Prima identitate — graficul — e Partea I. Aici vin celelalte șase: loc geometric, oglindă, limită, sumă infinită, conică de frontieră și traiectorie, plus două instrumente care le leagă: tangentele și asemănarea. Totul demonstrat numai cu unelte din clasele IX–XI — distanțe, discriminant, derivate, limite, progresii, matrice.</p>
+      <div class="chips u" style="--d:3">
+        <span class="chip">Focar & directoare</span><span class="chip">Tangente</span><span class="chip">Reflexie</span><span class="chip">Cercul osculator</span><span class="chip">Arhimede 4/3</span><span class="chip">Conice & matrice</span><span class="chip">Asemănare</span><span class="chip">Proiectil</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · FOCAR & DIRECTOARE -->
+  <section class="slide" data-label="Focus">
+    <div class="wrap">
+      <div class="eyebrow u">Identitatea geometrică</div>
+      <h2 class="u" style="--d:1">Focarul și directoarea</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm"><div class="formula">PF = dist(P, d)</div><div class="subnote">parabola = punctele egal depărtate de focarul <strong>F</strong> și de dreapta <strong>d</strong></div></div>
+          <div class="prf">P(x, y), F(0, p), d: y = −p (vârful în origine):<br>x² + (y−p)² = (y+p)² &nbsp;⇒&nbsp; x² = 4py<br>⇒ <span class="hl">y = <span class="frac"><span class="n">1</span><span class="d">4p</span></span>·x²</span> — deci a = <span class="frac"><span class="n">1</span><span class="d">4p</span></span>, adică p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span></div>
+          <div class="mini"><strong>General:</strong> pentru f(x) = ax²+bx+c, p = 1/(4a), focarul F(m, n+p), directoarea y = n−p — totul rezultă prin translația vârfului (distanțele nu se schimbă).</div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="focusCv" class="icv" width="520" height="320"></canvas>
+          <div class="ctr">
+            <div class="mci"><div class="lab"><span>a</span><span id="fAv">0.5</span></div><input type="range" id="fA" min="0.2" max="1.2" step="0.05" value="0.5"></div>
+            <div class="mci"><div class="lab"><span>x<sub>P</sub></span><span id="fTv">1.6</span></div><input type="range" id="fT" min="-2.2" max="2.2" step="0.05" value="1.6"></div>
+          </div>
+          <div class="istats" id="focusStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · TANGENTE -->
+  <section class="slide" data-label="Tangente">
+    <div class="wrap">
+      <div class="eyebrow u">Două drumuri, aceeași dreaptă</div>
+      <h2 class="u" style="--d:1">Tangenta, pe două căi</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm"><div class="formula">T: y = f(x₀) + f′(x₀)(x − x₀)</div><div class="subnote">calea analizei (a XI-a) · f′(x) = 2ax + b</div></div>
+          <div class="prf"><strong>Calea algebrei (a IX-a):</strong> y = sx + ℓ e tangentă ⟺<br>ax² + (b−s)x + (c−ℓ) = 0 are <span class="hl">Δ = 0</span> ⟺ ℓ = c − <span class="frac"><span class="n">(s−b)²</span><span class="d">4a</span></span></div>
+          <div class="mini"><strong>Verificare:</strong> cu s = 2ax₀+b, ambele căi dau ℓ = c − ax₀². Derivata clasei a XI-a și discriminantul clasei a IX-a descriu aceeași dreaptă. Normala are panta −1/s (⊥ pe tangentă).</div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="tanCv" class="icv" width="520" height="320"></canvas>
+          <div class="ctr c3x">
+            <div class="mci"><div class="lab"><span>a</span><span id="tAv">0.5</span></div><input type="range" id="tA" min="-1.5" max="1.5" step="0.25" value="0.5"></div>
+            <div class="mci"><div class="lab"><span>x₀</span><span id="tXv">1.5</span></div><input type="range" id="tX" min="-3" max="3" step="0.1" value="1.5"></div>
+            <button id="tEnv" class="envbtn" type="button">înfășurătoare: OFF</button>
+          </div>
+          <div class="istats" id="tanStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · REFLEXIA ÎN FOCAR -->
+  <section class="slide" data-label="Reflexie">
+    <div class="wrap">
+      <div class="eyebrow u">Oglinda perfectă</div>
+      <h2 class="u" style="--d:1">Reflexia în focar</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm"><div class="formula">raze ∥ axă &nbsp;⟶&nbsp; focar</div><div class="subnote">proprietatea optică a parabolei</div></div>
+          <div class="prf">P(t, at²), Q = proiecția lui P pe directoare ⇒ <span class="hl">PF = PQ</span><br>Mediatoarea [FQ]: panta <span class="frac"><span class="n">t</span><span class="d">2p</span></span> = 2at = f′(t) și trece prin P ⇒ e <strong>tangenta</strong><br>Triunghi isoscel ⇒ unghiuri egale ⇒ raza verticală se reflectă spre F ∎</div>
+          <div class="mini"><strong>Aplicații:</strong> antene satelit, faruri auto, telescoape, cuptoare solare — toate sunt parabole care adună sau emit razele prin focar.</div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="reflCv" class="icv" width="520" height="320"></canvas>
+          <div class="ctr" style="grid-template-columns:1fr">
+            <div class="mci"><div class="lab"><span>a</span><span id="rAv">0.45</span></div><input type="range" id="rA" min="0.2" max="0.8" step="0.05" value="0.45"></div>
+          </div>
+          <div class="istats" id="reflStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · CERCUL OSCULATOR -->
+  <section class="slide" data-label="Curbură">
+    <div class="wrap">
+      <div class="eyebrow u">Geometrie prin limite</div>
+      <h2 class="u" style="--d:1">Cercul osculator</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm"><div class="formula">cerc(P₋ₕ, P₀, P₊ₕ) <span style="font-size:.7em;color:var(--sub)">h→0</span>⟶ cerc osculator</div><div class="subnote">cerc prin 3 puncte (a X-a) + limită (a XI-a)</div></div>
+          <div class="prf">În vârf: cercul prin V(0,0) și (±h, ah²):<br>h² + a²h⁴ = 2ah²r ⇒ r = <span class="frac"><span class="n">1 + a²h²</span><span class="d">2a</span></span> <span class="hl">⟶ R = <span class="frac"><span class="n">1</span><span class="d">2a</span></span></span> când h→0</div>
+          <div class="mini"><strong>Surpriză:</strong> în vârf R = 1/(2a) = 2p — exact dublul distanței focale. Locul centrelor (curba mov) se numește <strong>evoluta</strong> parabolei.</div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="oscCv" class="icv" width="520" height="320"></canvas>
+          <div class="ctr">
+            <div class="mci"><div class="lab"><span>t</span><span id="oTv">1.4</span></div><input type="range" id="oT" min="-2.4" max="2.4" step="0.05" value="1.4"></div>
+            <div class="mci"><div class="lab"><span>h</span><span id="oHv">1</span></div><input type="range" id="oH" min="0.05" max="1.2" step="0.05" value="1"></div>
+          </div>
+          <div class="istats" id="oscStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 · ARHIMEDE -->
+  <section class="slide" data-label="Arhimede">
+    <div class="wrap">
+      <div class="eyebrow u">Matematica greacă, fără integrale</div>
+      <h2 class="u" style="--d:1">Arhimede și 4/3</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm"><div class="formula">A<sub>segment</sub> = <span class="frac"><span class="n">4</span><span class="d">3</span></span> · A<sub>triunghi</sub></div><div class="subnote">„Cvadratura parabolei”, sec. III î.Hr.</div></div>
+          <div class="prf"><strong>Lema (cu derivata):</strong> pe y = x², coarda de la p la q are panta p+q; tangenta are panta 2x ⇒ paralele la x = (p+q)/2.<br><strong>Consecință:</strong> fiecare generație de triunghiuri are ¼ din aria precedentei.</div>
+          <div class="fb sm"><div class="formula" style="font-size:1.15rem">A = T(1 + ¼ + ¹∕₁₆ + ⋯) = T · <span class="frac"><span class="n">1</span><span class="d">1 − ¼</span></span> = <span class="hl">4/3 · T</span></div><div class="subnote">progresie geometrică infinită — analiza clasei a XI-a</div></div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="arhCv" class="icv" width="520" height="320"></canvas>
+          <div class="ctr" style="grid-template-columns:1fr">
+            <div class="mci"><div class="lab"><span>generații n</span><span id="aNv">1</span></div><input type="range" id="aN" min="0" max="6" step="1" value="1"></div>
+          </div>
+          <div class="istats" id="arhStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · CONICE & MATRICE -->
+  <section class="slide" data-label="Conice">
+    <div class="wrap">
+      <div class="eyebrow u">Algebra clasei a XI-a</div>
+      <h2 class="u" style="--d:1">Conica generală și matricea ei</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm"><div class="formula" style="font-size:1.2rem">Ax² + Bxy + Cy² + Dx + Ey + F = 0</div><div class="subnote">toate conicele, o singură ecuație</div></div>
+          <div class="card" style="padding:14px;text-align:center">
+            <div class="vl">scrierea matricială · X<sup>T</sup>·M·X = 0</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--serif);font-size:1rem;color:var(--ink)">
+              <span>[x&thinsp;y&thinsp;1]</span>
+              <span class="mat3"><span>A</span><span>B/2</span><span>D/2</span><span>B/2</span><span>C</span><span>E/2</span><span>D/2</span><span>E/2</span><span>F</span></span>
+              <span>[x&thinsp;y&thinsp;1]<sup>T</sup></span>
+            </div>
+          </div>
+          <div class="mini"><strong>Criteriul:</strong> B²−4AC &lt; 0 elipsă · <span class="hl">= 0 parabolă</span> · &gt; 0 hiperbolă. Intuiția: Ax²+Bxy+Cy² e pătrat perfect exact când B²−4AC = 0 — același Δ din clasa a IX-a. Parabola e <strong>frontiera</strong> dintre elipsă și hiperbolă.</div>
+          <div class="note"><div><strong>De ce „conice”?</strong> Sunt secțiunile unui con: planul paralel cu o generatoare decupează parabola; mai „culcat” — elipsa; mai „vertical” (taie ambele pânze) — hiperbola.</div></div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="conCv" class="icv" width="520" height="300"></canvas>
+          <div class="ctr c3x">
+            <div class="mci"><div class="lab"><span>A</span><span id="cAv">1</span></div><input type="range" id="cA" min="-3" max="3" step="0.5" value="1"></div>
+            <div class="mci"><div class="lab"><span>B</span><span id="cBv">2</span></div><input type="range" id="cB" min="-4" max="4" step="0.5" value="2"></div>
+            <div class="mci"><div class="lab"><span>C</span><span id="cCv">1</span></div><input type="range" id="cC" min="-3" max="3" step="0.5" value="1"></div>
+          </div>
+          <div class="istats" id="conStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 · ASEMĂNARE -->
+  <section class="slide" data-label="Asemănare">
+    <div class="wrap">
+      <div class="eyebrow u">Un fapt contraintuitiv</div>
+      <h2 class="u" style="--d:1">Toate parabolele sunt asemenea</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm"><div class="formula">(x, y) ⟼ (λx, λy)</div><div class="subnote">o asemănare = un „zoom” uniform al planului</div></div>
+          <div class="prf">Fie y = ax² și X = λx, Y = λy. Atunci:<br>Y = λ·ax² = λa(X/λ)² = <span class="hl">(a/λ)·X²</span><br>Cu λ = a/a′, parabola „a” devine parabola „a′” ∎</div>
+          <div class="mini"><strong>Ca cercurile:</strong> nu există parabole „mai late” sau „mai înguste” — doar văzute mai de aproape sau mai de departe. La elipse nu funcționează: raportul semiaxelor rezistă la zoom.</div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="simCv" class="icv" width="520" height="300"></canvas>
+          <div class="ctr" style="grid-template-columns:1fr">
+            <div class="mci"><div class="lab"><span>a (= λ)</span><span id="sLamv">2</span></div><input type="range" id="sLam" min="0.25" max="4" step="0.25" value="2"></div>
+          </div>
+          <div class="istats" id="simStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 · PROIECTIL -->
+  <section class="slide" data-label="Proiectil">
+    <div class="wrap">
+      <div class="eyebrow u">Fizica clasei a IX-a</div>
+      <h2 class="u" style="--d:1">Traiectoria proiectilului</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="prf">x = v₀cosθ·t ⇒ t = <span class="frac"><span class="n">x</span><span class="d">v₀cosθ</span></span> &nbsp;·&nbsp; y = v₀sinθ·t − <span class="frac"><span class="n">gt²</span><span class="d">2</span></span><br>Eliminăm timpul și rămâne doar geometria:</div>
+          <div class="fb sm"><div class="formula" style="font-size:1.25rem">y = x·tanθ − <span class="frac"><span class="n">g</span><span class="d">2v₀²cos²θ</span></span>·x²</div><div class="subnote">funcție de gradul II cu a &lt; 0 și c = 0 — exact parabola noastră</div></div>
+          <div class="mini"><strong>Bătaia:</strong> x<sub>max</sub> = v₀²sin2θ/g — maximă la θ = 45°. <strong>Înălțimea:</strong> h = v₀²sin²θ/(2g).</div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="projCv" class="icv" width="520" height="320"></canvas>
+          <div class="ctr c3x">
+            <div class="mci"><div class="lab"><span>v₀</span><span id="pVv">20 m/s</span></div><input type="range" id="pV" min="5" max="30" step="0.5" value="20"></div>
+            <div class="mci"><div class="lab"><span>θ</span><span id="pThv">45°</span></div><input type="range" id="pTh" min="10" max="80" step="1" value="45"></div>
+            <div class="mci"><div class="lab"><span>g</span><span id="pGv">9.8</span></div><input type="range" id="pG" min="1.6" max="25" step="0.1" value="9.8"></div>
+          </div>
+          <div class="istats" id="projStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 · SURSE -->
+  <section class="slide" data-label="Surse">
+    <div class="wrap">
+      <div class="eyebrow u">Bibliografie</div>
+      <h2 class="u" style="--d:1">Surse</h2>
+      <div class="grid2">
+        <div class="card u" style="--d:2">
+          <h3>Matematică & istorie</h3>
+          <ul class="ml">
+            <li><span class="dot2"></span><span>Arhimede — <em>Cvadratura parabolei</em> (sec. III î.Hr.) — metoda epuizării și raportul 4/3</span></li>
+            <li><span class="dot2"></span><span>Manualele de matematică, clasa a IX-a — funcția de gradul II, discriminant, Viète</span></li>
+            <li><span class="dot2"></span><span>Manualele de matematică, clasa a XI-a — derivate, limite de șiruri, matrice</span></li>
+            <li><span class="dot2"></span><span>Wolfram MathWorld — <em>Parabola</em>, <em>Parabola Evolute</em></span></li>
+          </ul>
+        </div>
+        <div class="card u" style="--d:3">
+          <h3>Conice, optică & fizică</h3>
+          <ul class="ml">
+            <li><span class="dot2"></span><span>LibreTexts Mathematics — <em>Conic Sections</em>: focar, directoare, proprietatea de reflexie</span></li>
+            <li><span class="dot2"></span><span>Wikipedia — <em>Matrix representation of conic sections</em></span></li>
+            <li><span class="dot2"></span><span>OpenStax — <em>University Physics vol. 1</em>, cap. <em>Projectile Motion</em></span></li>
+            <li><span class="dot2"></span><span>Graficele și demonstrațiile interactive: construite de la zero pentru acest proiect</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="note u" style="--d:4;margin-top:18px"><div><strong>Metodă:</strong> fiecare rezultat din Partea a II-a a fost re-demonstrat cu instrumente din programa claselor IX–XI (distanțe, discriminant, derivate, limite, progresii, matrice) — fără integrale și fără geometrie proiectivă.</div></div>
+    </div>
+  </section>
+
+  <!-- 20 · FINAL -->
   <section class="slide" data-label="Final">
     <div class="wrap final">
-      <span class="fpill u">Recapitulare</span>
-      <div class="fbig u" style="--d:1">De la trei coeficienți la o curbă întreagă.</div>
+      <span class="fpill u">Concluzie</span>
+      <div class="fbig u" style="--d:1">De la trei coeficienți la șapte identități.</div>
       <div class="fz u" style="--d:2">f(x) = ax² + bx + c</div>
-      <p class="fsrc u" style="--d:3">Discriminantul Δ = b² − 4ac decide numărul de rădăcini, semnul lui a decide direcția ramurilor, iar vârful V(−b/2a, −Δ/4a) fixează totul în plan. Asta e parabola.</p>
+      <p class="fsrc u" style="--d:3">Aceeași curbă este graficul funcției de gradul II, locul punctelor egal depărtate de focar și directoare, oglinda care adună razele în focar, limita cercurilor prin trei puncte, suma infinită a lui Arhimede, conica de frontieră cu B²−4AC = 0 și traiectoria oricărui proiectil. Șapte fețe — o singură parabolă.</p>
     </div>
   </section>
 
@@ -542,7 +801,8 @@ function go(i){
   document.getElementById('cnum').textContent=String(cur+1).padStart(2,'0');
   document.getElementById('progress').style.width=(cur/(total-1)*100)+'%';
   document.getElementById('hint').style.opacity=cur===0?'1':'0';
-  if(cur===9)setTimeout(updateCalc,120);
+  const hk=slideHooks[slides[cur].dataset.label];
+  if(hk)setTimeout(hk,120);
 }
 function step(d){if(locked||modalOpen)return;locked=true;go(cur+d);setTimeout(()=>locked=false,950)}
 
@@ -720,6 +980,374 @@ function drawGraph(cv,a,b,c){
   if(cx>6&&ty(c)>6&&ty(c)<H-6){ctx.fillStyle='#2E7D32';ctx.beginPath();ctx.arc(cx,ty(c),6,0,2*Math.PI);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke()}
 }
 
+/* ═══ RESEARCH SLIDES (partea a II-a) ═══ */
+const $=id=>document.getElementById(id);
+
+/* shared mini graph helpers */
+function miniAxes(cv,sc,cx,cy){
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#F0E4CC';ctx.lineWidth=.5;
+  for(let i=Math.ceil(-cx/sc);i<=Math.floor((W-cx)/sc);i++){ctx.beginPath();ctx.moveTo(cx+i*sc,0);ctx.lineTo(cx+i*sc,H);ctx.stroke()}
+  for(let i=Math.ceil((cy-H)/sc);i<=Math.floor(cy/sc);i++){ctx.beginPath();ctx.moveTo(0,cy-i*sc);ctx.lineTo(W,cy-i*sc);ctx.stroke()}
+  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.4;
+  ctx.beginPath();ctx.moveTo(4,cy);ctx.lineTo(W-4,cy);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx,H-4);ctx.lineTo(cx,4);ctx.stroke();
+  ctx.fillStyle='#8B6E5A';ctx.font='11px Inter,sans-serif';ctx.fillText('O',cx+4,cy+13);
+  return {ctx,W,H,sc,cx,cy,tx:x=>cx+x*sc,ty:y=>cy-y*sc};
+}
+function plotFn(g,f,color,lw,dash){
+  const{ctx,W,H,cx,cy,sc}=g;ctx.beginPath();let on=false;
+  for(let px=0;px<=W;px++){const x=(px-cx)/sc,y=f(x),py=cy-y*sc;
+    if(!isFinite(y)||py<-80||py>H+80){on=false;continue}
+    on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
+  if(dash)ctx.setLineDash(dash);
+  ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.stroke();ctx.setLineDash([]);
+}
+function gdot(g,x,y,r,fill,ring){const{ctx,tx,ty}=g;ctx.beginPath();ctx.arc(tx(x),ty(y),r,0,2*Math.PI);ctx.fillStyle=fill;ctx.fill();if(ring){ctx.strokeStyle=ring;ctx.lineWidth=1.8;ctx.stroke()}}
+function gtag(g,x,y,txt,color){const{ctx,tx,ty}=g;ctx.font='bold 11px Inter,sans-serif';const w=ctx.measureText(txt).width;ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(tx(x)+6,ty(y)-16,w+6,15);ctx.fillStyle=color;ctx.fillText(txt,tx(x)+9,ty(y)-4)}
+function ist(l,v,hi){return `<div class="ist"${hi?' style="background:rgba(184,134,11,.12);border-color:var(--gold)"':''}><div class="l">${l}</div><div class="v">${v}</div></div>`}
+
+/* ── 11 · focar & directoare ── */
+function updateFocus(){
+  const a=parseFloat($('fA').value),t=parseFloat($('fT').value);
+  $('fAv').textContent=fmt(a);$('fTv').textContent=fmt(t);
+  const cv=$('focusCv'),g=miniAxes(cv,40,260,252);
+  const p=1/(4*a),Py=a*t*t;
+  g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
+  g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
+  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('directoarea d:  y = −p',10,g.ty(-p)-7);
+  plotFn(g,x=>a*x*x,'#C4820A',3.2);
+  g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2.2;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(p));g.ctx.lineTo(g.tx(t),g.ty(Py));g.ctx.stroke();
+  g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=2.2;g.ctx.setLineDash([5,4]);
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(t),g.ty(Py));g.ctx.lineTo(g.tx(t),g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
+  gdot(g,0,p,6,'#B8860B','#fff');gtag(g,0,p,'F(0, p)','#8a6508');
+  gdot(g,t,Py,6,'#2C1A0E','#fff');gtag(g,t,Py,'P','#2C1A0E');
+  gdot(g,t,-p,5,'#B71C1C','#fff');gtag(g,t,-p,'Q','#B71C1C');
+  const PF=Math.hypot(t,Py-p),PQ=Py+p;
+  $('focusStats').innerHTML=
+    ist('p = 1/(4a)',fmt(p))+
+    ist('Focarul F','(0, '+fmt(p)+')')+
+    ist('Directoarea','y = '+fmt(-p))+
+    ist('PF',fmt(PF))+
+    ist('PQ = dist(P, d)',fmt(PQ))+
+    ist('Definiția','PF = PQ ✓',1);
+}
+
+/* ── 12 · tangente ── */
+let tanScCur=38,envOn=false;
+function updateTan(){
+  let a=parseFloat($('tA').value);
+  if(a===0){a=0.25;$('tA').value='0.25'}
+  const x0=parseFloat($('tX').value),b=-1,c=-2;
+  $('tAv').textContent=fmt(a);$('tXv').textContent=fmt(x0);
+  const y0=a*x0*x0+b*x0+c,s=2*a*x0+b,l=c-(s-b)*(s-b)/(4*a);
+  const n=-(b*b-4*a*c)/(4*a);
+  const Y=Math.max(4.2,Math.abs(y0)+1.6,Math.abs(n)+1.2);
+  tanScCur=Math.min(38,148/Y);
+  const cv=$('tanCv'),g=miniAxes(cv,tanScCur,260,160);
+  if(envOn){
+    /* înfășurătoarea: parabola NU e desenată — apare singură din tangente */
+    for(let u=-4.2;u<=4.21;u+=.21){const se=2*a*u+b,le=c-a*u*u;plotFn(g,x=>se*x+le,'rgba(184,134,11,.3)',1)}
+  }else{
+    plotFn(g,x=>a*x*x+b*x+c,'#C4820A',3.2);
+  }
+  plotFn(g,x=>s*x+l,'#1565C0',2.2);
+  if(!envOn){
+    if(Math.abs(s)>1e-9)plotFn(g,x=>y0-(x-x0)/s,'#2E7D32',1.8,[6,5]);
+    else{g.ctx.setLineDash([6,5]);g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=1.8;g.ctx.beginPath();g.ctx.moveTo(g.tx(x0),0);g.ctx.lineTo(g.tx(x0),g.H);g.ctx.stroke();g.ctx.setLineDash([])}
+  }
+  gdot(g,x0,y0,6,'#E53935','#fff');gtag(g,x0,y0,'T','#B71C1C');
+  const dchk=Math.abs((b-s)*(b-s)-4*a*(c-l));
+  const ln=Math.abs(s)>1e-9?y0+x0/s:0;
+  $('tanStats').innerHTML=
+    ist('Funcția',eqStr(a,b,c))+
+    ist('Punctul T','('+fmt(x0)+', '+fmt(y0)+')')+
+    ist('Panta s = f′(x₀)',fmt(s))+
+    ist('Tangenta',`y = ${fmt(s)}x ${l>=0?'+ ':'− '}${fmt(Math.abs(l))}`)+
+    ist('Normala',Math.abs(s)>1e-9?`y = ${fmt(-1/s)}x ${ln>=0?'+ ':'− '}${fmt(Math.abs(ln))}`:'x = '+fmt(x0)+' (axa)')+
+    (envOn?ist('Înfășurătoarea','41 tangente — parabola apare fără să fie desenată',1):ist('Verificare','Δ = '+fmt(dchk)+' ✓',1));
+}
+
+/* ── 13 · reflexia în focar (animat) ── */
+function drawRefl(ts){
+  const a=parseFloat($('rA').value);$('rAv').textContent=fmt(a);
+  const cv=$('reflCv'),g=miniAxes(cv,52,260,272);
+  const p=1/(4*a),ytop=4.9;
+  plotFn(g,x=>a*x*x,'#C4820A',3.2);
+  const xm=Math.min(4.4,Math.sqrt(4.4/a)),rays=[];
+  for(let i=0;i<8;i++){const t=-xm+(i+.5)*(2*xm/8);if(Math.abs(t)>=.25)rays.push(t)}
+  g.ctx.strokeStyle='rgba(21,101,192,.18)';g.ctx.lineWidth=1.3;
+  rays.forEach(t=>{const Py=a*t*t;
+    g.ctx.beginPath();g.ctx.moveTo(g.tx(t),g.ty(ytop));g.ctx.lineTo(g.tx(t),g.ty(Py));g.ctx.lineTo(g.tx(0),g.ty(p));g.ctx.stroke()});
+  const fx=g.tx(0),fy=g.ty(p),pulse=16+(3+Math.sin(ts/280)*1.4)*2;
+  const gr=g.ctx.createRadialGradient(fx,fy,2,fx,fy,pulse);
+  gr.addColorStop(0,'rgba(212,160,23,.85)');gr.addColorStop(1,'rgba(212,160,23,0)');
+  g.ctx.fillStyle=gr;g.ctx.beginPath();g.ctx.arc(fx,fy,pulse,0,2*Math.PI);g.ctx.fill();
+  gdot(g,0,p,5.5,'#B8860B','#fff');gtag(g,0,p,'F','#8a6508');
+  rays.forEach((t,i)=>{
+    const Py=a*t*t,L1=(ytop-Py)*g.sc,L2=Math.hypot(g.tx(t)-fx,g.ty(Py)-fy),L=L1+L2;
+    const sd=((ts*0.085)+i*131)%L;
+    let px,py;
+    if(sd<L1){px=g.tx(t);py=g.ty(ytop)+sd}
+    else{const k=(sd-L1)/L2;px=g.tx(t)+(fx-g.tx(t))*k;py=g.ty(Py)+(fy-g.ty(Py))*k}
+    g.ctx.beginPath();g.ctx.arc(px,py,3.4,0,2*Math.PI);g.ctx.fillStyle='#D4A017';g.ctx.fill();
+    g.ctx.strokeStyle='#fff';g.ctx.lineWidth=1.2;g.ctx.stroke();
+  });
+  $('reflStats').innerHTML=
+    ist('Parabola','y = '+fmt(a)+'x²')+
+    ist('p = 1/(4a)',fmt(p))+
+    ist('Focarul F','(0, '+fmt(p)+')')+
+    ist('Raze paralele',rays.length)+
+    ist('Raze prin F',rays.length)+
+    ist('Concluzie','toate trec prin F ✓',1);
+}
+
+/* ── 14 · cercul osculator ── */
+const oscP=u=>({x:u,y:.5*u*u});
+function circum(p1,p2,p3){
+  const d=2*(p1.x*(p2.y-p3.y)+p2.x*(p3.y-p1.y)+p3.x*(p1.y-p2.y));
+  if(Math.abs(d)<1e-12)return null;
+  const s1=p1.x*p1.x+p1.y*p1.y,s2=p2.x*p2.x+p2.y*p2.y,s3=p3.x*p3.x+p3.y*p3.y;
+  const ux=(s1*(p2.y-p3.y)+s2*(p3.y-p1.y)+s3*(p1.y-p2.y))/d;
+  const uy=(s1*(p3.x-p2.x)+s2*(p1.x-p3.x)+s3*(p2.x-p1.x))/d;
+  return {x:ux,y:uy,r:Math.hypot(ux-p2.x,uy-p2.y)};
+}
+const EVO=(()=>{const pts=[];for(let u=-1.75;u<=1.751;u+=.05){const c=circum(oscP(u-.02),oscP(u),oscP(u+.02));if(c)pts.push(c)}return pts})();
+function updateOsc(){
+  const t=parseFloat($('oT').value),h=parseFloat($('oH').value);
+  $('oTv').textContent=fmt(t);$('oHv').textContent=fmt(h);
+  const cv=$('oscCv'),g=miniAxes(cv,48,260,278);
+  g.ctx.setLineDash([5,5]);g.ctx.strokeStyle='rgba(123,31,162,.6)';g.ctx.lineWidth=1.7;g.ctx.beginPath();
+  EVO.forEach((c,i)=>{i?g.ctx.lineTo(g.tx(c.x),g.ty(c.y)):g.ctx.moveTo(g.tx(c.x),g.ty(c.y))});
+  g.ctx.stroke();g.ctx.setLineDash([]);
+  g.ctx.fillStyle='rgba(123,31,162,.75)';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('evoluta',g.tx(0)+8,g.ty(1.05));
+  plotFn(g,x=>.5*x*x,'#C4820A',3.2);
+  gdot(g,0,.5,4.5,'#B8860B','#fff');gtag(g,0,.5,'F','#8a6508');
+  const P1=oscP(t-h),P2=oscP(t),P3=oscP(t+h),cc=circum(P1,P2,P3);
+  if(cc){
+    g.ctx.beginPath();g.ctx.arc(g.tx(cc.x),g.ty(cc.y),cc.r*g.sc,0,2*Math.PI);
+    g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2;g.ctx.stroke();
+    gdot(g,cc.x,cc.y,4,'#1565C0','#fff');gtag(g,cc.x,cc.y,'C','#0D47A1');
+  }
+  [P1,P2,P3].forEach(P=>gdot(g,P.x,P.y,4.5,'#E53935','#fff'));
+  $('oscStats').innerHTML=
+    ist('Parabola','y = x²/2 · a = 0.5')+
+    ist('Puncte (roșii)','x = t−h, t, t+h')+
+    ist('Centrul C',cc?'('+fmt(cc.x)+', '+fmt(cc.y)+')':'—')+
+    ist('Raza R',cc?fmt(cc.r):'—')+
+    ist('Evoluta','urma mov a centrelor')+
+    ist('În vârf, h→0','R = 1/(2a) = 1 = 2p',1);
+}
+
+/* ── 15 · Arhimede 4/3 ── */
+function updateArh(){
+  const n=parseInt($('aN').value);$('aNv').textContent=n;
+  const cv=$('arhCv'),g=miniAxes(cv,200,260,300);
+  const fills=['rgba(184,134,11,.5)','rgba(199,125,10,.42)','rgba(212,160,23,.36)','rgba(184,134,11,.3)','rgba(199,125,10,.26)','rgba(212,160,23,.22)','rgba(184,134,11,.18)'];
+  let iv=[[-1,1]];
+  for(let k=0;k<=n;k++){
+    const nxt=[];
+    g.ctx.fillStyle=fills[k];g.ctx.strokeStyle='rgba(255,255,255,.85)';g.ctx.lineWidth=1;
+    iv.forEach(([p,q])=>{const r=(p+q)/2;
+      g.ctx.beginPath();g.ctx.moveTo(g.tx(p),g.ty(p*p));g.ctx.lineTo(g.tx(q),g.ty(q*q));g.ctx.lineTo(g.tx(r),g.ty(r*r));g.ctx.closePath();g.ctx.fill();g.ctx.stroke();
+      nxt.push([p,r],[r,q])});
+    iv=nxt;
+  }
+  g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=2.4;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-1),g.ty(1));g.ctx.lineTo(g.tx(1),g.ty(1));g.ctx.stroke();
+  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('coarda y = 1',g.tx(.62),g.ty(1)-7);
+  plotFn(g,x=>x*x,'#C4820A',3);
+  const S=(4/3)*(1-Math.pow(.25,n+1)),num=Math.pow(4,n+1)-1,den=3*Math.pow(4,n);
+  $('arhStats').innerHTML=
+    ist('Generații','0 … '+n)+
+    ist('Triunghiuri',Math.pow(2,n+1)-1)+
+    ist('Aria Sₙ',num+'/'+den)+
+    ist('≈ zecimal',S.toFixed(5))+
+    ist('Ținta 4/3','1.33333…')+
+    ist('Acoperit',(S/(4/3)*100).toFixed(2)+' %',1);
+}
+
+/* ── 16 · conice & matrice ── */
+const CD=1,CE=-5,CF=0;
+function conTerm(v,sym,first){
+  if(v===0)return '';
+  const av=Math.abs(v),coef=(av===1&&sym)?'':fmt(av);
+  return (first?(v<0?'−':''):(v<0?' − ':' + '))+coef+sym;
+}
+function updateConic(){
+  const A=parseFloat($('cA').value),B=parseFloat($('cB').value),C=parseFloat($('cC').value);
+  $('cAv').textContent=fmt(A);$('cBv').textContent=fmt(B);$('cCv').textContent=fmt(C);
+  const cv=$('conCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,sc=30,cx=260,cy=150;
+  const disc=B*B-4*A*C,deg=A===0&&B===0&&C===0;
+  const col=deg?[120,113,108]:disc<0?[21,101,192]:disc===0?[184,134,11]:[123,31,162];
+  const img=ctx.createImageData(W,H),dd=img.data;
+  for(let py=0;py<H;py++)for(let px=0;px<W;px++){
+    const o=(py*W+px)*4;let r=255,gg=255,b=255;
+    if((px-cx)%sc===0||(py-cy)%sc===0){r=240;gg=228;b=204}
+    if(px===cx||py===cy){r=139;gg=110;b=90}
+    dd[o]=r;dd[o+1]=gg;dd[o+2]=b;dd[o+3]=255;
+  }
+  const prev=new Float64Array(W);let havePrev=false;
+  for(let py=0;py<H;py++){
+    const y=(cy-py)/sc;let vL=0;
+    for(let px=0;px<W;px++){
+      const x=(px-cx)/sc,v=A*x*x+B*x*y+C*y*y+CD*x+CE*y+CF;
+      let hit=false;
+      if(px>0&&((v>0)!==(vL>0)))hit=true;
+      if(havePrev&&((v>0)!==(prev[px]>0)))hit=true;
+      if(hit){
+        const o=(py*W+px)*4;dd[o]=col[0];dd[o+1]=col[1];dd[o+2]=col[2];
+        if(px>0){dd[o-4]=col[0];dd[o-3]=col[1];dd[o-2]=col[2]}
+      }
+      prev[px]=v;vL=v;
+    }
+    havePrev=true;
+  }
+  ctx.putImageData(img,0,0);
+  let eq=conTerm(A,'x²',true);
+  eq+=conTerm(B,'xy',eq==='');eq+=conTerm(C,'y²',eq==='');
+  eq+=conTerm(CD,'x',eq==='');eq+=conTerm(CE,'y',eq==='');
+  const verdict=deg?'DEGENERATĂ':disc<0?(B===0&&A===C?'CERC (elipsă)':'ELIPSĂ'):disc===0?'PARABOLĂ':'HIPERBOLĂ';
+  const vcol=deg?'#78716C':disc<0?'#0D47A1':disc===0?'#8a6508':'#6A1B9A';
+  const vbg=deg?'#EEEDEB':disc<0?'#E3F2FD':disc===0?'rgba(212,160,23,.18)':'#F3E5F5';
+  $('conStats').innerHTML=
+    ist('Ecuația',(eq||'0')+' = 0')+
+    ist('B² − 4AC',fmt(disc))+
+    `<div class="ist" style="background:${vbg};border-color:${vcol}55"><div class="l">Verdict</div><div class="v" style="color:${vcol}">${verdict}</div></div>`+
+    ist('Fixate','D = 1 · E = −5 · F = 0');
+}
+
+/* ── 17 · asemănarea parabolelor ── */
+function updateSim(){
+  const a=parseFloat($('sLam').value);$('sLamv').textContent=fmt(a);
+  const cv=$('simCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,Wh=W/2;
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  const sc=40,cy=H-26,c1=Wh/2,c2=Wh+Wh/2;
+  [[c1,0,Wh],[c2,Wh,W]].forEach(([cx0,xa,xb])=>{
+    ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.3;
+    ctx.beginPath();ctx.moveTo(xa+6,cy);ctx.lineTo(xb-6,cy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx0,H-6);ctx.lineTo(cx0,8);ctx.stroke();
+  });
+  ctx.strokeStyle='#EAD9C0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(Wh,0);ctx.lineTo(Wh,H);ctx.stroke();
+  ctx.save();ctx.beginPath();ctx.rect(0,0,Wh,H);ctx.clip();
+  ctx.setLineDash([5,5]);ctx.beginPath();let on=false;
+  for(let px=0;px<=Wh;px++){const x=(px-c1)/sc,py=cy-x*x*sc;if(py<-40){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
+  ctx.strokeStyle='rgba(139,110,90,.45)';ctx.lineWidth=1.6;ctx.stroke();ctx.setLineDash([]);
+  ctx.beginPath();on=false;
+  for(let px=0;px<=Wh;px++){const x=(px-c1)/sc,py=cy-a*x*x*sc;if(py<-40){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
+  ctx.strokeStyle='#C4820A';ctx.lineWidth=3;ctx.stroke();ctx.restore();
+  ctx.save();ctx.beginPath();ctx.rect(Wh,0,Wh,H);ctx.clip();
+  ctx.beginPath();on=false;
+  for(let px=Wh;px<=W;px++){const dx=px-c2,py=cy-dx*dx/sc;if(py<-40){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
+  ctx.strokeStyle='#C4820A';ctx.lineWidth=3;ctx.stroke();
+  const k=sc*a,step=Math.max(1,Math.ceil(34/k));
+  ctx.font='10px Inter,sans-serif';ctx.textAlign='center';
+  for(let u=step;u*k<Wh/2-10;u+=step){[1,-1].forEach(sg=>{const X=c2+sg*u*k;
+    ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(X,cy-3);ctx.lineTo(X,cy+3);ctx.stroke();
+    ctx.fillStyle='#8B6E5A';ctx.fillText(sg*u,X,cy+14)})}
+  ctx.restore();ctx.textAlign='left';
+  ctx.fillStyle='#8B6E5A';ctx.font="11px 'JetBrains Mono',monospace";
+  ctx.fillText('fereastră fixă · y = '+fmt(a)+'x²',12,18);
+  ctx.fillText('zoom λ = '+fmt(a)+' · curba nu se mișcă',Wh+12,18);
+  $('simStats').innerHTML=
+    ist('Stânga','y = '+fmt(a)+'x² — „pare” că se schimbă')+
+    ist('Dreapta','aceeași curbă, zoom λ = a — identică')+
+    ist('Concluzie','toate parabolele sunt asemenea ✓',1);
+}
+
+/* ── 18 · proiectil (animat) ── */
+let projT=0,projLast=0;
+function niceStep(x){const p=Math.pow(10,Math.floor(Math.log10(Math.max(x,1e-6))));const m=x/p;return (m<1.5?1:m<3.5?2:m<7.5?5:10)*p}
+function drawProj(dt){
+  const v=parseFloat($('pV').value),thd=parseFloat($('pTh').value),gg=parseFloat($('pG').value);
+  const th=thd*Math.PI/180,R=v*v*Math.sin(2*th)/gg,Hm=v*v*Math.sin(th)*Math.sin(th)/(2*gg),T=2*v*Math.sin(th)/gg;
+  $('pVv').textContent=fmt(v)+' m/s';$('pThv').textContent=thd+'°';$('pGv').textContent=fmt(gg);
+  const cv=$('projCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  const gy=H-30,x0=36,sc=Math.min((W-66)/R,(H-72)/Math.max(Hm,.5));
+  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.6;
+  ctx.beginPath();ctx.moveTo(8,gy);ctx.lineTo(W-8,gy);ctx.stroke();
+  ctx.strokeStyle='rgba(139,110,90,.35)';ctx.lineWidth=1;
+  for(let X=12;X<W-8;X+=14){ctx.beginPath();ctx.moveTo(X,gy+2);ctx.lineTo(X-6,gy+9);ctx.stroke()}
+  const stp=niceStep(R/5);
+  ctx.font='10px Inter,sans-serif';ctx.textAlign='center';
+  for(let m=stp;m<=R*1.04;m+=stp){const X=x0+m*sc;if(X>W-14)break;
+    ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(X,gy-3);ctx.lineTo(X,gy+3);ctx.stroke();
+    ctx.fillStyle='#8B6E5A';ctx.fillText(fmt(m)+' m',X,gy+15)}
+  ctx.textAlign='left';
+  const aa=-gg/(2*v*v*Math.cos(th)*Math.cos(th)),bb=Math.tan(th);
+  ctx.beginPath();
+  for(let px=0;px<=R*sc;px+=2){const x=px/sc,y=bb*x+aa*x*x;px?ctx.lineTo(x0+px,gy-y*sc):ctx.moveTo(x0+px,gy-y*sc)}
+  ctx.strokeStyle='rgba(196,130,10,.5)';ctx.lineWidth=2;ctx.setLineDash([7,6]);ctx.stroke();ctx.setLineDash([]);
+  const apx=x0+R/2*sc,apy=gy-Hm*sc;
+  ctx.setLineDash([3,5]);ctx.strokeStyle='rgba(21,101,192,.4)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(apx,apy);ctx.lineTo(apx,gy);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle='#0D47A1';ctx.font='bold 11px Inter,sans-serif';
+  ctx.fillText('h = '+fmt(Hm)+' m',apx+7,apy-6);
+  ctx.beginPath();ctx.arc(x0+R*sc,gy,5,0,2*Math.PI);ctx.fillStyle='#E53935';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();
+  ctx.strokeStyle='#2E7D32';ctx.lineWidth=2.4;
+  ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x0+Math.cos(th)*30,gy-Math.sin(th)*30);ctx.stroke();
+  projT+=dt;const cyc=T*1.18,tau=Math.min(projT%cyc,T);
+  for(let i=9;i>=1;i--){const ti=tau-i*T/45;if(ti<0)continue;
+    const bx=v*Math.cos(th)*ti,by=v*Math.sin(th)*ti-gg*ti*ti/2;
+    ctx.beginPath();ctx.arc(x0+bx*sc,gy-by*sc,2.4,0,2*Math.PI);ctx.fillStyle='rgba(212,160,23,'+(0.5-i*0.05)+')';ctx.fill()}
+  const bx=v*Math.cos(th)*tau,by=v*Math.sin(th)*tau-gg*tau*tau/2;
+  ctx.beginPath();ctx.arc(x0+bx*sc,gy-Math.max(0,by)*sc,6,0,2*Math.PI);
+  ctx.fillStyle='#B8860B';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+  $('projStats').innerHTML=
+    ist('Ecuația',`y = ${fmt(bb)}x − ${fmt(Math.abs(aa))}x²`)+
+    ist('a (gradul II)',fmt(aa)+' < 0 ↓')+
+    ist('Bătaia',fmt(R)+' m')+
+    ist('Înălțime max',fmt(Hm)+' m')+
+    ist('Timp de zbor',fmt(T)+' s')+
+    ist('Optim','θ = 45° → bătaie maximă',1);
+}
+
+/* animation loops — draw only while their slide is active */
+(function reflLoop(ts){
+  if(slides[cur]&&slides[cur].dataset.label==='Reflexie')drawRefl(ts||0);
+  requestAnimationFrame(reflLoop);
+})(0);
+(function projLoop(ts){
+  const dt=Math.min(.05,Math.max(0,(ts-projLast)/1000));projLast=ts||0;
+  if(slides[cur]&&slides[cur].dataset.label==='Proiectil')drawProj(dt);
+  requestAnimationFrame(projLoop);
+})(0);
+
+/* drag-on-canvas: trage punctul orizontal, sliderul urmează */
+function dragX(cvId,slId,getView,fn){
+  const cv=$(cvId),sl=$(slId);
+  cv.classList.add('dragx');cv.title='trage orizontal ca să muți punctul';
+  let drag=false;
+  const move=e=>{
+    if(!drag)return;
+    const r=cv.getBoundingClientRect(),px=(e.clientX-r.left)*(cv.width/r.width);
+    const {sc,cx}=getView();
+    const mn=parseFloat(sl.min),mx=parseFloat(sl.max),st=parseFloat(sl.step)||.05;
+    let v=Math.max(mn,Math.min(mx,Math.round(((px-cx)/sc)/st)*st));
+    sl.value=v;fn();
+  };
+  cv.addEventListener('pointerdown',e=>{drag=true;cv.setPointerCapture(e.pointerId);move(e)});
+  cv.addEventListener('pointermove',move);
+  cv.addEventListener('pointerup',()=>drag=false);
+  cv.addEventListener('pointercancel',()=>drag=false);
+  /* nu lăsa gestul de drag să schimbe slide-ul pe touch */
+  ['touchstart','touchmove','touchend'].forEach(t=>cv.addEventListener(t,e=>e.stopPropagation()));
+}
+
+/* slide activation hooks */
+const slideHooks={
+  'Calculator':()=>updateCalc(),
+  'Focus':()=>updateFocus(),
+  'Tangente':()=>updateTan(),
+  'Curbură':()=>updateOsc(),
+  'Arhimede':()=>updateArh(),
+  'Conice':()=>updateConic(),
+  'Asemănare':()=>updateSim()
+};
+
 /* ═══ INIT ═══ */
 addEventListener('load',()=>{
   drawAll();
@@ -735,6 +1363,18 @@ addEventListener('load',()=>{
     updateCalc();
   }));
   document.getElementById('mA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=0.5;document.getElementById('sA').value=0.5;updateCalc()}});
+  /* research slides wiring */
+  [['fA',updateFocus],['fT',updateFocus],['tA',updateTan],['tX',updateTan],['oT',updateOsc],['oH',updateOsc],
+   ['aN',updateArh],['cA',updateConic],['cB',updateConic],['cC',updateConic],['sLam',updateSim]]
+   .forEach(([id,fn])=>document.getElementById(id).addEventListener('input',fn));
+  document.getElementById('tEnv').addEventListener('click',function(){
+    envOn=!envOn;this.classList.toggle('on',envOn);
+    this.textContent=envOn?'înfășurătoare: ON':'înfășurătoare: OFF';updateTan();
+  });
+  dragX('focusCv','fT',()=>({sc:40,cx:260}),updateFocus);
+  dragX('tanCv','tX',()=>({sc:tanScCur,cx:260}),updateTan);
+  dragX('oscCv','oT',()=>({sc:48,cx:260}),updateOsc);
+  updateFocus();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);drawProj(0);
   updateCalc();
   go(0);
 });
