@@ -223,6 +223,23 @@ p{margin-bottom:12px;max-width:66ch}
 .envbtn.on{background:var(--gold);color:#fff;border-color:var(--gold);box-shadow:0 4px 14px rgba(184,134,11,.4)}
 .dragx{cursor:grab;touch-action:none}
 .dragx:active{cursor:grabbing}
+.icv.zoom{cursor:zoom-in}
+.grid2>.u{position:relative}
+.xpand{position:absolute;top:10px;right:10px;z-index:5;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(255,251,244,.92);color:var(--gold);font-size:1.05rem;cursor:pointer;transition:.2s;box-shadow:var(--sh)}
+.xpand:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+@media(max-width:760px){.xpand{display:none}}
+
+/* ── big view overlay ── */
+#big{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(44,26,14,.66);backdrop-filter:blur(7px)}
+#big.open{display:flex;animation:mfade .25s ease}
+.bigbox{background:var(--panel2);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 80px rgba(44,26,14,.5);width:min(96vw,1280px);height:94vh;padding:0 22px 14px;display:flex;flex-direction:column}
+.bighead{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.bighead h3{font-size:1.3rem;color:var(--ink);margin:0}
+.bighead .mclose{margin-left:auto}
+#bigCv{display:block;margin:0 auto;flex:0 0 auto;border-radius:14px;border:1px solid var(--line);background:#fff}
+#bigSlots{margin-top:10px}
+#bigSlots .istats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+#bigSlots .ctr,#bigSlots .ctr.c3x{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 
 /* ── inspect modal ── */
 #modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(44,26,14,.62);backdrop-filter:blur(7px)}
@@ -544,6 +561,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="focusCv" class="icv" width="520" height="320"></canvas>
+          <button class="xpand" data-big="focus" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i style="background:#C4820A"></i>parabola</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = dist(P, d)</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span><span><i style="background:#B8860B"></i>focarul F</span><span><i style="background:#2C1A0E"></i>P — trage-l cu mouse-ul</span></div>
           <div class="ctr">
             <div class="mci"><div class="lab"><span>a</span><span id="fAv">0.5</span></div><input type="range" id="fA" min="0.2" max="1.2" step="0.05" value="0.5"></div>
@@ -578,6 +596,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="tanCv" class="icv" width="520" height="320"></canvas>
+          <button class="xpand" data-big="tan" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i style="background:#C4820A"></i>parabola f</span><span><i class="ln" style="background:#1565C0"></i>tangenta T</span><span><i class="ln" style="background:#2E7D32"></i>normala N (punctată)</span><span><i style="background:#E53935"></i>T punctul de tangență — trage-l</span></div>
           <div class="ctr c3x">
             <div class="mci"><div class="lab"><span>a</span><span id="tAv">0.5</span></div><input type="range" id="tA" min="-1.5" max="1.5" step="0.25" value="0.5"></div>
@@ -613,6 +632,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="reflCv" class="icv" width="520" height="320"></canvas>
+          <button class="xpand" data-big="refl" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i style="background:#C4820A"></i>parabola = oglinda</span><span><i class="ln" style="background:#1565C0"></i>traseele razelor</span><span><i style="background:#D4A017"></i>fotoni în mișcare</span><span><i style="background:#B8860B"></i>focarul F (strălucește)</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
             <div class="mci"><div class="lab"><span>a</span><span id="rAv">0.45</span></div><input type="range" id="rA" min="0.2" max="0.8" step="0.05" value="0.45"></div>
@@ -646,6 +666,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="oscCv" class="icv" width="520" height="320"></canvas>
+          <button class="xpand" data-big="osc" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²/2</span><span><i style="background:#E53935"></i>3 puncte: x = t−h, t, t+h</span><span><i class="ln" style="background:#1565C0"></i>cercul prin ele + centrul C</span><span><i class="ln" style="background:#7B1FA2"></i>evoluta (punctată)</span><span><i style="background:#B8860B"></i>focarul F</span><span>t mută punctele · h le apropie</span></div>
           <div class="ctr">
             <div class="mci"><div class="lab"><span>t</span><span id="oTv">1.4</span></div><input type="range" id="oT" min="-2.4" max="2.4" step="0.05" value="1.4"></div>
@@ -681,6 +702,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="arhCv" class="icv" width="520" height="320"></canvas>
+          <button class="xpand" data-big="arh" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²</span><span><i class="ln" style="background:#B71C1C"></i>coarda (baza segmentului)</span><span><i style="background:#D4A017"></i>triunghiurile — o nuanță pe generație</span><span>n = câte generații adăugăm</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
             <div class="mci"><div class="lab"><span>generații n</span><span id="aNv">1</span></div><input type="range" id="aN" min="0" max="6" step="1" value="1"></div>
@@ -719,6 +741,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="conCv" class="icv" width="520" height="300"></canvas>
+          <button class="xpand" data-big="con" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i class="ln" style="background:#1565C0"></i>elipsă / cerc</span><span><i class="ln" style="background:#B8860B"></i>parabolă</span><span><i class="ln" style="background:#7B1FA2"></i>hiperbolă</span><span>A, B, C = coeficienții de grad II · D, E, F țin curba pe ecran</span></div>
           <div class="ctr c3x">
             <div class="mci"><div class="lab"><span>A</span><span id="cAv">1</span></div><input type="range" id="cA" min="-3" max="3" step="0.5" value="1"></div>
@@ -754,6 +777,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="simCv" class="icv" width="520" height="300"></canvas>
+          <button class="xpand" data-big="sim" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i style="background:#C4820A"></i>y = ax²</span><span><i class="ln" style="background:#8B6E5A"></i>y = x² (reper, punctat)</span><span>stânga: fereastră fixă — curba „se schimbă” · dreapta: zoom λ = a — curba e mereu aceeași</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
             <div class="mci"><div class="lab"><span>a (= λ)</span><span id="sLamv">2</span></div><input type="range" id="sLam" min="0.25" max="4" step="0.25" value="2"></div>
@@ -787,6 +811,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="projCv" class="icv" width="520" height="320"></canvas>
+          <button class="xpand" data-big="proj" type="button" title="Mărește pe tot ecranul">⤢</button>
           <div class="legend"><span><i style="background:#B8860B"></i>proiectilul + urma lui</span><span><i class="ln" style="background:#C4820A"></i>traiectoria (punctată)</span><span><i class="ln" style="background:#2E7D32"></i>direcția lansării (θ)</span><span><i class="ln" style="background:#1565C0"></i>înălțimea maximă</span><span><i style="background:#E53935"></i>aterizarea = bătaia</span><span>g: 1.6 Lună · 9.8 Pământ · 24.8 Jupiter</span></div>
           <div class="ctr c3x">
             <div class="mci"><div class="lab"><span>v₀</span><span id="pVv">20 m/s</span></div><input type="range" id="pV" min="5" max="30" step="0.5" value="20"></div>
@@ -861,6 +886,18 @@ p{margin-bottom:12px;max-width:66ch}
   </div>
 </div>
 
+<!-- BIG VIEW OVERLAY (grafic pe tot ecranul) -->
+<div id="big">
+  <div class="bigbox">
+    <div class="bighead" id="bighead">
+      <h3 id="bigTitle">Grafic</h3>
+      <button class="mclose" onclick="closeBig()" aria-label="Închide">×</button>
+    </div>
+    <canvas id="bigCv" width="1040" height="640"></canvas>
+    <div id="bigSlots"></div>
+  </div>
+</div>
+
 <script>
 /* ═══ ANIMATED BACKGROUND ═══ */
 (function(){
@@ -912,19 +949,19 @@ function go(i){
   const hk=slideHooks[slides[cur].dataset.label];
   if(hk)setTimeout(hk,120);
 }
-function step(d){if(locked||modalOpen)return;locked=true;go(cur+d);setTimeout(()=>locked=false,950)}
+function step(d){if(locked||modalOpen||bigOpen)return;locked=true;go(cur+d);setTimeout(()=>locked=false,950)}
 
-addEventListener('wheel',e=>{if(modalOpen)return;e.preventDefault();if(Math.abs(e.deltaY)<4)return;step(e.deltaY>0?1:-1)},{passive:false});
+addEventListener('wheel',e=>{if(modalOpen||bigOpen)return;e.preventDefault();if(Math.abs(e.deltaY)<4)return;step(e.deltaY>0?1:-1)},{passive:false});
 addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(modalOpen)closeModal();return}
-  if(modalOpen)return;
+  if(e.key==='Escape'){if(bigOpen){closeBig()}else if(modalOpen){closeModal()}return}
+  if(modalOpen||bigOpen)return;
   if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();step(1)}
   else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();step(-1)}
   else if(e.key==='Home'){go(0)}else if(e.key==='End'){go(total-1)}
 });
 let ty=null;
 addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
-addEventListener('touchend',e=>{if(modalOpen||ty===null)return;const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>40)step(dy>0?1:-1);ty=null});
+addEventListener('touchend',e=>{if(modalOpen||bigOpen||ty===null)return;const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>40)step(dy>0?1:-1);ty=null});
 
 /* ═══ 6 CASES CANVAS ═══ */
 function drawPara(id,a,b,c,sc){
@@ -1091,6 +1128,11 @@ function drawGraph(cv,a,b,c){
 /* ═══ RESEARCH SLIDES (partea a II-a) ═══ */
 const $=id=>document.getElementById(id);
 
+/* big-view: când overlay-ul e deschis, demo-ul activ desenează pe canvasul mare */
+let bigOpen=false,bigKey=null,bigMoved=[];
+const views={};
+function pickCv(key,defId){return (bigOpen&&bigKey===key)?$('bigCv'):$(defId)}
+
 /* shared mini graph helpers */
 function miniAxes(cv,sc,cx,cy){
   const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
@@ -1120,7 +1162,8 @@ function ist(l,v,hi){return `<div class="ist"${hi?' style="background:rgba(184,1
 function updateFocus(){
   const a=parseFloat($('fA').value),t=parseFloat($('fT').value);
   $('fAv').textContent=fmt(a);$('fTv').textContent=fmt(t);
-  const cv=$('focusCv'),g=miniAxes(cv,40,260,252);
+  const cv=pickCv('focus','focusCv'),k=cv.width/520,g=miniAxes(cv,40*k,cv.width/2,252*k);
+  views.focus={sc:g.sc,cx:g.cx};
   const p=1/(4*a),Py=a*t*t;
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
   g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
@@ -1144,7 +1187,7 @@ function updateFocus(){
 }
 
 /* ── 12 · tangente ── */
-let tanScCur=38,envOn=false;
+let envOn=false;
 function updateTan(){
   let a=parseFloat($('tA').value);
   if(a===0){a=0.25;$('tA').value='0.25'}
@@ -1153,8 +1196,9 @@ function updateTan(){
   const y0=a*x0*x0+b*x0+c,s=2*a*x0+b,l=c-(s-b)*(s-b)/(4*a);
   const n=-(b*b-4*a*c)/(4*a);
   const Y=Math.max(4.2,Math.abs(y0)+1.6,Math.abs(n)+1.2);
-  tanScCur=Math.min(38,148/Y);
-  const cv=$('tanCv'),g=miniAxes(cv,tanScCur,260,160);
+  const cv=pickCv('tan','tanCv'),k=cv.width/520;
+  const g=miniAxes(cv,Math.min(38,148/Y)*k,cv.width/2,160*k);
+  views.tan={sc:g.sc,cx:g.cx};
   if(envOn){
     /* înfășurătoarea: parabola NU e desenată — apare singură din tangente */
     for(let u=-4.2;u<=4.21;u+=.21){const se=2*a*u+b,le=c-a*u*u;plotFn(g,x=>se*x+le,'rgba(184,134,11,.3)',1)}
@@ -1181,7 +1225,7 @@ function updateTan(){
 /* ── 13 · reflexia în focar (animat) ── */
 function drawRefl(ts){
   const a=parseFloat($('rA').value);$('rAv').textContent=fmt(a);
-  const cv=$('reflCv'),g=miniAxes(cv,52,260,272);
+  const cv=pickCv('refl','reflCv'),k=cv.width/520,g=miniAxes(cv,52*k,cv.width/2,272*k);
   const p=1/(4*a),ytop=4.9;
   plotFn(g,x=>a*x*x,'#C4820A',3.2);
   const xm=Math.min(4.4,Math.sqrt(4.4/a)),rays=[];
@@ -1196,7 +1240,7 @@ function drawRefl(ts){
   gdot(g,0,p,5.5,'#B8860B','#fff');gtag(g,0,p,'F','#8a6508');
   rays.forEach((t,i)=>{
     const Py=a*t*t,L1=(ytop-Py)*g.sc,L2=Math.hypot(g.tx(t)-fx,g.ty(Py)-fy),L=L1+L2;
-    const sd=((ts*0.085)+i*131)%L;
+    const sd=((ts*0.085*k)+i*131)%L;
     let px,py;
     if(sd<L1){px=g.tx(t);py=g.ty(ytop)+sd}
     else{const k=(sd-L1)/L2;px=g.tx(t)+(fx-g.tx(t))*k;py=g.ty(Py)+(fy-g.ty(Py))*k}
@@ -1226,7 +1270,8 @@ const EVO=(()=>{const pts=[];for(let u=-1.75;u<=1.751;u+=.05){const c=circum(osc
 function updateOsc(){
   const t=parseFloat($('oT').value),h=parseFloat($('oH').value);
   $('oTv').textContent=fmt(t);$('oHv').textContent=fmt(h);
-  const cv=$('oscCv'),g=miniAxes(cv,48,260,278);
+  const cv=pickCv('osc','oscCv'),k=cv.width/520,g=miniAxes(cv,48*k,cv.width/2,278*k);
+  views.osc={sc:g.sc,cx:g.cx};
   g.ctx.setLineDash([5,5]);g.ctx.strokeStyle='rgba(123,31,162,.6)';g.ctx.lineWidth=1.7;g.ctx.beginPath();
   EVO.forEach((c,i)=>{i?g.ctx.lineTo(g.tx(c.x),g.ty(c.y)):g.ctx.moveTo(g.tx(c.x),g.ty(c.y))});
   g.ctx.stroke();g.ctx.setLineDash([]);
@@ -1252,7 +1297,7 @@ function updateOsc(){
 /* ── 15 · Arhimede 4/3 ── */
 function updateArh(){
   const n=parseInt($('aN').value);$('aNv').textContent=n;
-  const cv=$('arhCv'),g=miniAxes(cv,200,260,300);
+  const cv=pickCv('arh','arhCv'),k=cv.width/520,g=miniAxes(cv,200*k,cv.width/2,300*k);
   const fills=['rgba(184,134,11,.5)','rgba(199,125,10,.42)','rgba(212,160,23,.36)','rgba(184,134,11,.3)','rgba(199,125,10,.26)','rgba(212,160,23,.22)','rgba(184,134,11,.18)'];
   let iv=[[-1,1]];
   for(let k=0;k<=n;k++){
@@ -1287,14 +1332,18 @@ function conTerm(v,sym,first){
 function updateConic(){
   const A=parseFloat($('cA').value),B=parseFloat($('cB').value),C=parseFloat($('cC').value);
   $('cAv').textContent=fmt(A);$('cBv').textContent=fmt(B);$('cCv').textContent=fmt(C);
-  const cv=$('conCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,sc=30,cx=260,cy=150;
+  const cv=pickCv('con','conCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,k=W/520,sc=30*k,cx=W/2,cy=H/2;
   const disc=B*B-4*A*C,deg=A===0&&B===0&&C===0;
   const col=deg?[120,113,108]:disc<0?[21,101,192]:disc===0?[184,134,11]:[123,31,162];
   const img=ctx.createImageData(W,H),dd=img.data;
+  const gridX=new Uint8Array(W),gridY=new Uint8Array(H);
+  for(let i=Math.ceil(-cx/sc);i<=Math.floor((W-cx)/sc);i++){const X=Math.round(cx+i*sc);if(X>=0&&X<W)gridX[X]=1}
+  for(let i=Math.ceil(-cy/sc);i<=Math.floor((H-cy)/sc);i++){const Y2=Math.round(cy+i*sc);if(Y2>=0&&Y2<H)gridY[Y2]=1}
+  const ax=Math.round(cx),ay=Math.round(cy);
   for(let py=0;py<H;py++)for(let px=0;px<W;px++){
     const o=(py*W+px)*4;let r=255,gg=255,b=255;
-    if((px-cx)%sc===0||(py-cy)%sc===0){r=240;gg=228;b=204}
-    if(px===cx||py===cy){r=139;gg=110;b=90}
+    if(gridX[px]||gridY[py]){r=240;gg=228;b=204}
+    if(px===ax||py===ay){r=139;gg=110;b=90}
     dd[o]=r;dd[o+1]=gg;dd[o+2]=b;dd[o+3]=255;
   }
   const prev=new Float64Array(W);let havePrev=false;
@@ -1330,9 +1379,9 @@ function updateConic(){
 /* ── 17 · asemănarea parabolelor ── */
 function updateSim(){
   const a=parseFloat($('sLam').value);$('sLamv').textContent=fmt(a);
-  const cv=$('simCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,Wh=W/2;
+  const cv=pickCv('sim','simCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,Wh=W/2,k=W/520;
   ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-  const sc=40,cy=H-26,c1=Wh/2,c2=Wh+Wh/2;
+  const sc=40*k,cy=H-26*k,c1=Wh/2,c2=Wh+Wh/2;
   [[c1,0,Wh],[c2,Wh,W]].forEach(([cx0,xa,xb])=>{
     ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.3;
     ctx.beginPath();ctx.moveTo(xa+6,cy);ctx.lineTo(xb-6,cy);ctx.stroke();
@@ -1350,9 +1399,9 @@ function updateSim(){
   ctx.beginPath();on=false;
   for(let px=Wh;px<=W;px++){const dx=px-c2,py=cy-dx*dx/sc;if(py<-40){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
   ctx.strokeStyle='#C4820A';ctx.lineWidth=3;ctx.stroke();
-  const k=sc*a,step=Math.max(1,Math.ceil(34/k));
+  const ku=sc*a,step=Math.max(1,Math.ceil(34/ku));
   ctx.font='10px Inter,sans-serif';ctx.textAlign='center';
-  for(let u=step;u*k<Wh/2-10;u+=step){[1,-1].forEach(sg=>{const X=c2+sg*u*k;
+  for(let u=step;u*ku<Wh/2-10;u+=step){[1,-1].forEach(sg=>{const X=c2+sg*u*ku;
     ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(X,cy-3);ctx.lineTo(X,cy+3);ctx.stroke();
     ctx.fillStyle='#8B6E5A';ctx.fillText(sg*u,X,cy+14)})}
   ctx.restore();ctx.textAlign='left';
@@ -1372,9 +1421,9 @@ function drawProj(dt){
   const v=parseFloat($('pV').value),thd=parseFloat($('pTh').value),gg=parseFloat($('pG').value);
   const th=thd*Math.PI/180,R=v*v*Math.sin(2*th)/gg,Hm=v*v*Math.sin(th)*Math.sin(th)/(2*gg),T=2*v*Math.sin(th)/gg;
   $('pVv').textContent=fmt(v)+' m/s';$('pThv').textContent=thd+'°';$('pGv').textContent=fmt(gg);
-  const cv=$('projCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const cv=pickCv('proj','projCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,k=W/520;
   ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-  const gy=H-30,x0=36,sc=Math.min((W-66)/R,(H-72)/Math.max(Hm,.5));
+  const gy=H-30*k,x0=36*k,sc=Math.min((W-66*k)/R,(H-72*k)/Math.max(Hm,.5));
   ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.6;
   ctx.beginPath();ctx.moveTo(8,gy);ctx.lineTo(W-8,gy);ctx.stroke();
   ctx.strokeStyle='rgba(139,110,90,.35)';ctx.lineWidth=1;
@@ -1396,7 +1445,7 @@ function drawProj(dt){
   ctx.fillText('h = '+fmt(Hm)+' m',apx+7,apy-6);
   ctx.beginPath();ctx.arc(x0+R*sc,gy,5,0,2*Math.PI);ctx.fillStyle='#E53935';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();
   ctx.strokeStyle='#2E7D32';ctx.lineWidth=2.4;
-  ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x0+Math.cos(th)*30,gy-Math.sin(th)*30);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x0+Math.cos(th)*30*k,gy-Math.sin(th)*30*k);ctx.stroke();
   projT+=dt;const cyc=T*1.18,tau=Math.min(projT%cyc,T);
   for(let i=9;i>=1;i--){const ti=tau-i*T/45;if(ti<0)continue;
     const bx=v*Math.cos(th)*ti,by=v*Math.sin(th)*ti-gg*ti*ti/2;
@@ -1424,18 +1473,75 @@ function drawProj(dt){
   requestAnimationFrame(projLoop);
 })(0);
 
+/* ── big view: orice demo, pe tot ecranul ── */
+const BIGDEFS={
+  focus:{cv:'focusCv',w:520,h:320,title:'Focarul și directoarea',fn:()=>updateFocus(),drag:'fT'},
+  tan:{cv:'tanCv',w:520,h:320,title:'Tangenta, pe două căi',fn:()=>updateTan(),drag:'tX'},
+  refl:{cv:'reflCv',w:520,h:320,title:'Reflexia în focar',fn:()=>drawRefl(0)},
+  osc:{cv:'oscCv',w:520,h:320,title:'Cercul osculator',fn:()=>updateOsc(),drag:'oT'},
+  arh:{cv:'arhCv',w:520,h:320,title:'Arhimede și 4/3',fn:()=>updateArh()},
+  con:{cv:'conCv',w:520,h:300,title:'Conica generală și matricea ei',fn:()=>updateConic()},
+  sim:{cv:'simCv',w:520,h:300,title:'Toate parabolele sunt asemenea',fn:()=>updateSim()},
+  proj:{cv:'projCv',w:520,h:320,title:'Traiectoria proiectilului',fn:()=>drawProj(0)}
+};
+function sizeBig(){
+  const d=BIGDEFS[bigKey],box=document.querySelector('.bigbox'),cv2=$('bigCv');
+  const availW=box.clientWidth-44;
+  const availH=box.clientHeight-$('bighead').offsetHeight-$('bigSlots').offsetHeight-52;
+  const k=Math.max(.6,Math.min(availW/d.w,availH/d.h));
+  cv2.width=Math.round(d.w*k);cv2.height=Math.round(d.h*k);
+  cv2.style.width=cv2.width+'px';cv2.style.height=cv2.height+'px';
+}
+function openBig(key){
+  const d=BIGDEFS[key];if(!d||innerWidth<761||bigOpen)return;
+  bigKey=key;bigOpen=true;
+  $('bigTitle').textContent=d.title;
+  $('big').classList.add('open');
+  $('bigCv').classList.toggle('dragx',!!d.drag);
+  /* mută legenda, sliderele și statisticile în overlay (își păstrează listenerii) */
+  const host=$(d.cv).parentNode,slots=$('bigSlots');
+  bigMoved=[...host.querySelectorAll('.legend,.ctr,.istats')].map(el=>({el,parent:el.parentNode,next:el.nextSibling}));
+  bigMoved.forEach(m=>slots.appendChild(m.el));
+  sizeBig();
+  d.fn();
+}
+function closeBig(){
+  if(!bigOpen)return;
+  $('big').classList.remove('open');
+  bigMoved.forEach(m=>m.parent.insertBefore(m.el,m.next));bigMoved=[];
+  const d=BIGDEFS[bigKey];bigOpen=false;bigKey=null;
+  if(d)d.fn(); /* redesenează varianta mică, restaurează views */
+}
+/* drag direct pe canvasul mare (pentru demo-urile cu punct mobil) */
+(function(){
+  const cv2=document.getElementById('bigCv');let dr=false;
+  const mv=e=>{
+    if(!dr||!bigKey)return;
+    const d=BIGDEFS[bigKey];if(!d.drag)return;
+    const v=views[bigKey];if(!v)return;
+    const sl=$(d.drag),r=cv2.getBoundingClientRect(),px=(e.clientX-r.left)*(cv2.width/r.width);
+    const mn=parseFloat(sl.min),mx=parseFloat(sl.max),st=parseFloat(sl.step)||.05;
+    sl.value=Math.max(mn,Math.min(mx,Math.round(((px-v.cx)/v.sc)/st)*st));
+    d.fn();
+  };
+  cv2.addEventListener('pointerdown',e=>{dr=true;try{cv2.setPointerCapture(e.pointerId)}catch(_){}mv(e)});
+  cv2.addEventListener('pointermove',mv);
+  cv2.addEventListener('pointerup',()=>dr=false);
+  cv2.addEventListener('pointercancel',()=>dr=false);
+})();
+
 /* drag-on-canvas: trage punctul orizontal, sliderul urmează */
 function dragX(cvId,slId,getView,fn){
   const cv=$(cvId),sl=$(slId);
   cv.classList.add('dragx');cv.title='trage orizontal ca să muți punctul';
   let drag=false;
   const move=e=>{
-    if(!drag)return;
+    if(!drag||(bigOpen&&bigMoved.length))return;
+    const view=getView();if(!view)return;
     const r=cv.getBoundingClientRect(),px=(e.clientX-r.left)*(cv.width/r.width);
-    const {sc,cx}=getView();
     const mn=parseFloat(sl.min),mx=parseFloat(sl.max),st=parseFloat(sl.step)||.05;
-    let v=Math.max(mn,Math.min(mx,Math.round(((px-cx)/sc)/st)*st));
-    sl.value=v;fn();
+    sl.value=Math.max(mn,Math.min(mx,Math.round(((px-view.cx)/view.sc)/st)*st));
+    fn();
   };
   cv.addEventListener('pointerdown',e=>{drag=true;try{cv.setPointerCapture(e.pointerId)}catch(_){}move(e)});
   cv.addEventListener('pointermove',move);
@@ -1479,9 +1585,17 @@ addEventListener('load',()=>{
     envOn=!envOn;this.classList.toggle('on',envOn);
     this.textContent=envOn?'înfășurătoare: ON':'înfășurătoare: OFF';updateTan();
   });
-  dragX('focusCv','fT',()=>({sc:40,cx:260}),updateFocus);
-  dragX('tanCv','tX',()=>({sc:tanScCur,cx:260}),updateTan);
-  dragX('oscCv','oT',()=>({sc:48,cx:260}),updateOsc);
+  dragX('focusCv','fT',()=>views.focus,updateFocus);
+  dragX('tanCv','tX',()=>views.tan,updateTan);
+  dragX('oscCv','oT',()=>views.osc,updateOsc);
+  /* big view: butoane ⤢ + click pe graficele fără drag + backdrop + resize */
+  document.querySelectorAll('.xpand').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();openBig(b.dataset.big)}));
+  [['reflCv','refl'],['arhCv','arh'],['conCv','con'],['simCv','sim'],['projCv','proj']].forEach(([id,key])=>{
+    const c=document.getElementById(id);c.classList.add('zoom');c.title='click pentru ecran mare';
+    c.addEventListener('click',()=>openBig(key));
+  });
+  document.getElementById('big').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBig()});
+  addEventListener('resize',()=>{if(bigOpen){sizeBig();BIGDEFS[bigKey].fn()}});
   updateFocus();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);drawProj(0);
   updateCalc();
   go(0);
