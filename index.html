@@ -286,7 +286,7 @@ p{margin-bottom:12px;max-width:66ch}
 <canvas id="bgCv"></canvas>
 <div id="progress"></div>
 <nav class="dots" id="dots"></nav>
-<div class="counter"><b id="cnum">01</b> / <span id="ctot">19</span></div>
+<div class="counter"><b id="cnum">01</b> / <span id="ctot">18</span></div>
 <div class="hint" id="hint">scroll<i></i></div>
 
 <div class="deck"><div class="slides" id="slides">
@@ -364,61 +364,33 @@ p{margin-bottom:12px;max-width:66ch}
     <div class="wrap">
       <div class="eyebrow u">Reprezentarea algebrică</div>
       <h2 class="u" style="--d:1">Funcția de gradul al II-lea</h2>
-      <div class="fb u" style="--d:2">
-        <div class="blab">Definiție</div>
-        <div class="formula"><span class="v">f</span> : ℝ → ℝ,&nbsp; <span class="v">f</span>(x) = <span class="v">a</span>x² + <span class="v">b</span>x + <span class="v">c</span></div>
-        <div class="subnote">cu <strong>a, b, c ∈ ℝ</strong>, <strong>a ≠ 0</strong>. Conform corolarului precedent, graficul ei este o <strong>parabolă cu axa de simetrie paralelă cu Oy</strong> — un caz particular al parabolelor din planul euclidian. Parabolele cu axă orizontală sau rotite nu sunt grafice de funcție y = f(x); ele apar mai târziu, în slide-ul despre conice.</div>
-      </div>
-      <div class="grid2" style="margin-top:16px">
-        <div class="card u" style="--d:3">
-          <h3>Semnificația coeficienților</h3>
-          <table class="mt">
-            <thead><tr><th>Coef.</th><th>Rol</th><th>Efect grafic</th></tr></thead>
-            <tbody>
-              <tr><td><strong style="color:var(--gold)">a</strong></td><td>Principal</td><td>Direcția ramurilor ↑ / ↓ și „deschiderea” parabolei</td></tr>
-              <tr><td><strong style="color:var(--gold)">b</strong></td><td>Liniar</td><td>Poziția orizontală a vârfului (împreună cu a)</td></tr>
-              <tr><td><strong style="color:var(--gold)">c</strong></td><td>Liber</td><td>Intersecția cu axa Oy: f(0) = c</td></tr>
-            </tbody>
-          </table>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm">
+            <div class="blab">Definiție — forma generală</div>
+            <div class="formula"><span class="v">f</span> : ℝ → ℝ,&nbsp; <span class="v">f</span>(x) = <span class="v">a</span>x² + <span class="v">b</span>x + <span class="v">c</span></div>
+            <div class="subnote">cu <strong>a, b, c ∈ ℝ</strong>, <strong>a ≠ 0</strong>. Din corolarul precedent, graficul ei este o parabolă cu axa paralelă cu Oy — <strong>caz particular</strong> al parabolelor din plan (cele rotite apar la conice).</div>
+          </div>
+          <div class="fb sm">
+            <div class="blab t">Teoremă — forma canonică</div>
+            <div class="formula"><span class="v">f</span>(x) = <span class="v">a</span>(x − <span class="v">m</span>)² + <span class="v">n</span></div>
+            <div class="subnote">cu vârful <strong style="color:var(--gold)">V(m, n)</strong>, &nbsp; m = −<span class="frac"><span class="n">b</span><span class="d">2a</span></span>, &nbsp; n = −<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span></div>
+          </div>
+          <div class="mini">
+            <strong>a</strong> — direcția și deschiderea ramurilor &nbsp;·&nbsp; <strong>b</strong> — poziția orizontală a vârfului &nbsp;·&nbsp; <strong>c</strong> — intersecția cu Oy, f(0) = c.<br>
+            Domeniu ℝ; codomeniu [n, +∞) dacă a &gt; 0, altfel (−∞, n]; axa de simetrie x = −b/(2a).
+          </div>
         </div>
-        <div class="stack u" style="--d:4">
-          <div class="mini"><strong>Condiție:</strong> a ≠ 0 — altfel f devine funcție de gradul I (dreaptă).</div>
-          <div class="mini"><strong>Domeniu:</strong> D = ℝ. &nbsp; <strong>Codomeniu:</strong> [n, +∞) dacă a &gt; 0; (−∞, n] dacă a &lt; 0 (n = ordonata vârfului).</div>
-          <div class="mini"><strong>Axa de simetrie:</strong> x = −b/(2a) — dreaptă verticală.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2 · FORMA CANONICĂ -->
-  <section class="slide" data-label="Forma canonică">
-    <div class="wrap">
-      <div class="eyebrow u">Aceeași funcție, altă față</div>
-      <h2 class="u" style="--d:1">Forma canonică</h2>
-      <div class="fb u" style="--d:2">
-        <div class="blab t">Teoremă — forma canonică</div>
-        <div class="formula"><span class="v">f</span>(x) = <span class="v">a</span>(x − <span class="v">m</span>)² + <span class="v">n</span></div>
-        <div class="subnote">orice funcție de gradul al II-lea se poate scrie astfel, unde <strong style="color:var(--gold)">V(m, n)</strong> este vârful parabolei</div>
-      </div>
-      <div class="grid2" style="margin-top:22px">
         <div class="stack u" style="--d:3">
-          <div class="card" style="text-align:center">
-            <div class="vl">Abscisa vârfului</div>
-            <div class="formula" style="font-size:1.9rem">m = −<span class="frac"><span class="n">b</span><span class="d">2a</span></span></div>
-          </div>
-          <div class="card" style="text-align:center">
-            <div class="vl">Ordonata vârfului</div>
-            <div class="formula" style="font-size:1.9rem">n = −<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span></div>
-          </div>
-        </div>
-        <div class="card u" style="--d:4">
-          <div class="blab d">Demonstrație</div>
-          <h3>Completarea pătratului</h3>
-          <div style="font-family:var(--serif);font-size:1.15rem;line-height:2.5;color:var(--ink);padding:16px;background:var(--panel);border-radius:10px">
-            ax²+bx+c<br>
-            = a(x² + <span class="frac"><span class="n">b</span><span class="d">a</span></span>x) + c<br>
-            = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">b²</span><span class="d">4a</span></span> + c<br>
-            = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">Δ</span><span class="d">4a</span></span>
+          <div class="card">
+            <div class="blab d">Demonstrație — completarea pătratului</div>
+            <div style="font-family:var(--serif);font-size:1.18rem;line-height:2.4;color:var(--ink);padding:14px 16px;background:var(--panel);border-radius:10px;margin-top:4px">
+              ax² + bx + c<br>
+              = a(x² + <span class="frac"><span class="n">b</span><span class="d">a</span></span>x) + c<br>
+              = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">b²</span><span class="d">4a</span></span> + c<br>
+              = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">Δ</span><span class="d">4a</span></span>
+            </div>
+            <div style="font-size:.9rem;color:var(--sub);margin-top:10px;line-height:1.55">Comparând cu forma canonică, citim direct m = −b/(2a) și n = −Δ/(4a) — astfel forma generală și cea canonică sunt aceeași funcție.</div>
           </div>
         </div>
       </div>
