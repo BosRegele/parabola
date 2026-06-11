@@ -1,7 +1,7 @@
-# Scriptul prezentării — „Parabola: o curbă, șapte identități"
+# Scriptul prezentării — „Parabola: o curbă, șase identități"
 
-> **Durata totală: ~25 de minute** (versiunea completă) sau **~15 minute** (versiunea comprimată — vezi nota de la finalul fiecărui slide din Partea I).
-> Numerotarea de mai jos e cea din contorul de pe ecran (01/21 … 21/21).
+> **Durata totală: ~23 de minute** (versiunea completă) sau **~13 minute** (versiunea comprimată — vezi nota de la finalul fiecărui slide din Partea I).
+> Numerotarea de mai jos e cea din contorul de pe ecran (01/20 … 20/20).
 
 **Legendă:** 🗣 = ce spui (poți citi aproape cuvânt cu cuvânt) · 🖱 = ce faci pe ecran · ⚠ = capcană / de evitat
 
@@ -12,14 +12,14 @@
 1. Deschide site-ul (linkul GitHub Pages sau fișierul `index.html` local — merge și **fără internet**, doar fonturile arată puțin diferit).
 2. Apasă **F11** pentru fullscreen.
 3. Navigare: **săgeți / Space / scroll** = slide următor; **Home/End** = primul/ultimul; punctele din dreapta = sari direct la un capitol.
-4. **⤢ din colțul oricărui grafic** (sau click pe graficele fără punct mobil) = graficul pe tot ecranul; **Escape** = închide.
+4. **⤢ din colțul oricărui grafic** (sau click pe graficele fără punct mobil) = graficul pe tot ecranul; acolo: **scroll = zoom** (centrat pe cursor), **tras de fundal = panoramare**, **dublu-click = reset**, punctele mobile se trag direct; **Escape** = închide.
 5. Testează o dată proiectorul: dacă rezoluția e mică, totul scrollează — nu intra în panică.
 
 ---
 
 ## 01 · ACASĂ (40 sec)
 
-🗣 „Bună ziua! Proiectul meu se numește *Parabola*. Toți știm parabola ca graficul funcției de gradul al II-lea din clasa a IX-a. Teza proiectului meu este însă alta: **parabola nu e doar un grafic — e aceeași curbă care apare în matematică și în natură sub șapte identități diferite**: grafic, loc geometric, oglindă, limită, sumă infinită, conică și traiectorie. Prezentarea are două părți: întâi recapitulez pe scurt lecția clasică, apoi trec la partea de cercetare — și totul, subliniez, e demonstrat doar cu materia claselor a IX-a – a XI-a."
+🗣 „Bună ziua! Proiectul meu se numește *Parabola*. Toți știm parabola ca graficul funcției de gradul al II-lea din clasa a IX-a. Teza proiectului meu este însă alta: **parabola nu e doar un grafic — e aceeași curbă care apare în matematică sub șase identități diferite**: grafic, loc geometric, oglindă, limită, sumă infinită și conică. Prezentarea are două părți: întâi recapitulez pe scurt lecția clasică, apoi trec la partea de cercetare — și totul, subliniez, e demonstrat doar cu materia claselor a IX-a – a XI-a."
 
 🖱 Scroll mai departe.
 
@@ -93,11 +93,11 @@ Dacă a > 0, ramurile merg în sus și vârful e punct de **minim**; dacă a < 0
 
 ---
 
-# PARTEA A II-A — CERCETAREA (slide-urile 11–19, total ~15 min)
+# PARTEA A II-A — CERCETAREA (slide-urile 11–18, total ~13 min)
 
-## 11 · DIVIDER „Aceeași curbă, șapte identități" (40 sec)
+## 11 · DIVIDER „Aceeași curbă, șase identități" (40 sec)
 
-🗣 „De aici începe partea de cercetare. Prima identitate — graficul — tocmai am văzut-o. Urmează celelalte șase: **loc geometric, oglindă, limită, sumă infinită, conică de frontieră și traiectorie**, plus două instrumente care le leagă între ele: tangentele și asemănarea.
+🗣 „De aici începe partea de cercetare. Prima identitate — graficul — tocmai am văzut-o. Urmează celelalte cinci: **loc geometric, oglindă, limită, sumă infinită și conica de frontieră**, plus două instrumente care le leagă între ele: tangentele și asemănarea.
 
 Două promisiuni pentru tot ce urmează: fiecare capitol e construit ca în manual — definiție, teoremă, demonstrație, apoi experimentul interactiv — și **nu folosesc nimic peste materia claselor a IX-a – a XI-a**: distanțe, discriminant, derivate, limite, progresii și matrice."
 
@@ -187,25 +187,15 @@ Deci nu există parabole «mai grase» sau «mai subțiri» — există doar par
 
 🖱 **Demo:** mută sliderul **a** de la 0.25 la 4: „în stânga, fereastră fixă — curba *pare* să se schimbe; în dreapta, aceeași curbă văzută cu zoom λ = a — **nu se mișcă deloc, pixel cu pixel aceeași**."
 
-## 19 · TRAIECTORIA PROIECTILULUI (1,5 min)
+## 19 · SURSE (30 sec)
 
-🗣 „Ultima identitate: parabola în **fizică**. Modelul, din clasa a IX-a: arunc un corp cu **viteza inițială v₀**, sub **unghiul θ**, în câmpul gravitațional **g**, neglijând aerul. Pe orizontală — mișcare uniformă: x = v₀cosθ·t. Pe verticală — uniform încetinită: y = v₀sinθ·t − gt²/2.
+🗣 „Sursele: lucrarea originală a lui Arhimede, manualele claselor a IX-a și a XI-a, plus MathWorld, LibreTexts și Wikipedia pentru capitolele de conice și optică. Un punct de metodă: **fiecare rezultat din partea a doua a fost re-demonstrat cu instrumente din programa IX–XI — fără integrale și fără geometrie proiectivă** — tocmai ca să pot răspunde la orice întrebare despre orice formulă de pe ecran."
 
-Truc: **elimin timpul** — scot t din prima ecuație și îl înlocuiesc în a doua. Rezultatul: **y = x·tanθ − g/(2v₀²cos²θ)·x²**. Priviți forma: e o funcție de gradul al II-lea în x, cu a negativ și c = 0 — **exact parabola noastră**, doar că acum coeficienții au înțeles fizic.
+## 20 · FINAL (40 sec)
 
-Consecințe imediate, cu formulele de gradul II: bătaia e v₀²sin2θ/g — maximă când sin2θ = 1, adică la **θ = 45°**; înălțimea maximă e v₀²sin²θ/2g."
+🗣 „În concluzie: am plecat de la trei coeficienți — a, b, c — și am ajuns la **șase identități ale aceleiași curbe**: graficul funcției de gradul II, locul geometric al punctelor egal depărtate de focar și directoare, oglinda care adună razele în focar, limita cercurilor prin trei puncte, suma infinită a lui Arhimede și conica de frontieră cu B² − 4AC = 0.
 
-🖱 **Demo:** pune **θ** pe 45° → „bătaia maximă". Apoi **g** pe 1.6: „pe Lună, aceeași aruncare zboară de șase ori mai departe" → pe 24.8: „pe Jupiter, abia se ridică". *(Bila animată zboară singură.)*
-
-## 20 · SURSE (30 sec)
-
-🗣 „Sursele: lucrarea originală a lui Arhimede, manualele claselor a IX-a și a XI-a, plus MathWorld, LibreTexts, Wikipedia și OpenStax pentru capitolele de conice, optică și fizică. Un punct de metodă: **fiecare rezultat din partea a doua a fost re-demonstrat cu instrumente din programa IX–XI — fără integrale și fără geometrie proiectivă** — tocmai ca să pot răspunde la orice întrebare despre orice formulă de pe ecran."
-
-## 21 · FINAL (40 sec)
-
-🗣 „În concluzie: am plecat de la trei coeficienți — a, b, c — și am ajuns la **șapte identități ale aceleiași curbe**: graficul funcției de gradul II, locul geometric al punctelor egal depărtate de focar și directoare, oglinda care adună razele în focar, limita cercurilor prin trei puncte, suma infinită a lui Arhimede, conica de frontieră cu B² − 4AC = 0 și traiectoria oricărui proiectil.
-
-Șapte fețe — o singură parabolă. Vă mulțumesc! Dacă aveți întrebări, orice grafic se poate deschide pe tot ecranul."
+Șase fețe — o singură parabolă. Vă mulțumesc! Dacă aveți întrebări, orice grafic se poate deschide pe tot ecranul — și putem face zoom oriunde pe el."
 
 ---
 
@@ -232,9 +222,6 @@ Consecințe imediate, cu formulele de gradul II: bătaia e v₀²sin2θ/g — ma
 **„Toate parabolele asemenea? Și y = 100x²?"**
 → „Da — zoom cu λ = 100 o duce în y = x². Pare mai «îngustă» doar pentru că o privim de aproape. La elipse argumentul pică, pentru că zoom-ul păstrează raportul semiaxelor."
 
-**„De ce 45° dă bătaia maximă?"**
-→ „Bătaia e v₀²·sin2θ/g, iar sin2θ e maxim, adică 1, când 2θ = 90°."
-
 **„Cum e făcut site-ul?"**
 → „O singură pagină HTML cu JavaScript; toate graficele sunt desenate programatic pe canvas, cu exact formulele din prezentare — calculatorul chiar calculează, nu sunt poze."
 
@@ -243,9 +230,10 @@ Consecințe imediate, cu formulele de gradul II: bătaia e v₀²sin2θ/g — ma
 
 ---
 
-# Versiunea comprimată (~15 min)
+# Versiunea comprimată (~13 min)
 
 - Slide-urile 02–09 (Partea I): doar definiția + o frază fiecare → **4 min**.
 - Calculatorul: un singur gest (c peste axă) → **30 sec**.
-- Partea a II-a rămâne întreagă — ea e cercetarea: **~10 min**.
+- Partea a II-a rămâne întreagă — ea e cercetarea: **~8–9 min**.
 - Demo-uri live obligatorii: **înfășurătoarea (13), cercul osculator cu h→0 (15), conicele (17)**. Restul pot rămâne statice.
+- La întrebări, folosește fereastra mare cu **zoom** ca să arăți detaliul exact despre care ești întrebat.

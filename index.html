@@ -236,6 +236,7 @@ p{margin-bottom:12px;max-width:66ch}
 .bighead{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid var(--line);margin-bottom:12px}
 .bighead h3{font-size:1.3rem;color:var(--ink);margin:0}
 .bighead .mclose{margin-left:auto}
+.bighint{font-family:var(--mono);font-size:.64rem;letter-spacing:.04em;color:var(--sub);text-transform:uppercase}
 #bigCv{display:block;margin:0 auto;flex:0 0 auto;border-radius:14px;border:1px solid var(--line);background:#fff}
 #bigSlots{margin-top:10px}
 #bigSlots .istats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
@@ -273,7 +274,7 @@ p{margin-bottom:12px;max-width:66ch}
 <canvas id="bgCv"></canvas>
 <div id="progress"></div>
 <nav class="dots" id="dots"></nav>
-<div class="counter"><b id="cnum">01</b> / <span id="ctot">21</span></div>
+<div class="counter"><b id="cnum">01</b> / <span id="ctot">20</span></div>
 <div class="hint" id="hint">scroll<i></i></div>
 
 <div class="deck"><div class="slides" id="slides">
@@ -289,7 +290,7 @@ p{margin-bottom:12px;max-width:66ch}
         <div>FORMĂ&nbsp; <b>generală & canonică</b></div>
         <div>CHEIE&nbsp; <b>discriminantul Δ</b></div>
         <div>GRAFIC&nbsp; <b>6 cazuri</b></div>
-        <div>CERCETARE&nbsp; <b>șapte identități</b></div>
+        <div>CERCETARE&nbsp; <b>șase identități</b></div>
       </div>
       <div class="u" style="--d:5;margin-top:24px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--sub)">proiect realizat de <b style="color:var(--gold)">Boștină Vlad</b></div>
     </div>
@@ -530,10 +531,10 @@ p{margin-bottom:12px;max-width:66ch}
   <section class="slide" data-label="Partea a II-a">
     <div class="wrap final">
       <span class="fpill u">Partea a II-a · Cercetare</span>
-      <div class="fbig u" style="--d:1">Aceeași curbă, șapte identități.</div>
-      <p class="fsrc u" style="--d:2">Prima identitate — graficul — e Partea I. Aici vin celelalte șase: loc geometric, oglindă, limită, sumă infinită, conică de frontieră și traiectorie, plus două instrumente care le leagă: tangentele și asemănarea. Fiecare capitol e construit ca în manual — definiție, teoremă, demonstrație, apoi experimentul interactiv — și folosește numai unelte din clasele IX–XI.</p>
+      <div class="fbig u" style="--d:1">Aceeași curbă, șase identități.</div>
+      <p class="fsrc u" style="--d:2">Prima identitate — graficul — e Partea I. Aici vin celelalte cinci: loc geometric, oglindă, limită, sumă infinită și conica de frontieră, plus două instrumente care le leagă: tangentele și asemănarea. Fiecare capitol e construit ca în manual — definiție, teoremă, demonstrație, apoi experimentul interactiv — și folosește numai unelte din clasele IX–XI.</p>
       <div class="chips u" style="--d:3">
-        <span class="chip">Focar & directoare</span><span class="chip">Tangente</span><span class="chip">Reflexie</span><span class="chip">Cercul osculator</span><span class="chip">Arhimede 4/3</span><span class="chip">Conice & matrice</span><span class="chip">Asemănare</span><span class="chip">Proiectil</span>
+        <span class="chip">Focar & directoare</span><span class="chip">Tangente</span><span class="chip">Reflexie</span><span class="chip">Cercul osculator</span><span class="chip">Arhimede 4/3</span><span class="chip">Conice & matrice</span><span class="chip">Asemănare</span>
       </div>
     </div>
   </section>
@@ -788,43 +789,7 @@ p{margin-bottom:12px;max-width:66ch}
     </div>
   </section>
 
-  <!-- 18 · PROIECTIL -->
-  <section class="slide" data-label="Proiectil">
-    <div class="wrap">
-      <div class="eyebrow u">Fizica clasei a IX-a</div>
-      <h2 class="u" style="--d:1">Traiectoria proiectilului</h2>
-      <div class="grid2">
-        <div class="stack u" style="--d:2">
-          <div class="prf">
-            <div class="blab d">Model + demonstrație</div>
-            <div><strong>v₀</strong> = viteza inițială (m/s), <strong>θ</strong> = unghiul de lansare, <strong>g</strong> = accelerația gravitațională (m/s²); neglijăm aerul.<br>x = v₀cosθ·t ⇒ t = <span class="frac"><span class="n">x</span><span class="d">v₀cosθ</span></span> &nbsp;·&nbsp; y = v₀sinθ·t − <span class="frac"><span class="n">gt²</span><span class="d">2</span></span><br>Eliminăm timpul și rămâne doar geometria:</div>
-          </div>
-          <div class="fb sm">
-            <div class="blab t">Rezultat · traiectoria e o parabolă</div>
-            <div class="formula" style="font-size:1.25rem">y = x·tanθ − <span class="frac"><span class="n">g</span><span class="d">2v₀²cos²θ</span></span>·x²</div>
-            <div class="subnote">funcție de gradul II cu a &lt; 0 și c = 0 — exact parabola noastră ∎</div>
-          </div>
-          <div class="mini">
-            <div class="blab d">Observație</div>
-            <div><strong>Bătaia:</strong> x<sub>max</sub> = v₀²sin2θ/g — maximă la θ = 45°. <strong>Înălțimea:</strong> h = v₀²sin²θ/(2g).</div>
-          </div>
-        </div>
-        <div class="u" style="--d:3">
-          <canvas id="projCv" class="icv" width="520" height="320"></canvas>
-          <button class="xpand" data-big="proj" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#B8860B"></i>proiectilul + urma lui</span><span><i class="ln" style="background:#C4820A"></i>traiectoria (punctată)</span><span><i class="ln" style="background:#2E7D32"></i>direcția lansării (θ)</span><span><i class="ln" style="background:#1565C0"></i>înălțimea maximă</span><span><i style="background:#E53935"></i>aterizarea = bătaia</span><span>g: 1.6 Lună · 9.8 Pământ · 24.8 Jupiter</span></div>
-          <div class="ctr c3x">
-            <div class="mci"><div class="lab"><span>v₀</span><span id="pVv">20 m/s</span></div><input type="range" id="pV" min="5" max="30" step="0.5" value="20"></div>
-            <div class="mci"><div class="lab"><span>θ</span><span id="pThv">45°</span></div><input type="range" id="pTh" min="10" max="80" step="1" value="45"></div>
-            <div class="mci"><div class="lab"><span>g</span><span id="pGv">9.8</span></div><input type="range" id="pG" min="1.6" max="25" step="0.1" value="9.8"></div>
-          </div>
-          <div class="istats" id="projStats"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 19 · SURSE -->
+  <!-- 18 · SURSE -->
   <section class="slide" data-label="Surse">
     <div class="wrap">
       <div class="eyebrow u">Bibliografie</div>
@@ -840,11 +805,10 @@ p{margin-bottom:12px;max-width:66ch}
           </ul>
         </div>
         <div class="card u" style="--d:3">
-          <h3>Conice, optică & fizică</h3>
+          <h3>Conice & optică</h3>
           <ul class="ml">
             <li><span class="dot2"></span><span>LibreTexts Mathematics — <em>Conic Sections</em>: focar, directoare, proprietatea de reflexie</span></li>
             <li><span class="dot2"></span><span>Wikipedia — <em>Matrix representation of conic sections</em></span></li>
-            <li><span class="dot2"></span><span>OpenStax — <em>University Physics vol. 1</em>, cap. <em>Projectile Motion</em></span></li>
             <li><span class="dot2"></span><span>Graficele și demonstrațiile interactive: construite de la zero pentru acest proiect</span></li>
           </ul>
         </div>
@@ -853,13 +817,13 @@ p{margin-bottom:12px;max-width:66ch}
     </div>
   </section>
 
-  <!-- 20 · FINAL -->
+  <!-- 19 · FINAL -->
   <section class="slide" data-label="Final">
     <div class="wrap final">
       <span class="fpill u">Concluzie</span>
-      <div class="fbig u" style="--d:1">De la trei coeficienți la șapte identități.</div>
+      <div class="fbig u" style="--d:1">De la trei coeficienți la șase identități.</div>
       <div class="fz u" style="--d:2">f(x) = ax² + bx + c</div>
-      <p class="fsrc u" style="--d:3">Aceeași curbă este graficul funcției de gradul II, locul punctelor egal depărtate de focar și directoare, oglinda care adună razele în focar, limita cercurilor prin trei puncte, suma infinită a lui Arhimede, conica de frontieră cu B²−4AC = 0 și traiectoria oricărui proiectil. Șapte fețe — o singură parabolă.</p>
+      <p class="fsrc u" style="--d:3">Aceeași curbă este graficul funcției de gradul II, locul punctelor egal depărtate de focar și directoare, oglinda care adună razele în focar, limita cercurilor prin trei puncte, suma infinită a lui Arhimede și conica de frontieră cu B²−4AC = 0. Șase fețe — o singură parabolă.</p>
     </div>
   </section>
 
@@ -891,6 +855,7 @@ p{margin-bottom:12px;max-width:66ch}
   <div class="bigbox">
     <div class="bighead" id="bighead">
       <h3 id="bigTitle">Grafic</h3>
+      <span class="bighint" id="bigHint"></span>
       <button class="mclose" onclick="closeBig()" aria-label="Închide">×</button>
     </div>
     <canvas id="bigCv" width="1040" height="640"></canvas>
@@ -1129,9 +1094,15 @@ function drawGraph(cv,a,b,c){
 const $=id=>document.getElementById(id);
 
 /* big-view: când overlay-ul e deschis, demo-ul activ desenează pe canvasul mare */
-let bigOpen=false,bigKey=null,bigMoved=[];
+let bigOpen=false,bigKey=null,bigMoved=[],bigT=null;
 const views={};
 function pickCv(key,defId){return (bigOpen&&bigKey===key)?$('bigCv'):$(defId)}
+/* pe canvasul mare, vederea (scară + centru) e mutabilă: zoom cu scroll, pan cu drag */
+function bview(cv,sc,cx,cy){
+  if(cv.id!=='bigCv'||!bigKey||BIGDEFS[bigKey].noZoom)return{sc,cx,cy};
+  if(!bigT)bigT={sc,cx,cy};
+  return bigT;
+}
 
 /* shared mini graph helpers */
 function miniAxes(cv,sc,cx,cy){
@@ -1162,9 +1133,9 @@ function ist(l,v,hi){return `<div class="ist"${hi?' style="background:rgba(184,1
 function updateFocus(){
   const a=parseFloat($('fA').value),t=parseFloat($('fT').value);
   $('fAv').textContent=fmt(a);$('fTv').textContent=fmt(t);
-  const cv=pickCv('focus','focusCv'),k=cv.width/520,g=miniAxes(cv,40*k,cv.width/2,252*k);
-  views.focus={sc:g.sc,cx:g.cx};
+  const cv=pickCv('focus','focusCv'),k=cv.width/520,bv=bview(cv,40*k,cv.width/2,252*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
   const p=1/(4*a),Py=a*t*t;
+  views.focus={sc:g.sc,cx:g.cx,px:g.tx(t),py:g.ty(Py)};
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
   g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
   g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('directoarea d:  y = −p',10,g.ty(-p)-7);
@@ -1197,8 +1168,9 @@ function updateTan(){
   const n=-(b*b-4*a*c)/(4*a);
   const Y=Math.max(4.2,Math.abs(y0)+1.6,Math.abs(n)+1.2);
   const cv=pickCv('tan','tanCv'),k=cv.width/520;
-  const g=miniAxes(cv,Math.min(38,148/Y)*k,cv.width/2,160*k);
-  views.tan={sc:g.sc,cx:g.cx};
+  const bv=bview(cv,Math.min(38,148/Y)*k,cv.width/2,160*k);
+  const g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  views.tan={sc:g.sc,cx:g.cx,px:g.tx(x0),py:g.ty(y0)};
   if(envOn){
     /* înfășurătoarea: parabola NU e desenată — apare singură din tangente */
     for(let u=-4.2;u<=4.21;u+=.21){const se=2*a*u+b,le=c-a*u*u;plotFn(g,x=>se*x+le,'rgba(184,134,11,.3)',1)}
@@ -1225,7 +1197,7 @@ function updateTan(){
 /* ── 13 · reflexia în focar (animat) ── */
 function drawRefl(ts){
   const a=parseFloat($('rA').value);$('rAv').textContent=fmt(a);
-  const cv=pickCv('refl','reflCv'),k=cv.width/520,g=miniAxes(cv,52*k,cv.width/2,272*k);
+  const cv=pickCv('refl','reflCv'),k=cv.width/520,bv=bview(cv,52*k,cv.width/2,272*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
   const p=1/(4*a),ytop=4.9;
   plotFn(g,x=>a*x*x,'#C4820A',3.2);
   const xm=Math.min(4.4,Math.sqrt(4.4/a)),rays=[];
@@ -1270,8 +1242,8 @@ const EVO=(()=>{const pts=[];for(let u=-1.75;u<=1.751;u+=.05){const c=circum(osc
 function updateOsc(){
   const t=parseFloat($('oT').value),h=parseFloat($('oH').value);
   $('oTv').textContent=fmt(t);$('oHv').textContent=fmt(h);
-  const cv=pickCv('osc','oscCv'),k=cv.width/520,g=miniAxes(cv,48*k,cv.width/2,278*k);
-  views.osc={sc:g.sc,cx:g.cx};
+  const cv=pickCv('osc','oscCv'),k=cv.width/520,bv=bview(cv,48*k,cv.width/2,278*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  views.osc={sc:g.sc,cx:g.cx,px:g.tx(t),py:g.ty(.5*t*t)};
   g.ctx.setLineDash([5,5]);g.ctx.strokeStyle='rgba(123,31,162,.6)';g.ctx.lineWidth=1.7;g.ctx.beginPath();
   EVO.forEach((c,i)=>{i?g.ctx.lineTo(g.tx(c.x),g.ty(c.y)):g.ctx.moveTo(g.tx(c.x),g.ty(c.y))});
   g.ctx.stroke();g.ctx.setLineDash([]);
@@ -1297,7 +1269,7 @@ function updateOsc(){
 /* ── 15 · Arhimede 4/3 ── */
 function updateArh(){
   const n=parseInt($('aN').value);$('aNv').textContent=n;
-  const cv=pickCv('arh','arhCv'),k=cv.width/520,g=miniAxes(cv,200*k,cv.width/2,300*k);
+  const cv=pickCv('arh','arhCv'),k=cv.width/520,bv=bview(cv,200*k,cv.width/2,300*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
   const fills=['rgba(184,134,11,.5)','rgba(199,125,10,.42)','rgba(212,160,23,.36)','rgba(184,134,11,.3)','rgba(199,125,10,.26)','rgba(212,160,23,.22)','rgba(184,134,11,.18)'];
   let iv=[[-1,1]];
   for(let k=0;k<=n;k++){
@@ -1332,7 +1304,8 @@ function conTerm(v,sym,first){
 function updateConic(){
   const A=parseFloat($('cA').value),B=parseFloat($('cB').value),C=parseFloat($('cC').value);
   $('cAv').textContent=fmt(A);$('cBv').textContent=fmt(B);$('cCv').textContent=fmt(C);
-  const cv=pickCv('con','conCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,k=W/520,sc=30*k,cx=W/2,cy=H/2;
+  const cv=pickCv('con','conCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,k=W/520;
+  const bv=bview(cv,30*k,W/2,H/2),sc=bv.sc,cx=bv.cx,cy=bv.cy;
   const disc=B*B-4*A*C,deg=A===0&&B===0&&C===0;
   const col=deg?[120,113,108]:disc<0?[21,101,192]:disc===0?[184,134,11]:[123,31,162];
   const img=ctx.createImageData(W,H),dd=img.data;
@@ -1414,63 +1387,10 @@ function updateSim(){
     ist('Concluzie','toate parabolele sunt asemenea ✓',1);
 }
 
-/* ── 18 · proiectil (animat) ── */
-let projT=0,projLast=0;
-function niceStep(x){const p=Math.pow(10,Math.floor(Math.log10(Math.max(x,1e-6))));const m=x/p;return (m<1.5?1:m<3.5?2:m<7.5?5:10)*p}
-function drawProj(dt){
-  const v=parseFloat($('pV').value),thd=parseFloat($('pTh').value),gg=parseFloat($('pG').value);
-  const th=thd*Math.PI/180,R=v*v*Math.sin(2*th)/gg,Hm=v*v*Math.sin(th)*Math.sin(th)/(2*gg),T=2*v*Math.sin(th)/gg;
-  $('pVv').textContent=fmt(v)+' m/s';$('pThv').textContent=thd+'°';$('pGv').textContent=fmt(gg);
-  const cv=pickCv('proj','projCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,k=W/520;
-  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-  const gy=H-30*k,x0=36*k,sc=Math.min((W-66*k)/R,(H-72*k)/Math.max(Hm,.5));
-  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.6;
-  ctx.beginPath();ctx.moveTo(8,gy);ctx.lineTo(W-8,gy);ctx.stroke();
-  ctx.strokeStyle='rgba(139,110,90,.35)';ctx.lineWidth=1;
-  for(let X=12;X<W-8;X+=14){ctx.beginPath();ctx.moveTo(X,gy+2);ctx.lineTo(X-6,gy+9);ctx.stroke()}
-  const stp=niceStep(R/5);
-  ctx.font='10px Inter,sans-serif';ctx.textAlign='center';
-  for(let m=stp;m<=R*1.04;m+=stp){const X=x0+m*sc;if(X>W-14)break;
-    ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(X,gy-3);ctx.lineTo(X,gy+3);ctx.stroke();
-    ctx.fillStyle='#8B6E5A';ctx.fillText(fmt(m)+' m',X,gy+15)}
-  ctx.textAlign='left';
-  const aa=-gg/(2*v*v*Math.cos(th)*Math.cos(th)),bb=Math.tan(th);
-  ctx.beginPath();
-  for(let px=0;px<=R*sc;px+=2){const x=px/sc,y=bb*x+aa*x*x;px?ctx.lineTo(x0+px,gy-y*sc):ctx.moveTo(x0+px,gy-y*sc)}
-  ctx.strokeStyle='rgba(196,130,10,.5)';ctx.lineWidth=2;ctx.setLineDash([7,6]);ctx.stroke();ctx.setLineDash([]);
-  const apx=x0+R/2*sc,apy=gy-Hm*sc;
-  ctx.setLineDash([3,5]);ctx.strokeStyle='rgba(21,101,192,.4)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(apx,apy);ctx.lineTo(apx,gy);ctx.stroke();ctx.setLineDash([]);
-  ctx.fillStyle='#0D47A1';ctx.font='bold 11px Inter,sans-serif';
-  ctx.fillText('h = '+fmt(Hm)+' m',apx+7,apy-6);
-  ctx.beginPath();ctx.arc(x0+R*sc,gy,5,0,2*Math.PI);ctx.fillStyle='#E53935';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();
-  ctx.strokeStyle='#2E7D32';ctx.lineWidth=2.4;
-  ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x0+Math.cos(th)*30*k,gy-Math.sin(th)*30*k);ctx.stroke();
-  projT+=dt;const cyc=T*1.18,tau=Math.min(projT%cyc,T);
-  for(let i=9;i>=1;i--){const ti=tau-i*T/45;if(ti<0)continue;
-    const bx=v*Math.cos(th)*ti,by=v*Math.sin(th)*ti-gg*ti*ti/2;
-    ctx.beginPath();ctx.arc(x0+bx*sc,gy-by*sc,2.4,0,2*Math.PI);ctx.fillStyle='rgba(212,160,23,'+(0.5-i*0.05)+')';ctx.fill()}
-  const bx=v*Math.cos(th)*tau,by=v*Math.sin(th)*tau-gg*tau*tau/2;
-  ctx.beginPath();ctx.arc(x0+bx*sc,gy-Math.max(0,by)*sc,6,0,2*Math.PI);
-  ctx.fillStyle='#B8860B';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
-  $('projStats').innerHTML=
-    ist('Ecuația',`y = ${fmt(bb)}x − ${fmt(Math.abs(aa))}x²`)+
-    ist('a (gradul II)',fmt(aa)+' < 0 ↓')+
-    ist('Bătaia',fmt(R)+' m')+
-    ist('Înălțime max',fmt(Hm)+' m')+
-    ist('Timp de zbor',fmt(T)+' s')+
-    ist('Optim','θ = 45° → bătaie maximă',1);
-}
-
 /* animation loops — draw only while their slide is active */
 (function reflLoop(ts){
   if(slides[cur]&&slides[cur].dataset.label==='Reflexie')drawRefl(ts||0);
   requestAnimationFrame(reflLoop);
-})(0);
-(function projLoop(ts){
-  const dt=Math.min(.05,Math.max(0,(ts-projLast)/1000));projLast=ts||0;
-  if(slides[cur]&&slides[cur].dataset.label==='Proiectil')drawProj(dt);
-  requestAnimationFrame(projLoop);
 })(0);
 
 /* ── big view: orice demo, pe tot ecranul ── */
@@ -1481,8 +1401,7 @@ const BIGDEFS={
   osc:{cv:'oscCv',w:520,h:320,title:'Cercul osculator',fn:()=>updateOsc(),drag:'oT'},
   arh:{cv:'arhCv',w:520,h:320,title:'Arhimede și 4/3',fn:()=>updateArh()},
   con:{cv:'conCv',w:520,h:300,title:'Conica generală și matricea ei',fn:()=>updateConic()},
-  sim:{cv:'simCv',w:520,h:300,title:'Toate parabolele sunt asemenea',fn:()=>updateSim()},
-  proj:{cv:'projCv',w:520,h:320,title:'Traiectoria proiectilului',fn:()=>drawProj(0)}
+  sim:{cv:'simCv',w:520,h:300,title:'Toate parabolele sunt asemenea',fn:()=>updateSim(),noZoom:true}
 };
 function sizeBig(){
   const d=BIGDEFS[bigKey],box=document.querySelector('.bigbox'),cv2=$('bigCv');
@@ -1494,10 +1413,11 @@ function sizeBig(){
 }
 function openBig(key){
   const d=BIGDEFS[key];if(!d||innerWidth<761||bigOpen)return;
-  bigKey=key;bigOpen=true;
+  bigKey=key;bigOpen=true;bigT=null;
   $('bigTitle').textContent=d.title;
+  $('bigHint').textContent=d.noZoom?'':(d.drag?'trage punctul · trage fundalul = mută · scroll = zoom · dublu-click = reset':'trage = mută · scroll = zoom · dublu-click = reset');
   $('big').classList.add('open');
-  $('bigCv').classList.toggle('dragx',!!d.drag);
+  $('bigCv').classList.toggle('dragx',!d.noZoom||!!d.drag);
   /* mută legenda, sliderele și statisticile în overlay (își păstrează listenerii) */
   const host=$(d.cv).parentNode,slots=$('bigSlots');
   bigMoved=[...host.querySelectorAll('.legend,.ctr,.istats')].map(el=>({el,parent:el.parentNode,next:el.nextSibling}));
@@ -1509,25 +1429,49 @@ function closeBig(){
   if(!bigOpen)return;
   $('big').classList.remove('open');
   bigMoved.forEach(m=>m.parent.insertBefore(m.el,m.next));bigMoved=[];
-  const d=BIGDEFS[bigKey];bigOpen=false;bigKey=null;
+  const d=BIGDEFS[bigKey];bigOpen=false;bigKey=null;bigT=null;
   if(d)d.fn(); /* redesenează varianta mică, restaurează views */
 }
-/* drag direct pe canvasul mare (pentru demo-urile cu punct mobil) */
+/* interacțiuni pe canvasul mare: trage punctul mobil / pan / zoom / reset */
 (function(){
-  const cv2=document.getElementById('bigCv');let dr=false;
-  const mv=e=>{
-    if(!dr||!bigKey)return;
-    const d=BIGDEFS[bigKey];if(!d.drag)return;
-    const v=views[bigKey];if(!v)return;
-    const sl=$(d.drag),r=cv2.getBoundingClientRect(),px=(e.clientX-r.left)*(cv2.width/r.width);
-    const mn=parseFloat(sl.min),mx=parseFloat(sl.max),st=parseFloat(sl.step)||.05;
-    sl.value=Math.max(mn,Math.min(mx,Math.round(((px-v.cx)/v.sc)/st)*st));
+  const cv2=document.getElementById('bigCv');
+  let dr=false,mode=null,lx=0,ly=0;
+  const pos=e=>{const r=cv2.getBoundingClientRect();return[(e.clientX-r.left)*(cv2.width/r.width),(e.clientY-r.top)*(cv2.height/r.height)]};
+  function movePoint(mx){
+    const d=BIGDEFS[bigKey],v=views[bigKey];if(!d||!d.drag||!v)return;
+    const sl=$(d.drag),mn=parseFloat(sl.min),mxx=parseFloat(sl.max),st=parseFloat(sl.step)||.05;
+    sl.value=Math.max(mn,Math.min(mxx,Math.round(((mx-v.cx)/v.sc)/st)*st));
     d.fn();
-  };
-  cv2.addEventListener('pointerdown',e=>{dr=true;try{cv2.setPointerCapture(e.pointerId)}catch(_){}mv(e)});
-  cv2.addEventListener('pointermove',mv);
-  cv2.addEventListener('pointerup',()=>dr=false);
-  cv2.addEventListener('pointercancel',()=>dr=false);
+  }
+  cv2.addEventListener('pointerdown',e=>{
+    if(!bigKey)return;
+    const d=BIGDEFS[bigKey],[mx,my]=pos(e),v=views[bigKey];
+    if(d.drag&&v&&v.px!==undefined&&Math.hypot(mx-v.px,my-v.py)<30)mode='point';
+    else if(!d.noZoom&&bigT)mode='pan';
+    else if(d.drag)mode='point';
+    else mode=null;
+    dr=true;lx=mx;ly=my;
+    try{cv2.setPointerCapture(e.pointerId)}catch(_){}
+    if(mode==='point')movePoint(mx);
+  });
+  cv2.addEventListener('pointermove',e=>{
+    if(!dr||!bigKey||!mode)return;
+    const[mx,my]=pos(e);
+    if(mode==='point')movePoint(mx);
+    else if(mode==='pan'&&bigT){bigT.cx+=mx-lx;bigT.cy+=my-ly;lx=mx;ly=my;BIGDEFS[bigKey].fn()}
+  });
+  ['pointerup','pointercancel'].forEach(t=>cv2.addEventListener(t,()=>{dr=false;mode=null}));
+  /* zoom centrat pe cursor */
+  cv2.addEventListener('wheel',e=>{
+    if(!bigKey)return;
+    const d=BIGDEFS[bigKey];if(d.noZoom||!bigT)return;
+    e.preventDefault();
+    const[mx,my]=pos(e),f=e.deltaY<0?1.15:1/1.15,s2=Math.min(4000,Math.max(4,bigT.sc*f));
+    const wx=(mx-bigT.cx)/bigT.sc,wy=(bigT.cy-my)/bigT.sc;
+    bigT.cx=mx-wx*s2;bigT.cy=my+wy*s2;bigT.sc=s2;
+    d.fn();
+  },{passive:false});
+  cv2.addEventListener('dblclick',()=>{if(bigKey){bigT=null;BIGDEFS[bigKey].fn()}});
 })();
 
 /* drag-on-canvas: trage punctul orizontal, sliderul urmează */
@@ -1590,13 +1534,13 @@ addEventListener('load',()=>{
   dragX('oscCv','oT',()=>views.osc,updateOsc);
   /* big view: butoane ⤢ + click pe graficele fără drag + backdrop + resize */
   document.querySelectorAll('.xpand').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();openBig(b.dataset.big)}));
-  [['reflCv','refl'],['arhCv','arh'],['conCv','con'],['simCv','sim'],['projCv','proj']].forEach(([id,key])=>{
+  [['reflCv','refl'],['arhCv','arh'],['conCv','con'],['simCv','sim']].forEach(([id,key])=>{
     const c=document.getElementById(id);c.classList.add('zoom');c.title='click pentru ecran mare';
     c.addEventListener('click',()=>openBig(key));
   });
   document.getElementById('big').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBig()});
-  addEventListener('resize',()=>{if(bigOpen){sizeBig();BIGDEFS[bigKey].fn()}});
-  updateFocus();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);drawProj(0);
+  addEventListener('resize',()=>{if(bigOpen){sizeBig();bigT=null;BIGDEFS[bigKey].fn()}});
+  updateFocus();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
   updateCalc();
   go(0);
 });
