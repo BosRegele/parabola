@@ -1,7 +1,7 @@
 # Scriptul prezentării — „Parabola: o curbă, șase identități"
 
-> **Durata totală: ~23 de minute** (versiunea completă) sau **~13 minute** (versiunea comprimată — vezi nota de la finalul fiecărui slide din Partea I).
-> Numerotarea de mai jos e cea din contorul de pe ecran (01/20 … 20/20).
+> **Durata totală: ~22 de minute** (versiunea completă) sau **~12 minute** (versiunea comprimată — vezi nota de la finalul fiecărui slide din Partea I).
+> Numerotarea de mai jos e cea din contorul de pe ecran (01/19 … 19/19).
 
 **Legendă:** 🗣 = ce spui (poți citi aproape cuvânt cu cuvânt) · 🖱 = ce faci pe ecran · ⚠ = capcană / de evitat
 
@@ -12,7 +12,7 @@
 | Prezentator | Partea | Slide-uri | Conținut |
 |---|---|---|---|
 | **Boștină Vlad** | Partea I — **Fundamentele** | 01–10 | deschiderea, funcția de gradul al II-lea (definiție → 6 cazuri), demo-ul cu calculatorul |
-| **Nedelcu Calin** | Partea a II-a — **Cercetarea** | 11–20 | șase identități ale parabolei, sursele, concluzia, Q&A |
+| **Nedelcu Calin** | Partea a II-a — **Cercetarea** | 11–19 | șase identități ale parabolei, încheierea, Q&A |
 
 **Dacă profesorul întreabă „cine ce prezintă?":**
 - Vlad: „Eu prezint **Partea I — Fundamentele: funcția de gradul al II-lea**, de la definiție la cele șase cazuri geometrice, plus calculatorul interactiv."
@@ -109,7 +109,7 @@ Dacă a > 0, ramurile merg în sus și vârful e punct de **minim**; dacă a < 0
 
 ---
 
-# PARTEA A II-A — CERCETAREA · prezintă CALIN (slide-urile 11–20, total ~13 min)
+# PARTEA A II-A — CERCETAREA · prezintă CALIN (slide-urile 11–19, total ~12 min)
 
 ## 11 · DIVIDER „Aceeași curbă, șase identități" (40 sec) — de aici preia CALIN
 
@@ -203,15 +203,13 @@ Deci nu există parabole «mai grase» sau «mai subțiri» — există doar par
 
 🖱 **Demo:** mută sliderul **a** de la 0.25 la 4: „în stânga, fereastră fixă — curba *pare* să se schimbe; în dreapta, aceeași curbă văzută cu zoom λ = a — **nu se mișcă deloc, pixel cu pixel aceeași**."
 
-## 19 · SURSE (30 sec)
+## 19 · FINAL (30 sec)
 
-🗣 „Sursele: lucrarea originală a lui Arhimede, manualele claselor a IX-a și a XI-a, plus MathWorld, LibreTexts și Wikipedia pentru capitolele de conice și optică. Un punct de metodă: **fiecare rezultat din partea a doua a fost re-demonstrat cu instrumente din programa IX–XI — fără integrale și fără geometrie proiectivă** — tocmai ca să pot răspunde la orice întrebare despre orice formulă de pe ecran."
+*(pe ecran scrie doar „Vă mulțumim pentru atenție!" — concluzia o spui tu, liber)*
 
-## 20 · FINAL (40 sec)
+🗣 „În concluzie: am plecat de la trei coeficienți — a, b, c — și am ajuns la **șase identități ale aceleiași curbe**: grafic, loc geometric, oglindă, limită, sumă infinită și conică de frontieră. Șase fețe — o singură parabolă.
 
-🗣 „În concluzie: am plecat de la trei coeficienți — a, b, c — și am ajuns la **șase identități ale aceleiași curbe**: graficul funcției de gradul II, locul geometric al punctelor egal depărtate de focar și directoare, oglinda care adună razele în focar, limita cercurilor prin trei puncte, suma infinită a lui Arhimede și conica de frontieră cu B² − 4AC = 0.
-
-Șase fețe — o singură parabolă. Vă mulțumim! Dacă aveți întrebări, orice grafic se poate deschide pe tot ecranul — și putem face zoom oriunde pe el."
+Vă mulțumim pentru atenție! Dacă aveți întrebări, orice grafic se poate deschide pe tot ecranul — și putem face zoom oriunde pe el."
 
 ---
 
@@ -228,6 +226,9 @@ Deci nu există parabole «mai grase» sau «mai subțiri» — există doar par
 
 **„Ce este p?"**
 → „Distanța de la vârf la focar; pentru y = ax², p = 1/4a. Directoarea e simetric, la distanța p sub vârf."
+
+**„Ce surse ați folosit?"** *(nu mai există slide de bibliografie — răspunzi verbal)*
+→ „Lucrarea originală a lui Arhimede, *Cvadratura parabolei*, manualele claselor a IX-a și a XI-a, plus Wolfram MathWorld, LibreTexts și Wikipedia pentru conice și optică. Toate demonstrațiile le-am refăcut noi la nivelul materiei IX–XI, iar graficele sunt construite de la zero pentru proiect."
 
 **„De ce trec toate razele prin focar?"**
 → Redau demonstrația în 3 pași: PF = PQ din definiție → triunghi isoscel → mediatoarea lui FQ are panta 2at = f′(t) și trece prin P, deci e tangenta → unghiuri egale. (E pe slide-ul 14.)
@@ -246,7 +247,7 @@ Deci nu există parabole «mai grase» sau «mai subțiri» — există doar par
 
 ---
 
-# Versiunea comprimată (~13 min)
+# Versiunea comprimată (~12 min)
 
 - Slide-urile 02–09 (Partea I): doar definiția + o frază fiecare → **4 min**.
 - Calculatorul: un singur gest (c peste axă) → **30 sec**.
