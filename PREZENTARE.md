@@ -1,6 +1,6 @@
 # Scriptul prezentării — „Parabola: șase perspective asupra aceleiași curbe"
 
-> **Durata totală: ~17 de minute** (versiunea completă) sau **~13 minute** (versiunea comprimată).
+> **Durata totală: ~20 de minute** (versiunea completă) sau **~11 minute** (versiunea comprimată).
 > Numerotarea de mai jos e cea din contorul de pe ecran (01/13 … 13/13).
 > Prezintă: **Nedelcu Calin**.
 
@@ -64,7 +64,7 @@ Pe grafic le aveți pe toate etichetate pe un exemplu concret: f(x) = 0,5x² −
 
 Le pot arăta pe toate șase instantaneu — am pus butoane-preset pentru fiecare caz; un click și parabola sare exact la acea configurație. Sau mut liber coeficienții și totul se recalculează live: discriminant, intersecții, vârf, forma canonică."
 
-🖱 **Demo:** apasă pe rând cele 6 butoane-preset — „a > 0, Δ > 0: taie axa în două puncte... a > 0, Δ < 0: pluteşte deasupra... a < 0, Δ < 0: complet sub axă". Apoi mut liber **c** de la −4 spre +2: „priviți cum cele două intersecții se apropie, se contopesc când Δ = 0, apoi dispar". Click pe grafic → fereastra mare.
+🖱 **Demo:** apasă pe rând cele 6 butoane-preset — „a > 0, Δ > 0: taie axa în două puncte... a > 0, Δ < 0: plutește deasupra... a < 0, Δ < 0: complet sub axă". Apoi mut liber **c** de la −4 spre +2: „priviți cum cele două intersecții se apropie, se contopesc când Δ = 0, apoi dispar". Click pe grafic → fereastra mare.
 
 ⚠ E slide-ul cel mai interactiv din prima parte — 2 minute, merită.
 

@@ -31,10 +31,11 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 /* ── deck / slides : THE glycogen engine ── */
 .deck{position:fixed;inset:0;z-index:2;overflow:hidden}
 .slides{height:100%;transition:transform .9s cubic-bezier(.83,0,.17,1);transform:translateY(calc(var(--i,0) * -100vh))}
-.slide{height:100vh;display:flex;align-items:center;overflow:hidden;position:relative}
-.wrap{max-width:1120px;margin:0 auto;padding:0 44px;width:100%}
-@media(max-width:820px){.slide{align-items:flex-start;overflow-y:auto;padding:70px 0}}
-@media(max-width:760px){.wrap{padding:0 22px}}
+.slide{height:100vh;display:flex;overflow-y:auto;overflow-x:hidden;position:relative}
+/* margin:auto centrează vertical cât conținutul încape, dar permite scroll dacă depășește (ex. proiector low-res) */
+.wrap{max-width:1120px;margin:auto;padding:0 44px;width:100%}
+@media(max-width:820px){.wrap{padding:70px 44px}}
+@media(max-width:760px){.wrap{padding:70px 22px}}
 
 /* ── stagger reveal : the glycogen .u system ── */
 .u{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -379,10 +380,10 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab t">Teoremă — forma canonică</div>
             <div class="formula"><span class="v">f</span>(x) = <span class="v">a</span>(x − <span class="v">m</span>)² + <span class="v">n</span></div>
-            <div class="subnote">cu vârful <strong style="color:var(--gold)">V(m, n)</strong>, &nbsp; m = −<span class="frac"><span class="n">b</span><span class="d">2a</span></span>, &nbsp; n = −<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span></div>
+            <div class="subnote">cu vârful <strong style="color:var(--gold)">V(m, n)</strong>, &nbsp; m = −<span class="frac"><span class="n">b</span><span class="d">2a</span></span>, &nbsp; n = −<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span> &nbsp;(unde Δ = b² − 4ac)</div>
           </div>
           <div class="mini">
-            <strong>a</strong> — direcția și deschiderea ramurilor &nbsp;·&nbsp; <strong>b</strong> — poziția orizontală a vârfului &nbsp;·&nbsp; <strong>c</strong> — intersecția cu Oy, f(0) = c.<br>
+            <strong>a</strong> — direcția și deschiderea ramurilor;&nbsp; <strong>b</strong> — poziția orizontală a vârfului;&nbsp; <strong>c</strong> — intersecția cu Oy, f(0) = c.<br>
             Domeniu ℝ; codomeniu [n, +∞) dacă a &gt; 0, altfel (−∞, n]; axa de simetrie x = −b/(2a).
           </div>
         </div>
@@ -436,7 +437,7 @@ p{margin-bottom:12px;max-width:66ch}
       <div class="eyebrow u">Explorează poziția față de axe</div>
       <h2 class="u" style="--d:1">Poziția față de axa Ox</h2>
       <div class="mini u" style="--d:2;margin-bottom:10px;font-size:.92rem">
-        <strong>Δ = b² − 4ac</strong> decide câte puncte are parabola pe Ox: <strong>Δ &gt; 0</strong> → 2, <strong>Δ = 0</strong> → 1 (tangentă, în vârf), <strong>Δ &lt; 0</strong> → niciunul. Cu semnul lui <strong>a</strong> (ramuri sus/jos) → 6 configurații. Mută coeficienții sau sari direct la un caz:
+        <strong>Δ = b² − 4ac</strong> decide câte puncte are parabola pe Ox: <strong>Δ &gt; 0</strong> → 2, <strong>Δ = 0</strong> → 1 (tangentă, în vârf), <strong>Δ &lt; 0</strong> → niciunul. Cu semnul lui <strong>a</strong> (ramuri sus/jos) → 6 configurații. Coeficienții pot fi variați liber sau fixați la una dintre cele șase configurații:
       </div>
       <div class="presets u" style="--d:2;margin-bottom:10px">
         <span class="pl">cele 6 cazuri</span>
@@ -522,7 +523,7 @@ p{margin-bottom:12px;max-width:66ch}
         <div class="u" style="--d:3">
           <canvas id="reflCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="refl" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola = oglinda</span><span><i style="background:#D4A017"></i>fotoni în mișcare</span><span><i style="background:#B8860B"></i>focarul F (strălucește)</span><span><i style="background:#2C1A0E"></i>P — punct de impact</span><span><i style="background:#B71C1C"></i>Q — proiecția lui P pe directoare</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>segmentul PQ (punctat)</span><span><i class="ln" style="background:#2C1A0E"></i>tangenta în P</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola = oglinda</span><span><i style="background:#D4A017"></i>razele, în mișcare</span><span><i style="background:#B8860B"></i>focarul F (strălucește)</span><span><i style="background:#2C1A0E"></i>P — punct de impact</span><span><i style="background:#B71C1C"></i>Q — proiecția lui P pe directoare</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>segmentul PQ (punctat)</span><span><i class="ln" style="background:#2C1A0E"></i>tangenta în P</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
             <div class="mci"><div class="lab"><span>a</span><span id="rAv">0.45</span></div><input type="range" id="rA" min="0.2" max="0.8" step="0.05" value="0.45"></div>
           </div>
@@ -550,13 +551,13 @@ p{margin-bottom:12px;max-width:66ch}
           </div>
           <div class="mini">
             <div class="blab d">Observație</div>
-            <div>Graficul folosește parabola y = x²/2 (a = 1/2), deci în vârf R = 1/(2a) = 1 = <strong>2p</strong> — exact dublul distanței focale; parabola e cea mai curbată în vârf.</div>
+            <div>Graficul folosește parabola y = x²/2 (a = 1/2), deci în vârf R = 1/(2a) = 1 = <strong>2p</strong> — exact dublul distanței focale; parabola e cea mai curbată în vârf. <em style="color:var(--sub)">Demonstrăm exact doar raza în vârf; în afara lui, cercul și evoluta sunt prezentate ilustrativ.</em></div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="oscCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="osc" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²/2</span><span><i style="background:#E53935"></i>P₋ₕ, P₀, P₊ₕ — abscisele t−h, t, t+h</span><span><i class="ln" style="background:#1565C0"></i>cercul prin ele + centrul C</span><span><i class="ln" style="background:#7B1FA2"></i>evoluta (punctată)</span><span><i style="background:#B8860B"></i>focarul F</span><span>t — abscisa lui P₀; h — distanța dintre puncte</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²/2</span><span><i style="background:#E53935"></i>P₋ₕ, P₀, P₊ₕ — abscisele t−h, t, t+h</span><span><i class="ln" style="background:#1565C0"></i>cercul prin ele + centrul C</span><span><i class="ln" style="background:#7B1FA2"></i>evoluta (punctată)</span><span><i style="background:#B8860B"></i>focarul F</span><span>t — abscisa lui P₀; h — pasul pe Ox (diferența de abscisă)</span></div>
           <div class="ctr">
             <div class="mci"><div class="lab"><span>t</span><span id="oTv">1.4</span></div><input type="range" id="oT" min="-2.4" max="2.4" step="0.05" value="1.4"></div>
             <div class="mci"><div class="lab"><span>h</span><span id="oHv">1</span></div><input type="range" id="oH" min="0.05" max="1.2" step="0.05" value="1"></div>
@@ -779,7 +780,15 @@ function go(i){
 }
 function step(d){if(locked||modalOpen||bigOpen)return;locked=true;go(cur+d);setTimeout(()=>locked=false,950)}
 
-addEventListener('wheel',e=>{if(modalOpen||bigOpen)return;e.preventDefault();if(Math.abs(e.deltaY)<4)return;step(e.deltaY>0?1:-1)},{passive:false});
+function imgZOpen(){return document.getElementById('imgZ').classList.contains('open')}
+addEventListener('wheel',e=>{
+  if(modalOpen||bigOpen||imgZOpen())return;
+  /* dacă slide-ul curent depășește ecranul (ex. proiector low-res), lasă scroll-ul intern până la capăt, abia apoi navighează */
+  const sl=slides[cur];
+  if(e.deltaY>0 && sl.scrollTop+sl.clientHeight < sl.scrollHeight-1)return;
+  if(e.deltaY<0 && sl.scrollTop>1)return;
+  e.preventDefault();if(Math.abs(e.deltaY)<4)return;step(e.deltaY>0?1:-1)
+},{passive:false});
 addEventListener('keydown',e=>{
   if(e.key==='Escape'){const z=document.getElementById('imgZ');if(z.classList.contains('open')){z.classList.remove('open')}else if(bigOpen){closeBig()}else if(modalOpen){closeModal()}return}
   if(modalOpen||bigOpen)return;
@@ -789,7 +798,7 @@ addEventListener('keydown',e=>{
 });
 let ty=null;
 addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
-addEventListener('touchend',e=>{if(modalOpen||bigOpen||ty===null)return;const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>40)step(dy>0?1:-1);ty=null});
+addEventListener('touchend',e=>{if(modalOpen||bigOpen||imgZOpen()||ty===null)return;const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>40)step(dy>0?1:-1);ty=null});
 
 /* ═══ INSPECT MODAL ═══ */
 const modal=document.getElementById('modal');
@@ -864,7 +873,7 @@ function updateCalc(){
     <div class="ri"><div class="rl">Vârful V(m, n)</div><div class="rv">V(${fmt(m)}, ${fmt(n)})</div></div>
     <div class="ri"><div class="rl">${a>0?'Minim':'Maxim'} (sens ramuri)</div><div class="rv" style="color:${a>0?'var(--green)':'var(--red)'}">${a>0?'↑ minim':'↓ maxim'} ${fmt(n)}</div></div>
     <div class="ri"><div class="rl">Intersecția cu Oy: f(0)</div><div class="rv">${fmt(c)}</div></div>
-    <div class="ri"><div class="rl">Forma canonică</div><div class="rv" style="font-size:.95rem">${a}(x${m<0?'+'+fmt(-m):m===0?'':'−'+fmt(m)})² ${n>=0?'+'+fmt(n):'−'+fmt(-n)}</div></div>
+    <div class="ri"><div class="rl">Forma canonică</div><div class="rv" style="font-size:.95rem">${a===1?'':a===-1?'−':a}(x${m<0?'+'+fmt(-m):m===0?'':'−'+fmt(m)})² ${n>=0?'+'+fmt(n):'−'+fmt(-n)}</div></div>
     <div class="ri"><div class="rl">Codomeniu</div><div class="rv">${cod}</div></div>`;
   drawGraph(document.getElementById('calcCanvas'),a,b,c);
   if(modalLive){
