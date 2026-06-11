@@ -186,6 +186,11 @@ p{margin-bottom:12px;max-width:66ch}
 .ri .rl{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--sub);margin-bottom:3px}
 .ri .rv{font-family:var(--serif);font-size:.97rem;color:var(--ink);font-weight:600}
 .ri.rdp .rv{color:var(--green)}.ri.rdz .rv{color:var(--blue)}.ri.rdn .rv{color:var(--red)}
+.presets{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.presets .pl{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--sub);margin-right:4px}
+.preset{display:flex;gap:5px;align-items:center;padding:6px 11px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;transition:.2s}
+.preset:hover{border-color:var(--gold);background:var(--panel);transform:translateY(-2px);box-shadow:var(--sh)}
+.preset .badge{font-size:.6rem;padding:2px 7px}
 
 /* ── final ── */
 .final{text-align:center}
@@ -286,7 +291,7 @@ p{margin-bottom:12px;max-width:66ch}
 <canvas id="bgCv"></canvas>
 <div id="progress"></div>
 <nav class="dots" id="dots"></nav>
-<div class="counter"><b id="cnum">01</b> / <span id="ctot">14</span></div>
+<div class="counter"><b id="cnum">01</b> / <span id="ctot">13</span></div>
 <div class="hint" id="hint">scroll<i></i></div>
 
 <div class="deck"><div class="slides" id="slides">
@@ -425,38 +430,30 @@ p{margin-bottom:12px;max-width:66ch}
     </div>
   </section>
 
-  <!-- 4 · POZIȚIA FAȚĂ DE OX (DISCRIMINANT + 6 CAZURI) -->
-  <section class="slide" data-label="Poziția față de Ox">
-    <div class="wrap">
-      <div class="eyebrow u">Câte puncte are parabola pe axa Ox</div>
-      <h2 class="u" style="--d:1">Poziția față de axa Ox</h2>
-      <div class="fb sm u" style="--d:2">
-        <div class="formula" style="font-size:clamp(1.1rem,2.2vw,1.5rem)"><span class="blab" style="margin:0 8px 0 0">Discriminantul</span> Δ = b² − 4ac &nbsp;decide&nbsp; <span class="hl">numărul de intersecții cu Ox</span></div>
-        <div class="subnote" style="margin-top:6px"><strong>Δ &gt; 0</strong> → 2 puncte de intersecție; &nbsp;<strong>Δ = 0</strong> → tangentă (1 punct, în vârf); &nbsp;<strong>Δ &lt; 0</strong> → nu atinge Ox. Cu semnul lui <strong>a</strong> (sus/jos) rezultă 6 configurații.</div>
-      </div>
-      <div class="cg u" style="--d:3;margin-top:12px">
-        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdp">Δ &gt; 0</span></div><div class="cc-cv"><canvas id="c1" width="320" height="175"></canvas></div><div class="cc-d">taie Ox în <strong>2 puncte</strong></div></div>
-        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdz">Δ = 0</span></div><div class="cc-cv"><canvas id="c2" width="320" height="175"></canvas></div><div class="cc-d"><strong>tangentă</strong> la Ox în vârf</div></div>
-        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdn">Δ &lt; 0</span></div><div class="cc-cv"><canvas id="c3" width="320" height="175"></canvas></div><div class="cc-d"><strong>deasupra</strong> axei Ox</div></div>
-        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdp">Δ &gt; 0</span></div><div class="cc-cv"><canvas id="c4" width="320" height="175"></canvas></div><div class="cc-d">taie Ox în <strong>2 puncte</strong></div></div>
-        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdz">Δ = 0</span></div><div class="cc-cv"><canvas id="c5" width="320" height="175"></canvas></div><div class="cc-d"><strong>tangentă</strong> la Ox în vârf</div></div>
-        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdn">Δ &lt; 0</span></div><div class="cc-cv"><canvas id="c6" width="320" height="175"></canvas></div><div class="cc-d"><strong>sub</strong> axa Ox</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9 · CALCULATOR -->
+  <!-- 4 · POZIȚIA FAȚĂ DE OX — CALCULATOR INTERACTIV -->
   <section class="slide" data-label="Calculator">
     <div class="wrap">
-      <div class="eyebrow u">Aplicație interactivă</div>
-      <h2 class="u" style="--d:1">Calculator interactiv</h2>
-      <div class="ci u" style="--d:2">
+      <div class="eyebrow u">Explorează poziția față de axe</div>
+      <h2 class="u" style="--d:1">Poziția față de axa Ox</h2>
+      <div class="mini u" style="--d:2;margin-bottom:10px;font-size:.92rem">
+        <strong>Δ = b² − 4ac</strong> decide câte puncte are parabola pe Ox: <strong>Δ &gt; 0</strong> → 2, <strong>Δ = 0</strong> → 1 (tangentă, în vârf), <strong>Δ &lt; 0</strong> → niciunul. Cu semnul lui <strong>a</strong> (ramuri sus/jos) → 6 configurații. Mută coeficienții sau sari direct la un caz:
+      </div>
+      <div class="presets u" style="--d:2;margin-bottom:10px">
+        <span class="pl">cele 6 cazuri</span>
+        <button class="preset" data-a="1" data-b="0" data-c="-4"><span class="badge ba">a&gt;0</span><span class="badge bdp">Δ&gt;0</span></button>
+        <button class="preset" data-a="1" data-b="-2" data-c="1"><span class="badge ba">a&gt;0</span><span class="badge bdz">Δ=0</span></button>
+        <button class="preset" data-a="1" data-b="0" data-c="2"><span class="badge ba">a&gt;0</span><span class="badge bdn">Δ&lt;0</span></button>
+        <button class="preset" data-a="-1" data-b="0" data-c="4"><span class="badge ban">a&lt;0</span><span class="badge bdp">Δ&gt;0</span></button>
+        <button class="preset" data-a="-1" data-b="2" data-c="-1"><span class="badge ban">a&lt;0</span><span class="badge bdz">Δ=0</span></button>
+        <button class="preset" data-a="-1" data-b="0" data-c="-2"><span class="badge ban">a&lt;0</span><span class="badge bdn">Δ&lt;0</span></button>
+      </div>
+      <div class="ci u" style="--d:3">
         <div class="ig"><div class="cn">a</div><label>Coeficient a (≠ 0)</label><input type="range" id="sA" min="-5" max="5" step="0.5" value="1"><div class="vd" id="vA">1</div></div>
         <div class="ig"><div class="cn">b</div><label>Coeficient b</label><input type="range" id="sB" min="-10" max="10" step="1" value="0"><div class="vd" id="vB">0</div></div>
         <div class="ig"><div class="cn">c</div><label>Coeficient c</label><input type="range" id="sC" min="-10" max="10" step="1" value="-4"><div class="vd" id="vC">−4</div></div>
       </div>
       <div class="cl u" style="--d:3">
-        <canvas id="calcCanvas" width="560" height="380"></canvas>
+        <canvas id="calcCanvas" width="560" height="320"></canvas>
         <div class="results" id="res"></div>
       </div>
     </div>
@@ -794,42 +791,7 @@ let ty=null;
 addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
 addEventListener('touchend',e=>{if(modalOpen||bigOpen||ty===null)return;const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>40)step(dy>0?1:-1);ty=null});
 
-/* ═══ 6 CASES CANVAS ═══ */
-function drawPara(id,a,b,c,sc){
-  const cv=document.getElementById(id);if(!cv)return;
-  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
-  /* fereastră fixă x∈[−3.5,3.5], y∈[−4.5,4.5] — auto-încadrare */
-  sc=Math.min(W/7,H/9);
-  const cx=W/2,cy=H/2,tx=x=>cx+x*sc,ty=y=>cy-y*sc;
-  ctx.fillStyle='#FAFAF8';ctx.fillRect(0,0,W,H);
-  ctx.strokeStyle='#EAD9C0';ctx.lineWidth=.5;
-  for(let i=-9;i<=9;i++){ctx.beginPath();ctx.moveTo(tx(i),0);ctx.lineTo(tx(i),H);ctx.stroke()}
-  for(let i=-6;i<=6;i++){ctx.beginPath();ctx.moveTo(0,ty(i));ctx.lineTo(W,ty(i));ctx.stroke()}
-  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(6,cy);ctx.lineTo(W-6,cy);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx,H-6);ctx.lineTo(cx,6);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(W-6,cy);ctx.lineTo(W-14,cy-5);ctx.moveTo(W-6,cy);ctx.lineTo(W-14,cy+5);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx,6);ctx.lineTo(cx-5,14);ctx.moveTo(cx,6);ctx.lineTo(cx+5,14);ctx.stroke();
-  ctx.fillStyle='#8B6E5A';ctx.font='11px Inter,sans-serif';
-  ctx.fillText('x',W-13,cy-6);ctx.fillText('y',cx+6,13);ctx.fillText('O',cx+4,cy+13);
-  ctx.beginPath();let g=false;
-  for(let px=0;px<=W;px++){const xv=(px-cx)/sc,yv=a*xv*xv+b*xv+c,py=cy-yv*sc;if(py<-25||py>H+25){g=false;continue}g?ctx.lineTo(px,py):ctx.moveTo(px,py);g=true}
-  ctx.strokeStyle=a>0?'#C4820A':'#7B1FA2';ctx.lineWidth=3;ctx.stroke();
-  const D=b*b-4*a*c,m=-b/(2*a),n=-D/(4*a),vx=tx(m),vy=ty(n);
-  if(vx>5&&vx<W-5&&vy>5&&vy<H-5){ctx.fillStyle='#1565C0';ctx.beginPath();ctx.arc(vx,vy,5,0,2*Math.PI);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();ctx.fillStyle='#0D47A1';ctx.font='bold 10px Inter,sans-serif';ctx.fillText('V',vx+6,vy-4)}
-  if(D>=0){const sq=Math.sqrt(Math.max(0,D)),roots=D===0?[m]:[(-b-sq)/(2*a),(-b+sq)/(2*a)];roots.forEach((r,i)=>{const rx=tx(r);if(rx>5&&rx<W-5){ctx.fillStyle='#E53935';ctx.beginPath();ctx.arc(rx,ty(0),5,0,2*Math.PI);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();ctx.fillStyle='#B71C1C';ctx.font='bold 10px Inter,sans-serif';ctx.textAlign='center';ctx.fillText(D===0?'x₀':i===0?'x₁':'x₂',rx,ty(0)+17);ctx.textAlign='left'}})}
-}
-function drawAll(){drawPara('c1',1,0,-4,34);drawPara('c2',1,-2,1,34);drawPara('c3',1,0,2,34);drawPara('c4',-1,0,4,34);drawPara('c5',-1,2,-1,34);drawPara('c6',-1,0,-2,34)}
-
 /* ═══ INSPECT MODAL ═══ */
-const CASES={
-  c1:{a:1,b:0,c:-4,t:'a > 0, Δ > 0',badges:['ba|a > 0','bdp|Δ > 0']},
-  c2:{a:1,b:-2,c:1,t:'a > 0, Δ = 0',badges:['ba|a > 0','bdz|Δ = 0']},
-  c3:{a:1,b:0,c:2,t:'a > 0, Δ < 0',badges:['ba|a > 0','bdn|Δ < 0']},
-  c4:{a:-1,b:0,c:4,t:'a < 0, Δ > 0',badges:['ban|a < 0','bdp|Δ > 0']},
-  c5:{a:-1,b:2,c:-1,t:'a < 0, Δ = 0',badges:['ban|a < 0','bdz|Δ = 0']},
-  c6:{a:-1,b:0,c:-2,t:'a < 0, Δ < 0',badges:['ban|a < 0','bdn|Δ < 0']}
-};
 const modal=document.getElementById('modal');
 let modalLive=false;
 function eqStr(a,b,c){return `f(x) = ${a===1?'':a===-1?'−':a}x² ${b===0?'':(b>0?'+ '+b:'− '+(-b))+'x'} ${c===0?'':(c>0?'+ '+c:'− '+(-c))}`.replace(/\s+/g,' ').trim()}
@@ -861,12 +823,6 @@ function renderModal(a,b,c,title,badges){
   document.getElementById('mEq').textContent=eqStr(a,b,c);
   document.getElementById('mStats').innerHTML=buildStats(a,b,c);
   drawGraph(document.getElementById('modalCanvas'),a,b,c);
-}
-function openModal(id){
-  const k=CASES[id];if(!k)return;
-  modalLive=false;document.getElementById('mControls').classList.remove('on');
-  renderModal(k.a,k.b,k.c,k.t,k.badges);
-  modal.classList.add('open');modalOpen=true;
 }
 function openCalcModal(){
   const a=parseFloat(document.getElementById('sA').value)||0.5,b=parseFloat(document.getElementById('sB').value),c=parseFloat(document.getElementById('sC').value);
@@ -904,17 +860,12 @@ function updateCalc(){
   document.getElementById('res').innerHTML=`
     <div class="ri" style="background:rgba(184,134,11,.12);border-color:var(--gold)"><div class="rl">Ecuația</div><div class="rv" style="font-size:1rem">f(x) = ${a}x² ${b>=0?'+':''}${b}x ${c>=0?'+':''}${c}</div></div>
     <div class="ri ${dc}"><div class="rl">Discriminant</div><div class="rv">Δ = ${fmt(D)}</div></div>
-    <div class="ri"><div class="rl">Forma canonică</div><div class="rv" style="font-size:.95rem">${a}(x${m<0?'+'+fmt(-m):m===0?'':'−'+fmt(m)})² ${n>=0?'+'+fmt(n):'−'+fmt(-n)}</div></div>
+    <div class="ri ${dc}"><div class="rl">Intersecții cu Ox</div><div class="rv" style="font-size:.95rem">${rInfo}</div></div>
     <div class="ri"><div class="rl">Vârful V(m, n)</div><div class="rv">V(${fmt(m)}, ${fmt(n)})</div></div>
-    <div class="ri"><div class="rl">${a>0?'Minim':'Maxim'}</div><div class="rv" style="color:${a>0?'var(--green)':'var(--red)'}">${a>0?'↑':'↓'} ${fmt(n)}</div></div>
-    <div class="ri"><div class="rl">Rădăcini</div><div class="rv" style="font-size:.95rem">${rInfo}</div></div>
+    <div class="ri"><div class="rl">${a>0?'Minim':'Maxim'} (sens ramuri)</div><div class="rv" style="color:${a>0?'var(--green)':'var(--red)'}">${a>0?'↑ minim':'↓ maxim'} ${fmt(n)}</div></div>
     <div class="ri"><div class="rl">Intersecția cu Oy: f(0)</div><div class="rv">${fmt(c)}</div></div>
-    <div class="ri"><div class="rl">Axă de simetrie</div><div class="rv">x = ${fmt(m)}</div></div>
-    <div class="ri"><div class="rl">Factorizare</div><div class="rv" style="font-size:.9rem">${fact}</div></div>
-    <div class="ri"><div class="rl">Codomeniu</div><div class="rv">${cod}</div></div>
-    <div class="ri"><div class="rl">Monotonie</div><div class="rv" style="font-size:.88rem">${mono}</div></div>
-    <div class="ri"><div class="rl">|x₁ − x₂|</div><div class="rv">${D>=0?fmt(sq/Math.abs(a)):'—'}</div></div>
-    <div class="ri"><div class="rl">Viète: sumă și produs</div><div class="rv" style="font-size:.92rem">x₁+x₂ = ${fmt(-b/a)}; x₁·x₂ = ${fmt(c/a)}</div></div>`;
+    <div class="ri"><div class="rl">Forma canonică</div><div class="rv" style="font-size:.95rem">${a}(x${m<0?'+'+fmt(-m):m===0?'':'−'+fmt(m)})² ${n>=0?'+'+fmt(n):'−'+fmt(-n)}</div></div>
+    <div class="ri"><div class="rl">Codomeniu</div><div class="rv">${cod}</div></div>`;
   drawGraph(document.getElementById('calcCanvas'),a,b,c);
   if(modalLive){
     renderModal(a,b,c,'Calculator',[`${a>0?'ba':'ban'}|a ${a>0?'>':'<'} 0`,`${D>0?'bdp':D===0?'bdz':'bdn'}|Δ ${D>0?'>':D===0?'=':'<'} 0`]);
@@ -1512,8 +1463,13 @@ const slideHooks={
 
 /* ═══ INIT ═══ */
 addEventListener('load',()=>{
-  drawAll();
-  ['c1','c2','c3','c4','c5','c6'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>openModal(id))});
+  /* butoanele preset pentru cele 6 cazuri — sar la configurația respectivă */
+  document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{
+    document.getElementById('sA').value=btn.dataset.a;
+    document.getElementById('sB').value=btn.dataset.b;
+    document.getElementById('sC').value=btn.dataset.c;
+    updateCalc();
+  }));
   ['sA','sB','sC'].forEach(id=>document.getElementById(id).addEventListener('input',updateCalc));
   document.getElementById('sA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=0.5;updateCalc()}});
   /* open the big inspect window from the calculator graph */
