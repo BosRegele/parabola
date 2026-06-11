@@ -286,7 +286,7 @@ p{margin-bottom:12px;max-width:66ch}
 <canvas id="bgCv"></canvas>
 <div id="progress"></div>
 <nav class="dots" id="dots"></nav>
-<div class="counter"><b id="cnum">01</b> / <span id="ctot">18</span></div>
+<div class="counter"><b id="cnum">01</b> / <span id="ctot">14</span></div>
 <div class="hint" id="hint">scroll<i></i></div>
 
 <div class="deck"><div class="slides" id="slides">
@@ -397,150 +397,50 @@ p{margin-bottom:12px;max-width:66ch}
     </div>
   </section>
 
-  <!-- 3 · DISCRIMINANTUL -->
-  <section class="slide" data-label="Discriminant">
+  <!-- 3 · ELEMENTELE PARABOLEI -->
+  <section class="slide" data-label="Elemente">
     <div class="wrap">
-      <div class="eyebrow u">Cheia întregii funcții</div>
-      <h2 class="u" style="--d:1">Discriminantul Δ</h2>
-      <div class="fb u" style="--d:2">
-        <div class="blab">Definiție</div>
-        <div class="formula">Δ = b² − 4ac</div>
-        <div class="subnote">numărul Δ se numește <strong>discriminantul</strong> ecuației ax² + bx + c = 0</div>
-      </div>
-      <div class="dc" style="margin-top:22px">
-        <div class="dc-c dp u" style="--d:3"><div class="dc-v">Δ &gt; 0</div><div class="pill tg">Două rădăcini reale</div><p>x₁ ≠ x₂, ambele reale.<br>Parabola taie Ox în <strong>2 puncte</strong></p></div>
-        <div class="dc-c dz u" style="--d:4"><div class="dc-v">Δ = 0</div><div class="pill tb">Rădăcină dublă</div><p>x₁ = x₂ = −b/(2a).<br>Parabola <strong>tangentă</strong> la Ox</p></div>
-        <div class="dc-c dn u" style="--d:5"><div class="dc-v">Δ &lt; 0</div><div class="pill tr">Nicio rădăcină reală</div><p>Rădăcini complexe.<br>Parabola <strong>nu taie</strong> Ox</p></div>
-      </div>
-      <div class="note u" style="--d:6;margin-top:18px"><div>Δ apare peste tot: în formula rădăcinilor <b>x₁,₂ = (−b ± √Δ)/2a</b> și în ordonata vârfului <b>n = −Δ/(4a)</b>. Semnul lui decide totul.</div></div>
-    </div>
-  </section>
-
-  <!-- 4 · RĂDĂCINILE -->
-  <section class="slide" data-label="Rădăcini">
-    <div class="wrap">
-      <div class="eyebrow u">Unde f(x) = 0</div>
-      <h2 class="u" style="--d:1">Rădăcinile ecuației</h2>
-      <div class="fb u" style="--d:2">
-        <div class="blab t">Teoremă — formula rădăcinilor</div>
-        <div class="formula" style="font-size:clamp(2rem,3.6vw,2.9rem)">x<sub>1,2</sub> = <span class="frac"><span class="n">−b ± √Δ</span><span class="d">2a</span></span></div>
-        <div class="subnote">valabilă pentru Δ ≥ 0</div>
-      </div>
-      <div class="grid2" style="margin-top:22px">
-        <div class="mini u" style="--d:3;line-height:2.6;font-family:var(--serif);font-size:1.18rem">
-          <span class="gp">Δ &gt; 0:</span> &nbsp;x<sub>1</sub> = <span class="frac" style="font-size:.9em"><span class="n">−b − √Δ</span><span class="d">2a</span></span>&nbsp;,&nbsp;x<sub>2</sub> = <span class="frac" style="font-size:.9em"><span class="n">−b + √Δ</span><span class="d">2a</span></span><br>
-          <span class="gz">Δ = 0:</span> &nbsp;x<sub>1</sub> = x<sub>2</sub> = −<span class="frac" style="font-size:.9em"><span class="n">b</span><span class="d">2a</span></span><br>
-          <span class="gn">Δ &lt; 0:</span> &nbsp;<span style="color:var(--red)">∄ soluții reale</span>
-        </div>
-        <div class="card u" style="--d:4">
-          <h3>Proprietăți</h3>
-          <table class="mt">
-            <thead><tr><th>Proprietate</th><th>Formulă</th></tr></thead>
-            <tbody>
-              <tr><td>Sumă</td><td>x₁ + x₂ = −b/a</td></tr>
-              <tr><td>Produs</td><td>x₁ · x₂ = c/a</td></tr>
-              <tr><td>Diferență</td><td>|x₁ − x₂| = √Δ / |a|</td></tr>
-              <tr><td>Factorizare</td><td>f(x) = a(x−x₁)(x−x₂)</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5 · VIÈTE -->
-  <section class="slide" data-label="Viète">
-    <div class="wrap">
-      <div class="eyebrow u">Rădăcini ↔ coeficienți</div>
-      <h2 class="u" style="--d:1">Relațiile lui Viète</h2>
-      <div class="u" style="--d:1;margin-bottom:12px"><span class="blab t">Teoremă (Viète)</span></div>
+      <div class="eyebrow u">Anatomia curbei</div>
+      <h2 class="u" style="--d:1">Elementele parabolei</h2>
       <div class="grid2">
-        <div class="vc u" style="--d:2"><div class="vl">Suma rădăcinilor</div><div class="vf">x₁ + x₂ = −<span class="frac"><span class="n">b</span><span class="d">a</span></span></div></div>
-        <div class="vc u" style="--d:3"><div class="vl">Produsul rădăcinilor</div><div class="vf">x₁ · x₂ = <span class="frac"><span class="n">c</span><span class="d">a</span></span></div></div>
-      </div>
-      <div class="mini u" style="--d:4;margin-top:14px">
-        <div class="blab d">Demonstrație</div>
-        <div>Din formula rădăcinilor: x₁ + x₂ = <span class="frac" style="font-size:.85em"><span class="n">−b−√Δ</span><span class="d">2a</span></span> + <span class="frac" style="font-size:.85em"><span class="n">−b+√Δ</span><span class="d">2a</span></span> = −<span class="frac" style="font-size:.85em"><span class="n">b</span><span class="d">a</span></span> &nbsp;·&nbsp; x₁·x₂ = <span class="frac" style="font-size:.85em"><span class="n">b²−Δ</span><span class="d">4a²</span></span> = <span class="frac" style="font-size:.85em"><span class="n">4ac</span><span class="d">4a²</span></span> = <span class="frac" style="font-size:.85em"><span class="n">c</span><span class="d">a</span></span></div>
-      </div>
-      <div class="grid2" style="margin-top:22px">
-        <div class="card u" style="--d:4">
-          <h3>Reconstituirea ecuației</h3>
-          <div style="padding:16px;background:var(--panel);border-radius:10px;font-family:var(--serif);font-size:1.35rem;line-height:2.2;color:var(--ink);text-align:center">x² − (x₁+x₂)·x + x₁·x₂ = 0</div>
+        <div class="stack u" style="--d:2">
+          <div class="mini">
+            <div class="blab">Vârful</div>
+            <strong>V(m, n)</strong>, cu m = −b/(2a) și n = −Δ/(4a) — punctul de pe parabolă unde curba își schimbă sensul: <strong>minim</strong> dacă a &gt; 0 (ramuri în sus), <strong>maxim</strong> dacă a &lt; 0 (ramuri în jos).
+          </div>
+          <div class="mini">
+            <div class="blab">Axa de simetrie</div>
+            Dreapta verticală <strong>x = −b/(2a)</strong> care trece prin vârf; parabola e simetrică față de ea — orice punct are un „geamăn” oglindit.
+          </div>
+          <div class="mini">
+            <div class="blab">Intersecțiile cu axele</div>
+            Cu <strong>Oy</strong>: punctul (0, c), pentru că f(0) = c. Cu <strong>Ox</strong>: punctele de abscise <strong>x₁,₂ = (−b ± √Δ)/(2a)</strong>, unde curba taie axa — ele există doar când Δ ≥ 0.
+          </div>
         </div>
-        <div class="card u" style="--d:5">
-          <h3>Cazuri speciale</h3>
-          <ul class="ml">
-            <li><span class="dot2"></span><span>b = 0 → x₁ = −x₂ (simetrice față de O)</span></li>
-            <li><span class="dot2"></span><span>c = 0 → una din rădăcini este 0</span></li>
-            <li><span class="dot2"></span><span>a = c → x₁ · x₂ = 1 (rădăcini inverse)</span></li>
-            <li><span class="dot2"></span><span>a+b+c = 0 → x₁ = 1 este rădăcină</span></li>
-          </ul>
+        <div class="u" style="--d:3">
+          <canvas id="elemCv" class="icv" width="520" height="430"></canvas>
+          <div class="legend"><span><i style="background:#1565C0"></i>V — vârful</span><span><i class="ln" style="background:#1565C0"></i>axa de simetrie</span><span><i style="background:#E53935"></i>x₁, x₂ — intersecții cu Ox</span><span><i style="background:#2E7D32"></i>(0, c) — intersecție cu Oy</span><span>↑↓ — sensul ramurilor (semnul lui a)</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6 · VÂRFUL -->
-  <section class="slide" data-label="Vârful">
+  <!-- 4 · POZIȚIA FAȚĂ DE OX (DISCRIMINANT + 6 CAZURI) -->
+  <section class="slide" data-label="Poziția față de Ox">
     <div class="wrap">
-      <div class="eyebrow u">Minim sau maxim</div>
-      <h2 class="u" style="--d:1">Vârful parabolei</h2>
-      <div class="fb u" style="--d:2">
-        <div class="blab t">Consecință — din forma canonică</div>
-        <div class="formula" style="font-size:clamp(2rem,3.6vw,2.8rem)">V<span style="font-size:.85em"> (</span>−<span class="frac"><span class="n">b</span><span class="d">2a</span></span><span style="font-size:.85em"> , </span>−<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span><span style="font-size:.85em"> )</span></div>
+      <div class="eyebrow u">Câte puncte are parabola pe axa Ox</div>
+      <h2 class="u" style="--d:1">Poziția față de axa Ox</h2>
+      <div class="fb sm u" style="--d:2">
+        <div class="formula" style="font-size:clamp(1.1rem,2.2vw,1.5rem)"><span class="blab" style="margin:0 8px 0 0">Discriminantul</span> Δ = b² − 4ac &nbsp;decide&nbsp; <span class="hl">numărul de intersecții cu Ox</span></div>
+        <div class="subnote" style="margin-top:6px"><strong>Δ &gt; 0</strong> → 2 puncte de intersecție; &nbsp;<strong>Δ = 0</strong> → tangentă (1 punct, în vârf); &nbsp;<strong>Δ &lt; 0</strong> → nu atinge Ox. Cu semnul lui <strong>a</strong> (sus/jos) rezultă 6 configurații.</div>
       </div>
-      <div class="grid2" style="margin-top:22px">
-        <div class="vb-min u" style="--d:3"><div class="vb-t">a &gt; 0 — ramuri în sus ↑</div><div class="vb-v">MINIM</div><div class="vb-s">f<sub>min</sub> = n = −Δ/(4a)<br>Crescătoare pe [m, +∞)</div></div>
-        <div class="vb-max u" style="--d:4"><div class="vb-t">a &lt; 0 — ramuri în jos ↓</div><div class="vb-v">MAXIM</div><div class="vb-s">f<sub>max</sub> = n = −Δ/(4a)<br>Descrescătoare pe [m, +∞)</div></div>
-      </div>
-      <div class="cards c3 u" style="--d:5;margin-top:16px">
-        <div class="mini"><strong>Axa de simetrie:</strong><br>x = m = −b/(2a)</div>
-        <div class="mini"><strong>Intersecție Oy:</strong><br>f(0) = c</div>
-        <div class="mini"><strong>Valoarea la vârf:</strong><br>f(m) = n = −Δ/(4a)</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7 · SEMNUL -->
-  <section class="slide" data-label="Semnul">
-    <div class="wrap">
-      <div class="eyebrow u">Când f(x) e pozitiv sau negativ</div>
-      <h2 class="u" style="--d:1">Semnul funcției</h2>
-      <div class="grid2">
-        <div class="card u" style="--d:2">
-          <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px"><span class="badge ba">a &gt; 0</span><h3 style="margin:0">Ramuri în sus ↑</h3></div>
-          <p style="font-size:.98rem;margin-bottom:6px"><strong>Δ &gt; 0</strong> (x₁ &lt; x₂):</p>
-          <div class="sb"><span class="gp">f(x) &gt; 0</span> pe (−∞,x₁)∪(x₂,+∞)<br><span class="gn">f(x) &lt; 0</span> pe (x₁,x₂)<br><span class="gz">f(x) = 0</span> la x₁ și x₂</div>
-          <p style="font-size:.98rem;margin:13px 0 6px"><strong>Δ = 0:</strong></p>
-          <div class="sb"><span class="gp">f(x) ≥ 0</span> ∀ x ∈ ℝ &nbsp;·&nbsp; <span class="gz">f(m) = 0</span></div>
-          <p style="font-size:.98rem;margin:13px 0 6px"><strong>Δ &lt; 0:</strong></p>
-          <div class="sb"><span class="gp">f(x) &gt; 0</span> ∀ x ∈ ℝ</div>
-        </div>
-        <div class="card u" style="--d:3">
-          <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px"><span class="badge ban">a &lt; 0</span><h3 style="margin:0">Ramuri în jos ↓</h3></div>
-          <p style="font-size:.98rem;margin-bottom:6px"><strong>Δ &gt; 0</strong> (x₁ &lt; x₂):</p>
-          <div class="sb"><span class="gn">f(x) &lt; 0</span> pe (−∞,x₁)∪(x₂,+∞)<br><span class="gp">f(x) &gt; 0</span> pe (x₁,x₂)<br><span class="gz">f(x) = 0</span> la x₁ și x₂</div>
-          <p style="font-size:.98rem;margin:13px 0 6px"><strong>Δ = 0:</strong></p>
-          <div class="sb"><span class="gn">f(x) ≤ 0</span> ∀ x ∈ ℝ &nbsp;·&nbsp; <span class="gz">f(m) = 0</span></div>
-          <p style="font-size:.98rem;margin:13px 0 6px"><strong>Δ &lt; 0:</strong></p>
-          <div class="sb"><span class="gn">f(x) &lt; 0</span> ∀ x ∈ ℝ</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8 · 6 CAZURI -->
-  <section class="slide" data-label="6 cazuri">
-    <div class="wrap">
-      <div class="eyebrow u">a × Δ — toate combinațiile</div>
-      <h2 class="u" style="--d:1">Cele 6 cazuri geometrice</h2>
-      <div class="cg u" style="--d:2">
-        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdp">Δ &gt; 0</span></div><div class="cc-cv"><canvas id="c1" width="320" height="200"></canvas></div><div class="cc-d"><strong>2 rădăcini</strong>; taie Ox; f &lt; 0 pe (x₁,x₂)</div></div>
-        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdz">Δ = 0</span></div><div class="cc-cv"><canvas id="c2" width="320" height="200"></canvas></div><div class="cc-d"><strong>Rădăcină dublă</strong>; tangentă la Ox; f ≥ 0</div></div>
-        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdn">Δ &lt; 0</span></div><div class="cc-cv"><canvas id="c3" width="320" height="200"></canvas></div><div class="cc-d"><strong>Fără rădăcini</strong>; deasupra Ox; f &gt; 0</div></div>
-        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdp">Δ &gt; 0</span></div><div class="cc-cv"><canvas id="c4" width="320" height="200"></canvas></div><div class="cc-d"><strong>2 rădăcini</strong>; taie Ox; f &gt; 0 pe (x₁,x₂)</div></div>
-        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdz">Δ = 0</span></div><div class="cc-cv"><canvas id="c5" width="320" height="200"></canvas></div><div class="cc-d"><strong>Rădăcină dublă</strong>; tangentă la Ox; f ≤ 0</div></div>
-        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdn">Δ &lt; 0</span></div><div class="cc-cv"><canvas id="c6" width="320" height="200"></canvas></div><div class="cc-d"><strong>Fără rădăcini</strong>; sub Ox; f &lt; 0</div></div>
+      <div class="cg u" style="--d:3;margin-top:12px">
+        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdp">Δ &gt; 0</span></div><div class="cc-cv"><canvas id="c1" width="320" height="175"></canvas></div><div class="cc-d">taie Ox în <strong>2 puncte</strong></div></div>
+        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdz">Δ = 0</span></div><div class="cc-cv"><canvas id="c2" width="320" height="175"></canvas></div><div class="cc-d"><strong>tangentă</strong> la Ox în vârf</div></div>
+        <div class="cc"><div class="cc-h apos"><span class="badge ba">a &gt; 0</span><span class="badge bdn">Δ &lt; 0</span></div><div class="cc-cv"><canvas id="c3" width="320" height="175"></canvas></div><div class="cc-d"><strong>deasupra</strong> axei Ox</div></div>
+        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdp">Δ &gt; 0</span></div><div class="cc-cv"><canvas id="c4" width="320" height="175"></canvas></div><div class="cc-d">taie Ox în <strong>2 puncte</strong></div></div>
+        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdz">Δ = 0</span></div><div class="cc-cv"><canvas id="c5" width="320" height="175"></canvas></div><div class="cc-d"><strong>tangentă</strong> la Ox în vârf</div></div>
+        <div class="cc"><div class="cc-h aneg"><span class="badge ban">a &lt; 0</span><span class="badge bdn">Δ &lt; 0</span></div><div class="cc-cv"><canvas id="c6" width="320" height="175"></canvas></div><div class="cc-d"><strong>sub</strong> axa Ox</div></div>
       </div>
     </div>
   </section>
@@ -897,7 +797,9 @@ addEventListener('touchend',e=>{if(modalOpen||bigOpen||ty===null)return;const dy
 /* ═══ 6 CASES CANVAS ═══ */
 function drawPara(id,a,b,c,sc){
   const cv=document.getElementById(id);if(!cv)return;
-  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;sc=sc||30;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  /* fereastră fixă x∈[−3.5,3.5], y∈[−4.5,4.5] — auto-încadrare */
+  sc=Math.min(W/7,H/9);
   const cx=W/2,cy=H/2,tx=x=>cx+x*sc,ty=y=>cy-y*sc;
   ctx.fillStyle='#FAFAF8';ctx.fillRect(0,0,W,H);
   ctx.strokeStyle='#EAD9C0';ctx.lineWidth=.5;
@@ -1437,6 +1339,29 @@ function updateSim(){
   requestAnimationFrame(reflLoop);
 })(0);
 
+/* ── diagrama statică pentru slide-ul „Elementele parabolei” ── */
+function drawElements(){
+  const cv=$('elemCv');if(!cv)return;
+  const k=cv.width/520,g=miniAxes(cv,52*k,190*k,290*k);
+  const a=0.5,b=-1,c=-1.5;
+  const m=-b/(2*a),n=-(b*b-4*a*c)/(4*a),sq=Math.sqrt(b*b-4*a*c);
+  const x1=(-b-sq)/(2*a),x2=(-b+sq)/(2*a);
+  /* axa de simetrie */
+  g.ctx.setLineDash([5,5]);g.ctx.strokeStyle='rgba(21,101,192,.55)';g.ctx.lineWidth=1.5;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(m),0);g.ctx.lineTo(g.tx(m),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,g.tx(m)+6,26,'axa de simetrie  x = −b/(2a)','#0D47A1');
+  /* parabola */
+  plotFn(g,x=>a*x*x+b*x+c,'#C4820A',3.2);
+  glabel(g,12,18,'f(x) = 0,5x² − x − 1,5','#8a6508');
+  /* intersecțiile cu Ox */
+  gdot(g,x1,0,6,'#E53935','#fff');glabel(g,g.tx(x1)-8,g.ty(0)+18,'x₁ = '+fmt(x1),'#B71C1C','right');
+  gdot(g,x2,0,6,'#E53935','#fff');glabel(g,g.tx(x2)+8,g.ty(0)+18,'x₂ = '+fmt(x2),'#B71C1C');
+  /* intersecția cu Oy */
+  gdot(g,0,c,6,'#2E7D32','#fff');glabel(g,g.tx(0)-8,g.ty(c)+4,'(0, c)','#1B5E20','right');
+  /* vârful */
+  gdot(g,m,n,7,'#1565C0','#fff');glabel(g,g.tx(m)+10,g.ty(n)+5,'V(m, n) = (1, −2)','#0D47A1');
+}
+
 /* ── diagrama statică pentru slide-ul „Ecuația parabolei” ── */
 function drawEqDiagram(){
   const cv=$('eqCv');if(!cv)return;
@@ -1577,6 +1502,7 @@ const slideHooks={
   'Calculator':()=>updateCalc(),
   'Focar':()=>updateFocus(),
   'Ecuația':()=>drawEqDiagram(),
+  'Elemente':()=>drawElements(),
   'Tangente':()=>updateTan(),
   'Curbură':()=>updateOsc(),
   'Arhimede':()=>updateArh(),
@@ -1625,7 +1551,7 @@ addEventListener('load',()=>{
   }));
   document.getElementById('imgZ').addEventListener('click',()=>document.getElementById('imgZ').classList.remove('open'));
   addEventListener('resize',()=>{if(bigOpen){sizeBig();bigT=null;BIGDEFS[bigKey].fn()}});
-  updateFocus();drawEqDiagram();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
+  updateFocus();drawEqDiagram();drawElements();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
   updateCalc();
   go(0);
 });
