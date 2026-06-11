@@ -213,6 +213,16 @@ p{margin-bottom:12px;max-width:66ch}
 .mat3 span{text-align:center;min-width:30px;font-family:var(--serif);color:var(--ink)}
 .matc{display:inline-grid;gap:3px;padding:6px 9px;border-left:2.5px solid var(--ink);border-right:2.5px solid var(--ink);border-radius:7px}
 .matc span{text-align:center;font-family:var(--serif);color:var(--ink)}
+.figc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 11px;display:flex;gap:10px;align-items:flex-start}
+.figc img{width:100px;height:auto;border-radius:8px;flex-shrink:0;border:1px solid var(--line);background:#fff;object-fit:contain;cursor:zoom-in;transition:transform .2s}
+.figc img:hover{transform:scale(1.04)}
+#imgZ{position:fixed;inset:0;z-index:230;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(44,26,14,.78);backdrop-filter:blur(6px);cursor:zoom-out}
+#imgZ.open{display:flex;animation:mfade .25s ease}
+#imgZ img{max-width:96vw;max-height:92vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.45);background:#fff}
+.figc .figcap{font-size:.8rem;color:var(--txt);line-height:1.45;min-width:0}
+.figc .figcap strong{color:var(--ink)}
+.figc .figcr{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;color:var(--sub);margin-top:4px;display:block;text-transform:uppercase}
+@media(max-width:560px){.figc{flex-direction:column}.figc img{width:100%;max-width:220px}}
 .chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:26px}
 .chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--txt);border:1px solid var(--line);background:var(--panel2);padding:6px 13px;border-radius:100px}
 .blab{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,134,11,.45);border-radius:100px;padding:2px 10px;margin-bottom:7px}
@@ -619,9 +629,16 @@ p{margin-bottom:12px;max-width:66ch}
             <div class="formula">raze ∥ axă &nbsp;⟶&nbsp; focar</div>
             <div class="subnote">Orice <strong>rază incidentă</strong> paralelă cu <strong>axa de simetrie</strong>, reflectată de parabolă după <strong>legea reflexiei</strong> (unghi de incidență = unghi de reflexie, măsurate față de tangenta din punctul de impact), trece prin focarul F. Graficul alăturat prezintă parabola y = a·x²; axa de simetrie este Oy, iar razele incidente sunt verticale.</div>
           </div>
-          <div class="prf">
+          <div class="prf" style="font-size:.95rem;line-height:1.75;padding:10px 14px">
             <div class="blab d">Demonstrație</div>
-            <div><strong>1)</strong> Fie P(t, at²) punctul de impact și Q(t, −p) proiecția lui pe directoare. Din definiția parabolei PF = PQ, deci P e egal depărtat de F și de Q ⇒ <span class="hl">P se află pe mediatoarea lui [FQ]</span> (perpendiculara pe mijlocul segmentului).<br><strong>2)</strong> Panta lui FQ, cu F(0, p) și Q(t, −p): (−p − p)/(t − 0) = −2p/t. Două drepte perpendiculare au produsul pantelor −1 ⇒ panta mediatoarei = <span class="frac"><span class="n">t</span><span class="d">2p</span></span>; cu p = 1/(4a) iese 2at = f′(t) ⇒ <span class="hl">mediatoarea este chiar tangenta în P</span>.<br><strong>3)</strong> În triunghiul isoscel FPQ, mediatoarea bazei face unghiuri egale cu laturile PQ și PF ⇒ raza verticală (pe direcția QP) se reflectă pe direcția PF, prin focar.</div>
+            <div><strong>1)</strong> Fie P(t, at²) punctul de impact și Q(t, −p) proiecția lui pe directoare. Din PF = PQ ⇒ <span class="hl">P se află pe mediatoarea lui [FQ]</span>.<br><strong>2)</strong> Panta lui FQ, cu F(0, p) și Q(t, −p): (−2p)/t. Perpendicularele au produsul pantelor −1 ⇒ mediatoarea are panta <span class="frac"><span class="n">t</span><span class="d">2p</span></span> = 2at = f′(t) ⇒ <span class="hl">mediatoarea este tangenta în P</span>.<br><strong>3)</strong> În triunghiul isoscel FPQ, mediatoarea bazei face unghiuri egale cu PQ și PF ⇒ raza verticală se reflectă pe PF, prin focar.</div>
+          </div>
+          <div class="figc">
+            <img src="images/parabolic-dish.jpg" alt="Reflectoare parabolice cu diagrama razelor convergente în focar">
+            <div class="figcap">
+              <strong>Aplicații.</strong> Radiotelescoape, antene satelit, faruri auto, telescoape, cuptoare solare — reflectoare parabolice care concentrează razele paralele în focar.
+              <span class="figcr">imagine: mathbits.com</span>
+            </div>
           </div>
         </div>
         <div class="u" style="--d:3">
@@ -727,7 +744,13 @@ p{margin-bottom:12px;max-width:66ch}
             <div class="blab t">Teoremă — clasificarea (o admitem)</div>
             <div>Semnul lui <strong>B² − 4AC</strong> decide tipul: &lt; 0 → elipsă; <span class="hl">= 0 → parabolă</span>; &gt; 0 → hiperbolă. Intuiția: Ax²+Bxy+Cy² e pătrat perfect ⟺ B²−4AC = 0. Parabola = <strong>frontiera</strong> dintre elipsă și hiperbolă.</div>
           </div>
-          <div class="note"><div><strong>De ce „conice”?</strong> Sunt secțiuni printr-un con: plan paralel cu o generatoare (dreaptă a conului) → parabolă; mai „culcat” → elipsă; mai „vertical” → hiperbolă.</div></div>
+          <div class="figc">
+            <img src="images/conic-sections.png" alt="Trei conuri secționate de un plan: A — parabolă, B — elipse, C — hiperbolă">
+            <div class="figcap">
+              <strong>De ce „conice”?</strong> Sunt secțiuni printr-un con dublu: <strong>A</strong> — plan paralel cu o generatoare → parabolă; <strong>B</strong> — plan oblic, nesecant cu generatoarea → elipse; <strong>C</strong> — plan tăind ambele pânze → hiperbolă.
+              <span class="figcr">imagine: Wikimedia Commons</span>
+            </div>
+          </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="conCv" class="icv" width="520" height="300"></canvas>
@@ -809,6 +832,9 @@ p{margin-bottom:12px;max-width:66ch}
   </div>
 </div>
 
+<!-- IMAGE ZOOM OVERLAY -->
+<div id="imgZ"><img id="imgZi" alt=""></div>
+
 <!-- BIG VIEW OVERLAY (grafic pe tot ecranul) -->
 <div id="big">
   <div class="bigbox">
@@ -877,7 +903,7 @@ function step(d){if(locked||modalOpen||bigOpen)return;locked=true;go(cur+d);setT
 
 addEventListener('wheel',e=>{if(modalOpen||bigOpen)return;e.preventDefault();if(Math.abs(e.deltaY)<4)return;step(e.deltaY>0?1:-1)},{passive:false});
 addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(bigOpen){closeBig()}else if(modalOpen){closeModal()}return}
+  if(e.key==='Escape'){const z=document.getElementById('imgZ');if(z.classList.contains('open')){z.classList.remove('open')}else if(bigOpen){closeBig()}else if(modalOpen){closeModal()}return}
   if(modalOpen||bigOpen)return;
   if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();step(1)}
   else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();step(-1)}
@@ -1576,6 +1602,13 @@ addEventListener('load',()=>{
     c.addEventListener('click',()=>openBig(key));
   });
   document.getElementById('big').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBig()});
+  /* image zoom: click pe imaginile din .figc o deschide fullscreen */
+  document.querySelectorAll('.figc img').forEach(img=>img.addEventListener('click',()=>{
+    document.getElementById('imgZi').src=img.src;
+    document.getElementById('imgZi').alt=img.alt;
+    document.getElementById('imgZ').classList.add('open');
+  }));
+  document.getElementById('imgZ').addEventListener('click',()=>document.getElementById('imgZ').classList.remove('open'));
   addEventListener('resize',()=>{if(bigOpen){sizeBig();bigT=null;BIGDEFS[bigKey].fn()}});
   updateFocus();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
   updateCalc();
