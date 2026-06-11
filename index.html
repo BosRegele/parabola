@@ -295,36 +295,96 @@ p{margin-bottom:12px;max-width:66ch}
   <section class="slide" data-label="Acasă">
     <div class="wrap hero-inner">
       <h1 class="hero-title u" style="--d:0">Parabola</h1>
-      <div class="u" style="--d:1;margin-top:10px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--sub)"><b style="color:var(--gold)">Boștină Vlad</b> &nbsp;—&nbsp; <b style="color:var(--gold)">Nedelcu Calin</b></div>
+      <div class="u" style="--d:1;margin-top:10px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--sub)"><b style="color:var(--gold)">Nedelcu Calin</b></div>
     </div>
   </section>
 
-  <!-- 1 · FORMA GENERALĂ -->
-  <section class="slide" data-label="Forma generală">
+  <!-- 1 · PARABOLA — DEFINIȚIE GEOMETRICĂ -->
+  <section class="slide" data-label="Focar">
     <div class="wrap">
       <div class="eyebrow u">Punctul de plecare</div>
-      <h2 class="u" style="--d:1">Forma generală</h2>
+      <h2 class="u" style="--d:1">Parabola — definiție geometrică</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm">
+            <div class="blab">Definiție</div>
+            <div class="formula">PF = dist(P, d)</div>
+            <div class="subnote"><strong>F</strong> = punct fix, numit <strong>focar</strong>; <strong>d</strong> = dreaptă fixă care nu trece prin F, numită <strong>directoare</strong>; <strong>P</strong> = punct oarecare al curbei. <strong>Parabola</strong> = locul geometric (mulțimea) punctelor egal depărtate de F și de d. <strong>Vârful</strong> V = punctul parabolei cel mai apropiat de directoare. <strong>p</strong> = distanța de la vârf la focar (= cea până la directoare).</div>
+          </div>
+          <div class="mini">
+            <div class="blab d">Observație</div>
+            <div>Această definiție caracterizează <strong>orice parabolă</strong> din plan, indiferent de orientarea axei de simetrie. Slide-ul următor deduce ecuația ei în reperul cu vârful în origine și axa de simetrie Oy; pe baza ei vom recupera funcția de gradul al II-lea.</div>
+          </div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="focusCv" class="icv" width="520" height="320"></canvas>
+          <button class="xpand" data-big="focus" type="button" title="Mărește pe tot ecranul">⤢</button>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = dist(P, d)</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span><span><i style="background:#B8860B"></i>focarul F</span><span><i class="ln" style="background:#8a6508"></i>p — de la vârf la F</span><span><i style="background:#2C1A0E"></i>P — punct mobil</span></div>
+          <div class="ctr">
+            <div class="mci"><div class="lab"><span>a</span><span id="fAv">0.5</span></div><input type="range" id="fA" min="0.2" max="1.2" step="0.05" value="0.5"></div>
+            <div class="mci"><div class="lab"><span>x<sub>P</sub></span><span id="fTv">1.6</span></div><input type="range" id="fT" min="-2.2" max="2.2" step="0.05" value="1.6"></div>
+          </div>
+          <div class="istats" id="focusStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · ECUAȚIA PARABOLEI -->
+  <section class="slide" data-label="Ecuația">
+    <div class="wrap">
+      <div class="eyebrow u">De la geometrie la algebră</div>
+      <h2 class="u" style="--d:1">Ecuația parabolei</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm">
+            <div class="blab t">Teoremă</div>
+            <div class="formula">x² = 4py</div>
+            <div class="subnote">În reperul cu vârful V în originea O, axa de simetrie Oy, focarul F(0, p) și directoarea d: y = −p (cu p &gt; 0), parabola are ecuația x² = 4py — echivalent y = (1/(4p))·x².</div>
+          </div>
+          <div class="prf">
+            <div class="blab d">Demonstrație</div>
+            <div><strong>1)</strong> Fie P(x, y) un punct oarecare al parabolei. Distanța la focar este PF = √(x² + (y − p)²) — formula distanței.<br><strong>2)</strong> Distanța la directoare (d e orizontală, y = −p) este dist(P, d) = y − (−p) = y + p.<br><strong>3)</strong> Din definiție PF = dist(P, d); ridicăm la pătrat: x² + (y − p)² = (y + p)².<br><strong>4)</strong> Dezvoltăm: x² + y² − 2py + p² = y² + 2py + p². Reducem y² și p², obținem <span class="hl">x² = 4py</span>.</div>
+          </div>
+          <div class="mini">
+            <div class="blab t">Corolar — funcția de gradul al II-lea</div>
+            <div>Notând a = 1/(4p), ecuația devine y = ax². Pentru o parabolă cu vârful V(m, n) și axa paralelă cu Oy, prin translația X = x − m, Y = y − n, obținem Y = aX² ⇔ y = a(x − m)² + n. Dezvoltând: <span class="hl">y = ax² + bx + c</span>, cu b = −2am, c = am² + n — forma generală a funcției de gradul al II-lea.</div>
+          </div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="eqCv" class="icv" width="520" height="430"></canvas>
+          <div class="legend"><span><i style="background:#2C1A0E"></i>O — vârful (origine)</span><span><i style="background:#B8860B"></i>F(0, p) — focarul</span><span><i class="ln" style="background:#B71C1C"></i>d: y = −p — directoarea</span><span><i style="background:#2C1A0E"></i>P(x, y) — punct al curbei</span><span><i class="ln" style="background:#1565C0"></i>PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = y + p</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · FUNCȚIA DE GRADUL AL II-LEA -->
+  <section class="slide" data-label="Funcția f">
+    <div class="wrap">
+      <div class="eyebrow u">Reprezentarea algebrică</div>
+      <h2 class="u" style="--d:1">Funcția de gradul al II-lea</h2>
       <div class="fb u" style="--d:2">
         <div class="blab">Definiție</div>
         <div class="formula"><span class="v">f</span> : ℝ → ℝ,&nbsp; <span class="v">f</span>(x) = <span class="v">a</span>x² + <span class="v">b</span>x + <span class="v">c</span></div>
-        <div class="subnote">cu <strong>a, b, c ∈ ℝ</strong>, <strong>a ≠ 0</strong> — se numește <strong>funcție de gradul al II-lea</strong>; graficul ei se numește <strong>parabolă</strong></div>
+        <div class="subnote">cu <strong>a, b, c ∈ ℝ</strong>, <strong>a ≠ 0</strong>. Conform corolarului precedent, graficul ei este o <strong>parabolă cu axa de simetrie paralelă cu Oy</strong> — un caz particular al parabolelor din planul euclidian. Parabolele cu axă orizontală sau rotite nu sunt grafice de funcție y = f(x); ele apar mai târziu, în slide-ul despre conice.</div>
       </div>
-      <div class="grid2" style="margin-top:22px">
+      <div class="grid2" style="margin-top:16px">
         <div class="card u" style="--d:3">
           <h3>Semnificația coeficienților</h3>
           <table class="mt">
             <thead><tr><th>Coef.</th><th>Rol</th><th>Efect grafic</th></tr></thead>
             <tbody>
-              <tr><td><strong style="color:var(--gold)">a</strong></td><td>Principal</td><td>Direcția ramurilor ↑ / ↓</td></tr>
-              <tr><td><strong style="color:var(--gold)">b</strong></td><td>Liniar</td><td>Poziția orizontală a vârfului</td></tr>
-              <tr><td><strong style="color:var(--gold)">c</strong></td><td>Liber</td><td>Intersecția cu Oy: f(0)=c</td></tr>
+              <tr><td><strong style="color:var(--gold)">a</strong></td><td>Principal</td><td>Direcția ramurilor ↑ / ↓ și „deschiderea” parabolei</td></tr>
+              <tr><td><strong style="color:var(--gold)">b</strong></td><td>Liniar</td><td>Poziția orizontală a vârfului (împreună cu a)</td></tr>
+              <tr><td><strong style="color:var(--gold)">c</strong></td><td>Liber</td><td>Intersecția cu axa Oy: f(0) = c</td></tr>
             </tbody>
           </table>
         </div>
         <div class="stack u" style="--d:4">
-          <div class="mini"><strong>Condiție:</strong> a ≠ 0 — altfel funcția devine liniară.</div>
-          <div class="mini"><strong>Domeniu:</strong> D = ℝ &nbsp;|&nbsp; <strong>Codomeniu:</strong> [n,+∞) dacă a&gt;0; (−∞,n] dacă a&lt;0</div>
-          <div class="mini"><strong>Graf:</strong> parabolă cu axa de simetrie x = −b/(2a)</div>
+          <div class="mini"><strong>Condiție:</strong> a ≠ 0 — altfel f devine funcție de gradul I (dreaptă).</div>
+          <div class="mini"><strong>Domeniu:</strong> D = ℝ. &nbsp; <strong>Codomeniu:</strong> [n, +∞) dacă a &gt; 0; (−∞, n] dacă a &lt; 0 (n = ordonata vârfului).</div>
+          <div class="mini"><strong>Axa de simetrie:</strong> x = −b/(2a) — dreaptă verticală.</div>
         </div>
       </div>
     </div>
@@ -530,58 +590,7 @@ p{margin-bottom:12px;max-width:66ch}
     </div>
   </section>
 
-  <!-- 10 · DIVIDER · PARTEA A II-A -->
-  <section class="slide" data-label="Partea a II-a">
-    <div class="wrap final">
-      <span class="fpill u">Partea a II-a — Cercetarea</span>
-      <div class="fbig u" style="--d:1">Șase perspective asupra parabolei.</div>
-      <div class="chips u" style="--d:2">
-        <span class="chip">Focar & directoare</span><span class="chip">Tangente</span><span class="chip">Reflexie</span><span class="chip">Cercul osculator</span><span class="chip">Arhimede 4/3</span><span class="chip">Conice & matrice</span><span class="chip">Asemănare</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 11 · FOCAR & DIRECTOARE -->
-  <section class="slide" data-label="Focar">
-    <div class="wrap">
-      <div class="eyebrow u">Perspectiva geometrică</div>
-      <h2 class="u" style="--d:1">Focarul și directoarea</h2>
-      <div class="grid2">
-        <div class="stack u" style="--d:2">
-          <div class="fb sm">
-            <div class="blab">Definiție</div>
-            <div class="formula">PF = dist(P, d)</div>
-            <div class="subnote"><strong>F</strong> = punct fix, numit <strong>focar</strong>; <strong>d</strong> = dreaptă fixă care nu trece prin F, numită <strong>directoare</strong>; <strong>P(x, y)</strong> = punct oarecare al curbei. <strong>Parabola</strong> = locul geometric (mulțimea) punctelor egal depărtate de F și de d. <strong>p</strong> = distanța de la vârf la focar (= cea până la directoare).</div>
-          </div>
-          <div class="fb sm">
-            <div class="blab t">Teoremă — formulele pentru y = ax²</div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px">
-              <div><div class="vl" style="margin-bottom:4px">distanța focală</div><div class="formula" style="font-size:1.05rem">p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span></div></div>
-              <div><div class="vl" style="margin-bottom:4px">focarul</div><div class="formula" style="font-size:1.05rem">F<span style="font-size:.85em">(</span>0, <span class="frac"><span class="n">1</span><span class="d">4a</span></span><span style="font-size:.85em">)</span></div></div>
-              <div><div class="vl" style="margin-bottom:4px">directoarea</div><div class="formula" style="font-size:1.05rem">y = −<span class="frac"><span class="n">1</span><span class="d">4a</span></span></div></div>
-            </div>
-            <div class="subnote">Graficul prezintă parabola <strong>y = a·x²</strong> (vârful în O); <strong>a</strong> = coeficientul ei. General (vârf V(m, n)): focar F(m, n + 1/(4a)), directoare y = n − 1/(4a).</div>
-          </div>
-          <div class="prf">
-            <div class="blab d">Demonstrație</div>
-            <div>Fie P(x, y) pe curbă. PF = √(x² + (y−p)²) — formula distanței; d fiind orizontală, dist(P, d) = y − (−p) = y + p. Egalăm și ridicăm la pătrat:<br>x² + (y−p)² = (y+p)² &nbsp;⇒&nbsp; x² = 4py ⇒ <span class="hl">y = <span class="frac"><span class="n">1</span><span class="d">4p</span></span>·x²</span> — adică a = <span class="frac"><span class="n">1</span><span class="d">4p</span></span> ⟺ p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span></div>
-          </div>
-        </div>
-        <div class="u" style="--d:3">
-          <canvas id="focusCv" class="icv" width="520" height="320"></canvas>
-          <button class="xpand" data-big="focus" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = a·x²</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = dist(P, d)</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span><span><i style="background:#B8860B"></i>focarul F</span><span><i class="ln" style="background:#8a6508"></i>p — de la vârful O la F</span><span><i style="background:#2C1A0E"></i>P — punct mobil pe parabolă</span></div>
-          <div class="ctr">
-            <div class="mci"><div class="lab"><span>a</span><span id="fAv">0.5</span></div><input type="range" id="fA" min="0.2" max="1.2" step="0.05" value="0.5"></div>
-            <div class="mci"><div class="lab"><span>x<sub>P</sub></span><span id="fTv">1.6</span></div><input type="range" id="fT" min="-2.2" max="2.2" step="0.05" value="1.6"></div>
-          </div>
-          <div class="istats" id="focusStats"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 12 · TANGENTE -->
+  <!-- 10 · TANGENTE -->
   <section class="slide" data-label="Tangente">
     <div class="wrap">
       <div class="eyebrow u">Două drumuri, aceeași dreaptă</div>
@@ -804,8 +813,8 @@ p{margin-bottom:12px;max-width:66ch}
   <!-- 18 · FINAL -->
   <section class="slide" data-label="Final">
     <div class="wrap final">
-      <div class="fbig u" style="--d:0">Vă mulțumim pentru atenție!</div>
-      <div class="u" style="--d:1;margin-top:10px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--sub)"><b style="color:var(--gold)">Boștină Vlad</b> &nbsp;—&nbsp; <b style="color:var(--gold)">Nedelcu Calin</b></div>
+      <div class="fbig u" style="--d:0">Vă mulțumesc pentru atenție!</div>
+      <div class="u" style="--d:1;margin-top:10px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--sub)"><b style="color:var(--gold)">Nedelcu Calin</b></div>
     </div>
   </section>
 
@@ -1456,6 +1465,39 @@ function updateSim(){
   requestAnimationFrame(reflLoop);
 })(0);
 
+/* ── diagrama statică pentru slide-ul „Ecuația parabolei” ── */
+function drawEqDiagram(){
+  const cv=$('eqCv');if(!cv)return;
+  const k=cv.width/520,g=miniAxes(cv,55*k,cv.width/2,cv.height-90*k);
+  const a=0.25,p=1/(4*a),xP=1.7,yP=a*xP*xP;
+  /* directoarea */
+  g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
+  g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,12,g.ty(-p)-7,'d:  y = −p','#B71C1C');
+  /* parabola */
+  plotFn(g,x=>a*x*x,'#C4820A',3.2);
+  glabel(g,12,18,'y = (1/(4p))·x²','#8a6508');
+  /* segmentul p */
+  const pxp=g.tx(0)-13;
+  g.ctx.strokeStyle='#8a6508';g.ctx.lineWidth=2;
+  g.ctx.beginPath();g.ctx.moveTo(pxp,g.ty(0));g.ctx.lineTo(pxp,g.ty(p));g.ctx.stroke();
+  g.ctx.beginPath();g.ctx.moveTo(pxp-3,g.ty(0));g.ctx.lineTo(pxp+3,g.ty(0));g.ctx.moveTo(pxp-3,g.ty(p));g.ctx.lineTo(pxp+3,g.ty(p));g.ctx.stroke();
+  glabel(g,pxp-7,(g.ty(0)+g.ty(p))/2+4,'p','#8a6508','right');
+  /* PF */
+  g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2.2;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(p));g.ctx.lineTo(g.tx(xP),g.ty(yP));g.ctx.stroke();
+  glabel(g,(g.tx(0)+g.tx(xP))/2,(g.ty(p)+g.ty(yP))/2-6,'PF','#0D47A1','center');
+  /* PQ (perpendiculară pe d) */
+  g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=2.2;g.ctx.setLineDash([5,4]);
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(xP),g.ty(yP));g.ctx.lineTo(g.tx(xP),g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,g.tx(xP)+8,(g.ty(yP)+g.ty(-p))/2+4,'PQ = y + p','#1B5E20');
+  /* puncte */
+  gdot(g,0,0,5,'#2C1A0E','#fff');gtag(g,0,0,'O (vârf)','#2C1A0E');
+  gdot(g,0,p,6,'#B8860B','#fff');gtag(g,0,p,'F(0, p)','#8a6508');
+  gdot(g,xP,yP,6,'#2C1A0E','#fff');gtag(g,xP,yP,'P(x, y)','#2C1A0E');
+  gdot(g,xP,-p,5,'#B71C1C','#fff');gtag(g,xP,-p,'Q','#B71C1C');
+}
+
 /* ── big view: orice demo, pe tot ecranul ── */
 const BIGDEFS={
   focus:{cv:'focusCv',w:520,h:320,title:'Focarul și directoarea',fn:()=>updateFocus(),drag:'fT'},
@@ -1562,6 +1604,7 @@ function dragX(cvId,slId,getView,fn){
 const slideHooks={
   'Calculator':()=>updateCalc(),
   'Focar':()=>updateFocus(),
+  'Ecuația':()=>drawEqDiagram(),
   'Tangente':()=>updateTan(),
   'Curbură':()=>updateOsc(),
   'Arhimede':()=>updateArh(),
@@ -1610,7 +1653,7 @@ addEventListener('load',()=>{
   }));
   document.getElementById('imgZ').addEventListener('click',()=>document.getElementById('imgZ').classList.remove('open'));
   addEventListener('resize',()=>{if(bigOpen){sizeBig();bigT=null;BIGDEFS[bigKey].fn()}});
-  updateFocus();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
+  updateFocus();drawEqDiagram();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
   updateCalc();
   go(0);
 });
