@@ -91,12 +91,12 @@ p{margin-bottom:12px;max-width:66ch}
 .cards{display:grid;gap:15px}
 .c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:repeat(2,1fr)}
 @media(max-width:820px){.c3,.c2{grid-template-columns:1fr}}
-.stack{display:flex;flex-direction:column;gap:14px}
+.stack{display:flex;flex-direction:column;gap:11px}
 .card{background:var(--panel2);border:1px solid var(--line);border-radius:15px;padding:22px;transition:.32s;box-shadow:var(--sh)}
 .card:hover{transform:translateY(-4px);box-shadow:var(--sH)}
-.mini{font-size:1.02rem;color:var(--sub);padding:16px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px;line-height:1.65}
+.mini{font-size:.98rem;color:var(--sub);padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;line-height:1.6}
 .mini strong{color:var(--txt)}
-.note{display:flex;gap:12px;align-items:flex-start;background:rgba(199,125,10,.07);border:1px solid rgba(199,125,10,.24);border-radius:12px;padding:14px 17px;font-size:.96rem;color:var(--txt)}
+.note{display:flex;gap:12px;align-items:flex-start;background:rgba(199,125,10,.07);border:1px solid rgba(199,125,10,.24);border-radius:12px;padding:11px 15px;font-size:.92rem;color:var(--txt)}
 .gp{color:var(--green);font-weight:700}.gn{color:var(--red);font-weight:700}.gz{color:var(--blue);font-weight:700}
 
 /* ── tables ── */
@@ -204,10 +204,10 @@ p{margin-bottom:12px;max-width:66ch}
 .ist{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 11px;min-width:0}
 .ist .l{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;font-weight:600;color:var(--sub);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ist .v{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink);overflow-wrap:break-word}
-.fb.sm{padding:15px 20px}
+.fb.sm{padding:12px 18px}
 .fb.sm .formula{font-size:clamp(1.15rem,2.1vw,1.55rem)}
-.fb.sm .subnote{margin-top:8px;font-size:.92rem}
-.prf{padding:13px 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;font-family:var(--serif);font-size:1.02rem;line-height:2.05;color:var(--ink)}
+.fb.sm .subnote{margin-top:6px;font-size:.88rem;line-height:1.55}
+.prf{padding:11px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;font-family:var(--serif);font-size:1.02rem;line-height:1.9;color:var(--ink)}
 .prf strong{color:var(--amber)}
 .mat3{display:inline-grid;grid-template-columns:repeat(3,auto);gap:3px 13px;padding:8px 12px;border-left:2.5px solid var(--ink);border-right:2.5px solid var(--ink);border-radius:7px}
 .mat3 span{text-align:center;min-width:30px;font-family:var(--serif);color:var(--ink)}
@@ -539,21 +539,22 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab">Definiție</div>
             <div class="formula">PF = dist(P, d)</div>
-            <div class="subnote">Fie un punct <strong>F</strong> și o dreaptă <strong>d</strong> care nu trece prin el. <strong>Parabola</strong> de focar F și directoare d este <strong>locul geometric</strong> (= mulțimea) punctelor P egal depărtate de F și de d. Notăm cu <strong>p</strong> distanța de la vârf la focar.</div>
+            <div class="subnote"><strong>F</strong> = un punct fix, numit <strong>focar</strong> · <strong>d</strong> = o dreaptă fixă care nu trece prin F, numită <strong>directoare</strong> · <strong>P(x, y)</strong> = un punct oarecare al curbei. <strong>Parabola</strong> = locul geometric (mulțimea) punctelor P aflate la distanțe egale de F și de d. <strong>p</strong> = distanța de la vârf la focar (egală cu distanța de la vârf la directoare).</div>
+          </div>
+          <div class="fb sm">
+            <div class="blab t">Teoremă · formulele pentru y = ax²</div>
+            <div class="formula" style="font-size:1.1rem">p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span> &nbsp;·&nbsp; F<span style="font-size:.85em">(</span>0, <span class="frac"><span class="n">1</span><span class="d">4a</span></span><span style="font-size:.85em">)</span> &nbsp;·&nbsp; d: y = −<span class="frac"><span class="n">1</span><span class="d">4a</span></span></div>
+            <div class="subnote"><strong>În experiment</strong> desenăm parabola <strong>y = a·x²</strong> cu vârful în origine — <strong>a</strong> e coeficientul ei, îl schimbi din slider. General, pentru f(x) = ax²+bx+c cu vârful V(m, n): F(m, n + 1/(4a)) și d: y = n − 1/(4a).</div>
           </div>
           <div class="prf">
-            <div class="blab d">Demonstrație · vârful în origine</div>
-            <div>P(x, y), F(0, p), d: y = −p. Egalăm distanțele, ridicăm la pătrat:<br>x² + (y−p)² = (y+p)² &nbsp;⇒&nbsp; x² = 4py<br>⇒ <span class="hl">y = <span class="frac"><span class="n">1</span><span class="d">4p</span></span>·x²</span> — deci a = <span class="frac"><span class="n">1</span><span class="d">4p</span></span>, adică p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span> ∎</div>
-          </div>
-          <div class="mini">
-            <div class="blab t">Teoremă</div>
-            <div>Graficul oricărei funcții f(x) = ax²+bx+c este o astfel de parabolă, cu p = 1/(4a), focarul F(m, n+p) și directoarea y = n−p — rezultă prin translația vârfului (distanțele nu se schimbă).</div>
+            <div class="blab d">Demonstrație</div>
+            <div>Fie P(x, y) pe curbă. PF = √(x² + (y−p)²) — formula distanței; dist(P, d) = y + p. Le egalăm și ridicăm la pătrat:<br>x² + (y−p)² = (y+p)² &nbsp;⇒&nbsp; x² = 4py ⇒ <span class="hl">y = <span class="frac"><span class="n">1</span><span class="d">4p</span></span>·x²</span> — adică a = <span class="frac"><span class="n">1</span><span class="d">4p</span></span> ⟺ p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span> ∎</div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="focusCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="focus" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = dist(P, d)</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span><span><i style="background:#B8860B"></i>focarul F</span><span><i style="background:#2C1A0E"></i>P — trage-l cu mouse-ul</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = a·x²</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = dist(P, d)</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span><span><i style="background:#B8860B"></i>focarul F</span><span><i class="ln" style="background:#8a6508"></i>p — de la vârful O la F</span><span><i style="background:#2C1A0E"></i>P — trage-l cu mouse-ul</span></div>
           <div class="ctr">
             <div class="mci"><div class="lab"><span>a</span><span id="fAv">0.5</span></div><input type="range" id="fA" min="0.2" max="1.2" step="0.05" value="0.5"></div>
             <div class="mci"><div class="lab"><span>x<sub>P</sub></span><span id="fTv">1.6</span></div><input type="range" id="fT" min="-2.2" max="2.2" step="0.05" value="1.6"></div>
@@ -572,23 +573,23 @@ p{margin-bottom:12px;max-width:66ch}
       <div class="grid2">
         <div class="stack u" style="--d:2">
           <div class="fb sm">
-            <div class="blab">Definiție</div>
-            <div class="formula">T: y = f(x₀) + f′(x₀)(x − x₀)</div>
-            <div class="subnote"><strong>Tangenta</strong> în punctul T(x₀, f(x₀)) = poziția limită a secantei prin T; panta ei este derivata f′(x₀) = 2ax₀ + b (a XI-a). <strong>Normala</strong> = perpendiculara pe tangentă în T.</div>
+            <div class="blab t">Teoremă · ecuația tangentei (analiza, a XI-a)</div>
+            <div class="formula">T: y = f(x₀) + f′(x₀)·(x − x₀)</div>
+            <div class="subnote"><strong>T(x₀, f(x₀))</strong> = punctul de tangență; <strong>x₀</strong> = abscisa lui — un număr fixat; <strong>x</strong> = variabila (punctul curent de pe dreaptă); <strong>f′(x₀) = 2ax₀ + b</strong> = derivata în x₀ = <strong>panta</strong> tangentei. <strong>Tangenta</strong> = poziția limită a secantelor prin T; <strong>normala</strong> = perpendiculara pe tangentă în T.</div>
           </div>
           <div class="prf">
-            <div class="blab t">Teoremă · criteriul Δ = 0 (a IX-a)</div>
-            <div>Dreapta y = sx + ℓ (s = panta, ℓ = ordonata la origine) este tangentă parabolei ⟺ intersecția lor are soluție dublă:<br>ax² + (b−s)x + (c−ℓ) = 0 cu <span class="hl">Δ = 0</span> ⟺ ℓ = c − <span class="frac"><span class="n">(s−b)²</span><span class="d">4a</span></span></div>
+            <div class="blab t">Teoremă · criteriul Δ = 0 (algebra, a IX-a)</div>
+            <div>Dreapta y = sx + ℓ, unde <strong>s</strong> = panta ei și <strong>ℓ</strong> = ordonata la origine (locul în care taie axa Oy), e tangentă parabolei ⟺ ecuația f(x) = sx + ℓ are soluție dublă:<br>ax² + (b−s)x + (c−ℓ) = 0 cu <span class="hl">Δ = 0</span> ⟺ ℓ = c − <span class="frac"><span class="n">(s−b)²</span><span class="d">4a</span></span></div>
           </div>
           <div class="mini">
-            <div class="blab d">Demonstrație · cele două căi coincid</div>
-            <div>Cu s = 2ax₀+b, ambele dau ℓ = c − ax₀² — aceeași dreaptă ∎. Butonul „înfășurătoare” desenează numai tangentele: parabola apare singură, ca silueta lor.</div>
+            <div class="blab d">Demonstrație · cele două căi dau aceeași dreaptă</div>
+            <div>Punând s = 2ax₀ + b în criteriu obținem ℓ = c − ax₀² — exact ce dă și ecuația tangentei ∎. <strong>În experiment:</strong> exemplul f(x) = a·x² − x − 2 (adică b = −1 și c = −2, fixate); tu alegi <strong>a</strong> și <strong>x₀</strong> din slidere. Butonul „înfășurătoare”: desenăm doar tangentele — parabola apare singură.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="tanCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="tan" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola f</span><span><i class="ln" style="background:#1565C0"></i>tangenta T</span><span><i class="ln" style="background:#2E7D32"></i>normala N (punctată)</span><span><i style="background:#E53935"></i>T punctul de tangență — trage-l</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola f(x) = ax² − x − 2</span><span><i class="ln" style="background:#1565C0"></i>tangenta</span><span><i class="ln" style="background:#2E7D32"></i>normala (punctată)</span><span><i style="background:#E53935"></i>T — punctul de tangență, trage-l</span><span>x₀ — abscisa lui T, marcată punctat pe Ox</span></div>
           <div class="ctr c3x">
             <div class="mci"><div class="lab"><span>a</span><span id="tAv">0.5</span></div><input type="range" id="tA" min="-1.5" max="1.5" step="0.25" value="0.5"></div>
             <div class="mci"><div class="lab"><span>x₀</span><span id="tXv">1.5</span></div><input type="range" id="tX" min="-3" max="3" step="0.1" value="1.5"></div>
@@ -610,15 +611,15 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab t">Teoremă · proprietatea optică</div>
             <div class="formula">raze ∥ axă &nbsp;⟶&nbsp; focar</div>
-            <div class="subnote">Orice rază paralelă cu axa de simetrie, reflectată de parabolă după legea reflexiei (unghiul de incidență = unghiul de reflexie, față de tangentă), trece prin focarul F.</div>
+            <div class="subnote">Orice <strong>rază incidentă</strong> paralelă cu <strong>axa de simetrie</strong>, reflectată de parabolă după <strong>legea reflexiei</strong> (unghi de incidență = unghi de reflexie, măsurate față de tangenta din punctul de impact), trece prin focarul F. <strong>În experiment:</strong> parabola y = a·x², axa de simetrie este Oy, razele cad vertical.</div>
           </div>
           <div class="prf">
             <div class="blab d">Demonstrație</div>
-            <div>P(t, at²), Q = proiecția lui P pe directoare ⇒ <span class="hl">PF = PQ</span><br>Mediatoarea lui [FQ] (perpendiculara pe mijlocul lui): panta <span class="frac"><span class="n">t</span><span class="d">2p</span></span> = 2at = f′(t) și trece prin P ⇒ e <strong>tangenta</strong><br>Triunghi isoscel ⇒ unghiuri egale ⇒ raza verticală se reflectă spre F ∎</div>
+            <div>Fie <strong>P(t, at²)</strong> punctul de impact, <strong>Q</strong> = proiecția lui pe directoare. Din definiție <span class="hl">PF = PQ</span> ⇒ triunghiul FPQ e isoscel.<br>Mediatoarea lui [FQ] (perpendiculara pe mijloc) are panta <span class="frac"><span class="n">t</span><span class="d">2p</span></span> = 2at = f′(t) și trece prin P ⇒ e chiar <strong>tangenta</strong>.<br>Unghiuri egale în triunghiul isoscel ⇒ raza verticală se reflectă spre F ∎</div>
           </div>
           <div class="mini">
             <div class="blab d">Observație · aplicații</div>
-            <div>Antene satelit, faruri auto, telescoape, cuptoare solare — toate sunt parabole care adună sau emit razele prin focar.</div>
+            <div>Antene satelit, faruri, telescoape, cuptoare solare — oglinzi parabolice care adună sau emit razele prin focar.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
@@ -643,22 +644,22 @@ p{margin-bottom:12px;max-width:66ch}
         <div class="stack u" style="--d:2">
           <div class="fb sm">
             <div class="blab">Definiție</div>
-            <div class="formula">cerc(P₋ₕ, P₀, P₊ₕ) <span style="font-size:.7em;color:var(--sub)">h→0</span>⟶ cerc osculator</div>
-            <div class="subnote"><strong>Cercul osculator</strong> într-un punct al curbei = poziția limită a cercului prin 3 puncte ale curbei, când ele se strâng spre punctul dat; raza lui R = <strong>raza de curbură</strong>. <strong>Evoluta</strong> = locul geometric al centrelor acestor cercuri.</div>
+            <div class="formula" style="font-size:1.15rem">cerc(P₋ₕ, P₀, P₊ₕ) <span style="font-size:.7em;color:var(--sub)">h→0</span>⟶ cerc osculator</div>
+            <div class="subnote"><strong>P₀(t, f(t))</strong> = punctul în care studiem curba, cu abscisa <strong>t</strong> · <strong>P₋ₕ și P₊ₕ</strong> = punctele vecine de pe curbă, cu abscisele t−h și t+h · <strong>h</strong> = distanța orizontală până la vecini. <strong>Cercul osculator în P₀</strong> = poziția limită a cercului prin cele 3 puncte, când h → 0. Raza lui, <strong>R</strong>, se numește <strong>raza de curbură</strong>; <strong>evoluta</strong> = locul geometric al centrelor C.</div>
           </div>
           <div class="prf">
-            <div class="blab t">Teoremă + demonstrație · în vârf</div>
-            <div>Cercul prin V(0,0) și punctele (±h, ah²) are raza:<br>h² + a²h⁴ = 2ah²r ⇒ r = <span class="frac"><span class="n">1 + a²h²</span><span class="d">2a</span></span> <span class="hl">⟶ R = <span class="frac"><span class="n">1</span><span class="d">2a</span></span></span> când h→0 ∎</div>
+            <div class="blab t">Teoremă + demonstrație · raza în vârf</div>
+            <div>Pe y = ax², cercul prin vârful V(0,0) și punctele simetrice (±h, ah²) are raza:<br>h² + a²h⁴ = 2ah²r ⇒ r = <span class="frac"><span class="n">1 + a²h²</span><span class="d">2a</span></span> <span class="hl">⟶ R = <span class="frac"><span class="n">1</span><span class="d">2a</span></span></span> când h→0 ∎</div>
           </div>
           <div class="mini">
             <div class="blab d">Observație</div>
-            <div>În vârf R = 1/(2a) = <strong>2p</strong> — exact dublul distanței focale. Parabola e cea mai curbată în vârf și tot mai „dreaptă” spre infinit.</div>
+            <div><strong>În experiment:</strong> parabola y = x²/2, deci a = 1/2 și în vârf R = 1/(2a) = 1 = <strong>2p</strong> — exact dublul distanței focale. Parabola e cea mai curbată în vârf și tot mai „dreaptă” spre infinit.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="oscCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="osc" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²/2</span><span><i style="background:#E53935"></i>3 puncte: x = t−h, t, t+h</span><span><i class="ln" style="background:#1565C0"></i>cercul prin ele + centrul C</span><span><i class="ln" style="background:#7B1FA2"></i>evoluta (punctată)</span><span><i style="background:#B8860B"></i>focarul F</span><span>t mută punctele · h le apropie</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²/2</span><span><i style="background:#E53935"></i>P₋ₕ, P₀, P₊ₕ — abscisele t−h, t, t+h</span><span><i class="ln" style="background:#1565C0"></i>cercul prin ele + centrul C</span><span><i class="ln" style="background:#7B1FA2"></i>evoluta (punctată)</span><span><i style="background:#B8860B"></i>focarul F</span><span>t mută punctele · h le apropie</span></div>
           <div class="ctr">
             <div class="mci"><div class="lab"><span>t</span><span id="oTv">1.4</span></div><input type="range" id="oT" min="-2.4" max="2.4" step="0.05" value="1.4"></div>
             <div class="mci"><div class="lab"><span>h</span><span id="oHv">1</span></div><input type="range" id="oH" min="0.05" max="1.2" step="0.05" value="1"></div>
@@ -679,11 +680,11 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab t">Teorema lui Arhimede</div>
             <div class="formula">A<sub>segment</sub> = <span class="frac"><span class="n">4</span><span class="d">3</span></span> · A<sub>triunghi</sub></div>
-            <div class="subnote"><strong>Segment parabolic</strong> = regiunea dintre o coardă și arcul de parabolă. <strong>Triunghiul înscris</strong>: baza = coarda, al treilea vârf = punctul unde tangenta e paralelă cu coarda. („Cvadratura parabolei”, sec. III î.Hr.)</div>
+            <div class="subnote"><strong>Coardă</strong> = segmentul AB dintre două puncte de pe parabolă · <strong>segment parabolic</strong> = regiunea dintre coardă și arcul de parabolă · <strong>triunghiul înscris</strong> = triunghiul ABV′, unde <strong>V′</strong> = punctul de pe arc în care tangenta e paralelă cu coarda. <strong>În experiment:</strong> y = x², coarda dintre A(−1, 1) și B(1, 1), deci V′ = O(0, 0) și A<sub>triunghi</sub> = 1. („Cvadratura parabolei”, sec. III î.Hr.)</div>
           </div>
           <div class="prf">
             <div class="blab d">Lemă (cu derivata) · construcția</div>
-            <div>Pe y = x², coarda de la p la q are panta p+q; tangenta are panta 2x ⇒ paralele la x = (p+q)/2. <strong>Consecință:</strong> fiecare generație de triunghiuri are ¼ din aria precedentei.</div>
+            <div>Pe y = x², coarda dintre punctele de abscise <strong>p</strong> și <strong>q</strong> are panta p+q; tangenta are panta 2x ⇒ paralele exact la x = (p+q)/2, mijlocul absciselor. <strong>Consecință:</strong> fiecare generație nouă de triunghiuri are ¼ din aria precedentei.</div>
           </div>
           <div class="fb sm">
             <div class="blab d">Demonstrație · suma seriei</div>
@@ -694,7 +695,7 @@ p{margin-bottom:12px;max-width:66ch}
         <div class="u" style="--d:3">
           <canvas id="arhCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="arh" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²</span><span><i class="ln" style="background:#B71C1C"></i>coarda (baza segmentului)</span><span><i style="background:#D4A017"></i>triunghiurile — o nuanță pe generație</span><span>n = câte generații adăugăm</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²</span><span><i class="ln" style="background:#B71C1C"></i>coarda AB cu capetele A(−1,1), B(1,1)</span><span><i style="background:#2C1A0E"></i>V′ = O — vârful triunghiului înscris</span><span><i style="background:#D4A017"></i>triunghiurile — o nuanță pe generație</span><span>n = câte generații adăugăm</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
             <div class="mci"><div class="lab"><span>generații n</span><span id="aNv">1</span></div><input type="range" id="aN" min="0" max="6" step="1" value="1"></div>
           </div>
@@ -714,9 +715,9 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab">Definiție</div>
             <div class="formula" style="font-size:1.2rem">Ax² + Bxy + Cy² + Dx + Ey + F = 0</div>
-            <div class="subnote"><strong>Conică</strong> = mulțimea punctelor (x, y) din plan care verifică o ecuație de gradul al II-lea ca mai sus (A, B, C nu toate nule)</div>
+            <div class="subnote"><strong>Conică</strong> = mulțimea punctelor (x, y) care verifică o astfel de ecuație de gradul al II-lea. <strong>A, B, C</strong> = coeficienții de grad II (x², xy, y²), nu toți nuli · <strong>D, E</strong> = coeficienții de grad I · <strong>F</strong> = termenul liber. <strong>În experiment:</strong> tu alegi A, B, C; D = 1, E = −5, F = 0 — fixați ca să rămână curba pe ecran.</div>
           </div>
-          <div class="card" style="padding:14px;text-align:center">
+          <div class="card" style="padding:10px;text-align:center">
             <div class="vl">scrierea matricială · X<sup>T</sup>·M·X = 0</div>
             <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--serif);font-size:1rem;color:var(--ink)">
               <span>[x&thinsp;y&thinsp;1]</span>
@@ -726,9 +727,9 @@ p{margin-bottom:12px;max-width:66ch}
           </div>
           <div class="mini">
             <div class="blab t">Teoremă · clasificarea (o admitem)</div>
-            <div>B²−4AC &lt; 0 elipsă · <span class="hl">= 0 parabolă</span> · &gt; 0 hiperbolă. Intuiția: Ax²+Bxy+Cy² e pătrat perfect exact când B²−4AC = 0 — același Δ din clasa a IX-a. Parabola e <strong>frontiera</strong> dintre elipsă și hiperbolă.</div>
+            <div>Semnul lui <strong>B² − 4AC</strong> decide tipul: &lt; 0 → elipsă · <span class="hl">= 0 → parabolă</span> · &gt; 0 → hiperbolă. Intuiția: Ax²+Bxy+Cy² e pătrat perfect ⟺ B²−4AC = 0 — discriminantul din a IX-a. Parabola = <strong>frontiera</strong> dintre elipsă și hiperbolă.</div>
           </div>
-          <div class="note"><div><strong>De ce „conice”?</strong> Sunt secțiunile unui con: planul paralel cu o generatoare (o dreaptă de pe suprafața conului) decupează parabola; mai „culcat” — elipsa; mai „vertical” (taie ambele pânze) — hiperbola.</div></div>
+          <div class="note"><div><strong>De ce „conice”?</strong> Sunt secțiuni printr-un con: plan paralel cu o generatoare (dreaptă a conului) → parabolă; mai „culcat” → elipsă; mai „vertical” → hiperbolă.</div></div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="conCv" class="icv" width="520" height="300"></canvas>
@@ -755,15 +756,15 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab">Definiție</div>
             <div class="formula">(x, y) ⟼ (λx, λy)</div>
-            <div class="subnote"><strong>Asemănarea de raport λ &gt; 0</strong> = transformarea care înmulțește toate distanțele cu λ (un „zoom” uniform al planului). Două figuri sunt <strong>asemenea</strong> dacă una e imaginea celeilalte printr-o asemănare.</div>
+            <div class="subnote"><strong>λ &gt; 0</strong> = <strong>raportul de asemănare</strong>. Transformarea de mai sus duce fiecare punct (x, y) al planului în punctul (λx, λy), deci înmulțește <strong>toate distanțele cu λ</strong> — un „zoom” uniform. Două figuri sunt <strong>asemenea</strong> dacă una este imaginea celeilalte printr-o astfel de transformare.</div>
           </div>
           <div class="prf">
             <div class="blab t">Teoremă + demonstrație</div>
-            <div><strong>Oricare două parabole sunt asemenea.</strong> Fie y = ax² și X = λx, Y = λy:<br>Y = λ·ax² = λa(X/λ)² = <span class="hl">(a/λ)·X²</span><br>Cu λ = a/a′, parabola „a” devine parabola „a′” ∎</div>
+            <div><strong>Oricare două parabole y = ax² și y = a′x² sunt asemenea.</strong> Aplicăm zoom-ul X = λx, Y = λy punctelor de pe y = ax²:<br>Y = λ·ax² = λa·(X/λ)² = <span class="hl">(a/λ)·X²</span> ⇒ imaginea e parabola cu coeficientul a/λ.<br>Alegând λ = a/a′, imaginea devine exact y = a′x² ∎</div>
           </div>
           <div class="mini">
             <div class="blab d">Observație</div>
-            <div><strong>Ca cercurile:</strong> nu există parabole „mai late” sau „mai înguste” — doar văzute mai de aproape sau mai de departe. La elipse nu funcționează: raportul semiaxelor rezistă la zoom.</div>
+            <div><strong>În experiment:</strong> stânga — y = a·x² într-o fereastră fixă; dreapta — aceeași curbă privită cu zoom λ = a: imaginea nu se schimbă niciodată. Ca la cercuri: nu există parabole „mai late”, doar văzute de la altă distanță. La elipse nu merge — raportul semiaxelor rezistă la zoom.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
@@ -1088,6 +1089,21 @@ function plotFn(g,f,color,lw,dash){
 function gdot(g,x,y,r,fill,ring){const{ctx,tx,ty}=g;ctx.beginPath();ctx.arc(tx(x),ty(y),r,0,2*Math.PI);ctx.fillStyle=fill;ctx.fill();if(ring){ctx.strokeStyle=ring;ctx.lineWidth=1.8;ctx.stroke()}}
 function gtag(g,x,y,txt,color){const{ctx,tx,ty}=g;ctx.font='bold 11px Inter,sans-serif';const w=ctx.measureText(txt).width;ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(tx(x)+6,ty(y)-16,w+6,15);ctx.fillStyle=color;ctx.fillText(txt,tx(x)+9,ty(y)-4)}
 function ist(l,v,hi){return `<div class="ist"${hi?' style="background:rgba(184,134,11,.12);border-color:var(--gold)"':''}><div class="l">${l}</div><div class="v">${v}</div></div>`}
+/* etichetă text cu fundal alb, la coordonate de canvas */
+function glabel(g,px,py,txt,color,align){
+  const ctx=g.ctx;ctx.font='bold 11px Inter,sans-serif';ctx.textAlign=align||'left';
+  const w=ctx.measureText(txt).width,lx=align==='center'?px-w/2:align==='right'?px-w:px;
+  ctx.fillStyle='rgba(255,255,255,.88)';ctx.fillRect(lx-3,py-11,w+6,14);
+  ctx.fillStyle=color;ctx.fillText(txt,px,py);ctx.textAlign='left';
+}
+/* pune numele unei drepte y=f(x) acolo unde e vizibilă, dinspre dreapta */
+function lineLabel(g,f,txt,color){
+  const{W,H,cx,cy,sc}=g;
+  for(let px=W-14;px>14;px-=6){
+    const py=cy-f((px-cx)/sc)*sc;
+    if(py>24&&py<H-14){glabel(g,px,py-12,txt,color,'right');return}
+  }
+}
 
 /* ── 11 · focar & directoare ── */
 function updateFocus(){
@@ -1098,16 +1114,27 @@ function updateFocus(){
   views.focus={sc:g.sc,cx:g.cx,px:g.tx(t),py:g.ty(Py)};
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
   g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('directoarea d:  y = −p',10,g.ty(-p)-7);
+  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('directoarea d:  y = −p = −'+fmt(p),10,g.ty(-p)-7);
   plotFn(g,x=>a*x*x,'#C4820A',3.2);
+  /* eticheta curbei din experiment */
+  glabel(g,g.tx(-2.05),g.ty(a*2.05*2.05)-10,'y = '+fmt(a)+'·x²','#8a6508','center');
+  /* segmentul p: de la vârful O la focarul F */
+  const pxp=g.tx(0)-13;
+  g.ctx.strokeStyle='#8a6508';g.ctx.lineWidth=2;
+  g.ctx.beginPath();g.ctx.moveTo(pxp,g.ty(0));g.ctx.lineTo(pxp,g.ty(p));g.ctx.stroke();
+  g.ctx.beginPath();g.ctx.moveTo(pxp-3,g.ty(0));g.ctx.lineTo(pxp+3,g.ty(0));g.ctx.moveTo(pxp-3,g.ty(p));g.ctx.lineTo(pxp+3,g.ty(p));g.ctx.stroke();
+  glabel(g,pxp-7,(g.ty(0)+g.ty(p))/2+4,'p','#8a6508','right');
+  /* segmentele PF și PQ, cu valorile scrise pe ele */
   g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2.2;
   g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(p));g.ctx.lineTo(g.tx(t),g.ty(Py));g.ctx.stroke();
   g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=2.2;g.ctx.setLineDash([5,4]);
   g.ctx.beginPath();g.ctx.moveTo(g.tx(t),g.ty(Py));g.ctx.lineTo(g.tx(t),g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  gdot(g,0,p,6,'#B8860B','#fff');gtag(g,0,p,'F(0, p)','#8a6508');
+  const PF=Math.hypot(t,Py-p),PQ=Py+p;
+  glabel(g,(g.tx(0)+g.tx(t))/2,(g.ty(p)+g.ty(Py))/2-6,'PF = '+fmt(PF),'#0D47A1','center');
+  glabel(g,g.tx(t)+8,(g.ty(Py)+g.ty(-p))/2+4,'PQ = '+fmt(PQ),'#1B5E20');
+  gdot(g,0,p,6,'#B8860B','#fff');gtag(g,0,p,'F(0, '+fmt(p)+')','#8a6508');
   gdot(g,t,Py,6,'#2C1A0E','#fff');gtag(g,t,Py,'P','#2C1A0E');
   gdot(g,t,-p,5,'#B71C1C','#fff');gtag(g,t,-p,'Q','#B71C1C');
-  const PF=Math.hypot(t,Py-p),PQ=Py+p;
   $('focusStats').innerHTML=
     ist('p = 1/(4a)',fmt(p))+
     ist('Focarul F','(0, '+fmt(p)+')')+
@@ -1140,9 +1167,16 @@ function updateTan(){
   plotFn(g,x=>s*x+l,'#1565C0',2.2);
   if(!envOn){
     if(Math.abs(s)>1e-9)plotFn(g,x=>y0-(x-x0)/s,'#2E7D32',1.8,[6,5]);
-    else{g.ctx.setLineDash([6,5]);g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=1.8;g.ctx.beginPath();g.ctx.moveTo(g.tx(x0),0);g.ctx.lineTo(g.tx(x0),g.H);g.ctx.stroke();g.ctx.setLineDash([])}
+    else{g.ctx.setLineDash([6,5]);g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=1.8;g.ctx.beginPath();g.ctx.moveTo(g.tx(x0),0);g.ctx.lineTo(g.tx(x0),g.H);g.ctx.stroke();g.ctx.setLineDash([]);glabel(g,g.tx(x0)+6,30,'normala','#1B5E20')}
   }
-  gdot(g,x0,y0,6,'#E53935','#fff');gtag(g,x0,y0,'T','#B71C1C');
+  /* etichete: curba din experiment, tangenta, normala, marcajul x₀ pe Ox */
+  glabel(g,12,18,envOn?'familia celor 41 de tangente':'f(x) = '+fmt(a)+'x² − x − 2','#8a6508');
+  lineLabel(g,x=>s*x+l,'tangenta','#0D47A1');
+  if(!envOn&&Math.abs(s)>1e-9)lineLabel(g,x=>y0-(x-x0)/s,'normala','#1B5E20');
+  g.ctx.setLineDash([3,4]);g.ctx.strokeStyle='rgba(229,57,53,.55)';g.ctx.lineWidth=1.2;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(x0),g.ty(y0));g.ctx.lineTo(g.tx(x0),g.ty(0));g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,g.tx(x0),g.ty(0)+(y0<0?-5:17),'x₀ = '+fmt(x0),'#B71C1C','center');
+  gdot(g,x0,y0,6,'#E53935','#fff');gtag(g,x0,y0,'T(x₀, f(x₀))','#B71C1C');
   const dchk=Math.abs((b-s)*(b-s)-4*a*(c-l));
   const ln=Math.abs(s)>1e-9?y0+x0/s:0;
   $('tanStats').innerHTML=
@@ -1160,6 +1194,8 @@ function drawRefl(ts){
   const cv=pickCv('refl','reflCv'),k=cv.width/520,bv=bview(cv,52*k,cv.width/2,272*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
   const p=1/(4*a),ytop=4.9;
   plotFn(g,x=>a*x*x,'#C4820A',3.2);
+  glabel(g,12,18,'y = '+fmt(a)+'·x² — oglinda','#8a6508');
+  glabel(g,g.cx+6,34,'axa de simetrie (Oy)','#8B6E5A');
   const xm=Math.min(4.4,Math.sqrt(4.4/a)),rays=[];
   for(let i=0;i<8;i++){const t=-xm+(i+.5)*(2*xm/8);if(Math.abs(t)>=.25)rays.push(t)}
   g.ctx.strokeStyle='rgba(21,101,192,.18)';g.ctx.lineWidth=1.3;
@@ -1214,9 +1250,13 @@ function updateOsc(){
   if(cc){
     g.ctx.beginPath();g.ctx.arc(g.tx(cc.x),g.ty(cc.y),cc.r*g.sc,0,2*Math.PI);
     g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2;g.ctx.stroke();
-    gdot(g,cc.x,cc.y,4,'#1565C0','#fff');gtag(g,cc.x,cc.y,'C','#0D47A1');
+    gdot(g,cc.x,cc.y,4,'#1565C0','#fff');gtag(g,cc.x,cc.y,'C — centrul','#0D47A1');
   }
   [P1,P2,P3].forEach(P=>gdot(g,P.x,P.y,4.5,'#E53935','#fff'));
+  /* numele celor 3 puncte (la h mic le-am suprapune — etichetăm doar P₀) */
+  if(h>=0.35){gtag(g,P1.x,P1.y,'P₋ₕ','#B71C1C');gtag(g,P2.x,P2.y,'P₀','#B71C1C');gtag(g,P3.x,P3.y,'P₊ₕ','#B71C1C')}
+  else gtag(g,P2.x,P2.y,'P₀','#B71C1C');
+  glabel(g,12,18,'y = x²/2  (a = 1/2)','#8a6508');
   $('oscStats').innerHTML=
     ist('Parabola','y = x²/2 · a = 0.5')+
     ist('Puncte (roșii)','x = t−h, t, t+h')+
@@ -1242,8 +1282,13 @@ function updateArh(){
   }
   g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=2.4;
   g.ctx.beginPath();g.ctx.moveTo(g.tx(-1),g.ty(1));g.ctx.lineTo(g.tx(1),g.ty(1));g.ctx.stroke();
-  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('coarda y = 1',g.tx(.62),g.ty(1)-7);
+  glabel(g,g.tx(0),g.ty(1)-8,'coarda AB','#B71C1C','center');
   plotFn(g,x=>x*x,'#C4820A',3);
+  /* capetele coardei și vârful triunghiului înscris */
+  gdot(g,-1,1,5,'#B71C1C','#fff');glabel(g,g.tx(-1)-8,g.ty(1)-6,'A(−1, 1)','#B71C1C','right');
+  gdot(g,1,1,5,'#B71C1C','#fff');glabel(g,g.tx(1)+8,g.ty(1)-6,'B(1, 1)','#B71C1C');
+  gdot(g,0,0,5,'#2C1A0E','#fff');glabel(g,g.tx(0)+8,g.ty(0)-6,'V′ = O(0, 0) — tangenta ∥ AB','#2C1A0E');
+  glabel(g,12,18,'y = x²','#8a6508');
   const S=(4/3)*(1-Math.pow(.25,n+1)),num=Math.pow(4,n+1)-1,den=3*Math.pow(4,n);
   $('arhStats').innerHTML=
     ist('Generații','0 … '+n)+
@@ -1302,6 +1347,12 @@ function updateConic(){
   const verdict=deg?'DEGENERATĂ':disc<0?(B===0&&A===C?'CERC (elipsă)':'ELIPSĂ'):disc===0?'PARABOLĂ':'HIPERBOLĂ';
   const vcol=deg?'#78716C':disc<0?'#0D47A1':disc===0?'#8a6508':'#6A1B9A';
   const vbg=deg?'#EEEDEB':disc<0?'#E3F2FD':disc===0?'rgba(212,160,23,.18)':'#F3E5F5';
+  /* ecuația curentă + verdictul, scrise direct pe grafic */
+  ctx.font='bold 12px Inter,sans-serif';
+  const ceq=(eq||'0')+' = 0   →   '+verdict;
+  const cw=ctx.measureText(ceq).width;
+  ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(8,8,cw+12,20);
+  ctx.fillStyle=vcol;ctx.fillText(ceq,14,22);
   $('conStats').innerHTML=
     ist('Ecuația',(eq||'0')+' = 0')+
     ist('B² − 4AC',fmt(disc))+
