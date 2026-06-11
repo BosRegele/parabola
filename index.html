@@ -539,12 +539,16 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab">Definiție</div>
             <div class="formula">PF = dist(P, d)</div>
-            <div class="subnote"><strong>F</strong> = un punct fix, numit <strong>focar</strong>; <strong>d</strong> = o dreaptă fixă care nu trece prin F, numită <strong>directoare</strong>; <strong>P(x, y)</strong> = un punct oarecare al curbei. <strong>Parabola</strong> = locul geometric (mulțimea) punctelor P aflate la distanțe egale de F și de d. <strong>p</strong> = distanța de la vârf la focar (egală cu distanța de la vârf la directoare).</div>
+            <div class="subnote"><strong>F</strong> = un punct fix, numit <strong>focar</strong>; <strong>d</strong> = o dreaptă fixă care nu trece prin F, numită <strong>directoare</strong>; <strong>P(x, y)</strong> = un punct oarecare al curbei. <strong>Parabola</strong> = locul geometric (mulțimea) punctelor P aflate la distanțe egale de F și de d. <strong>p</strong> = distanța de la vârf la focar, egală cu cea de la vârf la directoare.</div>
           </div>
           <div class="fb sm">
             <div class="blab t">Teoremă — formulele pentru y = ax²</div>
-            <div class="formula" style="font-size:1.1rem">p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span> &nbsp;·&nbsp; F<span style="font-size:.85em">(</span>0, <span class="frac"><span class="n">1</span><span class="d">4a</span></span><span style="font-size:.85em">)</span> &nbsp;·&nbsp; d: y = −<span class="frac"><span class="n">1</span><span class="d">4a</span></span></div>
-            <div class="subnote">Graficul alăturat prezintă parabola <strong>y = a·x²</strong>, cu vârful în originea O; <strong>a</strong> este coeficientul ei. În general, pentru f(x) = ax²+bx+c cu vârful V(m, n): F(m, n + 1/(4a)) și d: y = n − 1/(4a).</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px">
+              <div><div class="vl" style="margin-bottom:4px">distanța focală</div><div class="formula" style="font-size:1.05rem">p = <span class="frac"><span class="n">1</span><span class="d">4a</span></span></div></div>
+              <div><div class="vl" style="margin-bottom:4px">focarul</div><div class="formula" style="font-size:1.05rem">F<span style="font-size:.85em">(</span>0, <span class="frac"><span class="n">1</span><span class="d">4a</span></span><span style="font-size:.85em">)</span></div></div>
+              <div><div class="vl" style="margin-bottom:4px">directoarea</div><div class="formula" style="font-size:1.05rem">y = −<span class="frac"><span class="n">1</span><span class="d">4a</span></span></div></div>
+            </div>
+            <div class="subnote">Graficul alăturat prezintă parabola <strong>y = a·x²</strong>, cu vârful în originea O; <strong>a</strong> este coeficientul ei. General, pentru vârful V(m, n): focarul F(m, n + 1/(4a)), directoarea y = n − 1/(4a).</div>
           </div>
           <div class="prf">
             <div class="blab d">Demonstrație</div>
@@ -1114,7 +1118,7 @@ function updateFocus(){
   views.focus={sc:g.sc,cx:g.cx,px:g.tx(t),py:g.ty(Py)};
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
   g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('directoarea d:  y = −p = −'+fmt(p),10,g.ty(-p)-7);
+  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('directoarea d — dreapta y = −p = −'+fmt(p),10,g.ty(-p)-7);
   plotFn(g,x=>a*x*x,'#C4820A',3.2);
   /* eticheta curbei din experiment */
   glabel(g,g.tx(-2.05),g.ty(a*2.05*2.05)-10,'y = '+fmt(a)+'·x²','#8a6508','center');
