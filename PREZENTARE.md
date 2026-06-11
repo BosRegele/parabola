@@ -7,6 +7,22 @@
 
 ---
 
+## Cine prezintă ce
+
+| Prezentator | Partea | Slide-uri | Conținut |
+|---|---|---|---|
+| **Boștină Vlad** | Partea I — **Fundamentele** | 01–10 | deschiderea, funcția de gradul al II-lea (definiție → 6 cazuri), demo-ul cu calculatorul |
+| **Nedelcu Calin** | Partea a II-a — **Cercetarea** | 11–20 | șase identități ale parabolei, sursele, concluzia, Q&A |
+
+**Dacă profesorul întreabă „cine ce prezintă?":**
+- Vlad: „Eu prezint **Partea I — Fundamentele: funcția de gradul al II-lea**, de la definiție la cele șase cazuri geometrice, plus calculatorul interactiv."
+- Calin: „Eu prezint **Partea a II-a — Cercetarea: șase identități ale parabolei** — aceeași curbă ca loc geometric, oglindă, limită, sumă infinită și conică, fiecare cu definiție, teoremă și demonstrație, doar cu materia claselor IX–XI."
+- Pe scurt, oricare: „*Parabola: o curbă, șase identități* — Vlad acoperă lecția, Calin cercetarea."
+
+La întrebări (Q&A) răspunde cel pe a cărui parte pică întrebarea; demonstrațiile din Partea a II-a sunt ale lui Calin, formulele de bază ale lui Vlad.
+
+---
+
 ## Pregătire înainte de oră (5 minute)
 
 1. Deschide site-ul (linkul GitHub Pages sau fișierul `index.html` local — merge și **fără internet**, doar fonturile arată puțin diferit).
@@ -17,15 +33,15 @@
 
 ---
 
-## 01 · ACASĂ (40 sec)
+## 01 · ACASĂ (40 sec) — vorbește VLAD
 
-🗣 „Bună ziua! Proiectul meu se numește *Parabola*. Toți știm parabola ca graficul funcției de gradul al II-lea din clasa a IX-a. Teza proiectului meu este însă alta: **parabola nu e doar un grafic — e aceeași curbă care apare în matematică sub șase identități diferite**: grafic, loc geometric, oglindă, limită, sumă infinită și conică. Prezentarea are două părți: întâi recapitulez pe scurt lecția clasică, apoi trec la partea de cercetare — și totul, subliniez, e demonstrat doar cu materia claselor a IX-a – a XI-a."
+🗣 „Bună ziua! Suntem Vlad Boștină și Calin Nedelcu, iar proiectul nostru se numește *Parabola*. Toți știm parabola ca graficul funcției de gradul al II-lea din clasa a IX-a. Teza proiectului nostru este însă alta: **parabola nu e doar un grafic — e aceeași curbă care apare în matematică sub șase identități diferite**: grafic, loc geometric, oglindă, limită, sumă infinită și conică. Prezentarea are două părți: eu prezint fundamentele — lecția clasică — iar Calin partea de cercetare. Și totul, subliniez, e demonstrat doar cu materia claselor a IX-a – a XI-a."
 
 🖱 Scroll mai departe.
 
 ---
 
-# PARTEA I — LECȚIA (slide-urile 02–10, total 7–8 min; comprimat: 4 min)
+# PARTEA I — FUNDAMENTELE · prezintă VLAD (slide-urile 02–10, total 7–8 min; comprimat: 4 min)
 
 ## 02 · FORMA GENERALĂ (1 min)
 
@@ -93,11 +109,11 @@ Dacă a > 0, ramurile merg în sus și vârful e punct de **minim**; dacă a < 0
 
 ---
 
-# PARTEA A II-A — CERCETAREA (slide-urile 11–18, total ~13 min)
+# PARTEA A II-A — CERCETAREA · prezintă CALIN (slide-urile 11–20, total ~13 min)
 
-## 11 · DIVIDER „Aceeași curbă, șase identități" (40 sec)
+## 11 · DIVIDER „Aceeași curbă, șase identități" (40 sec) — de aici preia CALIN
 
-🗣 „De aici începe partea de cercetare. Prima identitate — graficul — tocmai am văzut-o. Urmează celelalte cinci: **loc geometric, oglindă, limită, sumă infinită și conica de frontieră**, plus două instrumente care le leagă între ele: tangentele și asemănarea.
+🗣 „Mulțumesc, Vlad. De aici preiau eu, cu partea de cercetare. Prima identitate — graficul — tocmai ați văzut-o. Urmează celelalte cinci: **loc geometric, oglindă, limită, sumă infinită și conica de frontieră**, plus două instrumente care le leagă între ele: tangentele și asemănarea.
 
 Două promisiuni pentru tot ce urmează: fiecare capitol e construit ca în manual — definiție, teoremă, demonstrație, apoi experimentul interactiv — și **nu folosesc nimic peste materia claselor a IX-a – a XI-a**: distanțe, discriminant, derivate, limite, progresii și matrice."
 
@@ -195,7 +211,7 @@ Deci nu există parabole «mai grase» sau «mai subțiri» — există doar par
 
 🗣 „În concluzie: am plecat de la trei coeficienți — a, b, c — și am ajuns la **șase identități ale aceleiași curbe**: graficul funcției de gradul II, locul geometric al punctelor egal depărtate de focar și directoare, oglinda care adună razele în focar, limita cercurilor prin trei puncte, suma infinită a lui Arhimede și conica de frontieră cu B² − 4AC = 0.
 
-Șase fețe — o singură parabolă. Vă mulțumesc! Dacă aveți întrebări, orice grafic se poate deschide pe tot ecranul — și putem face zoom oriunde pe el."
+Șase fețe — o singură parabolă. Vă mulțumim! Dacă aveți întrebări, orice grafic se poate deschide pe tot ecranul — și putem face zoom oriunde pe el."
 
 ---
 
