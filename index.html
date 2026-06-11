@@ -400,9 +400,14 @@ p{margin-bottom:12px;max-width:66ch}
     <div class="wrap">
       <div class="eyebrow u">Rădăcini ↔ coeficienți</div>
       <h2 class="u" style="--d:1">Relațiile lui Viète</h2>
+      <div class="u" style="--d:1;margin-bottom:12px"><span class="blab t">Teoremă (Viète)</span></div>
       <div class="grid2">
         <div class="vc u" style="--d:2"><div class="vl">Suma rădăcinilor</div><div class="vf">x₁ + x₂ = −<span class="frac"><span class="n">b</span><span class="d">a</span></span></div></div>
         <div class="vc u" style="--d:3"><div class="vl">Produsul rădăcinilor</div><div class="vf">x₁ · x₂ = <span class="frac"><span class="n">c</span><span class="d">a</span></span></div></div>
+      </div>
+      <div class="mini u" style="--d:4;margin-top:14px">
+        <div class="blab d">Demonstrație</div>
+        <div>Din formula rădăcinilor: x₁ + x₂ = <span class="frac" style="font-size:.85em"><span class="n">−b−√Δ</span><span class="d">2a</span></span> + <span class="frac" style="font-size:.85em"><span class="n">−b+√Δ</span><span class="d">2a</span></span> = −<span class="frac" style="font-size:.85em"><span class="n">b</span><span class="d">a</span></span> &nbsp;·&nbsp; x₁·x₂ = <span class="frac" style="font-size:.85em"><span class="n">b²−Δ</span><span class="d">4a²</span></span> = <span class="frac" style="font-size:.85em"><span class="n">4ac</span><span class="d">4a²</span></span> = <span class="frac" style="font-size:.85em"><span class="n">c</span><span class="d">a</span></span> ∎</div>
       </div>
       <div class="grid2" style="margin-top:22px">
         <div class="card u" style="--d:4">
@@ -428,6 +433,7 @@ p{margin-bottom:12px;max-width:66ch}
       <div class="eyebrow u">Minim sau maxim</div>
       <h2 class="u" style="--d:1">Vârful parabolei</h2>
       <div class="fb u" style="--d:2">
+        <div class="blab t">Consecință · din forma canonică</div>
         <div class="formula" style="font-size:clamp(2rem,3.6vw,2.8rem)">V<span style="font-size:.85em"> (</span>−<span class="frac"><span class="n">b</span><span class="d">2a</span></span><span style="font-size:.85em"> , </span>−<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span><span style="font-size:.85em"> )</span></div>
       </div>
       <div class="grid2" style="margin-top:22px">
@@ -516,7 +522,7 @@ p{margin-bottom:12px;max-width:66ch}
   </section>
 
   <!-- 11 · FOCAR & DIRECTOARE -->
-  <section class="slide" data-label="Focus">
+  <section class="slide" data-label="Focar">
     <div class="wrap">
       <div class="eyebrow u">Identitatea geometrică</div>
       <h2 class="u" style="--d:1">Focarul și directoarea</h2>
@@ -598,7 +604,7 @@ p{margin-bottom:12px;max-width:66ch}
           </div>
           <div class="prf">
             <div class="blab d">Demonstrație</div>
-            <div>P(t, at²), Q = proiecția lui P pe directoare ⇒ <span class="hl">PF = PQ</span><br>Mediatoarea [FQ]: panta <span class="frac"><span class="n">t</span><span class="d">2p</span></span> = 2at = f′(t) și trece prin P ⇒ e <strong>tangenta</strong><br>Triunghi isoscel ⇒ unghiuri egale ⇒ raza verticală se reflectă spre F ∎</div>
+            <div>P(t, at²), Q = proiecția lui P pe directoare ⇒ <span class="hl">PF = PQ</span><br>Mediatoarea lui [FQ] (perpendiculara pe mijlocul lui): panta <span class="frac"><span class="n">t</span><span class="d">2p</span></span> = 2at = f′(t) și trece prin P ⇒ e <strong>tangenta</strong><br>Triunghi isoscel ⇒ unghiuri egale ⇒ raza verticală se reflectă spre F ∎</div>
           </div>
           <div class="mini">
             <div class="blab d">Observație · aplicații</div>
@@ -709,7 +715,7 @@ p{margin-bottom:12px;max-width:66ch}
             <div class="blab t">Teoremă · clasificarea (o admitem)</div>
             <div>B²−4AC &lt; 0 elipsă · <span class="hl">= 0 parabolă</span> · &gt; 0 hiperbolă. Intuiția: Ax²+Bxy+Cy² e pătrat perfect exact când B²−4AC = 0 — același Δ din clasa a IX-a. Parabola e <strong>frontiera</strong> dintre elipsă și hiperbolă.</div>
           </div>
-          <div class="note"><div><strong>De ce „conice”?</strong> Sunt secțiunile unui con: planul paralel cu o generatoare decupează parabola; mai „culcat” — elipsa; mai „vertical” (taie ambele pânze) — hiperbola.</div></div>
+          <div class="note"><div><strong>De ce „conice”?</strong> Sunt secțiunile unui con: planul paralel cu o generatoare (o dreaptă de pe suprafața conului) decupează parabola; mai „culcat” — elipsa; mai „vertical” (taie ambele pânze) — hiperbola.</div></div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="conCv" class="icv" width="520" height="300"></canvas>
@@ -1431,7 +1437,7 @@ function dragX(cvId,slId,getView,fn){
     let v=Math.max(mn,Math.min(mx,Math.round(((px-cx)/sc)/st)*st));
     sl.value=v;fn();
   };
-  cv.addEventListener('pointerdown',e=>{drag=true;cv.setPointerCapture(e.pointerId);move(e)});
+  cv.addEventListener('pointerdown',e=>{drag=true;try{cv.setPointerCapture(e.pointerId)}catch(_){}move(e)});
   cv.addEventListener('pointermove',move);
   cv.addEventListener('pointerup',()=>drag=false);
   cv.addEventListener('pointercancel',()=>drag=false);
@@ -1442,7 +1448,7 @@ function dragX(cvId,slId,getView,fn){
 /* slide activation hooks */
 const slideHooks={
   'Calculator':()=>updateCalc(),
-  'Focus':()=>updateFocus(),
+  'Focar':()=>updateFocus(),
   'Tangente':()=>updateTan(),
   'Curbură':()=>updateOsc(),
   'Arhimede':()=>updateArh(),
