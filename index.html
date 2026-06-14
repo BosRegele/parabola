@@ -364,7 +364,7 @@ p{margin-bottom:12px;max-width:66ch}
         <div class="u" style="--d:3">
           <canvas id="constrCv" class="icv" width="520" height="360"></canvas>
           <button class="xpand" data-big="constr" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i class="ln" style="background:#B71C1C"></i>rigla = directoarea g</span><span><i style="background:#1565C0"></i>echerul (cateta mică pe riglă)</span><span><i class="ln" style="background:#8a6508"></i>ața: B → M → F (lungime L)</span><span><i style="background:#B8860B"></i>focarul F</span><span><i style="background:#2C1A0E"></i>M — vârful creionului</span><span><i style="background:#C4820A"></i>parabola descrisă</span></div>
+          <div class="legend"><span><i class="ln" style="background:#B71C1C"></i>rigla = directoarea g</span><span><i style="background:#1565C0"></i>echerul (cateta mică pe riglă)</span><span><i class="ln" style="background:#C77D0A"></i>ața B→M→F (lungime L fixă)</span><span><i style="background:#B8860B"></i>focarul F</span><span><i style="background:#2C1A0E"></i>M — vârful creionului</span><span><i style="background:#C4820A"></i>parabola trasată progresiv</span></div>
           <div class="istats" id="constrStats"></div>
         </div>
       </div>
@@ -889,34 +889,47 @@ function updateFocus(){
 }
 
 /* ── 11b · procedeul de construcție (animat) ── */
+let cYmin=0,cYmax=0; /* intervalul de ordonate deja măturat de creion (pentru trasarea progresivă) */
 function drawConstr(ts){
   const cv=pickCv('constr','constrCv'),k=cv.width/520,bv=bview(cv,42*k,150*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
-  const p=2.4,fx=p/2,L=4.2,hLeg=0.85,t=3.05*Math.sin(ts/1700),xM=t*t/(2*p);
+  const p=2.4,fx=p/2,L=4.2,hLeg=0.95,t=3.05*Math.sin(ts/1700),xM=t*t/(2*p);
+  cYmin=Math.min(cYmin,t);cYmax=Math.max(cYmax,t);
   /* rigla = directoarea g (verticală) */
   g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=3;
   g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),6);g.ctx.lineTo(g.tx(-fx),g.H-6);g.ctx.stroke();
   glabel(g,g.tx(-fx)+5,18,'rigla = directoarea g','#B71C1C');
-  /* parabola descrisă de creion */
-  plotParab(g,p,'#C4820A',3.2);
-  glabel(g,12,g.H-12,'y² = 2px','#8a6508');
-  /* echerul: triunghi dreptunghic, unghi drept în A pe riglă; B = vârful ascuțit opus catetei mici */
+  /* parabola: tot conturul slab + porțiunea deja trasată de creion, în plin */
+  plotParab(g,p,'rgba(196,130,10,.22)',3.2);
+  g.ctx.beginPath();let on=false;
+  for(let py=0;py<=g.H;py++){const y=(g.cy-py)/g.sc;if(y<cYmin||y>cYmax){on=false;continue}const x=y*y/(2*p),px=g.cx+x*g.sc;on?g.ctx.lineTo(px,py):g.ctx.moveTo(px,py);on=true}
+  g.ctx.strokeStyle='#C4820A';g.ctx.lineWidth=3.4;g.ctx.stroke();
+  glabel(g,12,g.H-12,'y² = 2px — trasată de creion','#8a6508');
+  /* echerul: triunghi dreptunghic; unghi drept în A (pe riglă); B = vârful opus catetei mici */
   const Ax=g.tx(-fx),Ay=g.ty(t),Bx=g.tx(-fx+L),By=g.ty(t),Cx=g.tx(-fx),Cy=g.ty(t-hLeg);
-  g.ctx.fillStyle='rgba(21,101,192,.12)';g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2;
+  g.ctx.fillStyle='rgba(21,101,192,.10)';g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2;
   g.ctx.beginPath();g.ctx.moveTo(Ax,Ay);g.ctx.lineTo(Bx,By);g.ctx.lineTo(Cx,Cy);g.ctx.closePath();g.ctx.fill();g.ctx.stroke();
-  glabel(g,(Ax+Bx)/2,Ay-7,'cateta mare','#0D47A1','center');
-  /* ața: B → M → F, întinsă */
-  g.ctx.strokeStyle='#8a6508';g.ctx.lineWidth=1.8;
-  g.ctx.beginPath();g.ctx.moveTo(Bx,By);g.ctx.lineTo(g.tx(xM),g.ty(t));g.ctx.lineTo(g.tx(fx),g.ty(0));g.ctx.stroke();
+  /* semnul unghiului drept în A */
+  g.ctx.lineWidth=1.4;g.ctx.beginPath();g.ctx.moveTo(Ax+9,Ay);g.ctx.lineTo(Ax+9,Ay+9);g.ctx.lineTo(Ax,Ay+9);g.ctx.stroke();
+  glabel(g,(Ax+Bx)/2,Ay+16,'cateta mare','#0D47A1','center');
+  /* ața B → M → F: ridicată câțiva px deasupra catetei ca să se distingă de ea */
+  const lift=7;
+  g.ctx.strokeStyle='#C77D0A';g.ctx.lineWidth=2.6;
+  g.ctx.beginPath();g.ctx.moveTo(Bx,By);g.ctx.lineTo(Bx,By-lift);g.ctx.lineTo(g.tx(xM),g.ty(t)-lift);g.ctx.lineTo(g.tx(fx),g.ty(0));g.ctx.stroke();
+  /* creionul ține ața lipită de catetă */
+  g.ctx.lineWidth=1.2;g.ctx.beginPath();g.ctx.moveTo(g.tx(xM),g.ty(t));g.ctx.lineTo(g.tx(xM),g.ty(t)-lift);g.ctx.stroke();
+  glabel(g,(Bx+g.tx(xM))/2,By-lift-5,'ața (lungime L)','#8a6508','center');
+  /* puncte */
   gdot(g,fx,0,6,'#B8860B','#fff');gtag(g,fx,0,'F','#8a6508');
+  gdot(g,-fx,t,3.5,'#1565C0','#fff');
   gdot(g,-fx+L,t,4.5,'#1565C0','#fff');gtag(g,-fx+L,t,'B','#0D47A1');
   gdot(g,xM,t,6,'#2C1A0E','#fff');gtag(g,xM,t,'M','#2C1A0E');
-  const MF=Math.hypot(xM-fx,t),dMg=xM+fx;
+  const MF=Math.hypot(xM-fx,t),dMg=xM+fx,MB=L-dMg;
   $('constrStats').innerHTML=
     ist('Parametrul p',fmt(p))+
     ist('Lungimea aței L',fmt(L))+
-    ist('MF',fmt(MF))+
-    ist('d(M, g)',fmt(dMg))+
-    ist('MB = L − d(M, g)',fmt(L-dMg))+
+    ist('MB (pe catetă)',fmt(MB))+
+    ist('MF (spre focar)',fmt(MF))+
+    ist('MB + MF',fmt(MB+MF)+' = L ✓',1)+
     ist('Mereu','MF = d(M, g) ✓',1);
 }
 
@@ -1412,7 +1425,7 @@ function dragY(cvId,slId,getView,fn){
 /* slide activation hooks */
 const slideHooks={
   'Focar':()=>updateFocus(),
-  'Construcție':()=>drawConstr(0),
+  'Construcție':()=>{cYmin=0;cYmax=0;drawConstr(0)},
   'Ecuația':()=>drawEqDiagram(),
   'Elemente':()=>drawElements(),
   'Dreaptă':()=>updateLine(),
