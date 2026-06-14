@@ -9,24 +9,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FAF6EE; --panel:#FFFBF4; --panel2:#FFFFFF;
-  --gold:#B8860B; --gold-l:#D4A017; --amber:#C77D0A;
-  --ink:#2C1A0E; --txt:#5C3D2E; --sub:#8B6E5A; --line:rgba(184,134,11,.2);
-  --green:#2E7D32; --red:#B71C1C; --blue:#1565C0;
+  /* --gold = culoarea de accent: acum BLEUMARIN academic (Oxford), nu auriu.
+     --amber = accent secundar, ocru discret (folosit la accente din figuri/demonstrații). */
+  --bg:#F4F6F9; --panel:#FFFFFF; --panel2:#FFFFFF;
+  --gold:#1F3A6B; --gold-l:#2E5394; --amber:#9A6B12;
+  --ink:#16202E; --txt:#33404F; --sub:#6B7686; --line:rgba(31,58,107,.16);
+  --green:#2E7D32; --red:#B23A3A; --blue:#1565C0;
   --serif:"Playfair Display",Georgia,serif; --sans:"Inter",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
-  --r:16px; --sh:0 2px 18px rgba(92,61,46,.1); --sH:0 16px 46px rgba(92,61,46,.18);
+  --r:16px; --sh:0 2px 18px rgba(22,32,46,.07); --sH:0 16px 46px rgba(22,32,46,.15);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased}
 
-/* animated background */
-#bgCv{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+/* fundal static, sobru */
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-   radial-gradient(900px 600px at 82% -5%,rgba(212,160,23,.12),transparent 60%),
-   radial-gradient(820px 700px at 5% 35%,rgba(184,134,11,.07),transparent 60%),
-   radial-gradient(700px 600px at 95% 100%,rgba(199,125,10,.07),transparent 60%);}
+  background:radial-gradient(1100px 720px at 84% -8%,rgba(31,58,107,.05),transparent 62%);}
 
 /* ── deck / slides : THE glycogen engine ── */
 .deck{position:fixed;inset:0;z-index:2;overflow:hidden}
@@ -45,15 +43,15 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 @media(prefers-reduced-motion:reduce){.u{opacity:1;transform:none}.slides{transition:none}}
 
 /* ── chrome ── */
-#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;background:linear-gradient(90deg,var(--gold-l),var(--gold));box-shadow:0 0 12px rgba(184,134,11,.6);transition:width .9s cubic-bezier(.83,0,.17,1)}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;background:linear-gradient(90deg,var(--gold-l),var(--gold));box-shadow:0 0 12px rgba(31,58,107,.6);transition:width .9s cubic-bezier(.83,0,.17,1)}
 .counter{position:fixed;left:34px;bottom:28px;z-index:40;font-family:var(--mono);font-size:13px;color:var(--sub)}
 .counter b{color:var(--ink)}
 .hint{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--sub);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:7px;transition:.5s}
 .hint i{width:1px;height:30px;background:linear-gradient(var(--gold),transparent);animation:pulse 1.7s infinite}
 @keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
 nav.dots{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:11px}
-nav.dots button{width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(184,134,11,.45);background:transparent;cursor:pointer;padding:0;transition:.3s;position:relative}
-nav.dots button.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 10px rgba(184,134,11,.6);transform:scale(1.25)}
+nav.dots button{width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(31,58,107,.45);background:transparent;cursor:pointer;padding:0;transition:.3s;position:relative}
+nav.dots button.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 10px rgba(31,58,107,.6);transform:scale(1.25)}
 nav.dots button span{position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:11px;font-family:var(--mono);color:var(--sub);opacity:0;pointer-events:none;transition:.25s;background:var(--ink);color:#fff;padding:3px 8px;border-radius:5px}
 nav.dots button:hover span{opacity:1}
 @media(max-width:860px){nav.dots,.counter{display:none}}
@@ -97,14 +95,14 @@ p{margin-bottom:12px;max-width:66ch}
 .card:hover{transform:translateY(-4px);box-shadow:var(--sH)}
 .mini{font-size:.98rem;color:var(--sub);padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;line-height:1.6}
 .mini strong{color:var(--txt)}
-.note{display:flex;gap:12px;align-items:flex-start;background:rgba(199,125,10,.07);border:1px solid rgba(199,125,10,.24);border-radius:12px;padding:11px 15px;font-size:.92rem;color:var(--txt)}
+.note{display:flex;gap:12px;align-items:flex-start;background:rgba(154,107,18,.07);border:1px solid rgba(154,107,18,.24);border-radius:12px;padding:11px 15px;font-size:.92rem;color:var(--txt)}
 .gp{color:var(--green);font-weight:700}.gn{color:var(--red);font-weight:700}.gz{color:var(--blue);font-weight:700}
 
 /* ── tables ── */
 .mt{width:100%;border-collapse:collapse;font-size:1rem}
-.mt th{background:rgba(184,134,11,.1);border:1px solid var(--line);padding:12px 15px;font-weight:600;color:var(--txt);text-align:center;font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+.mt th{background:rgba(31,58,107,.1);border:1px solid var(--line);padding:12px 15px;font-weight:600;color:var(--txt);text-align:center;font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
 .mt td{border:1px solid var(--line);padding:12px 15px;text-align:center;transition:background .2s}
-.mt tr:hover td{background:rgba(184,134,11,.06)}
+.mt tr:hover td{background:rgba(31,58,107,.06)}
 
 /* ── delta cases ── */
 .dc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -158,7 +156,7 @@ p{margin-bottom:12px;max-width:66ch}
 .aneg{background:linear-gradient(135deg,#F3E5F5,#EDE7F6);border-bottom:2px solid #7B1FA2}
 .cc-cv{background:#FAFAF8;display:flex;align-items:center;justify-content:center;padding:6px;cursor:zoom-in;position:relative}
 .cc-cv canvas{display:block;width:100%;height:auto}
-.cc-cv::after{content:"⤢ click pentru detalii";position:absolute;bottom:8px;right:8px;background:rgba(184,134,11,.92);color:#fff;font-family:var(--mono);font-size:.62rem;padding:3px 8px;border-radius:100px;opacity:0;transition:opacity .22s;pointer-events:none}
+.cc-cv::after{content:"⤢ click pentru detalii";position:absolute;bottom:8px;right:8px;background:rgba(31,58,107,.92);color:#fff;font-family:var(--mono);font-size:.62rem;padding:3px 8px;border-radius:100px;opacity:0;transition:opacity .22s;pointer-events:none}
 .cc:hover .cc-cv::after{opacity:1}
 .cc-d{padding:11px 15px;border-top:1px solid var(--line);font-size:.9rem;color:var(--sub);line-height:1.5}
 .cc-d strong{color:var(--txt)}
@@ -170,14 +168,14 @@ p{margin-bottom:12px;max-width:66ch}
 .ig .cn{font-family:var(--serif);font-size:1.5rem;color:var(--gold);font-style:italic;margin-bottom:5px}
 .ig label{display:block;font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--sub);margin-bottom:7px;text-transform:uppercase;letter-spacing:.05em}
 .ig input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;cursor:pointer}
-.ig input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 2px 8px rgba(184,134,11,.4);transition:transform .15s}
+.ig input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 2px 8px rgba(31,58,107,.4);transition:transform .15s}
 .ig input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
 .ig .vd{text-align:center;font-family:var(--serif);font-size:1.4rem;color:var(--ink);font-weight:600;margin-top:4px}
 .cl{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
 @media(max-width:780px){.cl{grid-template-columns:1fr}}
 #calcCanvas{width:100%;border-radius:14px;border:1px solid var(--line);background:#fff;display:block;box-shadow:var(--sh);cursor:zoom-in;position:relative}
 .cl{position:relative}
-.cl::after{content:"⤢ click pe grafic pentru fereastră mare";position:absolute;left:14px;bottom:14px;background:rgba(184,134,11,.92);color:#fff;font-family:var(--mono);font-size:.62rem;padding:3px 9px;border-radius:100px;opacity:0;transition:opacity .22s;pointer-events:none}
+.cl::after{content:"⤢ click pe grafic pentru fereastră mare";position:absolute;left:14px;bottom:14px;background:rgba(31,58,107,.92);color:#fff;font-family:var(--mono);font-size:.62rem;padding:3px 9px;border-radius:100px;opacity:0;transition:opacity .22s;pointer-events:none}
 .cl:hover::after{opacity:1}
 .results{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:start}
 .results .ri:first-child{grid-column:1/-1}
@@ -195,7 +193,7 @@ p{margin-bottom:12px;max-width:66ch}
 
 /* ── final ── */
 .final{text-align:center}
-.final .fpill{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(199,125,10,.35);border-radius:20px;padding:6px 15px;margin-bottom:24px}
+.final .fpill{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(154,107,18,.35);border-radius:20px;padding:6px 15px;margin-bottom:24px}
 .final .fbig{font-family:var(--serif);font-style:italic;font-size:clamp(1.7rem,5vw,3rem);color:var(--ink);max-width:22ch;margin:0 auto 22px;line-height:1.15}
 .final .fsrc{font-family:var(--mono);font-size:.8rem;color:var(--sub);max-width:60ch;margin:0 auto}
 .final .fz{font-family:var(--serif);font-size:1.7rem;color:var(--gold);font-style:italic;margin:18px 0}
@@ -222,7 +220,7 @@ p{margin-bottom:12px;max-width:66ch}
 .figc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 11px;display:flex;gap:10px;align-items:flex-start}
 .figc img{width:100px;height:auto;border-radius:8px;flex-shrink:0;border:1px solid var(--line);background:#fff;object-fit:contain;cursor:zoom-in;transition:transform .2s}
 .figc img:hover{transform:scale(1.04)}
-#imgZ{position:fixed;inset:0;z-index:230;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(44,26,14,.78);backdrop-filter:blur(6px);cursor:zoom-out}
+#imgZ{position:fixed;inset:0;z-index:230;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(16,24,38,.78);backdrop-filter:blur(6px);cursor:zoom-out}
 #imgZ.open{display:flex;animation:mfade .25s ease}
 #imgZ img{max-width:96vw;max-height:92vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.45);background:#fff}
 .figc .figcap{font-size:.8rem;color:var(--txt);line-height:1.45;min-width:0}
@@ -231,14 +229,14 @@ p{margin-bottom:12px;max-width:66ch}
 @media(max-width:560px){.figc{flex-direction:column}.figc img{width:100%;max-width:220px}}
 .chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:26px}
 .chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--txt);border:1px solid var(--line);background:var(--panel2);padding:6px 13px;border-radius:100px}
-.blab{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,134,11,.45);border-radius:100px;padding:2px 10px;margin-bottom:7px}
-.blab.t{color:var(--amber);border-color:rgba(199,125,10,.5)}
-.blab.d{color:var(--sub);border-color:rgba(139,110,90,.4)}
+.blab{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(31,58,107,.45);border-radius:100px;padding:2px 10px;margin-bottom:7px}
+.blab.t{color:var(--amber);border-color:rgba(154,107,18,.5)}
+.blab.d{color:var(--sub);border-color:rgba(107,118,134,.4)}
 .legend{display:flex;flex-wrap:wrap;gap:5px 14px;margin-top:9px;font-family:var(--mono);font-size:.7rem;color:var(--sub);line-height:1.5}
 .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 .legend i.ln{width:16px;height:3px;border-radius:2px;vertical-align:3px}
 .envbtn{width:100%;height:100%;min-height:52px;border-radius:12px;border:1px solid var(--line);background:var(--panel);font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--txt);cursor:pointer;transition:.25s;padding:8px}
-.envbtn.on{background:var(--gold);color:#fff;border-color:var(--gold);box-shadow:0 4px 14px rgba(184,134,11,.4)}
+.envbtn.on{background:var(--gold);color:#fff;border-color:var(--gold);box-shadow:0 4px 14px rgba(31,58,107,.4)}
 .dragx{cursor:grab;touch-action:none}
 .dragx:active{cursor:grabbing}
 .icv.zoom{cursor:zoom-in}
@@ -248,9 +246,9 @@ p{margin-bottom:12px;max-width:66ch}
 @media(max-width:760px){.xpand{display:none}}
 
 /* ── big view overlay ── */
-#big{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(44,26,14,.66);backdrop-filter:blur(7px)}
+#big{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(16,24,38,.66);backdrop-filter:blur(7px)}
 #big.open{display:flex;animation:mfade .25s ease}
-.bigbox{background:var(--panel2);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 80px rgba(44,26,14,.5);width:min(96vw,1280px);height:94vh;padding:0 22px 14px;display:flex;flex-direction:column}
+.bigbox{background:var(--panel2);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 80px rgba(16,24,38,.5);width:min(96vw,1280px);height:94vh;padding:0 22px 14px;display:flex;flex-direction:column}
 .bighead{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid var(--line);margin-bottom:12px}
 .bighead h3{font-size:1.3rem;color:var(--ink);margin:0}
 .bighead .mclose{margin-left:auto}
@@ -261,10 +259,10 @@ p{margin-bottom:12px;max-width:66ch}
 #bigSlots .ctr,#bigSlots .ctr.c3x{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 
 /* ── inspect modal ── */
-#modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(44,26,14,.62);backdrop-filter:blur(7px)}
+#modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(16,24,38,.62);backdrop-filter:blur(7px)}
 #modal.open{display:flex;animation:mfade .25s ease}
 @keyframes mfade{from{opacity:0}to{opacity:1}}
-.mbox{background:var(--panel2);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 80px rgba(44,26,14,.45);max-width:920px;width:100%;max-height:92vh;overflow:auto}
+.mbox{background:var(--panel2);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 80px rgba(16,24,38,.45);max-width:920px;width:100%;max-height:92vh;overflow:auto}
 .mhead{display:flex;align-items:center;gap:12px;padding:22px 26px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .mhead h3{font-size:1.5rem;color:var(--ink);margin:0}
 .mclose{margin-left:auto;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);cursor:pointer;font-size:1.4rem;color:var(--txt);display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
@@ -279,8 +277,8 @@ p{margin-bottom:12px;max-width:66ch}
 .mci .lab span:first-child{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--gold)}
 .mci .lab span:last-child{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink)}
 .mci input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:3px;background:var(--line);outline:none;cursor:pointer}
-.mci input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 2px 6px rgba(184,134,11,.4)}
-.meq{margin-top:18px;text-align:center;font-family:var(--serif);font-size:1.4rem;color:var(--ink);background:rgba(184,134,11,.1);border:1px solid var(--line);border-radius:12px;padding:15px}
+.mci input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 2px 6px rgba(31,58,107,.4)}
+.meq{margin-top:18px;text-align:center;font-family:var(--serif);font-size:1.4rem;color:var(--ink);background:rgba(31,58,107,.1);border:1px solid var(--line);border-radius:12px;padding:15px}
 .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px}
 .mstat{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 16px}
 .mstat .l{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:var(--sub);margin-bottom:3px}
@@ -289,7 +287,6 @@ p{margin-bottom:12px;max-width:66ch}
 </head>
 <body>
 
-<canvas id="bgCv"></canvas>
 <div id="progress"></div>
 <nav class="dots" id="dots"></nav>
 <div class="counter"><b id="cnum">01</b> / <span id="ctot">13</span></div>
@@ -423,7 +420,7 @@ p{margin-bottom:12px;max-width:66ch}
         </div>
         <div class="u" style="--d:3">
           <canvas id="elemCv" class="icv" width="520" height="430"></canvas>
-          <div class="legend"><span><i style="background:#1565C0"></i>O — vârful</span><span><i style="background:#B8860B"></i>F — focarul</span><span><i class="ln" style="background:#B71C1C"></i>g — directoarea</span><span><i style="background:#C4820A"></i>parabola</span><span><i style="background:rgba(184,134,11,.45)"></i>int(P)</span><span>rest — ext(P)</span></div>
+          <div class="legend"><span><i style="background:#1565C0"></i>O — vârful</span><span><i style="background:#B8860B"></i>F — focarul</span><span><i class="ln" style="background:#B71C1C"></i>g — directoarea</span><span><i style="background:#C4820A"></i>parabola</span><span><i style="background:rgba(31,58,107,.45)"></i>int(P)</span><span>rest — ext(P)</span></div>
         </div>
       </div>
     </div>
@@ -657,23 +654,23 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab">Definiție</div>
             <div class="formula">(x, y) ⟼ (λx, λy)</div>
-            <div class="subnote"><strong>λ &gt; 0</strong> = <strong>raportul de asemănare</strong>. Transformarea de mai sus duce fiecare punct (x, y) al planului în punctul (λx, λy), deci înmulțește <strong>toate distanțele cu λ</strong> — un „zoom” uniform. Două figuri sunt <strong>asemenea</strong> dacă una este imaginea celeilalte printr-o astfel de transformare.</div>
+            <div class="subnote">Transformarea (x, y) ⟼ (λx, λy), cu <strong>λ &gt; 0</strong>, este o <strong>mărire</strong> (dacă λ &gt; 1) sau o <strong>micșorare</strong> (dacă λ &lt; 1) <strong>uniformă</strong>, cu centrul în O: înmulțește toate distanțele cu λ. Două figuri sunt <strong>asemenea</strong> dacă una se obține din cealaltă printr-o astfel de transformare.</div>
           </div>
           <div class="prf">
             <div class="blab t">Teoremă și demonstrație</div>
-            <div><strong>Oricare două parabole y² = 2px și y² = 2p′x sunt asemenea.</strong> Aplicăm zoom-ul X = λx, Y = λy unui punct de pe y² = 2px (deci y = Y/λ, x = X/λ):<br>(Y/λ)² = 2p·(X/λ) ⇒ <span class="hl">Y² = 2(pλ)·X</span> ⇒ imaginea e parabola cu parametrul pλ.<br>Alegând λ = p′/p, imaginea devine exact y² = 2p′x.</div>
+            <div><strong>Oricare două parabole y² = 2px și y² = 2p′x sunt asemenea.</strong> Înmulțim coordonatele unui punct de pe y² = 2px cu λ (X = λx, Y = λy, deci x = X/λ, y = Y/λ):<br>(Y/λ)² = 2p·(X/λ) ⇒ <span class="hl">Y² = 2(pλ)·X</span> ⇒ imaginea este parabola cu parametrul pλ.<br>Alegând λ = p′/p, imaginea devine exact y² = 2p′x.</div>
           </div>
           <div class="mini">
             <div class="blab d">Observație</div>
-            <div>În figura alăturată: stânga — parabola y² = 2px într-o fereastră fixă, peste referința y² = 2x; dreapta — aceeași curbă privită cu zoom de raport λ = 1/p: imaginea coincide cu y² = 2x. Ca la cercuri, nu există parabole „mai late” — doar văzute de la altă distanță. La elipse proprietatea nu are loc: raportul semiaxelor este invariant la zoom.</div>
+            <div>În figură: o parabolă de bază (gri) și o <strong>copie a ei mărită de s ori</strong> (ochre). Fiecare punct P se depărtează de O de s ori, ajungând în P′ = s·P — așa că și copia este o parabolă. Cum orice parabolă se obține astfel, toate au <strong>aceeași formă</strong>, exact ca cercurile (un cerc mai mare e tot un cerc). De aceea o parabolă „mai îngustă" e doar una mai mare. La elipse nu se întâmplă: raportul semiaxelor nu se schimbă la mărire.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
-          <canvas id="simCv" class="icv" width="520" height="300"></canvas>
+          <canvas id="simCv" class="icv" width="520" height="340"></canvas>
           <button class="xpand" data-big="sim" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>y² = 2px</span><span><i class="ln" style="background:#8B6E5A"></i>y² = 2x (reper, punctat)</span><span>stânga: fereastră fixă; dreapta: aceeași curbă la zoom de raport λ = 1/p</span></div>
+          <div class="legend"><span><i class="ln" style="background:#8A93A2"></i>parabola de bază (y² = 2x)</span><span><i style="background:#C4820A"></i>copia, mărită de s ori</span><span><i class="ln" style="background:#1F3A6B"></i>P ⟶ P′ = s·P (rază din O)</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
-            <div class="mci"><div class="lab"><span>p</span><span id="sLamv">2</span></div><input type="range" id="sLam" min="0.25" max="4" step="0.25" value="2"></div>
+            <div class="mci"><div class="lab"><span>s — de câte ori mărim</span><span id="sLamv">1.6</span></div><input type="range" id="sLam" min="0.5" max="2.2" step="0.1" value="1.6"></div>
           </div>
           <div class="istats" id="simStats"></div>
         </div>
@@ -708,26 +705,7 @@ p{margin-bottom:12px;max-width:66ch}
 </div>
 
 <script>
-/* ═══ ANIMATED BACKGROUND ═══ */
-(function(){
-  const cv=document.getElementById('bgCv'),ctx=cv.getContext('2d');
-  function resize(){cv.width=innerWidth;cv.height=innerHeight}
-  resize();addEventListener('resize',resize);
-  const rand=(a,b)=>a+Math.random()*(b-a);
-  const curves=Array.from({length:13},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight*1.6-innerHeight*0.3,hw:80+Math.random()*220,dir:Math.random()<0.5?1:-1,spd:rand(0.15,0.55),drift:rand(-0.18,0.18),a:rand(0.03,0.08)}));
-  const dots=Array.from({length:32},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:rand(1.2,3.4),sx:rand(-0.25,0.25),sy:rand(-0.5,-0.12),a:rand(0.1,0.34)}));
-  const GLYPHS=['Δ','x²','√','π','f(x)','a','b','c','+','−','∞','≠','y','O'];
-  const syms=Array.from({length:15},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,g:GLYPHS[Math.floor(Math.random()*GLYPHS.length)],size:rand(16,40),sy:rand(-0.42,-0.12),sx:rand(-0.14,0.14),rot:rand(-0.4,0.4),vr:rand(-0.004,0.004),a:rand(0.045,0.11)}));
-  (function frame(){
-    ctx.clearRect(0,0,cv.width,cv.height);
-    for(const c of curves){c.y-=c.spd;c.x+=c.drift;if(c.y+c.hw*0.65<0){c.y=cv.height+c.hw*0.65;c.x=Math.random()*cv.width;c.hw=80+Math.random()*220;c.spd=rand(0.15,0.55);c.a=rand(0.03,0.08)}ctx.beginPath();ctx.strokeStyle='rgba(184,134,11,'+c.a+')';ctx.lineWidth=2;for(let i=0;i<=70;i++){const t=(i/70-0.5)*2,px=c.x+t*c.hw,py=c.y+c.dir*t*t*c.hw*0.55;i?ctx.lineTo(px,py):ctx.moveTo(px,py)}ctx.stroke()}
-    for(const d of dots){d.x+=d.sx;d.y+=d.sy;if(d.y<-6){d.y=cv.height+6;d.x=Math.random()*cv.width}if(d.x<-6)d.x=cv.width+6;if(d.x>cv.width+6)d.x=-6;ctx.beginPath();ctx.fillStyle='rgba(184,134,11,'+d.a+')';ctx.arc(d.x,d.y,d.r,0,2*Math.PI);ctx.fill()}
-    ctx.textAlign='center';ctx.textBaseline='middle';
-    for(const s of syms){s.x+=s.sx;s.y+=s.sy;s.rot+=s.vr;if(s.y<-30){s.y=cv.height+30;s.x=Math.random()*cv.width;s.g=GLYPHS[Math.floor(Math.random()*GLYPHS.length)]}if(s.x<-30)s.x=cv.width+30;if(s.x>cv.width+30)s.x=-30;ctx.save();ctx.translate(s.x,s.y);ctx.rotate(s.rot);ctx.fillStyle='rgba(92,61,46,'+s.a+')';ctx.font="italic "+s.size+"px 'Playfair Display',serif";ctx.fillText(s.g,0,0);ctx.restore()}
-    ctx.textAlign='left';ctx.textBaseline='alphabetic';
-    requestAnimationFrame(frame);
-  })();
-})();
+/* fundal static — fără animație (eliminat pentru un aspect mai academic) */
 
 /* ═══ SLIDESHOW ENGINE (glycogen-style) ═══ */
 const slidesEl=document.getElementById('slides');
@@ -801,13 +779,13 @@ function bview(cv,sc,cx,cy){
 function miniAxes(cv,sc,cx,cy){
   const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
   ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-  ctx.strokeStyle='#F0E4CC';ctx.lineWidth=.5;
+  ctx.strokeStyle='#E6E9EF';ctx.lineWidth=.5;
   for(let i=Math.ceil(-cx/sc);i<=Math.floor((W-cx)/sc);i++){ctx.beginPath();ctx.moveTo(cx+i*sc,0);ctx.lineTo(cx+i*sc,H);ctx.stroke()}
   for(let i=Math.ceil((cy-H)/sc);i<=Math.floor(cy/sc);i++){ctx.beginPath();ctx.moveTo(0,cy-i*sc);ctx.lineTo(W,cy-i*sc);ctx.stroke()}
-  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.4;
+  ctx.strokeStyle='#8A93A2';ctx.lineWidth=1.4;
   ctx.beginPath();ctx.moveTo(4,cy);ctx.lineTo(W-4,cy);ctx.stroke();
   ctx.beginPath();ctx.moveTo(cx,H-4);ctx.lineTo(cx,4);ctx.stroke();
-  ctx.fillStyle='#8B6E5A';ctx.font='11px Inter,sans-serif';ctx.fillText('O',cx+4,cy+13);
+  ctx.fillStyle='#8A93A2';ctx.font='11px Inter,sans-serif';ctx.fillText('O',cx+4,cy+13);
   return {ctx,W,H,sc,cx,cy,tx:x=>cx+x*sc,ty:y=>cy-y*sc};
 }
 function plotFn(g,f,color,lw,dash){
@@ -830,7 +808,7 @@ function plotParab(g,p,color,lw,dash){
 }
 function gdot(g,x,y,r,fill,ring){const{ctx,tx,ty}=g;ctx.beginPath();ctx.arc(tx(x),ty(y),r,0,2*Math.PI);ctx.fillStyle=fill;ctx.fill();if(ring){ctx.strokeStyle=ring;ctx.lineWidth=1.8;ctx.stroke()}}
 function gtag(g,x,y,txt,color){const{ctx,tx,ty}=g;ctx.font='bold 11px Inter,sans-serif';const w=ctx.measureText(txt).width;ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(tx(x)+6,ty(y)-16,w+6,15);ctx.fillStyle=color;ctx.fillText(txt,tx(x)+9,ty(y)-4)}
-function ist(l,v,hi){return `<div class="ist"${hi?' style="background:rgba(184,134,11,.12);border-color:var(--gold)"':''}><div class="l">${l}</div><div class="v">${v}</div></div>`}
+function ist(l,v,hi){return `<div class="ist"${hi?' style="background:rgba(31,58,107,.12);border-color:var(--gold)"':''}><div class="l">${l}</div><div class="v">${v}</div></div>`}
 /* etichetă text cu fundal alb, la coordonate de canvas */
 function glabel(g,px,py,txt,color,align){
   const ctx=g.ctx;ctx.font='bold 11px Inter,sans-serif';ctx.textAlign=align||'left';
@@ -878,7 +856,7 @@ function updateFocus(){
   gdot(g,fx,0,6,'#B8860B','#fff');gtag(g,fx,0,'F(p/2, 0)','#8a6508');
   gdot(g,xM,t,6,'#2C1A0E','#fff');gtag(g,xM,t,'M','#2C1A0E');
   gdot(g,-fx,t,5,'#B71C1C','#fff');gtag(g,-fx,t,'N','#B71C1C');
-  gdot(g,0,0,4,'#8B6E5A','#fff');
+  gdot(g,0,0,4,'#8A93A2','#fff');
   $('focusStats').innerHTML=
     ist('Parametrul p',fmt(p))+
     ist('Focarul F','(p/2, 0) = ('+fmt(fx)+', 0)')+
@@ -997,7 +975,7 @@ function drawRefl(ts){
   const fx=p/2,xright=(g.W-g.cx)/g.sc-0.2;
   plotParab(g,p,'#C4820A',3.4);
   glabel(g,12,g.H-12,'y² = 2px — oglinda','#8a6508');
-  glabel(g,g.W-14,g.ty(0)-8,'axa (Ox)','#8B6E5A','right');
+  glabel(g,g.W-14,g.ty(0)-8,'axa (Ox)','#8A93A2','right');
   /* directoarea g */
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.4;
   g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),0);g.ctx.lineTo(g.tx(-fx),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
@@ -1090,7 +1068,7 @@ function updateOsc(){
 function updateArh(){
   const n=parseInt($('aN').value);$('aNv').textContent=n;
   const cv=pickCv('arh','arhCv'),k=cv.width/520,bv=bview(cv,150*k,135*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
-  const fills=['rgba(184,134,11,.5)','rgba(199,125,10,.42)','rgba(212,160,23,.36)','rgba(184,134,11,.3)','rgba(199,125,10,.26)','rgba(212,160,23,.22)','rgba(184,134,11,.18)'];
+  const fills=['rgba(31,58,107,.5)','rgba(154,107,18,.42)','rgba(212,160,23,.36)','rgba(31,58,107,.3)','rgba(154,107,18,.26)','rgba(212,160,23,.22)','rgba(31,58,107,.18)'];
   let iv=[[-1,1]];
   for(let kk=0;kk<=n;kk++){
     const nxt=[];
@@ -1109,7 +1087,7 @@ function updateArh(){
     g.ctx.setLineDash([4,4]);
     g.ctx.strokeStyle='rgba(183,28,28,.7)';g.ctx.lineWidth=1.6;
     g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(0));g.ctx.lineTo(g.tx(1),g.ty(1));g.ctx.stroke();
-    g.ctx.strokeStyle='rgba(44,26,14,.8)';
+    g.ctx.strokeStyle='rgba(16,24,38,.8)';
     g.ctx.beginPath();g.ctx.moveTo(g.tx(0.25-0.4),g.ty(0.5-0.4));g.ctx.lineTo(g.tx(0.25+0.5),g.ty(0.5+0.5));g.ctx.stroke();
     g.ctx.setLineDash([]);
     gdot(g,0.25,0.5,4,'#2C1A0E','#fff');
@@ -1151,8 +1129,8 @@ function updateConic(){
   const ax=Math.round(cx),ay=Math.round(cy);
   for(let py=0;py<H;py++)for(let px=0;px<W;px++){
     const o=(py*W+px)*4;let r=255,gg=255,b=255;
-    if(gridX[px]||gridY[py]){r=240;gg=228;b=204}
-    if(px===ax||py===ay){r=139;gg=110;b=90}
+    if(gridX[px]||gridY[py]){r=230;gg=233;b=239}
+    if(px===ax||py===ay){r=138;gg=147;b=162}
     dd[o]=r;dd[o+1]=gg;dd[o+2]=b;dd[o+3]=255;
   }
   const prev=new Float64Array(W);let havePrev=false;
@@ -1193,37 +1171,33 @@ function updateConic(){
 
 /* ── 17 · asemănarea parabolelor ── */
 function updateSim(){
-  const p=parseFloat($('sLam').value);$('sLamv').textContent=fmt(p);
-  const cv=pickCv('sim','simCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,Wh=W/2,k=W/520;
-  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-  const scL=42*k,cy=H/2,cx1=Wh*0.3,cx2=Wh+Wh*0.3;
-  [[cx1,0,Wh],[cx2,Wh,W]].forEach(([cx0,xa,xb])=>{
-    ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.3;
-    ctx.beginPath();ctx.moveTo(xa+6,cy);ctx.lineTo(xb-6,cy);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(cx0,H-6);ctx.lineTo(cx0,8);ctx.stroke();
+  const s=parseFloat($('sLam').value);$('sLamv').textContent=fmt(s);
+  const cv=pickCv('sim','simCv'),k=cv.width/520,bv=bview(cv,40*k,118*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  /* parabola de bază y²=2x (gri) și copia ei mărită de s ori = y²=2s·x (ochre) */
+  plotParab(g,1,'#8A93A2',2.6);
+  plotParab(g,s,'#C4820A',3.2);
+  glabel(g,12,g.H-12,'baza: y² = 2x   →   copia: y² = '+fmt(2*s)+'x','#8a6508');
+  /* un punct P de pe bază → P′ = s·P pe copie, pe aceeași rază din O */
+  let labeled=false;
+  [1.7,-1.7].forEach(y0=>{
+    const x0=y0*y0/2, Px=x0*s, Py=y0*s, far=s>=1?[Px,Py]:[x0,y0];
+    g.ctx.setLineDash([2,3]);g.ctx.strokeStyle='rgba(31,58,107,.4)';g.ctx.lineWidth=1;
+    g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(0));g.ctx.lineTo(g.tx(far[0]),g.ty(far[1]));g.ctx.stroke();g.ctx.setLineDash([]);
+    g.ctx.strokeStyle='#1F3A6B';g.ctx.lineWidth=2;
+    g.ctx.beginPath();g.ctx.moveTo(g.tx(x0),g.ty(y0));g.ctx.lineTo(g.tx(Px),g.ty(Py));g.ctx.stroke();
+    gdot(g,x0,y0,4.5,'#8A93A2','#fff');
+    gdot(g,Px,Py,5,'#C4820A','#fff');
+    if(!labeled){gtag(g,x0,y0,'P','#5A6675');gtag(g,Px,Py,'P′ = s·P','#8a6508');labeled=true}
   });
-  ctx.strokeStyle='#EAD9C0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(Wh,0);ctx.lineTo(Wh,H);ctx.stroke();
-  /* parabola y²=2P x desenată în panoul [xa,xb], cu centru cx și scară sc */
-  const para=(P,cx,sc,xa,xb,color,lw,dash)=>{
-    ctx.save();ctx.beginPath();ctx.rect(xa,0,xb-xa,H);ctx.clip();
-    ctx.beginPath();let on=false;
-    for(let py=0;py<=H;py++){const y=(cy-py)/sc,x=y*y/(2*P),px=cx+x*sc;if(px>xb+60){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
-    if(dash)ctx.setLineDash(dash);ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.stroke();ctx.setLineDash([]);
-    ctx.restore();
-  };
-  /* STÂNGA: referința y²=2x (punctat) + actuala y²=2px (plin), aceeași scară */
-  para(1,cx1,scL,0,Wh,'rgba(139,110,90,.5)',1.6,[5,5]);
-  para(p,cx1,scL,0,Wh,'#C4820A',3);
-  /* DREAPTA: actuala y²=2px la zoom λ=1/p (scR=scL/p) → coincide cu referința */
-  para(1,cx2,scL,Wh,W,'rgba(139,110,90,.5)',1.6,[5,5]);
-  para(p,cx2,scL/p,Wh,W,'#C4820A',3);
-  ctx.fillStyle='#8B6E5A';ctx.font="11px 'JetBrains Mono',monospace";ctx.textAlign='left';
-  ctx.fillText('fereastră fixă: y² = '+fmt(2*p)+'x',12,18);
-  ctx.fillText('zoom λ = 1/p: devine y² = 2x',Wh+12,18);
+  gdot(g,0,0,4.5,'#16202E','#fff');gtag(g,0,0,'O','#16202E');
+  const near=Math.abs(s-1)<0.04;
   $('simStats').innerHTML=
-    ist('Stânga','y² = 2px (p = '+fmt(p)+') peste y² = 2x')+
-    ist('Dreapta','aceeași curbă la zoom λ = 1/p — coincide')+
-    ist('Concluzie','toate parabolele sunt asemenea ✓',1);
+    ist('Parabola de bază','y² = 2x')+
+    ist('Factorul de mărire','s = '+fmt(s))+
+    ist('Copia','y² = '+fmt(2*s)+'x  (baza × s)')+
+    ist('Un punct','P′ = s·P, pe raza din O')+
+    ist(near?'Acum':'Ideea',near?'s = 1 → chiar baza':'orice parabolă = baza × s')+
+    ist('Concluzie','toate parabolele asemenea ✓',1);
 }
 
 /* animation loops — draw only while their slide is active */
@@ -1245,14 +1219,14 @@ function drawElements(){
   g.ctx.save();g.ctx.beginPath();let started=false;
   for(let py=0;py<=g.H;py++){const y=(g.cy-py)/g.sc,x=y*y/(2*p),px=g.cx+x*g.sc;started?g.ctx.lineTo(px,py):g.ctx.moveTo(px,py);started=true}
   g.ctx.lineTo(g.W,g.H);g.ctx.lineTo(g.W,0);g.ctx.closePath();
-  g.ctx.fillStyle='rgba(184,134,11,.14)';g.ctx.fill();g.ctx.restore();
+  g.ctx.fillStyle='rgba(31,58,107,.14)';g.ctx.fill();g.ctx.restore();
   /* directoarea g: x = −p/2 */
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
   g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),0);g.ctx.lineTo(g.tx(-fx),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
   glabel(g,g.tx(-fx)+5,18,'directoarea g: x = −p/2','#B71C1C');
   /* numele axelor */
-  glabel(g,g.W-14,g.ty(0)-8,'axa transversă (Ox)','#8B6E5A','right');
-  glabel(g,g.tx(0)+6,32,'axa netransversă (Oy)','#8B6E5A');
+  glabel(g,g.W-14,g.ty(0)-8,'axa transversă (Ox)','#8A93A2','right');
+  glabel(g,g.tx(0)+6,32,'axa netransversă (Oy)','#8A93A2');
   /* parabola */
   plotParab(g,p,'#C4820A',3.4);
   glabel(g,12,g.H-12,'y² = 2px','#8a6508');
@@ -1307,7 +1281,7 @@ const BIGDEFS={
   osc:{cv:'oscCv',w:520,h:320,title:'Cercul osculator',fn:()=>updateOsc(),drag:'oT',dragAxis:'y'},
   arh:{cv:'arhCv',w:520,h:320,title:'Arhimede și 4/3',fn:()=>updateArh()},
   con:{cv:'conCv',w:520,h:300,title:'Conica generală și matricea ei',fn:()=>updateConic()},
-  sim:{cv:'simCv',w:520,h:300,title:'Toate parabolele sunt asemenea',fn:()=>updateSim(),noZoom:true}
+  sim:{cv:'simCv',w:520,h:340,title:'Toate parabolele sunt asemenea',fn:()=>updateSim()}
 };
 function sizeBig(){
   const d=BIGDEFS[bigKey],box=document.querySelector('.bigbox'),cv2=$('bigCv');
@@ -1321,7 +1295,7 @@ function openBig(key){
   const d=BIGDEFS[key];if(!d||innerWidth<761||bigOpen)return;
   bigKey=key;bigOpen=true;bigT=null;
   $('bigTitle').textContent=d.title;
-  $('bigHint').textContent=d.noZoom?'':(d.drag?'punctul se trage; fundalul se trage pentru mutare; scroll pentru zoom; dublu-click pentru resetare':'tragere pentru mutare; scroll pentru zoom; dublu-click pentru resetare');
+  $('bigHint').textContent=d.noZoom?'':(d.drag?'punctul se trage; fundalul se trage pentru mutare; scroll pentru mărire; dublu-click pentru resetare':'tragere pentru mutare; scroll pentru mărire; dublu-click pentru resetare');
   $('big').classList.add('open');
   $('bigCv').classList.toggle('dragx',!d.noZoom||!!d.drag);
   /* mută legenda, sliderele și statisticile în overlay (își păstrează listenerii) */
