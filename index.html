@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parabola — Funcția de gradul al II-lea</title>
+<title>Parabola — definiție geometrică și proprietăți</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -309,28 +309,63 @@ p{margin-bottom:12px;max-width:66ch}
   <section class="slide" data-label="Focar">
     <div class="wrap">
       <div class="eyebrow u">Punctul de plecare</div>
-      <h2 class="u" style="--d:1">Parabola — definiție geometrică</h2>
+      <h2 class="u" style="--d:1">Parabola — definiția geometrică</h2>
       <div class="grid2">
         <div class="stack u" style="--d:2">
           <div class="fb sm">
-            <div class="blab">Definiție</div>
-            <div class="formula">PF = dist(P, d)</div>
-            <div class="subnote"><strong>F</strong> = punct fix, numit <strong>focar</strong>; <strong>d</strong> = dreaptă fixă care nu trece prin F, numită <strong>directoare</strong>; <strong>P</strong> = punct oarecare al curbei. <strong>Parabola</strong> = locul geometric (mulțimea) punctelor egal depărtate de F și de d. <strong>Vârful</strong> V = punctul parabolei cel mai apropiat de directoare. <strong>p</strong> = distanța de la vârf la focar (= cea până la directoare).</div>
+            <div class="blab">Definiția 80</div>
+            <div class="formula">d(M, g) = MF</div>
+            <div class="subnote">Fie <strong>g</strong> o dreaptă din plan și <strong>F</strong> un punct care nu aparține lui g. <strong>Parabola</strong> este locul geometric al punctelor M cu proprietatea d(M, g) = MF. Punctul <strong>F</strong> se numește <strong>focarul</strong>, dreapta <strong>g</strong> se numește <strong>directoarea</strong>, iar segmentul <strong>MF</strong> este <strong>raza focală</strong> a punctului M.</div>
+          </div>
+          <div class="fb sm">
+            <div class="blab d">Parametrul parabolei</div>
+            <div class="formula">p = d(F, g)</div>
+            <div class="subnote">Distanța de la focar la directoare se numește <strong>parametrul parabolei</strong>. El măsoară „deschiderea” curbei și apare în toate formulele care urmează.</div>
           </div>
           <div class="mini">
-            <div class="blab d">Observație</div>
-            <div>Această definiție caracterizează <strong>orice parabolă</strong> din plan, indiferent de orientarea axei de simetrie. Slide-ul următor deduce ecuația ei în reperul cu vârful în origine și axa de simetrie Oy; pe baza ei vom recupera funcția de gradul al II-lea.</div>
+            <div class="blab">Observație</div>
+            <div>Pe grafic, M este mobil: oricât l-ai deplasa pe curbă, raza focală <strong>MF</strong> (albastru) rămâne egală cu distanța la directoare <strong>d(M, g)</strong> (verde) — exact proprietatea din definiție.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
-          <canvas id="focusCv" class="icv" width="520" height="320"></canvas>
+          <canvas id="focusCv" class="icv" width="520" height="360"></canvas>
           <button class="xpand" data-big="focus" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = dist(P, d)</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span><span><i style="background:#B8860B"></i>focarul F</span><span><i class="ln" style="background:#8a6508"></i>p — de la vârf la F</span><span><i style="background:#2C1A0E"></i>P — punct mobil</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola</span><span><i class="ln" style="background:#1565C0"></i>raza focală MF</span><span><i class="ln" style="background:#2E7D32"></i>d(M, g)</span><span><i class="ln" style="background:#B71C1C"></i>directoarea g</span><span><i style="background:#B8860B"></i>focarul F</span><span><i class="ln" style="background:#8a6508"></i>p = d(F, g)</span><span><i style="background:#2C1A0E"></i>M — punct mobil (se trage)</span></div>
           <div class="ctr">
-            <div class="mci"><div class="lab"><span>a</span><span id="fAv">0.5</span></div><input type="range" id="fA" min="0.2" max="1.2" step="0.05" value="0.5"></div>
-            <div class="mci"><div class="lab"><span>x<sub>P</sub></span><span id="fTv">1.6</span></div><input type="range" id="fT" min="-2.2" max="2.2" step="0.05" value="1.6"></div>
+            <div class="mci"><div class="lab"><span>p</span><span id="fPv">2</span></div><input type="range" id="fP" min="1" max="4" step="0.25" value="2"></div>
+            <div class="mci"><div class="lab"><span>y<sub>M</sub></span><span id="fTv">2.4</span></div><input type="range" id="fT" min="-3.9" max="3.9" step="0.05" value="2.4"></div>
           </div>
           <div class="istats" id="focusStats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b · PROCEDEUL DE CONSTRUCȚIE -->
+  <section class="slide" data-label="Construcție">
+    <div class="wrap">
+      <div class="eyebrow u">11.4.1 — de la definiție la desen</div>
+      <h2 class="u" style="--d:1">Procedeul de construcție</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm">
+            <div class="blab">Construcția cu rigla și echerul</div>
+            <div class="subnote">Se așază o <strong>riglă</strong> de-a lungul directoarei g. Pe riglă punem <strong>cateta mică</strong> a unui <strong>echer</strong>; de vârful unghiului ascuțit opus ei legăm o <strong>ață</strong> de lungime egală cu <strong>cateta mare</strong>, iar celălalt capăt îl fixăm în <strong>focarul F</strong>. Deplasând echerul de-a lungul riglei și ținând ața întinsă cu vârful creionului <strong>M</strong> lipit de cateta mare, vârful creionului descrie o parabolă.</div>
+          </div>
+          <div class="prf">
+            <div class="blab d">De ce funcționează</div>
+            <div>Cateta mare este perpendiculară pe riglă, deci pe directoare. Fie <strong>L</strong> lungimea ei (= lungimea aței). Creionul M împarte ața în <strong>MB</strong> (de-a lungul catetei) și <strong>MF</strong> (întins spre focar), cu MB + MF = L. Dar de-a lungul catetei avem și d(M, g) + MB = L. Scăzând, obținem <span class="hl">MF = d(M, g)</span> — chiar definiția parabolei.</div>
+          </div>
+          <div class="mini">
+            <div class="blab">Observație</div>
+            <div>Animat alături: echerul alunecă pe riglă, iar M rămâne mereu pe curbă. Este traducerea fizică, punct cu punct, a egalității d(M, g) = MF.</div>
+          </div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="constrCv" class="icv" width="520" height="360"></canvas>
+          <button class="xpand" data-big="constr" type="button" title="Mărește pe tot ecranul">⤢</button>
+          <div class="legend"><span><i class="ln" style="background:#B71C1C"></i>rigla = directoarea g</span><span><i style="background:#1565C0"></i>echerul (cateta mică pe riglă)</span><span><i class="ln" style="background:#8a6508"></i>ața: B → M → F (lungime L)</span><span><i style="background:#B8860B"></i>focarul F</span><span><i style="background:#2C1A0E"></i>M — vârful creionului</span><span><i style="background:#C4820A"></i>parabola descrisă</span></div>
+          <div class="istats" id="constrStats"></div>
         </div>
       </div>
     </div>
@@ -340,64 +375,26 @@ p{margin-bottom:12px;max-width:66ch}
   <section class="slide" data-label="Ecuația">
     <div class="wrap">
       <div class="eyebrow u">De la geometrie la algebră</div>
-      <h2 class="u" style="--d:1">Ecuația parabolei</h2>
+      <h2 class="u" style="--d:1">Ecuația carteziană a parabolei</h2>
       <div class="grid2">
         <div class="stack u" style="--d:2">
           <div class="fb sm">
-            <div class="blab t">Teoremă</div>
-            <div class="formula">x² = 4py</div>
-            <div class="subnote">În reperul cu vârful V în originea O, axa de simetrie Oy, focarul F(0, p) și directoarea d: y = −p (cu p &gt; 0), parabola are ecuația x² = 4py — echivalent y = (1/(4p))·x².</div>
+            <div class="blab t">Teorema 11.147</div>
+            <div class="formula">y² = 2px</div>
+            <div class="subnote">Alegem reperul xOy cu originea la <strong>mijlocul</strong> distanței dintre F și g, cu Oy paralelă cu g. Atunci focarul este <strong>F(p/2, 0)</strong>, directoarea g este <strong>x = −p/2</strong>, iar M(x, y) aparține parabolei dacă și numai dacă y² = 2px.</div>
           </div>
           <div class="prf">
             <div class="blab d">Demonstrație</div>
-            <div><strong>1)</strong> Fie P(x, y) un punct oarecare al parabolei. Distanța la focar este PF = √(x² + (y − p)²) — formula distanței.<br><strong>2)</strong> Distanța la directoare (d e orizontală, y = −p) este dist(P, d) = y − (−p) = y + p.<br><strong>3)</strong> Din definiție PF = dist(P, d); ridicăm la pătrat: x² + (y − p)² = (y + p)².<br><strong>4)</strong> Dezvoltăm: x² + y² − 2py + p² = y² + 2py + p². Reducem y² și p², obținem <span class="hl">x² = 4py</span>.</div>
+            <div>M(x, y) ∈ P ⟺ d(M, g) = MF ⟺ d²(M, g) = MF². Distanța la directoare este x + p/2, iar MF² = (x − p/2)² + y². Deci:<br>(x + p/2)² = (x − p/2)² + y²<br>x² + px + p²/4 = x² − px + p²/4 + y²<br>Reducem termenii comuni și obținem <span class="hl">y² = 2px</span>.</div>
           </div>
           <div class="mini">
-            <div class="blab t">Corolar — funcția de gradul al II-lea</div>
-            <div>Notând a = 1/(4p), ecuația devine y = ax². Pentru o parabolă cu vârful V(m, n) și axa paralelă cu Oy, prin translația X = x − m, Y = y − n, obținem Y = aX² ⇔ y = a(x − m)² + n. Dezvoltând: <span class="hl">y = ax² + bx + c</span>, cu b = −2am, c = am² + n — forma generală a funcției de gradul al II-lea.</div>
+            <div class="blab">Ecuații parametrice și explicite</div>
+            <div>Parametric: <strong>x = t²/(2p), &nbsp;y = t</strong>, cu t ∈ ℝ. Explicit, parabola este reuniunea graficelor a două funcții: <strong>y = √(2px)</strong> și <strong>y = −√(2px)</strong>, f : [0, ∞) → ℝ — adică P = G<sub>f</sub> ∪ G<sub>−f</sub>. (Parabola nu este graficul unei funcții y = f(x): pentru x &gt; 0 are două ordonate.)</div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="eqCv" class="icv" width="520" height="430"></canvas>
-          <div class="legend"><span><i style="background:#2C1A0E"></i>O — vârful (origine)</span><span><i style="background:#B8860B"></i>F(0, p) — focarul</span><span><i class="ln" style="background:#B71C1C"></i>d: y = −p — directoarea</span><span><i style="background:#2C1A0E"></i>P(x, y) — punct al curbei</span><span><i class="ln" style="background:#1565C0"></i>PF</span><span><i class="ln" style="background:#2E7D32"></i>PQ = y + p</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3 · FUNCȚIA DE GRADUL AL II-LEA -->
-  <section class="slide" data-label="Funcția f">
-    <div class="wrap">
-      <div class="eyebrow u">Reprezentarea algebrică</div>
-      <h2 class="u" style="--d:1">Funcția de gradul al II-lea</h2>
-      <div class="grid2">
-        <div class="stack u" style="--d:2">
-          <div class="fb sm">
-            <div class="blab">Definiție — forma generală</div>
-            <div class="formula"><span class="v">f</span> : ℝ → ℝ,&nbsp; <span class="v">f</span>(x) = <span class="v">a</span>x² + <span class="v">b</span>x + <span class="v">c</span></div>
-            <div class="subnote">cu <strong>a, b, c ∈ ℝ</strong>, <strong>a ≠ 0</strong>. Din corolarul precedent, graficul ei este o parabolă cu axa paralelă cu Oy — <strong>caz particular</strong> al parabolelor din plan (cele rotite apar la conice).</div>
-          </div>
-          <div class="fb sm">
-            <div class="blab t">Teoremă — forma canonică</div>
-            <div class="formula"><span class="v">f</span>(x) = <span class="v">a</span>(x − <span class="v">m</span>)² + <span class="v">n</span></div>
-            <div class="subnote">cu vârful <strong style="color:var(--gold)">V(m, n)</strong>, &nbsp; m = −<span class="frac"><span class="n">b</span><span class="d">2a</span></span>, &nbsp; n = −<span class="frac"><span class="n">Δ</span><span class="d">4a</span></span> &nbsp;(unde Δ = b² − 4ac)</div>
-          </div>
-          <div class="mini">
-            <strong>a</strong> — direcția și deschiderea ramurilor;&nbsp; <strong>b</strong> — poziția orizontală a vârfului;&nbsp; <strong>c</strong> — intersecția cu Oy, f(0) = c.<br>
-            Domeniu ℝ; codomeniu [n, +∞) dacă a &gt; 0, altfel (−∞, n]; axa de simetrie x = −b/(2a).
-          </div>
-        </div>
-        <div class="stack u" style="--d:3">
-          <div class="card">
-            <div class="blab d">Demonstrație — completarea pătratului</div>
-            <div style="font-family:var(--serif);font-size:1.18rem;line-height:2.4;color:var(--ink);padding:14px 16px;background:var(--panel);border-radius:10px;margin-top:4px">
-              ax² + bx + c<br>
-              = a(x² + <span class="frac"><span class="n">b</span><span class="d">a</span></span>x) + c<br>
-              = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">b²</span><span class="d">4a</span></span> + c<br>
-              = a(x + <span class="frac"><span class="n">b</span><span class="d">2a</span></span>)² − <span class="frac"><span class="n">Δ</span><span class="d">4a</span></span>
-            </div>
-            <div style="font-size:.9rem;color:var(--sub);margin-top:10px;line-height:1.55">Comparând cu forma canonică, citim direct m = −b/(2a) și n = −Δ/(4a) — astfel forma generală și cea canonică sunt aceeași funcție.</div>
-          </div>
+          <div class="legend"><span><i style="background:#2C1A0E"></i>O — vârful (origine)</span><span><i style="background:#B8860B"></i>F(p/2, 0) — focarul</span><span><i class="ln" style="background:#B71C1C"></i>g: x = −p/2 — directoarea</span><span><i style="background:#2C1A0E"></i>M(x, y) — punct al curbei</span><span><i class="ln" style="background:#1565C0"></i>MF</span><span><i class="ln" style="background:#2E7D32"></i>d(M, g) = x + p/2</span></div>
         </div>
       </div>
     </div>
@@ -411,51 +408,57 @@ p{margin-bottom:12px;max-width:66ch}
       <div class="grid2">
         <div class="stack u" style="--d:2">
           <div class="mini">
-            <div class="blab">Vârful</div>
-            <strong>V(m, n)</strong>, cu m = −b/(2a) și n = −Δ/(4a) — punctul de pe parabolă unde curba își schimbă sensul: <strong>minim</strong> dacă a &gt; 0 (ramuri în sus), <strong>maxim</strong> dacă a &lt; 0 (ramuri în jos).
+            <div class="blab">Vârful și axele</div>
+            <strong>Vârful</strong> O(0, 0) — punctul parabolei cel mai apropiat de directoare. <strong>Ox</strong> = <strong>axa transversă</strong> (axa de simetrie a curbei); <strong>Oy</strong> = <strong>axa netransversă</strong> (tangenta în vârf).
           </div>
           <div class="mini">
-            <div class="blab">Axa de simetrie</div>
-            Dreapta verticală <strong>x = −b/(2a)</strong> care trece prin vârf; parabola e simetrică față de ea — orice punct are un „geamăn” oglindit.
+            <div class="blab">Focar și directoare</div>
+            <strong>Focarul</strong> F(p/2, 0) și <strong>directoarea</strong> g: x = −p/2 sunt simetrice față de vârf, fiecare la distanța p/2 de el.
           </div>
-          <div class="mini">
-            <div class="blab">Intersecțiile cu axele</div>
-            Cu <strong>Oy</strong>: punctul (0, c), pentru că f(0) = c. Cu <strong>Ox</strong>: punctele de abscise <strong>x₁,₂ = (−b ± √Δ)/(2a)</strong>, unde curba taie axa — ele există doar când Δ ≥ 0.
+          <div class="fb sm">
+            <div class="blab t">Interiorul și exteriorul</div>
+            <div class="formula" style="font-size:1.15rem">F(x, y) = y² − 2px</div>
+            <div class="subnote">Cu funcția F(x, y) = y² − 2px: <strong>int(P)</strong> = { F(x, y) &lt; 0 } este <strong>interiorul</strong> (regiunea ce conține focarul), iar <strong>ext(P)</strong> = { F(x, y) &gt; 0 } este <strong>exteriorul</strong>. Evident int(P) ∩ ext(P) = ∅ și int(P) ∪ ext(P) ∪ P = întreg planul.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="elemCv" class="icv" width="520" height="430"></canvas>
-          <div class="legend"><span><i style="background:#1565C0"></i>V — vârful</span><span><i class="ln" style="background:#1565C0"></i>axa de simetrie</span><span><i style="background:#E53935"></i>x₁, x₂ — intersecții cu Ox</span><span><i style="background:#2E7D32"></i>(0, c) — intersecție cu Oy</span><span>↑↓ — sensul ramurilor (semnul lui a)</span></div>
+          <div class="legend"><span><i style="background:#1565C0"></i>O — vârful</span><span><i style="background:#B8860B"></i>F — focarul</span><span><i class="ln" style="background:#B71C1C"></i>g — directoarea</span><span><i style="background:#C4820A"></i>parabola</span><span><i style="background:rgba(184,134,11,.45)"></i>int(P)</span><span>rest — ext(P)</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4 · POZIȚIA FAȚĂ DE OX — CALCULATOR INTERACTIV -->
-  <section class="slide" data-label="Calculator">
+  <!-- 4 · POZIȚIA UNEI DREPTE FAȚĂ DE PARABOLĂ -->
+  <section class="slide" data-label="Dreaptă">
     <div class="wrap">
-      <div class="eyebrow u">Explorează poziția față de axe</div>
-      <h2 class="u" style="--d:1">Poziția față de axa Ox</h2>
-      <div class="mini u" style="--d:2;margin-bottom:10px;font-size:.92rem">
-        <strong>Δ = b² − 4ac</strong> decide câte puncte are parabola pe Ox: <strong>Δ &gt; 0</strong> → 2, <strong>Δ = 0</strong> → 1 (tangentă, în vârf), <strong>Δ &lt; 0</strong> → niciunul. Cu semnul lui <strong>a</strong> (ramuri sus/jos) → 6 configurații. Coeficienții pot fi variați liber sau fixați la una dintre cele șase configurații:
-      </div>
-      <div class="presets u" style="--d:2;margin-bottom:10px">
-        <span class="pl">cele 6 cazuri</span>
-        <button class="preset" data-a="1" data-b="0" data-c="-4"><span class="badge ba">a&gt;0</span><span class="badge bdp">Δ&gt;0</span></button>
-        <button class="preset" data-a="1" data-b="-2" data-c="1"><span class="badge ba">a&gt;0</span><span class="badge bdz">Δ=0</span></button>
-        <button class="preset" data-a="1" data-b="0" data-c="2"><span class="badge ba">a&gt;0</span><span class="badge bdn">Δ&lt;0</span></button>
-        <button class="preset" data-a="-1" data-b="0" data-c="4"><span class="badge ban">a&lt;0</span><span class="badge bdp">Δ&gt;0</span></button>
-        <button class="preset" data-a="-1" data-b="2" data-c="-1"><span class="badge ban">a&lt;0</span><span class="badge bdz">Δ=0</span></button>
-        <button class="preset" data-a="-1" data-b="0" data-c="-2"><span class="badge ban">a&lt;0</span><span class="badge bdn">Δ&lt;0</span></button>
-      </div>
-      <div class="ci u" style="--d:3">
-        <div class="ig"><div class="cn">a</div><label>Coeficient a (≠ 0)</label><input type="range" id="sA" min="-5" max="5" step="0.5" value="1"><div class="vd" id="vA">1</div></div>
-        <div class="ig"><div class="cn">b</div><label>Coeficient b</label><input type="range" id="sB" min="-10" max="10" step="1" value="0"><div class="vd" id="vB">0</div></div>
-        <div class="ig"><div class="cn">c</div><label>Coeficient c</label><input type="range" id="sC" min="-10" max="10" step="1" value="-4"><div class="vd" id="vC">−4</div></div>
-      </div>
-      <div class="cl u" style="--d:3">
-        <canvas id="calcCanvas" width="560" height="320"></canvas>
-        <div class="results" id="res"></div>
+      <div class="eyebrow u">Observație — câte puncte comune?</div>
+      <h2 class="u" style="--d:1">Intersecția cu o dreaptă</h2>
+      <div class="grid2">
+        <div class="stack u" style="--d:2">
+          <div class="fb sm">
+            <div class="blab">Observație</div>
+            <div class="subnote">Punctele comune ale unei drepte cu parabola sunt soluțiile sistemului format din ecuația dreptei și ecuația parabolei. Înlocuind y = mx + q în y² = 2px obținem o ecuație de gradul al II-lea — deci o dreaptă taie parabola în <strong>cel mult două puncte</strong>.</div>
+          </div>
+          <div class="prf">
+            <div class="blab d">Cele trei poziții</div>
+            <div>Pentru m ≠ 0, ecuația m²x² + (2mq − 2p)x + q² = 0 are discriminantul <strong>Δ = 4p(p − 2mq)</strong>:<br><strong>Δ &gt; 0</strong> → dreaptă <span class="hl">secantă</span> (2 puncte); &nbsp;<strong>Δ = 0</strong> → <span class="hl">tangentă</span> (1 punct); &nbsp;<strong>Δ &lt; 0</strong> → <span class="hl">exterioară</span> (0 puncte).</div>
+          </div>
+          <div class="mini">
+            <div class="blab">Variază dreapta</div>
+            <div>Mișcă panta <strong>m</strong> și ordonata la origine <strong>q</strong>; numărul punctelor comune trece prin 2 → 1 → 0, niciodată mai mult de două.</div>
+          </div>
+        </div>
+        <div class="u" style="--d:3">
+          <canvas id="lineCv" class="icv" width="520" height="360"></canvas>
+          <button class="xpand" data-big="line" type="button" title="Mărește pe tot ecranul">⤢</button>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y² = 2px</span><span><i class="ln" style="background:#1565C0"></i>dreapta y = mx + q</span><span><i style="background:#E53935"></i>puncte comune</span><span><i style="background:#B8860B"></i>focarul F</span></div>
+          <div class="ctr">
+            <div class="mci"><div class="lab"><span>m</span><span id="lMv">0.5</span></div><input type="range" id="lM" min="-2" max="2" step="0.1" value="0.5"></div>
+            <div class="mci"><div class="lab"><span>q</span><span id="lQv">1</span></div><input type="range" id="lQ" min="-5" max="5" step="0.25" value="1"></div>
+          </div>
+          <div class="istats" id="lineStats"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -463,32 +466,31 @@ p{margin-bottom:12px;max-width:66ch}
   <!-- 10 · TANGENTE -->
   <section class="slide" data-label="Tangente">
     <div class="wrap">
-      <div class="eyebrow u">Două drumuri, aceeași dreaptă</div>
-      <h2 class="u" style="--d:1">Tangenta, pe două căi</h2>
+      <div class="eyebrow u">11.4.2 — dreapta tangentă</div>
+      <h2 class="u" style="--d:1">Tangenta prin dedublare</h2>
       <div class="grid2">
         <div class="stack u" style="--d:2">
           <div class="fb sm">
-            <div class="blab t">Teoremă — ecuația tangentei</div>
-            <div class="formula">T: y = f(x₀) + f′(x₀)·(x − x₀)</div>
-            <div class="subnote"><strong>T(x₀, f(x₀))</strong> = punctul de tangență; <strong>x₀</strong> = abscisa lui — un număr fixat; <strong>x</strong> = variabila (punctul curent de pe dreaptă); <strong>f′(x₀) = 2ax₀ + b</strong> = derivata în x₀ = <strong>panta</strong> tangentei. <strong>Tangenta</strong> = poziția limită a secantelor prin T; <strong>normala</strong> = perpendiculara pe tangentă în T.</div>
+            <div class="blab t">Tangenta în M₀</div>
+            <div class="formula">d: y·y₀ = p(x + x₀)</div>
+            <div class="subnote">Fie M₀(x₀, y₀) un punct al parabolei. Ecuația tangentei în M₀ se obține prin <strong>dedublarea</strong> ecuației y² = 2px: înlocuim y² → y·y₀ și x → (x + x₀)/2. Panta tangentei este <strong>p/y₀</strong>.</div>
           </div>
-          <div class="prf">
-            <div class="blab t">Teoremă — criteriul Δ = 0</div>
-            <div>Dreapta y = sx + ℓ, unde <strong>s</strong> = panta ei și <strong>ℓ</strong> = ordonata la origine (locul în care taie axa Oy), e tangentă parabolei ⟺ ecuația f(x) = sx + ℓ are soluție dublă:<br>ax² + (b−s)x + (c−ℓ) = 0, cu <span class="hl">Δ = (b−s)² − 4a(c−ℓ) = 0</span> ⟺ ℓ = c − <span class="frac"><span class="n">(s−b)²</span><span class="d">4a</span></span></div>
+          <div class="fb sm">
+            <div class="blab">Normala</div>
+            <div class="formula" style="font-size:1.1rem">y − y₀ = −(y₀/p)(x − x₀)</div>
+            <div class="subnote">Dreapta care trece prin M₀ și este perpendiculară pe tangentă se numește <strong>normala</strong>, notată n. Panta ei este −y₀/p, opusul inversului pantei tangentei.</div>
           </div>
           <div class="mini">
-            <div class="blab d">Demonstrație — cele două căi dau aceeași dreaptă</div>
-            <div>Cu s = 2ax₀ + b avem (s−b)² = 4a²x₀², deci criteriul dă ℓ = c − ax₀²; iar tangenta din prima teoremă taie Oy la f(x₀) − s·x₀ = c − ax₀² — aceeași dreaptă. Graficul folosește exemplul f(x) = a·x² − x − 2 (b = −1, c = −2). În modul „înfășurătoare” se desenează numai tangentele, iar parabola apare ca înfășurătoarea lor.</div>
+            <div class="blab d">Verificare</div>
+            <div>Produsul pantelor: (p/y₀) · (−y₀/p) = −1, deci tangenta și normala sunt perpendiculare. Mută M₀ pe curbă pentru a vedea cum se rotesc amândouă.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
-          <canvas id="tanCv" class="icv" width="520" height="320"></canvas>
+          <canvas id="tanCv" class="icv" width="520" height="360"></canvas>
           <button class="xpand" data-big="tan" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola f(x) = ax² − x − 2</span><span><i class="ln" style="background:#1565C0"></i>tangenta</span><span><i class="ln" style="background:#2E7D32"></i>normala (punctată)</span><span><i style="background:#E53935"></i>T — punctul de tangență (mobil)</span><span>x₀ — abscisa lui T, marcată punctat pe Ox</span></div>
-          <div class="ctr c3x">
-            <div class="mci"><div class="lab"><span>a</span><span id="tAv">0.5</span></div><input type="range" id="tA" min="-1.5" max="1.5" step="0.25" value="0.5"></div>
-            <div class="mci"><div class="lab"><span>x₀</span><span id="tXv">1.5</span></div><input type="range" id="tX" min="-3" max="3" step="0.1" value="1.5"></div>
-            <button id="tEnv" class="envbtn" type="button">înfășurătoare: OFF</button>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y² = 2px</span><span><i class="ln" style="background:#1565C0"></i>tangenta</span><span><i class="ln" style="background:#2E7D32"></i>normala (punctată)</span><span><i style="background:#E53935"></i>M₀ — punctul de tangență (se trage)</span><span><i style="background:#B8860B"></i>focarul F</span></div>
+          <div class="ctr" style="grid-template-columns:1fr">
+            <div class="mci"><div class="lab"><span>y₀</span><span id="tXv">2</span></div><input type="range" id="tX" min="-3.5" max="3.5" step="0.05" value="2"></div>
           </div>
           <div class="istats" id="tanStats"></div>
         </div>
@@ -499,18 +501,17 @@ p{margin-bottom:12px;max-width:66ch}
   <!-- 13 · REFLEXIA ÎN FOCAR -->
   <section class="slide" data-label="Reflexie">
     <div class="wrap">
-      <div class="eyebrow u">Oglinda perfectă</div>
+      <div class="eyebrow u">Teorema 11.148 — proprietatea optică</div>
       <h2 class="u" style="--d:1">Reflexia în focar</h2>
       <div class="grid2">
         <div class="stack u" style="--d:2">
           <div class="fb sm">
-            <div class="blab t">Teoremă — proprietatea optică</div>
-            <div class="formula">raze ∥ axă &nbsp;⟶&nbsp; focar</div>
-            <div class="subnote">Orice <strong>rază incidentă</strong> paralelă cu <strong>axa de simetrie</strong>, reflectată de parabolă după <strong>legea reflexiei</strong> (unghi de incidență = unghi de reflexie, măsurate față de tangenta din punctul de impact), trece prin focarul F. Graficul alăturat prezintă parabola y = a·x²; axa de simetrie este Oy, iar razele incidente sunt verticale.</div>
+            <div class="blab t">Teorema bisectoarelor</div>
+            <div class="subnote">Tangenta și normala la parabolă în M₀ sunt <strong>bisectoarele</strong> unghiurilor determinate de suportul razei focale M₀F și de paralela prin M₀ la axa parabolei. Optic: razele paralele cu axa se reflectă toate prin <strong>focarul F</strong>.</div>
           </div>
           <div class="prf" style="font-size:.95rem;line-height:1.75;padding:10px 14px">
             <div class="blab d">Demonstrație</div>
-            <div><strong>1)</strong> Fie P(t, at²) punctul de impact și Q(t, −p) proiecția lui pe directoare. Din PF = PQ ⇒ <span class="hl">P se află pe mediatoarea lui [FQ]</span>.<br><strong>2)</strong> Panta lui FQ, cu F(0, p) și Q(t, −p): (−2p)/t. Perpendicularele au produsul pantelor −1 ⇒ mediatoarea are panta <span class="frac"><span class="n">t</span><span class="d">2p</span></span> = 2at = f′(t) ⇒ <span class="hl">mediatoarea este tangenta în P</span>.<br><strong>3)</strong> În triunghiul isoscel FPQ, mediatoarea bazei face unghiuri egale cu PQ și PF ⇒ raza verticală se reflectă pe PF, prin focar.</div>
+            <div><strong>1)</strong> Fie A proiecția lui M₀ pe directoare, A(−p/2, y₀), și F(p/2, 0). Panta lui AF este −y₀/p, iar panta tangentei d este p/y₀, deci m<sub>AF</sub> · m<sub>d</sub> = −1 ⇒ <span class="hl">AF ⊥ d</span>.<br><strong>2)</strong> Din definiție M₀A = M₀F, deci triunghiul AM₀F este isoscel; cum AF ⊥ d, dreapta d este înălțime, adică <span class="hl">d este bisectoarea unghiului AM₀F</span>.<br><strong>3)</strong> M₀A este paralelă cu axa, deci tangenta face unghiuri egale cu raza focală M₀F și cu paralela la axă — exact legea reflexiei.</div>
           </div>
           <div class="figc">
             <img src="images/parabolic-dish.jpg" alt="Reflectoare parabolice cu diagrama razelor convergente în focar">
@@ -521,11 +522,11 @@ p{margin-bottom:12px;max-width:66ch}
           </div>
         </div>
         <div class="u" style="--d:3">
-          <canvas id="reflCv" class="icv" width="520" height="320"></canvas>
+          <canvas id="reflCv" class="icv" width="520" height="360"></canvas>
           <button class="xpand" data-big="refl" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola = oglinda</span><span><i style="background:#D4A017"></i>razele, în mișcare</span><span><i style="background:#B8860B"></i>focarul F (strălucește)</span><span><i style="background:#2C1A0E"></i>P — punct de impact</span><span><i style="background:#B71C1C"></i>Q — proiecția lui P pe directoare</span><span><i class="ln" style="background:#1565C0"></i>segmentul PF</span><span><i class="ln" style="background:#2E7D32"></i>segmentul PQ (punctat)</span><span><i class="ln" style="background:#2C1A0E"></i>tangenta în P</span><span><i class="ln" style="background:#B71C1C"></i>directoarea d</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola = oglinda</span><span><i style="background:#D4A017"></i>razele, în mișcare</span><span><i style="background:#B8860B"></i>focarul F</span><span><i style="background:#2C1A0E"></i>P — punct de impact</span><span><i style="background:#B71C1C"></i>A — proiecția pe directoare</span><span><i class="ln" style="background:#1565C0"></i>PF (raza focală)</span><span><i class="ln" style="background:#2E7D32"></i>PA ∥ axă</span><span><i class="ln" style="background:#2C1A0E"></i>tangenta în P</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
-            <div class="mci"><div class="lab"><span>a</span><span id="rAv">0.45</span></div><input type="range" id="rA" min="0.2" max="0.8" step="0.05" value="0.45"></div>
+            <div class="mci"><div class="lab"><span>p</span><span id="rAv">2.4</span></div><input type="range" id="rA" min="1.2" max="3.5" step="0.1" value="2.4"></div>
           </div>
           <div class="istats" id="reflStats"></div>
         </div>
@@ -543,21 +544,21 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab">Definiție</div>
             <div class="formula" style="font-size:1.15rem">cerc(P₋ₕ, P₀, P₊ₕ) <span style="font-size:.7em;color:var(--sub)">h→0</span>⟶ cerc osculator</div>
-            <div class="subnote"><strong>P₀(t, f(t))</strong> = punctul de studiu, cu abscisa <strong>t</strong>; <strong>P₋ₕ, P₊ₕ</strong> = vecinii de pe curbă, la abscisele t−h și t+h; <strong>h</strong> = distanța orizontală până la ei. <strong>Cercul osculator în P₀</strong> = poziția limită a cercului prin cele 3 puncte, când h → 0. Raza lui, <strong>R</strong>, se numește <strong>raza de curbură</strong>; <strong>evoluta</strong> = locul geometric al centrelor C.</div>
+            <div class="subnote"><strong>P₀</strong> = punctul de studiu, de parametru (ordonată) <strong>t</strong>; <strong>P₋ₕ, P₊ₕ</strong> = vecinii de pe curbă, la ordonatele t−h și t+h; <strong>h</strong> = pasul. <strong>Cercul osculator în P₀</strong> = poziția limită a cercului prin cele 3 puncte, când h → 0. Raza lui, <strong>R</strong>, se numește <strong>raza de curbură</strong>; <strong>evoluta</strong> = locul geometric al centrelor C.</div>
           </div>
           <div class="prf">
             <div class="blab t">Teoremă și demonstrație — raza în vârf</div>
-            <div><strong>1)</strong> Pe y = ax², luăm cercul prin V(0, 0) și punctele simetrice (−h, ah²), (h, ah²). Din simetrie, centrul lui e pe Oy: C(0, r); raza = CV = r.<br><strong>2)</strong> Punctul (h, ah²) e pe cerc ⇒ distanța lui până la C este r. Cu formula distanței: (h−0)² + (ah²−r)² = r². Dezvoltăm pătratul: h² + a²h⁴ − 2ah²r + r² = r²; reducem r² și împărțim la 2ah²:<br>r = <span class="frac"><span class="n">1 + a²h²</span><span class="d">2a</span></span> &nbsp;⇒&nbsp; când h → 0, a²h² → 0 ⇒ <span class="hl">R = <span class="frac"><span class="n">1</span><span class="d">2a</span></span></span></div>
+            <div><strong>1)</strong> Pe y² = 2px, luăm cercul prin vârful O(0, 0) și punctele simetrice (h²/2p, h), (h²/2p, −h). Din simetrie față de Ox, centrul e pe Ox: C(r, 0); raza = OC = r.<br><strong>2)</strong> Punctul (h²/2p, h) e pe cerc ⇒ (h²/2p − r)² + h² = r². Dezvoltăm și împărțim la h²:<br>r = p + <span class="frac"><span class="n">h²</span><span class="d">4p</span></span> &nbsp;⇒&nbsp; când h → 0 ⇒ <span class="hl">R = p</span></div>
           </div>
           <div class="mini">
             <div class="blab d">Observație</div>
-            <div>Graficul folosește parabola y = x²/2 (a = 1/2), deci în vârf R = 1/(2a) = 1 = <strong>2p</strong> — exact dublul distanței focale; parabola e cea mai curbată în vârf. <em style="color:var(--sub)">Demonstrăm exact doar raza în vârf; în afara lui, cercul și evoluta sunt prezentate ilustrativ.</em></div>
+            <div>Graficul folosește parabola y² = 2x (p = 1), deci în vârf R = p = 1 — raza de curbură în vârf este chiar parametrul. <em style="color:var(--sub)">Demonstrăm exact doar raza în vârf; în afara lui, cercul și evoluta sunt prezentate ilustrativ.</em></div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="oscCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="osc" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²/2</span><span><i style="background:#E53935"></i>P₋ₕ, P₀, P₊ₕ — abscisele t−h, t, t+h</span><span><i class="ln" style="background:#1565C0"></i>cercul prin ele + centrul C</span><span><i class="ln" style="background:#7B1FA2"></i>evoluta (punctată)</span><span><i style="background:#B8860B"></i>focarul F</span><span>t — abscisa lui P₀; h — pasul pe Ox (diferența de abscisă)</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y² = 2x</span><span><i style="background:#E53935"></i>P₋ₕ, P₀, P₊ₕ — ordonatele t−h, t, t+h</span><span><i class="ln" style="background:#1565C0"></i>cercul prin ele + centrul C</span><span><i class="ln" style="background:#7B1FA2"></i>evoluta (punctată)</span><span><i style="background:#B8860B"></i>focarul F</span><span>t — ordonata lui P₀; h — pasul</span></div>
           <div class="ctr">
             <div class="mci"><div class="lab"><span>t</span><span id="oTv">1.4</span></div><input type="range" id="oT" min="-2.4" max="2.4" step="0.05" value="1.4"></div>
             <div class="mci"><div class="lab"><span>h</span><span id="oHv">1</span></div><input type="range" id="oH" min="0.05" max="1.2" step="0.05" value="1"></div>
@@ -578,17 +579,17 @@ p{margin-bottom:12px;max-width:66ch}
           <div class="fb sm">
             <div class="blab t">Teorema lui Arhimede — „Cvadratura parabolei”</div>
             <div class="formula" style="font-size:1.2rem">A<sub>segment</sub> = <span class="frac"><span class="n">4</span><span class="d">3</span></span> · A<sub>triunghi</sub></div>
-            <div class="subnote"><strong>Coardă</strong> = segmentul AB dintre două puncte ale parabolei; <strong>segment parabolic</strong> = regiunea dintre coardă și arc; <strong>triunghi înscris</strong> = ABV′, cu <strong>V′</strong> = punctul arcului unde tangenta e paralelă cu coarda. Pe grafic: y = x², A(−1, 1), B(1, 1) ⇒ V′ = O(0, 0), A<sub>triunghi</sub> = 1.</div>
+            <div class="subnote"><strong>Coardă</strong> = segmentul AB dintre două puncte ale parabolei; <strong>segment parabolic</strong> = regiunea dintre coardă și arc; <strong>triunghi înscris</strong> = ABV′, cu <strong>V′</strong> = punctul arcului unde tangenta e paralelă cu coarda. Pe grafic: y² = x, A(1, −1), B(1, 1) ⇒ V′ = O(0, 0), A<sub>triunghi</sub> = 1.</div>
           </div>
           <div class="prf" style="font-size:.93rem;line-height:1.75;padding:10px 14px">
             <div class="blab d">Demonstrație — în trei pași</div>
-            <div><strong>1) Găsirea lui V′.</strong> Panta coardei dintre (p, p²) și (q, q²) este <span class="frac"><span class="n">q² − p²</span><span class="d">q − p</span></span> = <span class="hl">p + q</span> (simplificăm diferența de pătrate). Panta tangentei = derivata lui x², adică 2x. Egalăm: 2x = p + q ⇒ x = (p+q)/2 — V′ stă la mijlocul absciselor.<br><strong>2) Raportul ¼.</strong> Formula ariei pe coordonate dă, pentru triunghiul cu vârfurile la abscisele p, (p+q)/2, q, aria (q−p)³/8. Coarda se înjumătățește la fiecare pas ⇒ triunghiul nou are ((q−p)/2)³/8 = 1/8 din cel vechi; fiind câte <strong>două</strong> pe fiecare coardă ⇒ generația nouă = 2/8 = <span class="hl">¼ din precedenta</span>.<br><strong>3) Suma.</strong> A = T(1 + ¼ + ¹∕₁₆ + ⋯); suma progresiei geometrice cu rația ¼ este Sₙ = <span class="frac"><span class="n">1 − (¼)ⁿ⁺¹</span><span class="d">1 − ¼</span></span>; cum (¼)ⁿ⁺¹ → 0, S = <span class="frac"><span class="n">1</span><span class="d">1 − ¼</span></span> = <span class="frac"><span class="n">1</span><span class="d">3/4</span></span> = <span class="hl">4/3 ⇒ A = 4/3 · T</span></div>
+            <div><strong>1) Găsirea lui V′.</strong> Un punct al parabolei are forma (t², t). Panta coardei dintre (a², a) și (b², b) este <span class="frac"><span class="n">b − a</span><span class="d">b² − a²</span></span> = <span class="hl">1/(a + b)</span>. Panta tangentei în (t², t) este 1/(2t). Egalăm: 1/(2t) = 1/(a+b) ⇒ t = (a+b)/2 — V′ stă la mijlocul parametrilor.<br><strong>2) Raportul ¼.</strong> Formula ariei pe coordonate dă, pentru triunghiul cu vârfurile la parametrii a, (a+b)/2, b, aria (b−a)³/8. Coarda se înjumătățește la fiecare pas ⇒ triunghiul nou are ((b−a)/2)³/8 = 1/8 din cel vechi; fiind câte <strong>două</strong> pe fiecare coardă ⇒ generația nouă = 2/8 = <span class="hl">¼ din precedenta</span>.<br><strong>3) Suma.</strong> A = T(1 + ¼ + ¹∕₁₆ + ⋯); suma progresiei geometrice cu rația ¼ este Sₙ = <span class="frac"><span class="n">1 − (¼)ⁿ⁺¹</span><span class="d">1 − ¼</span></span>; cum (¼)ⁿ⁺¹ → 0, S = <span class="frac"><span class="n">1</span><span class="d">1 − ¼</span></span> = <span class="frac"><span class="n">1</span><span class="d">3/4</span></span> = <span class="hl">4/3 ⇒ A = 4/3 · T</span></div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="arhCv" class="icv" width="520" height="320"></canvas>
           <button class="xpand" data-big="arh" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>parabola y = x²</span><span><i class="ln" style="background:#B71C1C"></i>coarda AB cu capetele A(−1,1), B(1,1)</span><span><i style="background:#2C1A0E"></i>V′ = O — vârful triunghiului înscris</span><span><i style="background:#D4A017"></i>triunghiurile — o nuanță pe generație</span><span>n — numărul generațiilor de triunghiuri</span><span>punctat (de la n ≥ 1): lema pe coarda p = 0, q = 1</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>parabola y² = x</span><span><i class="ln" style="background:#B71C1C"></i>coarda AB cu capetele A(1,−1), B(1,1)</span><span><i style="background:#2C1A0E"></i>V′ = O — vârful triunghiului înscris</span><span><i style="background:#D4A017"></i>triunghiurile — o nuanță pe generație</span><span>n — numărul generațiilor de triunghiuri</span><span>punctat (de la n ≥ 1): lema pe coarda a = 0, b = 1</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
             <div class="mci"><div class="lab"><span>generații n</span><span id="aNv">1</span></div><input type="range" id="aN" min="0" max="6" step="1" value="1"></div>
           </div>
@@ -660,19 +661,19 @@ p{margin-bottom:12px;max-width:66ch}
           </div>
           <div class="prf">
             <div class="blab t">Teoremă și demonstrație</div>
-            <div><strong>Oricare două parabole y = ax² și y = a′x² sunt asemenea.</strong> Aplicăm zoom-ul X = λx, Y = λy punctelor de pe y = ax²:<br>Y = λ·ax² = λa·(X/λ)² = <span class="hl">(a/λ)·X²</span> ⇒ imaginea e parabola cu coeficientul a/λ.<br>Alegând λ = a/a′, imaginea devine exact y = a′x²</div>
+            <div><strong>Oricare două parabole y² = 2px și y² = 2p′x sunt asemenea.</strong> Aplicăm zoom-ul X = λx, Y = λy unui punct de pe y² = 2px (deci y = Y/λ, x = X/λ):<br>(Y/λ)² = 2p·(X/λ) ⇒ <span class="hl">Y² = 2(pλ)·X</span> ⇒ imaginea e parabola cu parametrul pλ.<br>Alegând λ = p′/p, imaginea devine exact y² = 2p′x.</div>
           </div>
           <div class="mini">
             <div class="blab d">Observație</div>
-            <div>În figura alăturată: stânga — parabola y = a·x² într-o fereastră fixă; dreapta — aceeași curbă privită cu zoom de raport λ = a: imaginea rămâne neschimbată. Ca la cercuri, nu există parabole „mai late” — doar văzute de la altă distanță. La elipse proprietatea nu are loc: raportul semiaxelor este invariant la zoom.</div>
+            <div>În figura alăturată: stânga — parabola y² = 2px într-o fereastră fixă, peste referința y² = 2x; dreapta — aceeași curbă privită cu zoom de raport λ = 1/p: imaginea coincide cu y² = 2x. Ca la cercuri, nu există parabole „mai late” — doar văzute de la altă distanță. La elipse proprietatea nu are loc: raportul semiaxelor este invariant la zoom.</div>
           </div>
         </div>
         <div class="u" style="--d:3">
           <canvas id="simCv" class="icv" width="520" height="300"></canvas>
           <button class="xpand" data-big="sim" type="button" title="Mărește pe tot ecranul">⤢</button>
-          <div class="legend"><span><i style="background:#C4820A"></i>y = ax²</span><span><i class="ln" style="background:#8B6E5A"></i>y = x² (reper, punctat)</span><span>stânga: fereastră fixă; dreapta: aceeași curbă la zoom de raport λ = a</span></div>
+          <div class="legend"><span><i style="background:#C4820A"></i>y² = 2px</span><span><i class="ln" style="background:#8B6E5A"></i>y² = 2x (reper, punctat)</span><span>stânga: fereastră fixă; dreapta: aceeași curbă la zoom de raport λ = 1/p</span></div>
           <div class="ctr" style="grid-template-columns:1fr">
-            <div class="mci"><div class="lab"><span>a (= λ)</span><span id="sLamv">2</span></div><input type="range" id="sLam" min="0.25" max="4" step="0.25" value="2"></div>
+            <div class="mci"><div class="lab"><span>p</span><span id="sLamv">2</span></div><input type="range" id="sLam" min="0.25" max="4" step="0.25" value="2"></div>
           </div>
           <div class="istats" id="simStats"></div>
         </div>
@@ -689,27 +690,6 @@ p{margin-bottom:12px;max-width:66ch}
   </section>
 
 </div></div>
-
-<!-- INSPECT MODAL -->
-<div id="modal">
-  <div class="mbox">
-    <div class="mhead">
-      <h3 id="mTitle">Caz</h3>
-      <span id="mBadges"></span>
-      <button class="mclose" onclick="closeModal()" aria-label="Închide">×</button>
-    </div>
-    <div class="mbody">
-      <canvas id="modalCanvas" width="860" height="540"></canvas>
-      <div id="mControls">
-        <div class="mci"><div class="lab"><span>a</span><span id="mAv">1</span></div><input type="range" id="mA" min="-5" max="5" step="0.5" value="1"></div>
-        <div class="mci"><div class="lab"><span>b</span><span id="mBv">0</span></div><input type="range" id="mB" min="-10" max="10" step="1" value="0"></div>
-        <div class="mci"><div class="lab"><span>c</span><span id="mCv">−4</span></div><input type="range" id="mC" min="-10" max="10" step="1" value="-4"></div>
-      </div>
-      <div class="meq" id="mEq"></div>
-      <div class="mgrid" id="mStats"></div>
-    </div>
-  </div>
-</div>
 
 <!-- IMAGE ZOOM OVERLAY -->
 <div id="imgZ"><img id="imgZi" alt=""></div>
@@ -790,7 +770,7 @@ addEventListener('wheel',e=>{
   e.preventDefault();if(Math.abs(e.deltaY)<4)return;step(e.deltaY>0?1:-1)
 },{passive:false});
 addEventListener('keydown',e=>{
-  if(e.key==='Escape'){const z=document.getElementById('imgZ');if(z.classList.contains('open')){z.classList.remove('open')}else if(bigOpen){closeBig()}else if(modalOpen){closeModal()}return}
+  if(e.key==='Escape'){const z=document.getElementById('imgZ');if(z.classList.contains('open')){z.classList.remove('open')}else if(bigOpen){closeBig()}return}
   if(modalOpen||bigOpen)return;
   if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();step(1)}
   else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();step(-1)}
@@ -800,123 +780,8 @@ let ty=null;
 addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
 addEventListener('touchend',e=>{if(modalOpen||bigOpen||imgZOpen()||ty===null)return;const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>40)step(dy>0?1:-1);ty=null});
 
-/* ═══ INSPECT MODAL ═══ */
-const modal=document.getElementById('modal');
-let modalLive=false;
-function eqStr(a,b,c){return `f(x) = ${a===1?'':a===-1?'−':a}x² ${b===0?'':(b>0?'+ '+b:'− '+(-b))+'x'} ${c===0?'':(c>0?'+ '+c:'− '+(-c))}`.replace(/\s+/g,' ').trim()}
-
-/* richer shared value set, used by both case-modal and live calculator-modal */
-function buildStats(a,b,c){
-  const D=b*b-4*a*c,m=-b/(2*a),n=-D/(4*a),sq=Math.sqrt(Math.max(0,D));
-  const roots=D>0?`${fmt((-b-sq)/(2*a))}, ${fmt((-b+sq)/(2*a))}`:D===0?`${fmt(m)} (dublă)`:'∄ reale';
-  const fact=D>=0?(D===0?`${a===1?'':a}(x − ${fmt(m)})²`:`${a===1?'':a}(x − ${fmt((-b-sq)/(2*a))})(x − ${fmt((-b+sq)/(2*a))})`):'— (Δ<0)';
-  const cod=a>0?`[${fmt(n)}, +∞)`:`(−∞, ${fmt(n)}]`;
-  const mono=a>0?`↓ pe (−∞,${fmt(m)}]; ↑ pe [${fmt(m)},+∞)`:`↑ pe (−∞,${fmt(m)}]; ↓ pe [${fmt(m)},+∞)`;
-  return `
-    <div class="mstat"><div class="l">Discriminant</div><div class="v">Δ = ${fmt(D)}</div></div>
-    <div class="mstat"><div class="l">Vârful V(m,n)</div><div class="v">(${fmt(m)}, ${fmt(n)})</div></div>
-    <div class="mstat"><div class="l">${a>0?'Minim':'Maxim'}</div><div class="v">${a>0?'↑':'↓'} ${fmt(n)}</div></div>
-    <div class="mstat"><div class="l">Rădăcini</div><div class="v">${roots}</div></div>
-    <div class="mstat"><div class="l">Axă simetrie</div><div class="v">x = ${fmt(m)}</div></div>
-    <div class="mstat"><div class="l">Intersecție Oy</div><div class="v">${fmt(c)}</div></div>
-    <div class="mstat"><div class="l">Forma canonică</div><div class="v">${a}(x${m<0?'+'+fmt(-m):m===0?'':'−'+fmt(m)})² ${n>=0?'+'+fmt(n):'−'+fmt(-n)}</div></div>
-    <div class="mstat"><div class="l">Factorizare</div><div class="v">${fact}</div></div>
-    <div class="mstat"><div class="l">Codomeniu</div><div class="v">${cod}</div></div>
-    <div class="mstat"><div class="l">Monotonie</div><div class="v" style="font-size:.92rem">${mono}</div></div>
-    <div class="mstat"><div class="l">Viète: sumă și produs</div><div class="v" style="font-size:.95rem">S = ${fmt(-b/a)}, P = ${fmt(c/a)}</div></div>
-    <div class="mstat"><div class="l">|x₁ − x₂|</div><div class="v">${D>=0?fmt(sq/Math.abs(a)):'—'}</div></div>`;
-}
-function renderModal(a,b,c,title,badges){
-  document.getElementById('mTitle').textContent=title;
-  document.getElementById('mBadges').innerHTML=badges.map(b=>{const[cls,txt]=b.split('|');return `<span class="badge ${cls}">${txt}</span>`}).join(' ');
-  document.getElementById('mEq').textContent=eqStr(a,b,c);
-  document.getElementById('mStats').innerHTML=buildStats(a,b,c);
-  drawGraph(document.getElementById('modalCanvas'),a,b,c);
-}
-function openCalcModal(){
-  const a=parseFloat(document.getElementById('sA').value)||0.5,b=parseFloat(document.getElementById('sB').value),c=parseFloat(document.getElementById('sC').value);
-  modalLive=true;
-  document.getElementById('mControls').classList.add('on');
-  document.getElementById('mA').value=a;document.getElementById('mB').value=b;document.getElementById('mC').value=c;
-  const D=b*b-4*a*c;
-  renderModal(a,b,c,'Calculator',[`${a>0?'ba':'ban'}|a ${a>0?'>':'<'} 0`,`${D>0?'bdp':D===0?'bdz':'bdn'}|Δ ${D>0?'>':D===0?'=':'<'} 0`]);
-  syncMLabels(a,b,c);
-  modal.classList.add('open');modalOpen=true;
-}
-function syncMLabels(a,b,c){
-  document.getElementById('mAv').textContent=a;
-  document.getElementById('mBv').textContent=b;
-  document.getElementById('mCv').textContent=c<0?'−'+Math.abs(c):c;
-}
-function closeModal(){modal.classList.remove('open');modalOpen=false;modalLive=false;document.getElementById('mControls').classList.remove('on')}
-modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
-
-/* ═══ CALCULATOR ═══ */
+/* utilitar de formatare numerică, folosit de toate demo-urile */
 function fmt(n){return isFinite(n)?parseFloat(n.toFixed(4)).toString():'—'}
-function updateCalc(){
-  let a=parseFloat(document.getElementById('sA').value)||0.5;
-  const b=parseFloat(document.getElementById('sB').value),c=parseFloat(document.getElementById('sC').value);
-  if(a===0)a=0.5;
-  document.getElementById('vA').textContent=a;
-  document.getElementById('vB').textContent=b;
-  document.getElementById('vC').textContent=c<0?'−'+Math.abs(c):c;
-  const D=b*b-4*a*c,m=-b/(2*a),n=-D/(4*a),sq=Math.sqrt(Math.max(0,D));
-  const rInfo=D>0?`x₁ = ${fmt((-b-sq)/(2*a))}, &nbsp;x₂ = ${fmt((-b+sq)/(2*a))}`:D===0?`x₁ = x₂ = ${fmt(m)}`:'<span style="color:var(--red)">∄ rădăcini reale</span>';
-  const dc=D>0?'rdp':D===0?'rdz':'rdn';
-  const cod=a>0?`[${fmt(n)}, +∞)`:`(−∞, ${fmt(n)}]`;
-  const mono=a>0?`↓ (−∞,${fmt(m)}]; ↑ [${fmt(m)},+∞)`:`↑ (−∞,${fmt(m)}]; ↓ [${fmt(m)},+∞)`;
-  const fact=D>=0?(D===0?`${a===1?'':a}(x − ${fmt(m)})²`:`${a===1?'':a}(x − ${fmt((-b-sq)/(2*a))})(x − ${fmt((-b+sq)/(2*a))})`):'— (Δ<0)';
-  document.getElementById('res').innerHTML=`
-    <div class="ri" style="background:rgba(184,134,11,.12);border-color:var(--gold)"><div class="rl">Ecuația</div><div class="rv" style="font-size:1rem">f(x) = ${a}x² ${b>=0?'+':''}${b}x ${c>=0?'+':''}${c}</div></div>
-    <div class="ri ${dc}"><div class="rl">Discriminant</div><div class="rv">Δ = ${fmt(D)}</div></div>
-    <div class="ri ${dc}"><div class="rl">Intersecții cu Ox</div><div class="rv" style="font-size:.95rem">${rInfo}</div></div>
-    <div class="ri"><div class="rl">Vârful V(m, n)</div><div class="rv">V(${fmt(m)}, ${fmt(n)})</div></div>
-    <div class="ri"><div class="rl">${a>0?'Minim':'Maxim'} (sens ramuri)</div><div class="rv" style="color:${a>0?'var(--green)':'var(--red)'}">${a>0?'↑ minim':'↓ maxim'} ${fmt(n)}</div></div>
-    <div class="ri"><div class="rl">Intersecția cu Oy: f(0)</div><div class="rv">${fmt(c)}</div></div>
-    <div class="ri"><div class="rl">Forma canonică</div><div class="rv" style="font-size:.95rem">${a===1?'':a===-1?'−':a}(x${m<0?'+'+fmt(-m):m===0?'':'−'+fmt(m)})² ${n>=0?'+'+fmt(n):'−'+fmt(-n)}</div></div>
-    <div class="ri"><div class="rl">Codomeniu</div><div class="rv">${cod}</div></div>`;
-  drawGraph(document.getElementById('calcCanvas'),a,b,c);
-  if(modalLive){
-    renderModal(a,b,c,'Calculator',[`${a>0?'ba':'ban'}|a ${a>0?'>':'<'} 0`,`${D>0?'bdp':D===0?'bdz':'bdn'}|Δ ${D>0?'>':D===0?'=':'<'} 0`]);
-    syncMLabels(a,b,c);
-  }
-}
-function drawGraph(cv,a,b,c){
-  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
-  const D=b*b-4*a*c,m=-b/(2*a),n=-D/(4*a),sq=Math.sqrt(Math.max(0,D));
-  let xr=Math.max(7,Math.abs(m)+4);
-  if(D>=0)xr=Math.max(xr,Math.abs((-b-sq)/(2*a))+3,Math.abs((-b+sq)/(2*a))+3);
-  const sc=Math.min(58,Math.floor((W/2-16)/xr)),cx=W/2,cy=H/2,tx=x=>cx+x*sc,ty=y=>cy-y*sc;
-  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-  ctx.strokeStyle='#F0E4CC';ctx.lineWidth=.5;
-  for(let i=Math.ceil(-cx/sc);i<=Math.floor((W-cx)/sc);i++){ctx.beginPath();ctx.moveTo(tx(i),0);ctx.lineTo(tx(i),H);ctx.stroke()}
-  for(let i=Math.ceil(-cy/sc);i<=Math.floor((H-cy)/sc);i++){ctx.beginPath();ctx.moveTo(0,ty(i));ctx.lineTo(W,ty(i));ctx.stroke()}
-  ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(8,cy);ctx.lineTo(W-8,cy);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx,H-8);ctx.lineTo(cx,8);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(W-8,cy);ctx.lineTo(W-17,cy-6);ctx.moveTo(W-8,cy);ctx.lineTo(W-17,cy+6);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx,8);ctx.lineTo(cx-6,17);ctx.moveTo(cx,8);ctx.lineTo(cx+6,17);ctx.stroke();
-  ctx.fillStyle='#8B6E5A';ctx.font='13px Inter,sans-serif';
-  ctx.fillText('x',W-18,cy-8);ctx.fillText('y',cx+8,16);ctx.fillText('O',cx+4,cy+16);
-  const ts=sc<24?2:1;ctx.font='10px Inter,sans-serif';ctx.textAlign='center';
-  for(let i=Math.ceil(-cx/sc);i<=Math.floor((W-cx)/sc);i++){if(i===0||i%ts!==0)continue;ctx.beginPath();ctx.moveTo(tx(i),cy-3);ctx.lineTo(tx(i),cy+3);ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.stroke();ctx.fillStyle='#8B6E5A';ctx.fillText(i,tx(i),cy+15)}
-  ctx.textAlign='right';
-  for(let i=Math.ceil(-cy/sc);i<=Math.floor((H-cy)/sc);i++){if(i===0||i%ts!==0)continue;ctx.beginPath();ctx.moveTo(cx-3,ty(i));ctx.lineTo(cx+3,ty(i));ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.stroke();ctx.fillStyle='#8B6E5A';ctx.fillText(i,cx-6,ty(i)+4)}
-  ctx.textAlign='left';
-  ctx.beginPath();let g=false;
-  for(let px=0;px<=W;px+=.5){const xv=(px-cx)/sc,yv=a*xv*xv+b*xv+c,py=cy-yv*sc;if(py<-70||py>H+70){g=false;continue}g?ctx.lineTo(px,py):ctx.moveTo(px,py);g=true}
-  ctx.strokeStyle=a>0?'#C4820A':'#7B1FA2';ctx.lineWidth=3.2;ctx.stroke();
-  const vx=tx(m),vy=ty(n);
-  if(vx>6&&vx<W-6&&vy>6&&vy<H-6){
-    ctx.setLineDash([3,6]);ctx.strokeStyle='rgba(21,101,192,.3)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(vx,Math.min(vy,cy));ctx.lineTo(vx,cy);ctx.stroke();ctx.setLineDash([]);
-    ctx.fillStyle='#1565C0';ctx.beginPath();ctx.arc(vx,vy,7,0,2*Math.PI);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
-    const lbl=`V(${fmt(m)},${fmt(n)})`,lx=vx>W*.65?vx-ctx.measureText(lbl).width-16:vx+11,ly=vy>H*.75?vy-14:vy-10;
-    ctx.fillStyle='rgba(255,255,255,.88)';ctx.fillRect(lx-3,ly-13,ctx.measureText(lbl).width+6,17);
-    ctx.fillStyle='#0D47A1';ctx.font='bold 12px Inter,sans-serif';ctx.fillText(lbl,lx,ly);
-  }
-  if(D>=0){const roots=D===0?[m]:[(-b-sq)/(2*a),(-b+sq)/(2*a)];roots.forEach((r,i)=>{const rx=tx(r);if(rx>6&&rx<W-6){ctx.fillStyle='#E53935';ctx.beginPath();ctx.arc(rx,ty(0),7,0,2*Math.PI);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#B71C1C';ctx.font='bold 12px Inter,sans-serif';ctx.textAlign='center';ctx.fillText(D===0?'x₀':i===0?'x₁':'x₂',rx,ty(0)+23);ctx.textAlign='left'}})}
-  if(cx>6&&ty(c)>6&&ty(c)<H-6){ctx.fillStyle='#2E7D32';ctx.beginPath();ctx.arc(cx,ty(c),6,0,2*Math.PI);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke()}
-}
 
 /* ═══ RESEARCH SLIDES (partea a II-a) ═══ */
 const $=id=>document.getElementById(id);
@@ -953,6 +818,16 @@ function plotFn(g,f,color,lw,dash){
   if(dash)ctx.setLineDash(dash);
   ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.stroke();ctx.setLineDash([]);
 }
+/* parabola din manual: y² = 2px (deschidere pe Ox). Parcurgem axa verticală,
+   x = y²/(2p). p = parametrul = distanța focar–directoare. */
+function plotParab(g,p,color,lw,dash){
+  const{ctx,W,H,cx,cy,sc}=g;ctx.beginPath();let on=false;
+  for(let py=0;py<=H;py++){const y=(cy-py)/sc,x=y*y/(2*p),px=cx+x*sc;
+    if(px<-80||px>W+80){on=false;continue}
+    on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
+  if(dash)ctx.setLineDash(dash);
+  ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.stroke();ctx.setLineDash([]);
+}
 function gdot(g,x,y,r,fill,ring){const{ctx,tx,ty}=g;ctx.beginPath();ctx.arc(tx(x),ty(y),r,0,2*Math.PI);ctx.fillStyle=fill;ctx.fill();if(ring){ctx.strokeStyle=ring;ctx.lineWidth=1.8;ctx.stroke()}}
 function gtag(g,x,y,txt,color){const{ctx,tx,ty}=g;ctx.font='bold 11px Inter,sans-serif';const w=ctx.measureText(txt).width;ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(tx(x)+6,ty(y)-16,w+6,15);ctx.fillStyle=color;ctx.fillText(txt,tx(x)+9,ty(y)-4)}
 function ist(l,v,hi){return `<div class="ist"${hi?' style="background:rgba(184,134,11,.12);border-color:var(--gold)"':''}><div class="l">${l}</div><div class="v">${v}</div></div>`}
@@ -974,141 +849,190 @@ function lineLabel(g,f,txt,color){
 
 /* ── 11 · focar & directoare ── */
 function updateFocus(){
-  const a=parseFloat($('fA').value),t=parseFloat($('fT').value);
-  $('fAv').textContent=fmt(a);$('fTv').textContent=fmt(t);
-  const cv=pickCv('focus','focusCv'),k=cv.width/520,bv=bview(cv,40*k,cv.width/2,252*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
-  const p=1/(4*a),Py=a*t*t;
-  views.focus={sc:g.sc,cx:g.cx,px:g.tx(t),py:g.ty(Py)};
+  const p=parseFloat($('fP').value),t=parseFloat($('fT').value);
+  $('fPv').textContent=fmt(p);$('fTv').textContent=fmt(t);
+  const cv=pickCv('focus','focusCv'),k=cv.width/520,bv=bview(cv,44*k,150*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  const xM=t*t/(2*p),fx=p/2;
+  views.focus={sc:g.sc,cx:g.cx,cy:g.cy,px:g.tx(xM),py:g.ty(t)};
+  /* directoarea g: dreapta verticală x = −p/2 */
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
-  g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  g.ctx.fillStyle='#B71C1C';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('directoarea d — dreapta y = −p = −'+fmt(p),10,g.ty(-p)-7);
-  plotFn(g,x=>a*x*x,'#C4820A',3.2);
-  /* eticheta curbei din experiment */
-  glabel(g,g.tx(-2.05),g.ty(a*2.05*2.05)-10,'y = '+fmt(a)+'·x²','#8a6508','center');
-  /* segmentul p: de la vârful O la focarul F */
-  const pxp=g.tx(0)-13;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),0);g.ctx.lineTo(g.tx(-fx),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,g.tx(-fx)+5,18,'directoarea g: x = −p/2','#B71C1C');
+  plotParab(g,p,'#C4820A',3.2);
+  glabel(g,12,g.H-12,'y² = 2px','#8a6508');
+  /* parametrul p: distanța focar–directoare, marcată pe Ox */
+  const yb=g.ty(0)+18;
   g.ctx.strokeStyle='#8a6508';g.ctx.lineWidth=2;
-  g.ctx.beginPath();g.ctx.moveTo(pxp,g.ty(0));g.ctx.lineTo(pxp,g.ty(p));g.ctx.stroke();
-  g.ctx.beginPath();g.ctx.moveTo(pxp-3,g.ty(0));g.ctx.lineTo(pxp+3,g.ty(0));g.ctx.moveTo(pxp-3,g.ty(p));g.ctx.lineTo(pxp+3,g.ty(p));g.ctx.stroke();
-  glabel(g,pxp-7,(g.ty(0)+g.ty(p))/2+4,'p','#8a6508','right');
-  /* segmentele PF și PQ, cu valorile scrise pe ele */
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),yb);g.ctx.lineTo(g.tx(fx),yb);g.ctx.stroke();
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),yb-3);g.ctx.lineTo(g.tx(-fx),yb+3);g.ctx.moveTo(g.tx(fx),yb-3);g.ctx.lineTo(g.tx(fx),yb+3);g.ctx.stroke();
+  glabel(g,(g.tx(-fx)+g.tx(fx))/2,yb+13,'p','#8a6508','center');
+  /* raza focală MF (albastru) */
   g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2.2;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(p));g.ctx.lineTo(g.tx(t),g.ty(Py));g.ctx.stroke();
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(fx),g.ty(0));g.ctx.lineTo(g.tx(xM),g.ty(t));g.ctx.stroke();
+  /* d(M,g): perpendiculara din M pe directoare (verde, orizontală) */
   g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=2.2;g.ctx.setLineDash([5,4]);
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(t),g.ty(Py));g.ctx.lineTo(g.tx(t),g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  const PF=Math.hypot(t,Py-p),PQ=Py+p;
-  glabel(g,(g.tx(0)+g.tx(t))/2,(g.ty(p)+g.ty(Py))/2-6,'PF = '+fmt(PF),'#0D47A1','center');
-  glabel(g,g.tx(t)+8,(g.ty(Py)+g.ty(-p))/2+4,'PQ = '+fmt(PQ),'#1B5E20');
-  gdot(g,0,p,6,'#B8860B','#fff');gtag(g,0,p,'F(0, '+fmt(p)+')','#8a6508');
-  gdot(g,t,Py,6,'#2C1A0E','#fff');gtag(g,t,Py,'P','#2C1A0E');
-  gdot(g,t,-p,5,'#B71C1C','#fff');gtag(g,t,-p,'Q','#B71C1C');
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(xM),g.ty(t));g.ctx.lineTo(g.tx(-fx),g.ty(t));g.ctx.stroke();g.ctx.setLineDash([]);
+  const MF=Math.hypot(xM-fx,t),dMg=xM+fx;
+  glabel(g,(g.tx(fx)+g.tx(xM))/2,(g.ty(0)+g.ty(t))/2-6,'MF = '+fmt(MF),'#0D47A1','center');
+  glabel(g,(g.tx(xM)+g.tx(-fx))/2,g.ty(t)-8,'d(M, g) = '+fmt(dMg),'#1B5E20','center');
+  gdot(g,fx,0,6,'#B8860B','#fff');gtag(g,fx,0,'F(p/2, 0)','#8a6508');
+  gdot(g,xM,t,6,'#2C1A0E','#fff');gtag(g,xM,t,'M','#2C1A0E');
+  gdot(g,-fx,t,5,'#B71C1C','#fff');gtag(g,-fx,t,'N','#B71C1C');
+  gdot(g,0,0,4,'#8B6E5A','#fff');
   $('focusStats').innerHTML=
-    ist('p = 1/(4a)',fmt(p))+
-    ist('Focarul F','(0, '+fmt(p)+')')+
-    ist('Directoarea','y = '+fmt(-p))+
-    ist('PF',fmt(PF))+
-    ist('PQ = dist(P, d)',fmt(PQ))+
-    ist('Definiția','PF = PQ ✓',1);
+    ist('Parametrul p',fmt(p))+
+    ist('Focarul F','(p/2, 0) = ('+fmt(fx)+', 0)')+
+    ist('Directoarea g','x = −'+fmt(fx))+
+    ist('Raza focală MF',fmt(MF))+
+    ist('d(M, g)',fmt(dMg))+
+    ist('Definiția','MF = d(M, g) ✓',1);
+}
+
+/* ── 11b · procedeul de construcție (animat) ── */
+function drawConstr(ts){
+  const cv=pickCv('constr','constrCv'),k=cv.width/520,bv=bview(cv,42*k,150*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  const p=2.4,fx=p/2,L=4.2,hLeg=0.85,t=3.05*Math.sin(ts/1700),xM=t*t/(2*p);
+  /* rigla = directoarea g (verticală) */
+  g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=3;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),6);g.ctx.lineTo(g.tx(-fx),g.H-6);g.ctx.stroke();
+  glabel(g,g.tx(-fx)+5,18,'rigla = directoarea g','#B71C1C');
+  /* parabola descrisă de creion */
+  plotParab(g,p,'#C4820A',3.2);
+  glabel(g,12,g.H-12,'y² = 2px','#8a6508');
+  /* echerul: triunghi dreptunghic, unghi drept în A pe riglă; B = vârful ascuțit opus catetei mici */
+  const Ax=g.tx(-fx),Ay=g.ty(t),Bx=g.tx(-fx+L),By=g.ty(t),Cx=g.tx(-fx),Cy=g.ty(t-hLeg);
+  g.ctx.fillStyle='rgba(21,101,192,.12)';g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2;
+  g.ctx.beginPath();g.ctx.moveTo(Ax,Ay);g.ctx.lineTo(Bx,By);g.ctx.lineTo(Cx,Cy);g.ctx.closePath();g.ctx.fill();g.ctx.stroke();
+  glabel(g,(Ax+Bx)/2,Ay-7,'cateta mare','#0D47A1','center');
+  /* ața: B → M → F, întinsă */
+  g.ctx.strokeStyle='#8a6508';g.ctx.lineWidth=1.8;
+  g.ctx.beginPath();g.ctx.moveTo(Bx,By);g.ctx.lineTo(g.tx(xM),g.ty(t));g.ctx.lineTo(g.tx(fx),g.ty(0));g.ctx.stroke();
+  gdot(g,fx,0,6,'#B8860B','#fff');gtag(g,fx,0,'F','#8a6508');
+  gdot(g,-fx+L,t,4.5,'#1565C0','#fff');gtag(g,-fx+L,t,'B','#0D47A1');
+  gdot(g,xM,t,6,'#2C1A0E','#fff');gtag(g,xM,t,'M','#2C1A0E');
+  const MF=Math.hypot(xM-fx,t),dMg=xM+fx;
+  $('constrStats').innerHTML=
+    ist('Parametrul p',fmt(p))+
+    ist('Lungimea aței L',fmt(L))+
+    ist('MF',fmt(MF))+
+    ist('d(M, g)',fmt(dMg))+
+    ist('MB = L − d(M, g)',fmt(L-dMg))+
+    ist('Mereu','MF = d(M, g) ✓',1);
+}
+
+/* ── 11c · poziția unei drepte față de parabolă ── */
+function updateLine(){
+  const m=parseFloat($('lM').value),q=parseFloat($('lQ').value),p=2,fx=p/2;
+  $('lMv').textContent=fmt(m);$('lQv').textContent=fmt(q);
+  const cv=pickCv('line','lineCv'),k=cv.width/520,bv=bview(cv,42*k,160*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  plotParab(g,p,'#C4820A',3.2);
+  glabel(g,12,g.H-12,'y² = 2px  (p = 2)','#8a6508');
+  gdot(g,fx,0,5,'#B8860B','#fff');gtag(g,fx,0,'F','#8a6508');
+  plotFn(g,x=>m*x+q,'#1565C0',2.2);
+  lineLabel(g,x=>m*x+q,'y = mx + q','#0D47A1');
+  let pts=[],disc=null,nsol=0,isTan=false;
+  if(Math.abs(m)<1e-9){const x=q*q/(2*p);pts=[[x,q]];nsol=1;}
+  else{disc=4*p*(p-2*m*q);const A=m*m,Bc=2*m*q-2*p;
+    if(disc<-1e-9){nsol=0}
+    else if(Math.abs(disc)<1e-9){const x=-Bc/(2*A);pts=[[x,m*x+q]];nsol=1;isTan=true;}
+    else{const sq=Math.sqrt(disc);pts=[(-Bc-sq)/(2*A),(-Bc+sq)/(2*A)].map(x=>[x,m*x+q]);nsol=2;}}
+  pts.forEach(([x,y])=>gdot(g,x,y,6,'#E53935','#fff'));
+  if(isTan)gtag(g,pts[0][0],pts[0][1],'tangentă','#B71C1C');
+  const verdict=nsol===0?'exterioară (0 puncte)':isTan?'tangentă (1 punct)':nsol===1?'1 punct (∥ axa)':'secantă (2 puncte)';
+  $('lineStats').innerHTML=
+    ist('Dreapta','y = '+fmt(m)+'x '+(q>=0?'+ ':'− ')+fmt(Math.abs(q)))+
+    ist('Ecuația sistemului',Math.abs(m)<1e-9?'q² = 2px (gradul I)':'m²x² + (2mq−2p)x + q² = 0')+
+    ist('Discriminant Δ',disc===null?'— (gradul I)':fmt(disc))+
+    ist('Nr. puncte comune',nsol)+
+    ist('Cel mult','2 puncte')+
+    ist('Verdict',verdict,1);
 }
 
 /* ── 12 · tangente ── */
-let envOn=false;
 function updateTan(){
-  let a=parseFloat($('tA').value);
-  if(a===0){a=0.25;$('tA').value='0.25'}
-  const x0=parseFloat($('tX').value),b=-1,c=-2;
-  $('tAv').textContent=fmt(a);$('tXv').textContent=fmt(x0);
-  const y0=a*x0*x0+b*x0+c,s=2*a*x0+b,l=c-(s-b)*(s-b)/(4*a);
-  const n=-(b*b-4*a*c)/(4*a);
-  const Y=Math.max(4.2,Math.abs(y0)+1.6,Math.abs(n)+1.2);
-  const cv=pickCv('tan','tanCv'),k=cv.width/520;
-  const bv=bview(cv,Math.min(38,148/Y)*k,cv.width/2,160*k);
-  const g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
-  views.tan={sc:g.sc,cx:g.cx,px:g.tx(x0),py:g.ty(y0)};
-  if(envOn){
-    /* înfășurătoarea: parabola NU e desenată — apare singură din tangente */
-    for(let u=-4.2;u<=4.21;u+=.21){const se=2*a*u+b,le=c-a*u*u;plotFn(g,x=>se*x+le,'rgba(184,134,11,.3)',1)}
-  }else{
-    plotFn(g,x=>a*x*x+b*x+c,'#C4820A',3.2);
-  }
-  plotFn(g,x=>s*x+l,'#1565C0',2.2);
-  if(!envOn){
-    if(Math.abs(s)>1e-9)plotFn(g,x=>y0-(x-x0)/s,'#2E7D32',1.8,[6,5]);
-    else{g.ctx.setLineDash([6,5]);g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=1.8;g.ctx.beginPath();g.ctx.moveTo(g.tx(x0),0);g.ctx.lineTo(g.tx(x0),g.H);g.ctx.stroke();g.ctx.setLineDash([]);glabel(g,g.tx(x0)+6,30,'normala','#1B5E20')}
-  }
-  /* etichete: curba din experiment, tangenta, normala, marcajul x₀ pe Ox */
-  glabel(g,12,18,envOn?'familia celor 41 de tangente':'f(x) = '+fmt(a)+'x² − x − 2','#8a6508');
-  lineLabel(g,x=>s*x+l,'tangenta','#0D47A1');
-  if(!envOn&&Math.abs(s)>1e-9)lineLabel(g,x=>y0-(x-x0)/s,'normala','#1B5E20');
-  g.ctx.setLineDash([3,4]);g.ctx.strokeStyle='rgba(229,57,53,.55)';g.ctx.lineWidth=1.2;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(x0),g.ty(y0));g.ctx.lineTo(g.tx(x0),g.ty(0));g.ctx.stroke();g.ctx.setLineDash([]);
-  glabel(g,g.tx(x0),g.ty(0)+(y0<0?-5:17),'x₀ = '+fmt(x0),'#B71C1C','center');
-  gdot(g,x0,y0,6,'#E53935','#fff');gtag(g,x0,y0,'T(x₀, f(x₀))','#B71C1C');
-  const dchk=Math.abs((b-s)*(b-s)-4*a*(c-l));
-  const ln=Math.abs(s)>1e-9?y0+x0/s:0;
+  const p=2;let t=parseFloat($('tX').value);
+  if(Math.abs(t)<0.2)t=t<0?-0.2:0.2;
+  $('tXv').textContent=fmt(parseFloat($('tX').value));
+  const y0=t,x0=y0*y0/(2*p),fx=p/2;
+  const cv=pickCv('tan','tanCv'),k=cv.width/520,bv=bview(cv,40*k,150*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  views.tan={sc:g.sc,cx:g.cx,cy:g.cy,px:g.tx(x0),py:g.ty(y0)};
+  plotParab(g,p,'#C4820A',3.2);
+  glabel(g,12,g.H-12,'y² = 2px  (p = 2)','#8a6508');
+  gdot(g,fx,0,5,'#B8860B','#fff');gtag(g,fx,0,'F','#8a6508');
+  /* tangenta prin dedublare: y·y₀ = p(x + x₀) ⟺ y = (p/y₀)x + y₀/2 */
+  const md=p/y0;
+  plotFn(g,x=>md*x+y0/2,'#1565C0',2.2);
+  lineLabel(g,x=>md*x+y0/2,'tangenta','#0D47A1');
+  /* normala: panta −y₀/p, prin M₀ */
+  const mn=-y0/p;
+  plotFn(g,x=>y0+mn*(x-x0),'#2E7D32',1.8,[6,5]);
+  lineLabel(g,x=>y0+mn*(x-x0),'normala','#1B5E20');
+  gdot(g,x0,y0,6,'#E53935','#fff');gtag(g,x0,y0,'M₀(x₀, y₀)','#B71C1C');
   $('tanStats').innerHTML=
-    ist('Funcția',eqStr(a,b,c))+
-    ist('Punctul T','('+fmt(x0)+', '+fmt(y0)+')')+
-    ist('Panta s = f′(x₀)',fmt(s))+
-    ist('Tangenta',`y = ${fmt(s)}x ${l>=0?'+ ':'− '}${fmt(Math.abs(l))}`)+
-    ist('Normala',Math.abs(s)>1e-9?`y = ${fmt(-1/s)}x ${ln>=0?'+ ':'− '}${fmt(Math.abs(ln))}`:'x = '+fmt(x0)+' (axa)')+
-    (envOn?ist('Înfășurătoarea','41 tangente — parabola apare fără să fie desenată',1):ist('Verificare','Δ = '+fmt(dchk)+' ✓',1));
+    ist('Punctul M₀','('+fmt(x0)+', '+fmt(y0)+')')+
+    ist('Tangenta (dedublare)','y·y₀ = p(x + x₀)')+
+    ist('Panta tangentei','p/y₀ = '+fmt(md))+
+    ist('Normala','y − y₀ = −(y₀/p)(x − x₀)')+
+    ist('Panta normalei','−y₀/p = '+fmt(mn))+
+    ist('Verificare','m_t · m_n = '+fmt(md*mn)+' = −1 ✓',1);
 }
 
 /* ── 13 · reflexia în focar (animat) ── */
 function drawRefl(ts){
-  const a=parseFloat($('rA').value);$('rAv').textContent=fmt(a);
-  const cv=pickCv('refl','reflCv'),k=cv.width/520,bv=bview(cv,52*k,cv.width/2,255*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
-  const p=1/(4*a),ytop=4.55;
-  plotFn(g,x=>a*x*x,'#C4820A',3.2);
-  glabel(g,12,18,'y = '+fmt(a)+'·x² — oglinda','#8a6508');
-  glabel(g,g.cx+6,34,'axa de simetrie (Oy)','#8B6E5A');
-  const xm=Math.min(4.4,Math.sqrt(4.4/a)),rays=[];
-  for(let i=0;i<8;i++){const t=-xm+(i+.5)*(2*xm/8);if(Math.abs(t)>=.25)rays.push(t)}
-  g.ctx.strokeStyle='rgba(21,101,192,.18)';g.ctx.lineWidth=1.3;
-  rays.forEach(t=>{const Py=a*t*t;
-    g.ctx.beginPath();g.ctx.moveTo(g.tx(t),g.ty(ytop));g.ctx.lineTo(g.tx(t),g.ty(Py));g.ctx.lineTo(g.tx(0),g.ty(p));g.ctx.stroke()});
-  /* directoarea + construcția din demonstrație: P, Q, PF, PQ, tangenta în P */
+  const p=parseFloat($('rA').value);$('rAv').textContent=fmt(p);
+  const cv=pickCv('refl','reflCv'),k=cv.width/520,bv=bview(cv,46*k,150*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  const fx=p/2,xright=(g.W-g.cx)/g.sc-0.2;
+  plotParab(g,p,'#C4820A',3.4);
+  glabel(g,12,g.H-12,'y² = 2px — oglinda','#8a6508');
+  glabel(g,g.W-14,g.ty(0)-8,'axa (Ox)','#8B6E5A','right');
+  /* directoarea g */
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.4;
-  g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  glabel(g,12,g.ty(-p)-8,'directoarea d','#B71C1C');
-  const t0=xm*0.8,P0=a*t0*t0,m0=2*a*t0;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),0);g.ctx.lineTo(g.tx(-fx),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,g.tx(-fx)+5,18,'directoarea g','#B71C1C');
+  /* razele paralele cu axa, reflectate în F */
+  const ymax=Math.min((g.H/2-12)/g.sc,3.6),rays=[];
+  for(let i=0;i<8;i++){const y=-ymax+(i+.5)*(2*ymax/8);if(Math.abs(y)>=.2)rays.push(y)}
+  g.ctx.strokeStyle='rgba(21,101,192,.18)';g.ctx.lineWidth=1.3;
+  rays.forEach(y=>{const xM=y*y/(2*p);
+    g.ctx.beginPath();g.ctx.moveTo(g.tx(xright),g.ty(y));g.ctx.lineTo(g.tx(xM),g.ty(y));g.ctx.lineTo(g.tx(fx),g.ty(0));g.ctx.stroke()});
+  /* construcția pe o rază: P, A (proiecția pe directoare), PA ∥ axă, PF, tangenta în P */
+  const y0=ymax*0.78,xP=y0*y0/(2*p),md=p/y0;
   g.ctx.setLineDash([5,4]);g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=2;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(t0),g.ty(P0));g.ctx.lineTo(g.tx(t0),g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(xP),g.ty(y0));g.ctx.lineTo(g.tx(-fx),g.ty(y0));g.ctx.stroke();g.ctx.setLineDash([]);
   g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(t0),g.ty(P0));g.ctx.lineTo(g.tx(0),g.ty(p));g.ctx.stroke();
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(xP),g.ty(y0));g.ctx.lineTo(g.tx(fx),g.ty(0));g.ctx.stroke();
   g.ctx.strokeStyle='#2C1A0E';g.ctx.lineWidth=1.8;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(t0-1.1),g.ty(P0-m0*1.1));g.ctx.lineTo(g.tx(t0+1.1),g.ty(P0+m0*1.1));g.ctx.stroke();
-  glabel(g,(g.tx(t0)+g.tx(0))/2,(g.ty(P0)+g.ty(p))/2-6,'PF','#0D47A1','center');
-  glabel(g,g.tx(t0)+7,(g.ty(P0)+g.ty(-p))/2+4,'PQ','#1B5E20');
-  glabel(g,g.tx(t0-0.9),g.ty(P0-m0*0.9)+18,'tangenta în P','#2C1A0E','right');
-  gdot(g,t0,P0,5.5,'#2C1A0E','#fff');gtag(g,t0,P0,'P','#2C1A0E');
-  gdot(g,t0,-p,4.5,'#B71C1C','#fff');gtag(g,t0,-p,'Q','#B71C1C');
-  const fx=g.tx(0),fy=g.ty(p),pulse=16+(3+Math.sin(ts/280)*1.4)*2;
-  const gr=g.ctx.createRadialGradient(fx,fy,2,fx,fy,pulse);
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(xP-1.0),g.ty(y0-md*1.0));g.ctx.lineTo(g.tx(xP+1.0),g.ty(y0+md*1.0));g.ctx.stroke();
+  glabel(g,(g.tx(xP)+g.tx(fx))/2,(g.ty(y0)+g.ty(0))/2-6,'PF','#0D47A1','center');
+  glabel(g,(g.tx(xP)+g.tx(-fx))/2,g.ty(y0)-8,'PA ∥ axă','#1B5E20','center');
+  glabel(g,g.tx(xP+1.0),g.ty(y0+md*1.0)+12,'tangenta','#2C1A0E','left');
+  gdot(g,xP,y0,5.5,'#2C1A0E','#fff');gtag(g,xP,y0,'P','#2C1A0E');
+  gdot(g,-fx,y0,4.5,'#B71C1C','#fff');gtag(g,-fx,y0,'A','#B71C1C');
+  const fxp=g.tx(fx),fyp=g.ty(0),pulse=16+(3+Math.sin(ts/280)*1.4)*2;
+  const gr=g.ctx.createRadialGradient(fxp,fyp,2,fxp,fyp,pulse);
   gr.addColorStop(0,'rgba(212,160,23,.85)');gr.addColorStop(1,'rgba(212,160,23,0)');
-  g.ctx.fillStyle=gr;g.ctx.beginPath();g.ctx.arc(fx,fy,pulse,0,2*Math.PI);g.ctx.fill();
-  gdot(g,0,p,5.5,'#B8860B','#fff');gtag(g,0,p,'F','#8a6508');
-  rays.forEach((t,i)=>{
-    const Py=a*t*t,L1=(ytop-Py)*g.sc,L2=Math.hypot(g.tx(t)-fx,g.ty(Py)-fy),L=L1+L2;
-    const sd=((ts*0.085*k)+i*131)%L;
-    let px,py;
-    if(sd<L1){px=g.tx(t);py=g.ty(ytop)+sd}
-    else{const k=(sd-L1)/L2;px=g.tx(t)+(fx-g.tx(t))*k;py=g.ty(Py)+(fy-g.ty(Py))*k}
+  g.ctx.fillStyle=gr;g.ctx.beginPath();g.ctx.arc(fxp,fyp,pulse,0,2*Math.PI);g.ctx.fill();
+  gdot(g,fx,0,5.5,'#B8860B','#fff');gtag(g,fx,0,'F','#8a6508');
+  rays.forEach((y,i)=>{
+    const xM=y*y/(2*p),L1=(xright-xM)*g.sc,L2=Math.hypot(g.tx(xM)-fxp,g.ty(y)-fyp),L=L1+L2;
+    const sd=((ts*0.085*k)+i*131)%L;let px,py;
+    if(sd<L1){px=g.tx(xright)-sd;py=g.ty(y)}
+    else{const u=(sd-L1)/L2;px=g.tx(xM)+(fxp-g.tx(xM))*u;py=g.ty(y)+(fyp-g.ty(y))*u}
     g.ctx.beginPath();g.ctx.arc(px,py,3.4,0,2*Math.PI);g.ctx.fillStyle='#D4A017';g.ctx.fill();
     g.ctx.strokeStyle='#fff';g.ctx.lineWidth=1.2;g.ctx.stroke();
   });
   $('reflStats').innerHTML=
-    ist('Parabola','y = '+fmt(a)+'x²')+
-    ist('p = 1/(4a)',fmt(p))+
-    ist('Focarul F','(0, '+fmt(p)+')')+
-    ist('Raze paralele',rays.length)+
+    ist('Parabola','y² = 2px')+
+    ist('Parametrul p',fmt(p))+
+    ist('Focarul F','(p/2, 0) = ('+fmt(fx)+', 0)')+
+    ist('Raze paralele cu axa',rays.length)+
     ist('Raze prin F',rays.length)+
     ist('Concluzie','toate trec prin F ✓',1);
 }
 
 /* ── 14 · cercul osculator ── */
-const oscP=u=>({x:u,y:.5*u*u});
+const OSCP=1;
+const oscP=u=>({x:u*u/(2*OSCP),y:u});
 function circum(p1,p2,p3){
   const d=2*(p1.x*(p2.y-p3.y)+p2.x*(p3.y-p1.y)+p3.x*(p1.y-p2.y));
   if(Math.abs(d)<1e-12)return null;
@@ -1117,73 +1041,72 @@ function circum(p1,p2,p3){
   const uy=(s1*(p3.x-p2.x)+s2*(p1.x-p3.x)+s3*(p2.x-p1.x))/d;
   return {x:ux,y:uy,r:Math.hypot(ux-p2.x,uy-p2.y)};
 }
-const EVO=(()=>{const pts=[];for(let u=-1.75;u<=1.751;u+=.05){const c=circum(oscP(u-.02),oscP(u),oscP(u+.02));if(c)pts.push(c)}return pts})();
+const EVO=(()=>{const pts=[];for(let u=-2.4;u<=2.401;u+=.05){const c=circum(oscP(u-.02),oscP(u),oscP(u+.02));if(c)pts.push(c)}return pts})();
 function updateOsc(){
   const t=parseFloat($('oT').value),h=parseFloat($('oH').value);
   $('oTv').textContent=fmt(t);$('oHv').textContent=fmt(h);
-  const cv=pickCv('osc','oscCv'),k=cv.width/520,bv=bview(cv,48*k,cv.width/2,278*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
-  views.osc={sc:g.sc,cx:g.cx,px:g.tx(t),py:g.ty(.5*t*t)};
+  const cv=pickCv('osc','oscCv'),k=cv.width/520,bv=bview(cv,46*k,118*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  const P0=oscP(t),fx=OSCP/2;
+  views.osc={sc:g.sc,cx:g.cx,cy:g.cy,px:g.tx(P0.x),py:g.ty(P0.y)};
   g.ctx.setLineDash([5,5]);g.ctx.strokeStyle='rgba(123,31,162,.6)';g.ctx.lineWidth=1.7;g.ctx.beginPath();
   EVO.forEach((c,i)=>{i?g.ctx.lineTo(g.tx(c.x),g.ty(c.y)):g.ctx.moveTo(g.tx(c.x),g.ty(c.y))});
   g.ctx.stroke();g.ctx.setLineDash([]);
-  g.ctx.fillStyle='rgba(123,31,162,.75)';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('evoluta',g.tx(0)+8,g.ty(1.05));
-  plotFn(g,x=>.5*x*x,'#C4820A',3.2);
-  gdot(g,0,.5,4.5,'#B8860B','#fff');gtag(g,0,.5,'F','#8a6508');
-  const P1=oscP(t-h),P2=oscP(t),P3=oscP(t+h),cc=circum(P1,P2,P3);
+  g.ctx.fillStyle='rgba(123,31,162,.75)';g.ctx.font='bold 11px Inter,sans-serif';g.ctx.fillText('evoluta',g.tx(1.1),g.ty(0)-6);
+  plotParab(g,OSCP,'#C4820A',3.2);
+  gdot(g,fx,0,4.5,'#B8860B','#fff');gtag(g,fx,0,'F','#8a6508');
+  const P1=oscP(t-h),P2=P0,P3=oscP(t+h),cc=circum(P1,P2,P3);
   if(cc){
     g.ctx.beginPath();g.ctx.arc(g.tx(cc.x),g.ty(cc.y),cc.r*g.sc,0,2*Math.PI);
     g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2;g.ctx.stroke();
     gdot(g,cc.x,cc.y,4,'#1565C0','#fff');gtag(g,cc.x,cc.y,'C — centrul','#0D47A1');
   }
   [P1,P2,P3].forEach(P=>gdot(g,P.x,P.y,4.5,'#E53935','#fff'));
-  /* numele celor 3 puncte (la h mic le-am suprapune — etichetăm doar P₀) */
   if(h>=0.35){gtag(g,P1.x,P1.y,'P₋ₕ','#B71C1C');gtag(g,P2.x,P2.y,'P₀','#B71C1C');gtag(g,P3.x,P3.y,'P₊ₕ','#B71C1C')}
   else gtag(g,P2.x,P2.y,'P₀','#B71C1C');
-  glabel(g,12,18,'y = x²/2  (a = 1/2)','#8a6508');
+  glabel(g,12,g.H-12,'y² = 2x  (p = 1)','#8a6508');
   $('oscStats').innerHTML=
-    ist('Parabola','y = x²/2 (a = 1/2)')+
-    ist('Puncte (roșii)','x = t−h, t, t+h')+
+    ist('Parabola','y² = 2x (p = 1)')+
+    ist('Puncte (roșii)','y = t−h, t, t+h')+
     ist('Centrul C',cc?'('+fmt(cc.x)+', '+fmt(cc.y)+')':'—')+
     ist('Raza R',cc?fmt(cc.r):'—')+
     ist('Evoluta','locul geometric al centrelor')+
-    ist('În vârf, h→0','R = 1/(2a) = 1 = 2p',1);
+    ist('În vârf, h→0','R = p = 1',1);
 }
 
 /* ── 15 · Arhimede 4/3 ── */
 function updateArh(){
   const n=parseInt($('aN').value);$('aNv').textContent=n;
-  const cv=pickCv('arh','arhCv'),k=cv.width/520,bv=bview(cv,200*k,cv.width/2,300*k),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
+  const cv=pickCv('arh','arhCv'),k=cv.width/520,bv=bview(cv,150*k,135*k,cv.height/2),g=miniAxes(cv,bv.sc,bv.cx,bv.cy);
   const fills=['rgba(184,134,11,.5)','rgba(199,125,10,.42)','rgba(212,160,23,.36)','rgba(184,134,11,.3)','rgba(199,125,10,.26)','rgba(212,160,23,.22)','rgba(184,134,11,.18)'];
   let iv=[[-1,1]];
-  for(let k=0;k<=n;k++){
+  for(let kk=0;kk<=n;kk++){
     const nxt=[];
-    g.ctx.fillStyle=fills[k];g.ctx.strokeStyle='rgba(255,255,255,.85)';g.ctx.lineWidth=1;
-    iv.forEach(([p,q])=>{const r=(p+q)/2;
-      g.ctx.beginPath();g.ctx.moveTo(g.tx(p),g.ty(p*p));g.ctx.lineTo(g.tx(q),g.ty(q*q));g.ctx.lineTo(g.tx(r),g.ty(r*r));g.ctx.closePath();g.ctx.fill();g.ctx.stroke();
-      nxt.push([p,r],[r,q])});
+    g.ctx.fillStyle=fills[kk];g.ctx.strokeStyle='rgba(255,255,255,.85)';g.ctx.lineWidth=1;
+    iv.forEach(([a,b])=>{const m=(a+b)/2;
+      g.ctx.beginPath();g.ctx.moveTo(g.tx(a*a),g.ty(a));g.ctx.lineTo(g.tx(b*b),g.ty(b));g.ctx.lineTo(g.tx(m*m),g.ty(m));g.ctx.closePath();g.ctx.fill();g.ctx.stroke();
+      nxt.push([a,m],[m,b])});
     iv=nxt;
   }
   g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=2.4;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(-1),g.ty(1));g.ctx.lineTo(g.tx(1),g.ty(1));g.ctx.stroke();
-  glabel(g,g.tx(0),g.ty(1)-8,'coarda AB','#B71C1C','center');
-  plotFn(g,x=>x*x,'#C4820A',3);
-  /* capetele coardei și vârful triunghiului înscris */
-  /* ilustrarea lemei pe coarda dintre V′(0,0) și B(1,1), adică p = 0, q = 1 */
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(1),g.ty(-1));g.ctx.lineTo(g.tx(1),g.ty(1));g.ctx.stroke();
+  glabel(g,g.tx(1)+8,g.ty(0),'coarda AB','#B71C1C');
+  plotParab(g,0.5,'#C4820A',3);
+  /* ilustrarea lemei pe coarda dintre V′(0,0) și B(1,1), adică a = 0, b = 1 */
   if(n>=1){
     g.ctx.setLineDash([4,4]);
     g.ctx.strokeStyle='rgba(183,28,28,.7)';g.ctx.lineWidth=1.6;
     g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(0));g.ctx.lineTo(g.tx(1),g.ty(1));g.ctx.stroke();
     g.ctx.strokeStyle='rgba(44,26,14,.8)';
-    g.ctx.beginPath();g.ctx.moveTo(g.tx(0.15),g.ty(-0.1));g.ctx.lineTo(g.tx(0.95),g.ty(0.7));g.ctx.stroke();
+    g.ctx.beginPath();g.ctx.moveTo(g.tx(0.25-0.4),g.ty(0.5-0.4));g.ctx.lineTo(g.tx(0.25+0.5),g.ty(0.5+0.5));g.ctx.stroke();
     g.ctx.setLineDash([]);
-    gdot(g,0.5,0.25,4,'#2C1A0E','#fff');
-    glabel(g,g.tx(1.24),g.ty(0.5),'coardă (p = 0, q = 1)','#B71C1C','right');
-    glabel(g,g.tx(1.24),g.ty(0.12),'tangenta în x = ½, ∥ coardei','#2C1A0E','right');
+    gdot(g,0.25,0.5,4,'#2C1A0E','#fff');
+    glabel(g,g.tx(0.25)+8,g.ty(0.95),'coardă (a = 0, b = 1)','#B71C1C');
+    glabel(g,g.tx(0.25)+8,g.ty(0.18),'tangenta în y = ½, ∥ coardei','#2C1A0E');
   }
-  gdot(g,-1,1,5,'#B71C1C','#fff');glabel(g,g.tx(-1)-8,g.ty(1)-6,'A(−1, 1)','#B71C1C','right');
-  gdot(g,1,1,5,'#B71C1C','#fff');glabel(g,g.tx(1)+8,g.ty(1)-6,'B(1, 1)','#B71C1C');
-  gdot(g,0,0,5,'#2C1A0E','#fff');glabel(g,g.tx(0)+8,g.ty(0)-6,'V′ = O(0, 0) — tangenta ∥ AB','#2C1A0E');
-  glabel(g,12,18,'y = x²','#8a6508');
+  gdot(g,1,-1,5,'#B71C1C','#fff');glabel(g,g.tx(1)+8,g.ty(-1)+4,'A(1, −1)','#B71C1C');
+  gdot(g,1,1,5,'#B71C1C','#fff');glabel(g,g.tx(1)+8,g.ty(1)+4,'B(1, 1)','#B71C1C');
+  gdot(g,0,0,5,'#2C1A0E','#fff');glabel(g,g.tx(0)-8,g.ty(0)-6,'V′ = O — tangenta ∥ AB','#2C1A0E','right');
+  glabel(g,12,g.H-12,'y² = x','#8a6508');
   const S=(4/3)*(1-Math.pow(.25,n+1)),num=Math.pow(4,n+1)-1,den=3*Math.pow(4,n);
   $('arhStats').innerHTML=
     ist('Generații','0 … '+n)+
@@ -1257,39 +1180,36 @@ function updateConic(){
 
 /* ── 17 · asemănarea parabolelor ── */
 function updateSim(){
-  const a=parseFloat($('sLam').value);$('sLamv').textContent=fmt(a);
+  const p=parseFloat($('sLam').value);$('sLamv').textContent=fmt(p);
   const cv=pickCv('sim','simCv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,Wh=W/2,k=W/520;
   ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-  const sc=40*k,cy=H-26*k,c1=Wh/2,c2=Wh+Wh/2;
-  [[c1,0,Wh],[c2,Wh,W]].forEach(([cx0,xa,xb])=>{
+  const scL=42*k,cy=H/2,cx1=Wh*0.3,cx2=Wh+Wh*0.3;
+  [[cx1,0,Wh],[cx2,Wh,W]].forEach(([cx0,xa,xb])=>{
     ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1.3;
     ctx.beginPath();ctx.moveTo(xa+6,cy);ctx.lineTo(xb-6,cy);ctx.stroke();
     ctx.beginPath();ctx.moveTo(cx0,H-6);ctx.lineTo(cx0,8);ctx.stroke();
   });
   ctx.strokeStyle='#EAD9C0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(Wh,0);ctx.lineTo(Wh,H);ctx.stroke();
-  ctx.save();ctx.beginPath();ctx.rect(0,0,Wh,H);ctx.clip();
-  ctx.setLineDash([5,5]);ctx.beginPath();let on=false;
-  for(let px=0;px<=Wh;px++){const x=(px-c1)/sc,py=cy-x*x*sc;if(py<-40){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
-  ctx.strokeStyle='rgba(139,110,90,.45)';ctx.lineWidth=1.6;ctx.stroke();ctx.setLineDash([]);
-  ctx.beginPath();on=false;
-  for(let px=0;px<=Wh;px++){const x=(px-c1)/sc,py=cy-a*x*x*sc;if(py<-40){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
-  ctx.strokeStyle='#C4820A';ctx.lineWidth=3;ctx.stroke();ctx.restore();
-  ctx.save();ctx.beginPath();ctx.rect(Wh,0,Wh,H);ctx.clip();
-  ctx.beginPath();on=false;
-  for(let px=Wh;px<=W;px++){const dx=px-c2,py=cy-dx*dx/sc;if(py<-40){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
-  ctx.strokeStyle='#C4820A';ctx.lineWidth=3;ctx.stroke();
-  const ku=sc*a,step=Math.max(1,Math.ceil(34/ku));
-  ctx.font='10px Inter,sans-serif';ctx.textAlign='center';
-  for(let u=step;u*ku<Wh/2-10;u+=step){[1,-1].forEach(sg=>{const X=c2+sg*u*ku;
-    ctx.strokeStyle='#8B6E5A';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(X,cy-3);ctx.lineTo(X,cy+3);ctx.stroke();
-    ctx.fillStyle='#8B6E5A';ctx.fillText(sg*u,X,cy+14)})}
-  ctx.restore();ctx.textAlign='left';
-  ctx.fillStyle='#8B6E5A';ctx.font="11px 'JetBrains Mono',monospace";
-  ctx.fillText('fereastră fixă: y = '+fmt(a)+'x²',12,18);
-  ctx.fillText('zoom λ = '+fmt(a)+': curba neschimbată',Wh+12,18);
+  /* parabola y²=2P x desenată în panoul [xa,xb], cu centru cx și scară sc */
+  const para=(P,cx,sc,xa,xb,color,lw,dash)=>{
+    ctx.save();ctx.beginPath();ctx.rect(xa,0,xb-xa,H);ctx.clip();
+    ctx.beginPath();let on=false;
+    for(let py=0;py<=H;py++){const y=(cy-py)/sc,x=y*y/(2*P),px=cx+x*sc;if(px>xb+60){on=false;continue}on?ctx.lineTo(px,py):ctx.moveTo(px,py);on=true}
+    if(dash)ctx.setLineDash(dash);ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.stroke();ctx.setLineDash([]);
+    ctx.restore();
+  };
+  /* STÂNGA: referința y²=2x (punctat) + actuala y²=2px (plin), aceeași scară */
+  para(1,cx1,scL,0,Wh,'rgba(139,110,90,.5)',1.6,[5,5]);
+  para(p,cx1,scL,0,Wh,'#C4820A',3);
+  /* DREAPTA: actuala y²=2px la zoom λ=1/p (scR=scL/p) → coincide cu referința */
+  para(1,cx2,scL,Wh,W,'rgba(139,110,90,.5)',1.6,[5,5]);
+  para(p,cx2,scL/p,Wh,W,'#C4820A',3);
+  ctx.fillStyle='#8B6E5A';ctx.font="11px 'JetBrains Mono',monospace";ctx.textAlign='left';
+  ctx.fillText('fereastră fixă: y² = '+fmt(2*p)+'x',12,18);
+  ctx.fillText('zoom λ = 1/p: devine y² = 2x',Wh+12,18);
   $('simStats').innerHTML=
-    ist('Stânga','y = '+fmt(a)+'x², fereastră fixă')+
-    ist('Dreapta','aceeași curbă la zoom λ = a — identică')+
+    ist('Stânga','y² = 2px (p = '+fmt(p)+') peste y² = 2x')+
+    ist('Dreapta','aceeași curbă la zoom λ = 1/p — coincide')+
     ist('Concluzie','toate parabolele sunt asemenea ✓',1);
 }
 
@@ -1298,69 +1218,80 @@ function updateSim(){
   if(slides[cur]&&slides[cur].dataset.label==='Reflexie')drawRefl(ts||0);
   requestAnimationFrame(reflLoop);
 })(0);
+(function constrLoop(ts){
+  if(slides[cur]&&slides[cur].dataset.label==='Construcție')drawConstr(ts||0);
+  requestAnimationFrame(constrLoop);
+})(0);
 
 /* ── diagrama statică pentru slide-ul „Elementele parabolei” ── */
 function drawElements(){
   const cv=$('elemCv');if(!cv)return;
-  const k=cv.width/520,g=miniAxes(cv,52*k,190*k,290*k);
-  const a=0.5,b=-1,c=-1.5;
-  const m=-b/(2*a),n=-(b*b-4*a*c)/(4*a),sq=Math.sqrt(b*b-4*a*c);
-  const x1=(-b-sq)/(2*a),x2=(-b+sq)/(2*a);
-  /* axa de simetrie */
-  g.ctx.setLineDash([5,5]);g.ctx.strokeStyle='rgba(21,101,192,.55)';g.ctx.lineWidth=1.5;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(m),0);g.ctx.lineTo(g.tx(m),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
-  glabel(g,g.tx(m)+6,26,'axa de simetrie  x = −b/(2a)','#0D47A1');
+  const k=cv.width/520,g=miniAxes(cv,46*k,150*k,cv.height/2);
+  const p=2.6,fx=p/2;
+  /* interiorul parabolei (y² − 2px < 0): regiunea din dreapta curbei */
+  g.ctx.save();g.ctx.beginPath();let started=false;
+  for(let py=0;py<=g.H;py++){const y=(g.cy-py)/g.sc,x=y*y/(2*p),px=g.cx+x*g.sc;started?g.ctx.lineTo(px,py):g.ctx.moveTo(px,py);started=true}
+  g.ctx.lineTo(g.W,g.H);g.ctx.lineTo(g.W,0);g.ctx.closePath();
+  g.ctx.fillStyle='rgba(184,134,11,.14)';g.ctx.fill();g.ctx.restore();
+  /* directoarea g: x = −p/2 */
+  g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),0);g.ctx.lineTo(g.tx(-fx),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,g.tx(-fx)+5,18,'directoarea g: x = −p/2','#B71C1C');
+  /* numele axelor */
+  glabel(g,g.W-14,g.ty(0)-8,'axa transversă (Ox)','#8B6E5A','right');
+  glabel(g,g.tx(0)+6,32,'axa netransversă (Oy)','#8B6E5A');
   /* parabola */
-  plotFn(g,x=>a*x*x+b*x+c,'#C4820A',3.2);
-  glabel(g,12,18,'f(x) = 0,5x² − x − 1,5','#8a6508');
-  /* intersecțiile cu Ox */
-  gdot(g,x1,0,6,'#E53935','#fff');glabel(g,g.tx(x1)-8,g.ty(0)+18,'x₁ = '+fmt(x1),'#B71C1C','right');
-  gdot(g,x2,0,6,'#E53935','#fff');glabel(g,g.tx(x2)+8,g.ty(0)+18,'x₂ = '+fmt(x2),'#B71C1C');
-  /* intersecția cu Oy */
-  gdot(g,0,c,6,'#2E7D32','#fff');glabel(g,g.tx(0)-8,g.ty(c)+4,'(0, c)','#1B5E20','right');
-  /* vârful */
-  gdot(g,m,n,7,'#1565C0','#fff');glabel(g,g.tx(m)+10,g.ty(n)+5,'V(m, n) = (1, −2)','#0D47A1');
+  plotParab(g,p,'#C4820A',3.4);
+  glabel(g,12,g.H-12,'y² = 2px','#8a6508');
+  /* etichetele regiunilor */
+  glabel(g,g.tx(fx+1.7),g.ty(0.4),'int(P): y² − 2px < 0','#8a6508','center');
+  glabel(g,g.tx(-fx)-6,g.ty(3),'ext(P): y² − 2px > 0','#1B5E20','right');
+  /* puncte */
+  gdot(g,0,0,6,'#1565C0','#fff');gtag(g,0,0,'O — vârful','#0D47A1');
+  gdot(g,fx,0,6,'#B8860B','#fff');gtag(g,fx,0,'F(p/2, 0)','#8a6508');
 }
 
 /* ── diagrama statică pentru slide-ul „Ecuația parabolei” ── */
 function drawEqDiagram(){
   const cv=$('eqCv');if(!cv)return;
-  const k=cv.width/520,g=miniAxes(cv,55*k,cv.width/2,cv.height-90*k);
-  const a=0.25,p=1/(4*a),xP=1.7,yP=a*xP*xP;
-  /* directoarea */
+  const k=cv.width/520,g=miniAxes(cv,50*k,165*k,cv.height/2);
+  const p=2.5,fx=p/2,t=3,xM=t*t/(2*p);
+  /* directoarea g: x = −p/2 (verticală) */
   g.ctx.setLineDash([8,6]);g.ctx.strokeStyle='#B71C1C';g.ctx.lineWidth=1.8;
-  g.ctx.beginPath();g.ctx.moveTo(0,g.ty(-p));g.ctx.lineTo(g.W,g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  glabel(g,12,g.ty(-p)-7,'d:  y = −p','#B71C1C');
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),0);g.ctx.lineTo(g.tx(-fx),g.H);g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,g.tx(-fx)+5,18,'g: x = −p/2','#B71C1C');
   /* parabola */
-  plotFn(g,x=>a*x*x,'#C4820A',3.2);
-  glabel(g,12,18,'y = (1/(4p))·x²','#8a6508');
-  /* segmentul p */
-  const pxp=g.tx(0)-13;
+  plotParab(g,p,'#C4820A',3.2);
+  glabel(g,12,g.H-12,'y² = 2px','#8a6508');
+  /* parametrul p, pe Ox */
+  const yb=g.ty(0)+18;
   g.ctx.strokeStyle='#8a6508';g.ctx.lineWidth=2;
-  g.ctx.beginPath();g.ctx.moveTo(pxp,g.ty(0));g.ctx.lineTo(pxp,g.ty(p));g.ctx.stroke();
-  g.ctx.beginPath();g.ctx.moveTo(pxp-3,g.ty(0));g.ctx.lineTo(pxp+3,g.ty(0));g.ctx.moveTo(pxp-3,g.ty(p));g.ctx.lineTo(pxp+3,g.ty(p));g.ctx.stroke();
-  glabel(g,pxp-7,(g.ty(0)+g.ty(p))/2+4,'p','#8a6508','right');
-  /* PF */
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),yb);g.ctx.lineTo(g.tx(fx),yb);g.ctx.stroke();
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(-fx),yb-3);g.ctx.lineTo(g.tx(-fx),yb+3);g.ctx.moveTo(g.tx(fx),yb-3);g.ctx.lineTo(g.tx(fx),yb+3);g.ctx.stroke();
+  glabel(g,(g.tx(-fx)+g.tx(fx))/2,yb+13,'p','#8a6508','center');
+  /* MF */
   g.ctx.strokeStyle='#1565C0';g.ctx.lineWidth=2.2;
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(0),g.ty(p));g.ctx.lineTo(g.tx(xP),g.ty(yP));g.ctx.stroke();
-  glabel(g,(g.tx(0)+g.tx(xP))/2,(g.ty(p)+g.ty(yP))/2-6,'PF','#0D47A1','center');
-  /* PQ (perpendiculară pe d) */
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(fx),g.ty(0));g.ctx.lineTo(g.tx(xM),g.ty(t));g.ctx.stroke();
+  glabel(g,(g.tx(fx)+g.tx(xM))/2,(g.ty(0)+g.ty(t))/2-6,'MF','#0D47A1','center');
+  /* d(M,g), perpendiculară pe g */
   g.ctx.strokeStyle='#2E7D32';g.ctx.lineWidth=2.2;g.ctx.setLineDash([5,4]);
-  g.ctx.beginPath();g.ctx.moveTo(g.tx(xP),g.ty(yP));g.ctx.lineTo(g.tx(xP),g.ty(-p));g.ctx.stroke();g.ctx.setLineDash([]);
-  glabel(g,g.tx(xP)+8,(g.ty(yP)+g.ty(-p))/2+4,'PQ = y + p','#1B5E20');
+  g.ctx.beginPath();g.ctx.moveTo(g.tx(xM),g.ty(t));g.ctx.lineTo(g.tx(-fx),g.ty(t));g.ctx.stroke();g.ctx.setLineDash([]);
+  glabel(g,(g.tx(xM)+g.tx(-fx))/2,g.ty(t)-8,'d(M, g) = x + p/2','#1B5E20','center');
   /* puncte */
   gdot(g,0,0,5,'#2C1A0E','#fff');gtag(g,0,0,'O (vârf)','#2C1A0E');
-  gdot(g,0,p,6,'#B8860B','#fff');gtag(g,0,p,'F(0, p)','#8a6508');
-  gdot(g,xP,yP,6,'#2C1A0E','#fff');gtag(g,xP,yP,'P(x, y)','#2C1A0E');
-  gdot(g,xP,-p,5,'#B71C1C','#fff');gtag(g,xP,-p,'Q','#B71C1C');
+  gdot(g,fx,0,6,'#B8860B','#fff');gtag(g,fx,0,'F(p/2, 0)','#8a6508');
+  gdot(g,xM,t,6,'#2C1A0E','#fff');gtag(g,xM,t,'M(x, y)','#2C1A0E');
+  gdot(g,-fx,t,5,'#B71C1C','#fff');gtag(g,-fx,t,'N','#B71C1C');
 }
 
 /* ── big view: orice demo, pe tot ecranul ── */
 const BIGDEFS={
-  focus:{cv:'focusCv',w:520,h:320,title:'Focarul și directoarea',fn:()=>updateFocus(),drag:'fT'},
-  tan:{cv:'tanCv',w:520,h:320,title:'Tangenta, pe două căi',fn:()=>updateTan(),drag:'tX'},
-  refl:{cv:'reflCv',w:520,h:320,title:'Reflexia în focar',fn:()=>drawRefl(0)},
-  osc:{cv:'oscCv',w:520,h:320,title:'Cercul osculator',fn:()=>updateOsc(),drag:'oT'},
+  focus:{cv:'focusCv',w:520,h:360,title:'Focarul și directoarea',fn:()=>updateFocus(),drag:'fT',dragAxis:'y'},
+  constr:{cv:'constrCv',w:520,h:360,title:'Procedeul de construcție',fn:()=>drawConstr(0)},
+  line:{cv:'lineCv',w:520,h:360,title:'Intersecția cu o dreaptă',fn:()=>updateLine()},
+  tan:{cv:'tanCv',w:520,h:360,title:'Tangenta prin dedublare',fn:()=>updateTan(),drag:'tX',dragAxis:'y'},
+  refl:{cv:'reflCv',w:520,h:360,title:'Reflexia în focar',fn:()=>drawRefl(0)},
+  osc:{cv:'oscCv',w:520,h:320,title:'Cercul osculator',fn:()=>updateOsc(),drag:'oT',dragAxis:'y'},
   arh:{cv:'arhCv',w:520,h:320,title:'Arhimede și 4/3',fn:()=>updateArh()},
   con:{cv:'conCv',w:520,h:300,title:'Conica generală și matricea ei',fn:()=>updateConic()},
   sim:{cv:'simCv',w:520,h:300,title:'Toate parabolele sunt asemenea',fn:()=>updateSim(),noZoom:true}
@@ -1399,10 +1330,11 @@ function closeBig(){
   const cv2=document.getElementById('bigCv');
   let dr=false,mode=null,lx=0,ly=0;
   const pos=e=>{const r=cv2.getBoundingClientRect();return[(e.clientX-r.left)*(cv2.width/r.width),(e.clientY-r.top)*(cv2.height/r.height)]};
-  function movePoint(mx){
+  function movePoint(mx,my){
     const d=BIGDEFS[bigKey],v=views[bigKey];if(!d||!d.drag||!v)return;
     const sl=$(d.drag),mn=parseFloat(sl.min),mxx=parseFloat(sl.max),st=parseFloat(sl.step)||.05;
-    sl.value=Math.max(mn,Math.min(mxx,Math.round(((mx-v.cx)/v.sc)/st)*st));
+    const val=d.dragAxis==='y'?(v.cy-my)/v.sc:(mx-v.cx)/v.sc;
+    sl.value=Math.max(mn,Math.min(mxx,Math.round(val/st)*st));
     d.fn();
   }
   cv2.addEventListener('pointerdown',e=>{
@@ -1414,12 +1346,12 @@ function closeBig(){
     else mode=null;
     dr=true;lx=mx;ly=my;
     try{cv2.setPointerCapture(e.pointerId)}catch(_){}
-    if(mode==='point')movePoint(mx);
+    if(mode==='point')movePoint(mx,my);
   });
   cv2.addEventListener('pointermove',e=>{
     if(!dr||!bigKey||!mode)return;
     const[mx,my]=pos(e);
-    if(mode==='point')movePoint(mx);
+    if(mode==='point')movePoint(mx,my);
     else if(mode==='pan'&&bigT){bigT.cx+=mx-lx;bigT.cy+=my-ly;lx=mx;ly=my;BIGDEFS[bigKey].fn()}
   });
   ['pointerup','pointercancel'].forEach(t=>cv2.addEventListener(t,()=>{dr=false;mode=null}));
@@ -1457,12 +1389,33 @@ function dragX(cvId,slId,getView,fn){
   ['touchstart','touchmove','touchend'].forEach(t=>cv.addEventListener(t,e=>e.stopPropagation()));
 }
 
+/* drag-on-canvas vertical: trage punctul pe verticală (parabolă orizontală), sliderul urmează */
+function dragY(cvId,slId,getView,fn){
+  const cv=$(cvId),sl=$(slId);
+  cv.classList.add('dragx');cv.title='punct mobil — se trage vertical';
+  let drag=false;
+  const move=e=>{
+    if(!drag||(bigOpen&&bigMoved.length))return;
+    const view=getView();if(!view)return;
+    const r=cv.getBoundingClientRect(),py=(e.clientY-r.top)*(cv.height/r.height);
+    const mn=parseFloat(sl.min),mx=parseFloat(sl.max),st=parseFloat(sl.step)||.05;
+    sl.value=Math.max(mn,Math.min(mx,Math.round(((view.cy-py)/view.sc)/st)*st));
+    fn();
+  };
+  cv.addEventListener('pointerdown',e=>{drag=true;try{cv.setPointerCapture(e.pointerId)}catch(_){}move(e)});
+  cv.addEventListener('pointermove',move);
+  cv.addEventListener('pointerup',()=>drag=false);
+  cv.addEventListener('pointercancel',()=>drag=false);
+  ['touchstart','touchmove','touchend'].forEach(t=>cv.addEventListener(t,e=>e.stopPropagation()));
+}
+
 /* slide activation hooks */
 const slideHooks={
-  'Calculator':()=>updateCalc(),
   'Focar':()=>updateFocus(),
+  'Construcție':()=>drawConstr(0),
   'Ecuația':()=>drawEqDiagram(),
   'Elemente':()=>drawElements(),
+  'Dreaptă':()=>updateLine(),
   'Tangente':()=>updateTan(),
   'Curbură':()=>updateOsc(),
   'Arhimede':()=>updateArh(),
@@ -1472,39 +1425,18 @@ const slideHooks={
 
 /* ═══ INIT ═══ */
 addEventListener('load',()=>{
-  /* butoanele preset pentru cele 6 cazuri — sar la configurația respectivă */
-  document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{
-    document.getElementById('sA').value=btn.dataset.a;
-    document.getElementById('sB').value=btn.dataset.b;
-    document.getElementById('sC').value=btn.dataset.c;
-    updateCalc();
-  }));
-  ['sA','sB','sC'].forEach(id=>document.getElementById(id).addEventListener('input',updateCalc));
-  document.getElementById('sA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=0.5;updateCalc()}});
-  /* open the big inspect window from the calculator graph */
-  document.getElementById('calcCanvas').addEventListener('click',openCalcModal);
-  /* modal sliders drive the same state, live */
-  const link={mA:'sA',mB:'sB',mC:'sC'};
-  Object.keys(link).forEach(mid=>document.getElementById(mid).addEventListener('input',function(){
-    document.getElementById(link[mid]).value=this.value;
-    updateCalc();
-  }));
-  document.getElementById('mA').addEventListener('change',function(){if(parseFloat(this.value)===0){this.value=0.5;document.getElementById('sA').value=0.5;updateCalc()}});
-  /* research slides wiring */
-  [['fA',updateFocus],['fT',updateFocus],['tA',updateTan],['tX',updateTan],['oT',updateOsc],['oH',updateOsc],
-   ['aN',updateArh],['cA',updateConic],['cB',updateConic],['cC',updateConic],['sLam',updateSim]]
-   .forEach(([id,fn])=>document.getElementById(id).addEventListener('input',fn));
-  document.getElementById('tEnv').addEventListener('click',function(){
-    envOn=!envOn;this.classList.toggle('on',envOn);
-    this.textContent=envOn?'înfășurătoare: ON':'înfășurătoare: OFF';updateTan();
-  });
-  dragX('focusCv','fT',()=>views.focus,updateFocus);
-  dragX('tanCv','tX',()=>views.tan,updateTan);
-  dragX('oscCv','oT',()=>views.osc,updateOsc);
-  /* big view: butoane ⤢ + click pe graficele fără drag + backdrop + resize */
+  /* sliderele demo-urilor → redesenează */
+  [['fP',updateFocus],['fT',updateFocus],['lM',updateLine],['lQ',updateLine],['tX',updateTan],
+   ['oT',updateOsc],['oH',updateOsc],['aN',updateArh],['cA',updateConic],['cB',updateConic],['cC',updateConic],['sLam',updateSim]]
+   .forEach(([id,fn])=>{const el=document.getElementById(id);if(el)el.addEventListener('input',fn)});
+  /* drag pe canvas: punctul mobil urcă/coboară pe curba orizontală */
+  dragY('focusCv','fT',()=>views.focus,updateFocus);
+  dragY('tanCv','tX',()=>views.tan,updateTan);
+  dragY('oscCv','oT',()=>views.osc,updateOsc);
+  /* big view: butoane ⤢ + click pe graficele fără punct mobil + backdrop + resize */
   document.querySelectorAll('.xpand').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();openBig(b.dataset.big)}));
-  [['reflCv','refl'],['arhCv','arh'],['conCv','con'],['simCv','sim']].forEach(([id,key])=>{
-    const c=document.getElementById(id);c.classList.add('zoom');c.title='click pentru ecran mare';
+  [['constrCv','constr'],['lineCv','line'],['reflCv','refl'],['arhCv','arh'],['conCv','con'],['simCv','sim']].forEach(([id,key])=>{
+    const c=document.getElementById(id);if(!c)return;c.classList.add('zoom');c.title='click pentru ecran mare';
     c.addEventListener('click',()=>openBig(key));
   });
   document.getElementById('big').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBig()});
@@ -1516,8 +1448,7 @@ addEventListener('load',()=>{
   }));
   document.getElementById('imgZ').addEventListener('click',()=>document.getElementById('imgZ').classList.remove('open'));
   addEventListener('resize',()=>{if(bigOpen){sizeBig();bigT=null;BIGDEFS[bigKey].fn()}});
-  updateFocus();drawEqDiagram();drawElements();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
-  updateCalc();
+  updateFocus();drawConstr(0);drawEqDiagram();drawElements();updateLine();updateTan();updateOsc();updateArh();updateConic();updateSim();drawRefl(0);
   go(0);
 });
 </script>
